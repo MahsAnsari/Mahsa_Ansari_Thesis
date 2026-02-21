@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Worksheet>
+<Version major="2023" minor="0"/>
+<Label-Scheme value="2" prefix=""/>
+<View-Properties presentation="false" autoexpanding_sections="true" UserProfileName="Maple Default Profile" NumericFormat-ApplyInteger="true" NumericFormat-ApplyRational="true" NumericFormat-ApplyExponent="false" editable="true">
+</View-Properties>
+<MapleNet-Properties prettyprint="3" warnlevel="3" compactdisplay="false" preplot="" helpbrowser="standard" displayprecision="-1" echo="1" scientificx="true" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" imaginaryunit="I" longdelim="true" elisiontermsthreshold="10000" elisiondigitsafter="100" elisiondigitsbefore="100" plotdevice="inline" errorbreak="1" plotoptions="" plotdriver="opengl" quiet="false" elisiontermsbefore="100" elisiontermsafter="100" historytimestamp="false" screenwidth="79" indentamount="4" plotoutput="terminal" screenpixelheight="1200" rtablesize="[10, 10]" useclientjvm="true" format="worksheet" labelwidth="20" postplot="" typesetting="extended" ansi="false" ansicolor="[]" elisiondigitsthreshold="10000" showassumed="1" ansilprint="false" trailingsemicolon="true" errorcursor="false" labelling="true" screenheight="25" prompt="&gt; " verboseproc="1" latexwidth="8.0" ShowLabels="true"/>
+<Styles>
+<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="16" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[40,120,40]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[120,0,14]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 3" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Atomic Variable" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[175,0,175]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Dictionary Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[147,0,15]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="2D Math" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="List Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="true"/>
+<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.3" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 1" alignment="left" bullet="numeric" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="newline" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 2" alignment="left" bullet="alphabetic" firstindent="0" leftmargin="36" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 3" alignment="left" bullet="roman" firstindent="0" leftmargin="72" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 4" alignment="left" bullet="ALPHABETIC" firstindent="0" leftmargin="108" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 5" alignment="left" bullet="ROMAN" firstindent="0" leftmargin="144" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Annotation Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkError" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Bullet Item" alignment="left" bullet="dot" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="List Item" alignment="left" bullet="indent" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Dash Item" alignment="left" bullet="dash" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Error" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Pencil-style name="Pencil 1" pen-color="[0,0,0]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
+<Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
+</Styles>
+<Startup-Code startupcode=""/>
+<Task-table>
+	<Task-category name="&lt;default&gt;"/>
+</Task-table>
+<Task/>
+<Group hide-input="false" labelreference="L113" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;
+with(PolynomialTools):
+interface(rtablesize=40):
+with(ExcelTools):
+<Font foreground="[0,128,128]">#LAMinpolyMaple file contains the LAMinpoly algorithm to get M(z).
+#PhigammaMaple file maps phi_p(f1), phi_p(f2) to their corresponding polynomials in Z_p[z]/&lt;M(z)&gt; using phi_{gamma} isomorphism.
+#Get contains getvars, getring,..., and conv2cons for basic operations regarding the ring and extensions
+#MonOpMaple 
+#ContMaple
+#PGCD
+#MGCD
+</Font></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L226" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font foreground="[0,128,128]">#Read subrutines</Font>
+currentdir(&quot;C:/Users/mahsa/OneDrive/Documents/GitHub/Maple-Thesis-MGCD-MRES/Maple Internship/Resultant/MRES Alg&quot;):
+read &quot;Get&quot;; read &quot;LAMinpolyMaple&quot;; read &quot;PhigammaMaple&quot;; read &quot;MonOpMaple&quot;;  read &quot;PRESMaple&quot;; read &quot;URESMaple&quot;; read &quot;MRES1&quot;; read &quot;MRES2&quot;; read &quot;MRES_Bench.mpl&quot;;
+RDP:=Algebraic:-RecursiveDensePolynomials;</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEkUkRQRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LVEpJkFzc2lnbjtGJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC1GLDYlUSpBbGdlYnJhaWNGJ0YvRjItRjY2LVEvJmNvbG9uOyZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRJjAuMGVtRicvRk5GVi1GLDYlUTpSZWN1cnNpdmVEZW5zZVBvbHlub21pYWxzRidGL0YyRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSRSRFBHRihJOlJlY3Vyc2l2ZURlbnNlUG9seW5vbWlhbHNHNiQvSSttb2R1bGVuYW1lR0YoSSpBbGdlYnJhaWNHRiVGJjcjRi4=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L339" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" size="16" background="[255,255,153]" foreground="[0,0,255]">#1</Font><Font opaque="true" background="[255,255,153]" foreground="[0,0,255]">:Number of Variables changing from 1 to 5</Font></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L711" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" background="[204,255,204]">flagalg:=MRS2; #Without LAminpoly
+</Font><Font opaque="true">vars:=</Font><Font foreground="[128,0,0]">[seq(</Font>1..4)];<Font opaque="true" background="[204,255,204]">
+</Font>R:=<Font foreground="[128,0,0]">Benchmain(flagalg,vars</Font>,24,12,24,4,0);
+Export(R,&quot;MRES2.xls&quot;,&quot;#var&quot;);</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEoZmxhZ2FsZ0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtRiw2JVElTVJTMkYnRi9GMkY5">LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYlLUkjbWlHRiQ2JVEoZmxhZ2FsZ0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtRiw2JVElTVJTMkYnRi9GMg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEldmFyc0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSShtZmVuY2VkR0YkNiYtRiM2Ji1JI21uR0YkNiRRIjFGJ0Y5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEldmFyc0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSShtZmVuY2VkR0YkNiYtRiM2Ji1JI21uR0YkNiRRIjFGJ0Y5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==</Equation></Text-field>
+</Output>
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">MRS2
+MRS2 := proc(A1, B1, x)
+local count, previousresult, A, B, ringA, X, Xpoly, Minpolys, i, m, n, Xmin, k, H, 
+  prod, p, Ap, Bp, Cp, CRT, H2, test1, test2, irat, M, gama, gamma, phimatrix,
+  invphimatrix, PhiAp, PhiBp, lcmintest, ca, cb, nca, ncb, C, counter, j, s, 
+  LA, Rand, ZD, wt, randfunction, minpolys, st, tt, laminpolytime, pgcdtime, 
+  PPresult, Np;
+     |Calls Seconds  Words|
+PROC |    1   0.344 3513468|
+   1 |    1   0.000      0| Np := 0;
+   2 |    1   0.000      0| previousresult := 0;
+   3 |    1   0.000      0| PPresult := 0;
+   4 |    1   0.000      0| count := 0;
+   5 |    1   0.000      4| tt := time();
+   6 |    1   0.000      0| laminpolytime := 0;
+   7 |    1   0.000      0| pgcdtime := 0;
+   8 |    1   0.000   4427| A := semi(A1);
+   9 |    1   0.000   3365| B := semi(B1);
+  10 |    1   0.000     10| checkconsistency(A,B);
+  11 |    1   0.000      0| ringA := op(1,A);
+  12 |    1   0.000      0| X := op([1, 2],A);
+  13 |    1   0.000      0| n := nops(X);
+  14 |    1   0.000   1769| minpolys := Algebraic:-RecursiveDensePolynomials:-
+                              getalgexts(A);
+  15 |    1   0.000      0| m := nops(minpolys);
+  16 |    1   0.000      7| Xpoly := X[1 .. n-m];
+  17 |    1   0.000     31| Xmin := ListTools:-Reverse(X[n-m+1 .. n]);
+  18 |    1   0.000   2335| Minpolys := map(Algebraic:-
+                              RecursiveDensePolynomials:-rpoly,map(semi,
+                              minpolys));
+  19 |    1   0.000      0| k := nops(Xpoly);
+  20 |    1   0.000      0| H := [];
+  21 |    1   0.000      0| p := 2147483648;
+  22 |    1   0.000      0| do
+  23 |   13   0.000  12201|     do
+  24 |   13   0.000   9477|         p := nextprime(p);
+  25 |   13   0.000      0|         lcmintest := true;
+  26 |   13   0.000      0|         for i to m do
+  27 |   39   0.000    649|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false;
+<Font encoding="UTF-8">  29 |    0   0.000      0|                 printf(&quot;p=%d is an lc-bad prime mi\134
+                                              npoly case\134n&quot;,p)
+</Font>                                        end if
+                                    end do;
+  30 |   13   0.015  12162|         if Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly
+                                      (Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      lcrpoly(A,Xpoly)) mod p = 0 then
+<Font encoding="UTF-8">  31 |    0   0.000      0|             printf(&quot;p=%d is an lc-bad prime polyno\134
+                                          mial case\134n&quot;,p)
+</Font>                                    end if
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  32 |   13   0.000  64569|     Ap := Algebraic:-RecursiveDensePolynomials:-
+                                  phirpoly(A,p);
+  33 |   13   0.015  63167|     Bp := Algebraic:-RecursiveDensePolynomials:-
+                                  phirpoly(B,p);
+  34 |   13   0.000     52|     st := time();
+  35 |   13   0.314 3206570|     Cp := traperror(PRSAlg(Ap,Bp,x,p));
+  36 |   13   0.000    208|     pgcdtime := pgcdtime+time()-st;
+  37 |   13   0.000     43|     if Cp = lasterror and nops([Cp]) = 2 and
+                                Cp[1] = &quot;inverse does not exist&quot; then
+  38 |    0   0.000      0|         ZD := Cp[2];
+<Font encoding="UTF-8">  39 |    0   0.000      0|         printf(&quot;p=%d is a ZD prime ZD=%a\134n&quot;,p,ZD);
+</Font>  40 |    0   0.000      0|         next
+                                end if;
+  41 |   13   0.000     39|     if count = 0 then
+  42 |    1   0.000      0|         CRT := Cp;
+  43 |    1   0.000      4|         H := [Cp];
+  44 |    1   0.000      0|         count := count+1
+                                else
+  45 |   12   0.000    159|         H := [op(H), Cp];
+  46 |   12   0.000 111764|         CRT := Algebraic:-
+                                      RecursiveDensePolynomials:-ichremrpoly(
+                                      map(Algebraic:-RecursiveDensePolynomials
+                                      :-retextsrpoly,H));
+  47 |   12   0.000      0|         count := count+1
+                                end if;
+  48 |   13   0.000      0|     Np := Np+1;
+  49 |   13   0.000  20369|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  50 |   13   0.000     39|     if irat &lt;&gt; FAIL then
+  51 |    3   0.000     15|         if irat = previousresult and irat = 
+                                      PPresult then
+  52 |    1   0.000     12|             tt := time()-tt;
+  53 |    1   0.000      4|             if timings = true then
+<Font encoding="UTF-8">  54 |    0   0.000      0|                 printf(&quot;MRS: time=%.3f  LAminpoly=\134
+                                              %.3f  PGCD=%.3f  Np=%d\134n&quot;,tt,
+</Font>                                              laminpolytime,pgcdtime,Np)
+                                        end if;
+  55 |    1   0.000     12|             irat := subsop(1 = ringA,irat);
+  56 |    1   0.000      5|             return [irat, Np]
+                                    else
+  57 |    2   0.000      0|             PPresult := previousresult;
+  58 |    2   0.000      0|             previousresult := irat
+                                    end if
+                                end if
+                            end do
+end proc
+
+MRS2
+MRS2 := proc(A1, B1, x)
+local count, previousresult, A, B, ringA, X, Xpoly, Minpolys, i, m, n, Xmin, k, H, 
+  prod, p, Ap, Bp, Cp, CRT, H2, test1, test2, irat, M, gama, gamma, phimatrix,
+  invphimatrix, PhiAp, PhiBp, lcmintest, ca, cb, nca, ncb, C, counter, j, s, 
+  LA, Rand, ZD, wt, randfunction, minpolys, st, tt, laminpolytime, pgcdtime, 
+  PPresult, Np;
+     |Calls Seconds  Words|
+PROC |    1   0.219 2111612|
+   1 |    1   0.000      0| Np := 0;
+   2 |    1   0.000      0| previousresult := 0;
+   3 |    1   0.000      0| PPresult := 0;
+   4 |    1   0.000      0| count := 0;
+   5 |    1   0.000      4| tt := time();
+   6 |    1   0.000      0| laminpolytime := 0;
+   7 |    1   0.000      0| pgcdtime := 0;
+   8 |    1   0.000   3054| A := semi(A1);
+   9 |    1   0.000   3054| B := semi(B1);
+  10 |    1   0.000      6| checkconsistency(A,B);
+  11 |    1   0.000      0| ringA := op(1,A);
+  12 |    1   0.000      0| X := op([1, 2],A);
+  13 |    1   0.000      0| n := nops(X);
+  14 |    1   0.000    498| minpolys := Algebraic:-RecursiveDensePolynomials:-
+                              getalgexts(A);
+  15 |    1   0.000      0| m := nops(minpolys);
+  16 |    1   0.000      7| Xpoly := X[1 .. n-m];
+  17 |    1   0.000     31| Xmin := ListTools:-Reverse(X[n-m+1 .. n]);
+  18 |    1   0.000   2074| Minpolys := map(Algebraic:-
+                              RecursiveDensePolynomials:-rpoly,map(semi,
+                              minpolys));
+  19 |    1   0.000      0| k := nops(Xpoly);
+  20 |    1   0.000      0| H := [];
+  21 |    1   0.000      0| p := 2147483648;
+  22 |    1   0.000      0| do
+  23 |   13   0.000  12194|     do
+  24 |   13   0.000   1226|         p := nextprime(p);
+  25 |   13   0.000      0|         lcmintest := true;
+  26 |   13   0.000      0|         for i to m do
+  27 |   39   0.000    635|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false;
+<Font encoding="UTF-8">  29 |    0   0.000      0|                 printf(&quot;p=%d is an lc-bad prime mi\134
+                                              npoly case\134n&quot;,p)
+</Font>                                        end if
+                                    end do;
+  30 |   13   0.000  12155|         if Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly
+                                      (Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      lcrpoly(A,Xpoly)) mod p = 0 then
+<Font encoding="UTF-8">  31 |    0   0.000      0|             printf(&quot;p=%d is an lc-bad prime polyno\134
+                                          mial case\134n&quot;,p)
+</Font>                                    end if
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  32 |   13   0.015  57876|     Ap := Algebraic:-RecursiveDensePolynomials:-
+                                  phirpoly(A,p);
+  33 |   13   0.030  57876|     Bp := Algebraic:-RecursiveDensePolynomials:-
+                                  phirpoly(B,p);
+  34 |   13   0.000     52|     st := time();
+  35 |   13   0.174 1838837|     Cp := traperror(PRSAlg(Ap,Bp,x,p));
+  36 |   13   0.000    208|     pgcdtime := pgcdtime+time()-st;
+  37 |   13   0.000     39|     if Cp = lasterror and nops([Cp]) = 2 and
+                                Cp[1] = &quot;inverse does not exist&quot; then
+  38 |    0   0.000      0|         ZD := Cp[2];
+<Font encoding="UTF-8">  39 |    0   0.000      0|         printf(&quot;p=%d is a ZD prime ZD=%a\134n&quot;,p,ZD);
+</Font>  40 |    0   0.000      0|         next
+                                end if;
+  41 |   13   0.000     39|     if count = 0 then
+  42 |    1   0.000      0|         CRT := Cp;
+  43 |    1   0.000      4|         H := [Cp];
+  44 |    1   0.000      0|         count := count+1
+                                else
+  45 |   12   0.000    159|         H := [op(H), Cp];
+  46 |   12   0.000 103702|         CRT := Algebraic:-
+                                      RecursiveDensePolynomials:-ichremrpoly(
+                                      map(Algebraic:-RecursiveDensePolynomials
+                                      :-retextsrpoly,H));
+  47 |   12   0.000      0|         count := count+1
+                                end if;
+  48 |   13   0.000      0|     Np := Np+1;
+  49 |   13   0.000  17799|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  50 |   13   0.000     39|     if irat &lt;&gt; FAIL then
+  51 |    3   0.000     15|         if irat = previousresult and irat = 
+                                      PPresult then
+  52 |    1   0.000     12|             tt := time()-tt;
+  53 |    1   0.000      0|             if timings = true then
+<Font encoding="UTF-8">  54 |    0   0.000      0|                 printf(&quot;MRS: time=%.3f  LAminpoly=\134
+                                              %.3f  PGCD=%.3f  Np=%d\134n&quot;,tt,
+</Font>                                              laminpolytime,pgcdtime,Np)
+                                        end if;
+  55 |    1   0.000     12|             irat := subsop(1 = ringA,irat);
+  56 |    1   0.000      5|             return [irat, Np]
+                                    else
+  57 |    2   0.000      0|             PPresult := previousresult;
+  58 |    2   0.000      0|             previousresult := irat
+                                    end if
+                                end if
+                            end do
+end proc
+
+MRS2
+MRS2 := proc(A1, B1, x)
+local count, previousresult, A, B, ringA, X, Xpoly, Minpolys, i, m, n, Xmin, k, H, 
+  prod, p, Ap, Bp, Cp, CRT, H2, test1, test2, irat, M, gama, gamma, phimatrix,
+  invphimatrix, PhiAp, PhiBp, lcmintest, ca, cb, nca, ncb, C, counter, j, s, 
+  LA, Rand, ZD, wt, randfunction, minpolys, st, tt, laminpolytime, pgcdtime, 
+  PPresult, Np;
+     |Calls Seconds  Words|
+PROC |    1   0.094 869470|
+   1 |    1   0.000      0| Np := 0;
+   2 |    1   0.000      0| previousresult := 0;
+   3 |    1   0.000      0| PPresult := 0;
+   4 |    1   0.000      0| count := 0;
+   5 |    1   0.000      4| tt := time();
+   6 |    1   0.000      0| laminpolytime := 0;
+   7 |    1   0.000      0| pgcdtime := 0;
+   8 |    1   0.000   2121| A := semi(A1);
+   9 |    1   0.000   2121| B := semi(B1);
+  10 |    1   0.000      6| checkconsistency(A,B);
+  11 |    1   0.000      0| ringA := op(1,A);
+  12 |    1   0.000      0| X := op([1, 2],A);
+  13 |    1   0.000      0| n := nops(X);
+  14 |    1   0.000    498| minpolys := Algebraic:-RecursiveDensePolynomials:-
+                              getalgexts(A);
+  15 |    1   0.000      0| m := nops(minpolys);
+  16 |    1   0.000      7| Xpoly := X[1 .. n-m];
+  17 |    1   0.000     31| Xmin := ListTools:-Reverse(X[n-m+1 .. n]);
+  18 |    1   0.000   2074| Minpolys := map(Algebraic:-
+                              RecursiveDensePolynomials:-rpoly,map(semi,
+                              minpolys));
+  19 |    1   0.000      0| k := nops(Xpoly);
+  20 |    1   0.000      0| H := [];
+  21 |    1   0.000      0| p := 2147483648;
+  22 |    1   0.000      0| do
+  23 |    9   0.000   8442|     do
+  24 |    9   0.000    930|         p := nextprime(p);
+  25 |    9   0.000      0|         lcmintest := true;
+  26 |    9   0.000      0|         for i to m do
+  27 |   27   0.000    443|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false;
+<Font encoding="UTF-8">  29 |    0   0.000      0|                 printf(&quot;p=%d is an lc-bad prime mi\134
+                                              npoly case\134n&quot;,p)
+</Font>                                        end if
+                                    end do;
+  30 |    9   0.000   8415|         if Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly
+                                      (Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      lcrpoly(A,Xpoly)) mod p = 0 then
+<Font encoding="UTF-8">  31 |    0   0.000      0|             printf(&quot;p=%d is an lc-bad prime polyno\134
+                                          mial case\134n&quot;,p)
+</Font>                                    end if
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  32 |    9   0.000  29079|     Ap := Algebraic:-RecursiveDensePolynomials:-
+                                  phirpoly(A,p);
+  33 |    9   0.000  29079|     Bp := Algebraic:-RecursiveDensePolynomials:-
+                                  phirpoly(B,p);
+  34 |    9   0.000     36|     st := time();
+  35 |    9   0.094 725418|     Cp := traperror(PRSAlg(Ap,Bp,x,p));
+  36 |    9   0.000    144|     pgcdtime := pgcdtime+time()-st;
+  37 |    9   0.000     27|     if Cp = lasterror and nops([Cp]) = 2 and
+                                Cp[1] = &quot;inverse does not exist&quot; then
+  38 |    0   0.000      0|         ZD := Cp[2];
+<Font encoding="UTF-8">  39 |    0   0.000      0|         printf(&quot;p=%d is a ZD prime ZD=%a\134n&quot;,p,ZD);
+</Font>  40 |    0   0.000      0|         next
+                                end if;
+  41 |    9   0.000     27|     if count = 0 then
+  42 |    1   0.000      0|         CRT := Cp;
+  43 |    1   0.000      4|         H := [Cp];
+  44 |    1   0.000      0|         count := count+1
+                                else
+  45 |    8   0.000     89|         H := [op(H), Cp];
+  46 |    8   0.000  46812|         CRT := Algebraic:-
+                                      RecursiveDensePolynomials:-ichremrpoly(
+                                      map(Algebraic:-RecursiveDensePolynomials
+                                      :-retextsrpoly,H));
+  47 |    8   0.000      0|         count := count+1
+                                end if;
+  48 |    9   0.000      0|     Np := Np+1;
+  49 |    9   0.000  13592|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  50 |    9   0.000     27|     if irat &lt;&gt; FAIL then
+  51 |    3   0.000     15|         if irat = previousresult and irat = 
+                                      PPresult then
+  52 |    1   0.000     12|             tt := time()-tt;
+  53 |    1   0.000      0|             if timings = true then
+<Font encoding="UTF-8">  54 |    0   0.000      0|                 printf(&quot;MRS: time=%.3f  LAminpoly=\134
+                                              %.3f  PGCD=%.3f  Np=%d\134n&quot;,tt,
+</Font>                                              laminpolytime,pgcdtime,Np)
+                                        end if;
+  55 |    1   0.000     12|             irat := subsop(1 = ringA,irat);
+  56 |    1   0.000      5|             return [irat, Np]
+                                    else
+  57 |    2   0.000      0|             PPresult := previousresult;
+  58 |    2   0.000      0|             previousresult := irat
+                                    end if
+                                end if
+                            end do
+end proc
+
+MRS2
+MRS2 := proc(A1, B1, x)
+local count, previousresult, A, B, ringA, X, Xpoly, Minpolys, i, m, n, Xmin, k, H, 
+  prod, p, Ap, Bp, Cp, CRT, H2, test1, test2, irat, M, gama, gamma, phimatrix,
+  invphimatrix, PhiAp, PhiBp, lcmintest, ca, cb, nca, ncb, C, counter, j, s, 
+  LA, Rand, ZD, wt, randfunction, minpolys, st, tt, laminpolytime, pgcdtime, 
+  PPresult, Np;
+     |Calls Seconds  Words|
+PROC |    1   0.016 224460|
+   1 |    1   0.000      0| Np := 0;
+   2 |    1   0.000      0| previousresult := 0;
+   3 |    1   0.000      0| PPresult := 0;
+   4 |    1   0.000      0| count := 0;
+   5 |    1   0.000      4| tt := time();
+   6 |    1   0.000      0| laminpolytime := 0;
+   7 |    1   0.000      0| pgcdtime := 0;
+   8 |    1   0.000   1188| A := semi(A1);
+   9 |    1   0.000   1188| B := semi(B1);
+  10 |    1   0.000      6| checkconsistency(A,B);
+  11 |    1   0.000      0| ringA := op(1,A);
+  12 |    1   0.000      0| X := op([1, 2],A);
+  13 |    1   0.000      0| n := nops(X);
+  14 |    1   0.000    498| minpolys := Algebraic:-RecursiveDensePolynomials:-
+                              getalgexts(A);
+  15 |    1   0.000      0| m := nops(minpolys);
+  16 |    1   0.000      7| Xpoly := X[1 .. n-m];
+  17 |    1   0.000     31| Xmin := ListTools:-Reverse(X[n-m+1 .. n]);
+  18 |    1   0.000   2074| Minpolys := map(Algebraic:-
+                              RecursiveDensePolynomials:-rpoly,map(semi,
+                              minpolys));
+  19 |    1   0.000      0| k := nops(Xpoly);
+  20 |    1   0.000      0| H := [];
+  21 |    1   0.000      0| p := 2147483648;
+  22 |    1   0.000      0| do
+  23 |    5   0.000   4690|     do
+  24 |    5   0.000    557|         p := nextprime(p);
+  25 |    5   0.000      0|         lcmintest := true;
+  26 |    5   0.000      0|         for i to m do
+  27 |   15   0.000    251|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false;
+<Font encoding="UTF-8">  29 |    0   0.000      0|                 printf(&quot;p=%d is an lc-bad prime mi\134
+                                              npoly case\134n&quot;,p)
+</Font>                                        end if
+                                    end do;
+  30 |    5   0.016   4675|         if Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly
+                                      (Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      lcrpoly(A,Xpoly)) mod p = 0 then
+<Font encoding="UTF-8">  31 |    0   0.000      0|             printf(&quot;p=%d is an lc-bad prime polyno\134
+                                          mial case\134n&quot;,p)
+</Font>                                    end if
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  32 |    5   0.000  10050|     Ap := Algebraic:-RecursiveDensePolynomials:-
+                                  phirpoly(A,p);
+  33 |    5   0.000  10050|     Bp := Algebraic:-RecursiveDensePolynomials:-
+                                  phirpoly(B,p);
+  34 |    5   0.000     20|     st := time();
+  35 |    5   0.000 165560|     Cp := traperror(PRSAlg(Ap,Bp,x,p));
+  36 |    5   0.000     44|     pgcdtime := pgcdtime+time()-st;
+  37 |    5   0.000     15|     if Cp = lasterror and nops([Cp]) = 2 and
+                                Cp[1] = &quot;inverse does not exist&quot; then
+  38 |    0   0.000      0|         ZD := Cp[2];
+<Font encoding="UTF-8">  39 |    0   0.000      0|         printf(&quot;p=%d is a ZD prime ZD=%a\134n&quot;,p,ZD);
+</Font>  40 |    0   0.000      0|         next
+                                end if;
+  41 |    5   0.000     15|     if count = 0 then
+  42 |    1   0.000      0|         CRT := Cp;
+  43 |    1   0.000      4|         H := [Cp];
+  44 |    1   0.000      0|         count := count+1
+                                else
+  45 |    4   0.000     35|         H := [op(H), Cp];
+  46 |    4   0.000  12083|         CRT := Algebraic:-
+                                      RecursiveDensePolynomials:-ichremrpoly(
+                                      map(Algebraic:-RecursiveDensePolynomials
+                                      :-retextsrpoly,H));
+  47 |    4   0.000      0|         count := count+1
+                                end if;
+  48 |    5   0.000      0|     Np := Np+1;
+  49 |    5   0.000  11356|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  50 |    5   0.000     15|     if irat &lt;&gt; FAIL then
+  51 |    3   0.000     15|         if irat = previousresult and irat = 
+                                      PPresult then
+  52 |    1   0.000     12|             tt := time()-tt;
+  53 |    1   0.000      0|             if timings = true then
+<Font encoding="UTF-8">  54 |    0   0.000      0|                 printf(&quot;MRS: time=%.3f  LAminpoly=\134
+                                              %.3f  PGCD=%.3f  Np=%d\134n&quot;,tt,
+</Font>                                              laminpolytime,pgcdtime,Np)
+                                        end if;
+  55 |    1   0.000     12|             irat := subsop(1 = ringA,irat);
+  56 |    1   0.000      5|             return [irat, Np]
+                                    else
+  57 |    2   0.000      0|             PPresult := previousresult;
+  58 |    2   0.000      0|             previousresult := irat
+                                    end if
+                                end if
+                            end do
+end proc
+
+</Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkqbWNvbXBsZXRlRzYjL0krbW9kdWxlbmFtZUc2IkksVHlwZXNldHRpbmdHSShfc3lzbGliR0YnNiQtSSVtcm93R0YkNiYtSSNtaUdGJDYlUSJSRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LVEpJkFzc2lnbjtGJy9GNlEnbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkAvJSlzdHJldGNoeUdGQC8lKnN5bW1ldHJpY0dGQC8lKGxhcmdlb3BHRkAvJS5tb3ZhYmxlbGltaXRzR0ZALyUnYWNjZW50R0ZALyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTy1JKG1mZW5jZWRHRiQ2KC1GLDYmLUknbXRhYmxlR0YkNjwtSSRtdHJHRiQ2Ly1JJG10ZEdGJDYqLUkjbXNHRiQ2I1EjZEZGJy8lK2ZvcmVncm91bmRHUShbMCwwLDBdRicvJSlyZWFkb25seUdGQC8lKXJvd2FsaWduR1EhRicvJSxjb2x1bW5hbGlnbkdGZW8vJStncm91cGFsaWduR0Zlby8lKHJvd3NwYW5HUSIxRicvJStjb2x1bW5zcGFuR0ZccC1GaG42Ki1GW282I1ElI2V4dEYnRl5vRmFvRmNvRmZvRmhvRmpvRl1wLUZobjYqLUZbbzYjUSUjdmFyRidGXm9GYW9GY29GZm9GaG9Gam9GXXAtRmhuNiotRltvNiNRKVRkZWcoZjEpRidGXm9GYW9GY29GZm9GaG9Gam9GXXAtRmhuNiotRltvNiNRKVRkZWcoZjIpRidGXm9GYW9GY29GZm9GaG9Gam9GXXAtRmhuNiotRltvNiNRKFRkZWcocilGJ0Zeb0Zhb0Zjb0Zmb0Zob0Zqb0ZdcC1GaG42Ki1GW282I1ElVGltZUYnRl5vRmFvRmNvRmZvRmhvRmpvRl1wLUZobjYqLUZbbzYjUSNOcEYnRl5vRmFvRmNvRmZvRmhvRmpvRl1wRl5vRmFvRmNvRmZvRmhvLUZlbjYvLUZobjYqLUkjbW5HRiQ2JFEiOEYnRjxGXm9GYW9GY29GZm9GaG9Gam9GXXAtRmhuNiotRmdyNiRRIjNGJ0Y8Rl5vRmFvRmNvRmZvRmhvRmpvRl1wLUZobjYqLUZncjYkRlxwRjxGXm9GYW9GY29GZm9GaG9Gam9GXXAtRmhuNiotRmdyNiRRIjlGJ0Y8Rl5vRmFvRmNvRmZvRmhvRmpvRl1wRmNzLUZobjYqLUZncjYkUSIwRidGPEZeb0Zhb0Zjb0Zmb0Zob0Zqb0ZdcC1GaG42Ki1GZ3I2JFEmMC4zNDRGJ0Y8Rl5vRmFvRmNvRmZvRmhvRmpvRl1wLUZobjYqLUZncjYkUSMxM0YnRjxGXm9GYW9GY29GZm9GaG9Gam9GXXBGXm9GYW9GY29GZm9GaG8tRmVuNi9GZHJGanJGX3NGZHJGZHJGaHMtRmhuNiotRmdyNiRRJjAuMjE5RidGPEZeb0Zhb0Zjb0Zmb0Zob0Zqb0ZdcEZidEZeb0Zhb0Zjb0Zmb0Zoby1GZW42L0ZkckZqckZfcy1GaG42Ki1GZ3I2JFEiNUYnRjxGXm9GYW9GY29GZm9GaG9Gam9GXXBGYHVGaHMtRmhuNiotRmdyNiRRJjAuMDk0RidGPEZeb0Zhb0Zjb0Zmb0Zob0Zqb0ZdcEZjc0Zeb0Zhb0Zjb0Zmb0Zoby1GZW42L0ZkckZqckZfcy1GaG42Ki1GZ3I2JFEiMkYnRjxGXm9GYW9GY29GZm9GaG9Gam9GXXBGXHZGaHMtRmhuNiotRmdyNiRRJjAuMDE2RidGPEZeb0Zhb0Zjb0Zmb0Zob0Zqb0ZdcEZgdUZeb0Zhb0Zjb0Zmb0Zoby1GZW42L0Zoc0Zoc0Zoc0Zoc0Zoc0Zoc0Zoc0Zoc0Zeb0Zhb0Zjb0Zmb0Zob0Zeb0Zhby8lJmFsaWduR1ElYXhpc0YnL0Zkb1EpYmFzZWxpbmVGJy9GZ29RJ2NlbnRlckYnL0Zpb1EnfGZybGVmdHxockYnLyUvYWxpZ25tZW50c2NvcGVHRjQvJSxjb2x1bW53aWR0aEdRJWF1dG9GJy8lJndpZHRoR0Zldy8lK3Jvd3NwYWNpbmdHUSYxLjBleEYnLyUuY29sdW1uc3BhY2luZ0dRJjAuOGVtRicvJSlyb3dsaW5lc0dRJW5vbmVGJy8lLGNvbHVtbmxpbmVzR0ZgeC8lJmZyYW1lR0ZgeC8lLWZyYW1lc3BhY2luZ0dRLDAuNGVtfjAuNWV4RicvJSplcXVhbHJvd3NHRkAvJS1lcXVhbGNvbHVtbnNHRkAvJS1kaXNwbGF5c3R5bGVHRkAvJSVzaWRlR1EmcmlnaHRGJy8lMG1pbmxhYmVsc3BhY2luZ0dGXXhGXm9GYW9GPEY8L0krbXNlbWFudGljc0dGJFEnTWF0cml4RicvJSVvcGVuR1EnJmxzcWI7RicvJSZjbG9zZUdRJyZyc3FiO0YnRmN5RjwtRlM2KC1GLDYmLUZYNjxGWi1GZW42Ly1GaG42Ki1GZ3I2JkZpckZeb0Zhb0Y8Rl5vRmFvRmNvRmZvRmhvRmpvRl1wLUZobjYqLUZncjYmRl5zRl5vRmFvRjxGXm9GYW9GY29GZm9GaG9Gam9GXXAtRmhuNiotRmdyNiZGXHBGXm9GYW9GPEZeb0Zhb0Zjb0Zmb0Zob0Zqb0ZdcC1GaG42Ki1GZ3I2JkZnc0Zeb0Zhb0Y8Rl5vRmFvRmNvRmZvRmhvRmpvRl1wRmBbbC1GaG42Ki1GZ3I2JkZcdEZeb0Zhb0Y8Rl5vRmFvRmNvRmZvRmhvRmpvRl1wLUZobjYqLUZncjYmRmF0Rl5vRmFvRjxGXm9GYW9GY29GZm9GaG9Gam9GXXAtRmhuNiotRmdyNiZGZnRGXm9GYW9GPEZeb0Zhb0Zjb0Zmb0Zob0Zqb0ZdcEZeb0Zhb0Zjb0Zmb0Zoby1GZW42L0ZkekZoekZcW2xGZHpGZHpGZFtsLUZobjYqLUZncjYmRl11Rl5vRmFvRjxGXm9GYW9GY29GZm9GaG9Gam9GXXBGXFxsRl5vRmFvRmNvRmZvRmhvLUZlbjYvRmR6Rmh6RlxbbC1GaG42Ki1GZ3I2JkZkdUZeb0Zhb0Y8Rl5vRmFvRmNvRmZvRmhvRmpvRl1wRmhcbEZkW2wtRmhuNiotRmdyNiZGaXVGXm9GYW9GPEZeb0Zhb0Zjb0Zmb0Zob0Zqb0ZdcEZgW2xGXm9GYW9GY29GZm9GaG8tRmVuNi9GZHpGaHpGXFtsLUZobjYqLUZncjYmRmB2Rl5vRmFvRjxGXm9GYW9GY29GZm9GaG9Gam9GXXBGYl1sRmRbbC1GaG42Ki1GZ3I2JkZldkZeb0Zhb0Y8Rl5vRmFvRmNvRmZvRmhvRmpvRl1wRmhcbEZeb0Zhb0Zjb0Zmb0Zoby1GZW42L0ZkW2xGZFtsRmRbbEZkW2xGZFtsRmRbbEZkW2xGZFtsRl5vRmFvRmNvRmZvRmhvRl5vRmFvRmh2Rlt3Rl13Rl93RmF3RmN3RmZ3Rmh3Rlt4Rl54RmF4RmN4RmV4Rmh4Rmp4Rlx5Rl55RmF5Rl5vRmFvRjxGXm9GYW9GPC9GZ3lRIltGJy9GanlRIl1GJw==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJSR0YoLUknUlRBQkxFR0YoNiUiNU8nUWNYLDNcJCpvJC1JJ01BVFJJWEdGKDYjNyg3Ki1JI21zRzYkRiYvSSttb2R1bGVuYW1lR0YoRiQ2I1EjZEZGKC1GODYjUSUjZXh0RigtRjg2I1ElI3ZhckYoLUY4NiNRKVRkZWcoZjEpRigtRjg2I1EpVGRlZyhmMilGKC1GODYjUShUZGVnKHIpRigtRjg2I1ElVGltZUYoLUY4NiNRI05wRig3Ki1JI21uR0Y5NiNRIjhGKC1GVTYjUSIzRigtRlU2I1EiMUYoLUZVNiNRIjlGKEZobi1GVTYjUSIwRigtRlU2I1EmMC4zNDRGKC1GVTYjUSMxM0YoNypGVEZYRmVuRlRGVEZbby1GVTYjUSYwLjIxOUYoRmFvNypGVEZYRmVuLUZVNiNRIjVGKEZpb0Zbby1GVTYjUSYwLjA5NEYoRmhuNypGVEZYRmVuLUZVNiNRIjJGKEZgcEZbby1GVTYjUSYwLjAxNkYoRmlvNypGW29GW29GW29GW29GW29GW29GW29GW29JJ01hdHJpeEdGJTcjLUZncDYjL0kkJWlkR0YoRjE=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L709" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" size="16" background="[255,255,153]" foreground="[0,0,255]">#2: </Font><Font opaque="true" background="[255,255,153]" foreground="[0,0,128]">Total degree of the polynomials are changing from 1 to 15
+</Font><Font opaque="true" foreground="[0,0,128]">tdeg:=</Font><Font opaque="true" foreground="[128,0,0]">[4,</Font><Font foreground="[128,0,0]">6,8,10,12,16,20,24,28,32,36,40</Font>]<Font opaque="true" background="[255,255,153]" foreground="[0,0,128]">
+</Font>R:=<Font foreground="[128,0,0]">Benchmain(flagalg,2</Font>,tdeg,10,24,4,0);
+Export(R,&quot;MRES2.xls&quot;,&quot;Tdeg&quot;);
+</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L704" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" size="16" background="[255,255,153]" foreground="[0,0,255]">#3 </Font><Font opaque="true" background="[255,255,153]" foreground="[0,0,128]">Degree of the field is in [4,8,12,16,24,32,64,72] with max number of extensions
+#numext will be chosen to be the maximum</Font>
+dF:<Font opaque="true" foreground="[128,0,0]">=[4,8,12,16,24,32,64,72];
+</Font>R:=<Font foreground="[128,0,0]">Benchmain(flagalg,2</Font>,24,12,dF,numext,0);
+Export(R,&quot;MRES2.xls&quot;,&quot;dF&quot;);<Font opaque="true" foreground="[128,0,0]">
+</Font></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L706" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" size="16" background="[255,255,153]" foreground="[0,0,255]">#4 </Font><Font opaque="true" background="[255,255,153]" foreground="[0,0,128]">Number of extensions for a field of degree 64 is changing from 1..6 
+</Font>R:=<Font foreground="[128,0,0]">Benchmain(flagalg,2</Font>,24,12,64,[seq(1..6)],0);
+Export(R,&quot;MRES2.xls&quot;,&quot;#exts&quot;);</Text-field>
+</Input>
+</Group>
+</Worksheet>

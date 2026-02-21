@@ -1,0 +1,120 @@
+
+#MRS with primitive element
+#Input: A,B in Q[z1,..zn]/<m1,..mn>[x1,..xk] and variable x_i
+#Output: resultant(A,B,x)  
+MRS1:= proc(A1,B1,x)
+uses RDP=Algebraic:-RecursiveDensePolynomials,   LTS=ListTools;
+local count, Np,previousresult,A,B,ringA,X,Xpoly,Minpolys,i,m,n,Xmin,k,H,prod,p,Ap,Bp,Cp,CRT,H2,test1,test2,irat,M,gama,gamma,phimatrix,invphimatrix,PhiAp,PhiBp, lcmintest,ca,cb,nca,ncb,C,counter,j,s,LA,Rand,ZD,wt,randfunction,minpolys,st,tt,laminpolytime,pgcdtime,PPresult;
+Np:=0;
+#We use semi of the inputs to eliminate fractions
+   previousresult:=0; #first result test
+   PPresult:=0; #second result test
+   count:=0;
+   tt := time();
+   laminpolytime:= 0;
+   pgcdtime := 0;
+   A:=semi(A1);
+   B:=semi(B1);
+   checkconsistency(A,B);
+   #if getring(A1)<>getring(B1) then A:=RDP:-rpoly(RDP:-rpoly(A),getring(B1)) fi;
+   ringA:=getring(A);
+   #get the whole variables
+   X:=getvars(A);
+   n:=nops(X);
+   #get the minimal polynomials
+   minpolys:=RDP:-getalgexts(A);  #The list of minimal polynomials
+   m:=nops(minpolys); 
+   #get the polynomials' variables
+   Xpoly:=X[1..n-m];
+   #get the minimal polynomials' variables
+   Xmin:=LTS:-Reverse(X[n-m+1..n]); 
+   #We need to convert minpolys from rpoly to simple polynomials
+   #Minpolys := map(rpoly,minpolys);
+   Minpolys :=map(RDP:-rpoly,map(semi,minpolys));
+   #k is the nops of the variables of polynomials
+   k:= nops(Xpoly);
+   H:=[];
+   #we do not need bound when we are using iratrecon since the loop terminates when iratrecon returns a repeatious answer
+   p := 2^31; 
+   #The main loop
+   while true do
+   #recognizing lc-bad and det-bad primes
+      do
+         p:= nextprime(p);
+         #printf("MRS:prime=%d\n",p);
+         lcmintest:=true;
+         for i to m do   #p must not divide lc of ^M_i 
+              if den(minpolys[i]) mod p=0 then lcmintest:=false;  printf("p=%d is an lc-bad prime minpoly case\n",p);  fi;
+         od;
+         #p is a bad prime if p|LC(A) 
+         if RDP:-rpoly(RDP:-lcrpoly(A,Xpoly)) mod p = 0 then 
+            printf("p=%d is an lc-bad prime polynomial case\n",p); 
+         fi;
+      until RDP:-rpoly(RDP:-lcrpoly(A,Xpoly)) mod p <> 0
+      and
+      #As we used the semi of inputs as our inputs, we do not need to check if den(A)& den(B) mod p<>0
+       lcmintest=true;
+      #If p | lcoeff of A^,M^, where A^ is the semi associate of A and m^ is the semi-associate of the minimal polynomial then p is a lc-bad prime.
+         Ap:= RDP:-phirpoly(A,p); #Now everything is in Zp[z]/<M(z)>
+         Bp:= RDP:-phirpoly(B,p);
+         Rand:=rand(1..p-1);
+
+         if nops(minpolys)=1 then #The field is single extension, no need for phi_{gamma}
+            PhiAp:=Ap; 
+            PhiBp:=Bp;
+         else
+            C:=[seq(Rand(),i=1..m-1)];
+            gama := Xmin[1]+add(C[i]*Xmin[i+1],i=1..m-1);
+            gamma := RDP:-phirpoly(RDP:-rpoly(gama,RDP:-getcofring(A)),p);
+            st := time();
+            LA:=LAMinpoly(Minpolys,p,gamma,Xmin,X[n]);
+            laminpolytime := laminpolytime + time()-st;
+            if LA=FAIL then 
+               printf("p=%d is a det-bad prime or C=%a is an inappropriate list of constants\n",p,C); 
+               next;
+            fi;
+            M,phimatrix,invphimatrix:=LA;
+            PhiAp:=Phi(Ap,Minpolys,Xmin,Xpoly,1,M,phimatrix,invphimatrix,p); #In Z_p(gamma)
+            PhiBp:=Phi(Bp,Minpolys,Xmin,Xpoly,1,M,phimatrix,invphimatrix,p);
+         fi;
+   st := time();
+   Cp:=traperror(PRSAlg(PhiAp,PhiBp,x,p));
+   #if verify(Cp,resrpoly(PhiAp,PhiBp,x)) then printf("PRS is working well\n"); fi;
+   pgcdtime := pgcdtime+time()-st;
+   #if there is a zero divisor then go to the first loop and change the prime
+   #print Z-D primes
+   if Cp=lasterror and nops([Cp])=2 and Cp[1]="inverse does not exist" then
+      ZD:=Cp[2];  printf("p=%d is a ZD prime ZD=%a\n",p,ZD);
+      next;
+   elif Cp=lasterror then error lasterror;
+   fi;
+   #print(MRES(p),getring(Cp));
+   #phi_gamma inverse
+   if nops(minpolys)<>1 then
+      Cp:=Phi(Cp,Minpolys,Xmin,Xpoly,-1,M,phimatrix,invphimatrix,p);
+   fi;
+#print(PHI,getring(Cp));
+   if count=0 then 
+      CRT:=Cp;
+      H:=[Cp];
+      count:=count+1;
+   else
+      H:=[op(H),Cp];
+      CRT:=RDP:-ichremrpoly(map(RDP:-retextsrpoly,H));
+      count:=count+1;     
+   fi;
+   Np:=Np+1;
+   irat:=RDP:-irrrpoly(CRT);
+   if  irat<> FAIL then 
+#We do not use the bound.When the result of RNR does not change the loop termintes.This strategy makes our algorithm  Monte Carlo 
+     if irat=previousresult and irat=PPresult then
+         tt := time()-tt;
+         if timings=true then printf("MRS: time=%.3f  LAminpoly=%.3f  PGCD=%.3f  Np=%d\n",tt,laminpolytime,pgcdtime,Np); fi;
+          irat:=subsop(1=ringA,irat);
+         return ([irat,Np]); 
+      else 
+         PPresult:=previousresult; previousresult:=irat;  
+      fi;
+    fi;
+od;
+end:

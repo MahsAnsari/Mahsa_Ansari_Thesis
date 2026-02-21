@@ -1,0 +1,49 @@
+LAMinpoly:=proc(m::list,gamma::POLYNOMIAL,X::list,Z::name,p::nonnegint:=0) 
+uses RDP=Algebraic:-RecursiveDensePolynomials, LAM=LinearAlgebra:-Modular; 
+local n,deg,d,monombasis,g,A,B,det,q,i,b,M;
+     n:=nops(m); 
+     deg:=[seq(degree(m[i],X[i]),i=1..n)];
+     d:=mul(deg[i],i=1..n);
+     monombasis:=Basemaker(X,deg,m);  #monombasis is a basis for K=Z_p[z1,z2]/<z1^2-2,z2^2-3>i.e. {1,z1,z2,z1z2}
+     g[0]:=RDP:-rpoly(1,getring(gamma));
+     for i to d do
+        g[i]:=RDP:-mulrpoly(gamma,g[i-1]); 
+     od;
+     A:=Matrix(d); #A is the change of basis Matrix
+    if p<>0 then #Over Z_p
+        for i from 1 to d do
+           g[i-1] := Expand(RDP:-rpoly(g[i-1])) mod p;
+           A[1..d,i]:=Monomlist(g[i-1],monombasis,X);
+        od; 
+        g[d]:= Expand(RDP:-rpoly(g[d])) mod p;
+        b:=Monomlist(g[d],monombasis,X);
+        B:=Matrix(d,2*d+1,datatype=integer[8]);  # Construct the augmented matrix B = [A|I|b] and row reduce it
+        B[1..d,1..d] := A;
+        for i to d do B[i,d+i] := 1; od;
+        for i to d do B[i,2*d+1] := b[i] od;  
+        LAM:-RowReduce(p,B,d,2*d+1,2*d+1,'det',0,0,0,0,true);
+        if det=0 then return FAIL fi; #Check for appropriate C here: If det(A)<>0, then A is invertible and we are good. Otherwise, MGCD goes back and chooses another C 
+        q := -B[1..d,2*d+1] mod p; # Solve of Aq=-b for q
+        B := B[1..d,d+1..2*d]; # A^(-1)
+        M:=add(q[i]*Z^(i-1),i=1...d)+Z^d mod p;  #Constructing the characteristic polynomial
+    else #Over Q
+        for i from 1 to d do
+            g[i-1] := expand(RDP:-rpoly(g[i-1]));
+            A[1..d,i]:=Monomlist(g[i-1],monombasis,X);
+        od; 
+        g[d] := expand(RDP:-rpoly(g[d]));
+        b := Vector(Monomlist(g[d], monombasis, X));
+        if Determinant(A) = 0 then  # Check invertibility of A
+           return FAIL;
+        end if;
+        # Solve the system A*q = -b
+        q := -LinearAlgebra:-LinearSolve(A, b);
+        B := MatrixInverse(A);   #Compute A⁻¹
+        M := add(q[i]*Z^(i-1), i=1..d) + Z^d;  # Construct the minimal polynomial M(Z)
+    fi;
+    return M,A,B;
+end:
+
+
+
+

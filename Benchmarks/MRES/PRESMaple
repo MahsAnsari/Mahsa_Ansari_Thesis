@@ -1,0 +1,78 @@
+#PRSAl
+#X is the list of the polynomials' variables, XT is the list of the whole variables
+#We did not use minpoly in PGCD So PGCD is the same for single & multiple extensions
+PRSAlg:= proc(AA,BB,x,p)
+uses RDP=Algebraic:-RecursiveDensePolynomials;
+local A,B,H,k,Xk,conta,contb,c,ap,bp,g,interpol,j,Aj,Bj,Cj,gj,R,lcAk, lcBk,Randfunction,ring,count,XT,X,n,m,i,deginterpol,hh,Bound,q,vj,interpolj,prodj,prod;
+#To compute the resultant w.r.t x_i,we must make x_i the main variable
+   A:=RDP:-makemainrpoly(AA,x);
+   B:=RDP:-makemainrpoly(BB,x);
+   #Check if A and B are in the same field
+   RDP:-checkconsistency(A,B);
+   ring:=getring(A);
+   XT:=getvars(A); #XT is the whole variables containing the polynomial's variables and the minpolys variables
+   n:=nops(XT);
+   m:=nops(RDP:-getalgexts(A)); 
+   X:=XT[1..n-m];
+   k:=nops(X);  #k must be the number of polynomial variables. In MRS we call RSP after phi_{gamma} which means we just have one extension
+   Xk:=X[1..k-1];
+   #Base case
+   if k = 1 then  
+      R:=uresAlg(A,B); #we use MEA to compute the resultant of two univariate polynomials
+      return(R);    
+  fi;
+   #Calculate the Content/Primpart of  A and B w.r.t Xk to use it for identifying lc-bad evaluation points
+   conta:=RDP:-contrpoly(A,Xk,'ap');
+   contb:=RDP:-contrpoly(B,Xk,'bp');
+   lcAk:=RDP:-lcrpoly(ap,Xk);  
+   lcBk:=RDP:-lcrpoly(bp,Xk);
+   #q is the array of eval points. We need tracking q to avoid repetitious evaluation points and H is the array of interpolated polynomials
+   H:=[];
+   q:=[];
+   Randfunction:=rand(p); #Randfunction is the function producing the rand eval points 
+   #count is the counter of the acceptable eval points
+    RDP:-degrpoly(AA,X[1]);
+   RDP:-degrpoly(BB,X[1]);
+   Mahsa;
+   count:=0;
+   hh := max( seq( max( RDP:-degrpoly(AA, X[i]),RDP:-degrpoly(BB, X[i]) ),i=1..k ));
+   Bound:=(RDP:-degrpoly(AA,x)+RDP:-degrpoly(BB,x))*hh+1; #The number of required eval points
+   for i from 1 to Bound do
+      do
+         j:= Randfunction() mod p;
+      until not member(j,q) and RDP:-evalrpoly(lcAk,X[k]=j) mod p<>0 and RDP:-evalrpoly(lcBk,X[k]=j) mod p<>0;
+      Aj:=RDP:-evalrpoly(A,X[k]=j);
+      Bj:=RDP:-evalrpoly(B,X[k]=j);
+      Cj:=PRSAlg(Aj,Bj,x,p);
+      if count=0 then 
+         q:= [j]; 
+         H:=[Cj]; 
+         deginterpol:=0;
+         interpol:=Cj;
+         prod:=RDP:-rpoly(X[k]-j,ring);
+         #previousresult:=interpol;
+         count:=count+1;
+      else 
+         q:=[op(q),j];  #add j to q
+         H:=[op(H),Cj]; #add Rj to H
+         prodj:=RDP:-evalrpoly(prod,X[k]=j);
+         if count=1 then 
+            interpolj:=interpol; #When count=1, interpol=Cj and Cj does not have X[k] in it so evalrpoly returns an error.
+         else 
+            interpolj:=RDP:-evalrpoly(interpol,X[k]=j); 
+         fi;   
+         #Newton's interpolation is applied incrementally
+         vj:=RDP:-mulrpoly(RDP:-invrpoly(RDP:-lcrpoly(prodj)),RDP:-subrpoly(Cj,interpolj));
+         #The ring to which vj, interpol, and prod belong must be the same but at the second iteration when count=1,
+         #vj and interpol do not have y as their variable so we must reconstruct the ringto which  vj and interpol belong.
+         vj:=RDP:-rpoly(RDP:-rpoly(vj),ring); # adding X[k]
+         interpol:=RDP:-rpoly(RDP:-rpoly(interpol),ring);
+         interpol:=RDP:-addrpoly(interpol,RDP:-mulrpoly(prod,vj));
+         prod:=RDP:-mulrpoly(prod, RDP:-rpoly(X[k]-j,ring));
+         deginterpol:=RDP:-degrpoly(interpol,X[k]); #We did not initialize interpol since its ring changes at each iteration and it causes error. If we fix a ring for interpol then it is more expensive than simply initialize degree of y =0 at the first iteration
+         count:=count+1;
+      fi; 
+   od;
+   R:=interpol;
+   return (R);
+end:

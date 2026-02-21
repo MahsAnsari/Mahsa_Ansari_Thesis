@@ -1,0 +1,100 @@
+#Find the leading monomial of Rpoly format
+#X1 is the list of variables which we do want to find lm w.r.t them i.e lm(F,[x,y],[x,y,z],p)
+#Note:X1 and X are not necessarily equal
+lmrpoly:=proc(F,X1,X) uses RDP=Algebraic:-RecursiveDensePolynomials;
+local f,lc,R,M,E,Rnew,m,lm1;
+   f:=RDP:-rpoly(F);
+   lc:=lcoeff(f,X1,'lm');
+   lm1:=RDP:-rpoly(lm,X);
+   R:=getring(F);
+   #reconstruct R
+   M:=op(1,R);  
+   E:=op(3,R);
+   Rnew:=[M,X,E];
+   m:=POLYNOMIAL(Rnew,op(2,lm1));
+   return(m);
+end:
+
+
+#Find the smallest monomial in f
+tmrpoly:=proc(F,X1,X) uses RDP=Algebraic:-RecursiveDensePolynomials;
+local f,lc,lm1,m,R,E,Rnew,M;
+    f:=RDP:-rpoly2maple(op(2,F),X);
+    lc:=tcoeff(f,X1,'lm');
+    lm1:=RDP:-rpoly(lm,X);
+    R:=op(1,F);
+    M:=op(1,R);
+    E:=op(3,R);
+    Rnew:=[M,X,E];
+    m:=POLYNOMIAL(Rnew,op(2,lm1));
+    return(m);
+end:
+
+
+
+#Finding the denominator of f
+#If f belongs to Q[x], then the denominator of f is the smallest positive integer such that den(f)*f belongs to Z[x]
+#input: a rpoly F
+#output: den(F)
+den:=proc(F)
+    idenomrpoly(F);
+end:
+#Semi-Associate of f
+#Semi-associate of f is defined as rf s.t r is the smallest rational for which den(f.r)=1
+#Example: if f(x,y,z)=2/5*x^2+4/3*y^3+8/11*z^2 then den(f)=5*11*3 but r=den(f)/gcd(2,4,8)
+semi:=proc(F) uses RDP=Algebraic:-RecursiveDensePolynomials;
+   RDP:-mulrpoly(1/RDP:-icontrpoly(F),F);
+end:
+
+
+
+
+
+
+#Monomlist
+#input: a polynomial f, a list of monomials called B, the list of variables called X
+#Output:Coordinate vector of f w.r.t B
+with(LinearAlgebra):
+Monomlist:=proc(f,B1,X)
+local m,v,i,mon,j,cof,c,d,B;
+#At some examples B1 is Vector and the nops(B1) does not give the correct result so we need to convert it to list
+   B:=convert(B1,list);
+   d:=nops(B);
+   v:=Vector(d); 
+   c:=coeffs(f,X,'m');
+   cof:=[c];
+   mon:=[m];
+   for j to nops(mon) do
+      if member(mon[j],B,'i') then
+         v[i]:=cof[j];
+      else error "monomial not in B"
+      fi;
+   od;
+return v;
+end:
+#RED
+#input: a polynomial, a, the list of minimal polynomials,m, and the list of variables,X.
+#output: the polynomial ,a, mod m[1],m[2],...
+RED:=proc(a,m,X)
+   local  a1,i;
+      a1:=a;
+      for i to nops(m) do
+         a1:=rem(a1,m[-i],X[-i]);
+      od;
+      return(a1);
+   end:
+ #Basemaker
+#input:The list of variables, the list of degree of each variable
+#output: The list of all the possible monomials constructed by X mod m[i]s
+Basemaker := proc(X,D::list(integer))
+local x,i,M,m,Z;
+if nops(X)=1 then
+   x := X[1];
+   seq( x^i,i=0..D[1]-1 );
+else
+   M := Basemaker(X[2..-1],D[2..-1]);
+   x := X[1];
+   Z := [seq( x^i,i=0..D[1]-1 )];
+   [seq(seq( x*m, m in M ), x in Z)]
+fi
+end: 

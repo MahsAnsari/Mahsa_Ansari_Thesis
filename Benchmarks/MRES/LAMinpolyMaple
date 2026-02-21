@@ -1,0 +1,83 @@
+LAMinpoly:=proc(m,p,gamma,X,Z) uses RDP=Algebraic:-RecursiveDensePolynomials, LAM=LinearAlgebra:-Modular; 
+     local n,deg,d,monombasis,g,A,B,det,q,i,b,M;
+     n:=nops(m); #nops(m)=nops(X)
+     deg:=[seq(degree(m[i],X[i]),i=1..n)];
+     d:=mul(deg[i],i=1..n);
+     monombasis:=Basemaker(X,deg,m); 
+     #monombasis is a basis for K=Z_p[z1,z2]/<z1^2-2,z2^2-3>i.e. {1,z1,z2,z1z2}
+     g[0]:=RDP:-rpoly(1,getring(gamma));
+     for i to d do
+        g[i]:=RDP:-mulrpoly(gamma,g[i-1]); 
+     od;
+     A:=Matrix(d);
+     #Creating the coeffs matrix
+     for i from 1 to d do
+         g[i-1] := Expand(RDP:-rpoly(g[i-1])) mod p;
+         A[1..d,i]:=Monomlist(g[i-1],monombasis,X);
+     od;    
+     g[d]:= Expand(RDP:-rpoly(g[d])) mod p;
+     b:=Monomlist(g[d],monombasis,X);
+     # Construct the augmented matrix B = [A|I|b] and row reduce it
+     B:=Matrix(d,2*d+1,datatype=integer[8]);
+     B[1..d,1..d] := A;
+     for i to d do B[i,d+i] := 1; od;
+     for i to d do B[i,2*d+1] := b[i] od;
+     #Check for appropriate C here: If det(A)<>0, then A is invertible and we are good.
+     #Otherwise, MGCD goes back and chooses another C   
+     LAM:-RowReduce(p,B,d,2*d+1,2*d+1,'det',0,0,0,0,true);
+     if det=0 then return FAIL fi;
+     q := -B[1..d,2*d+1] mod p; # Solve of Aq=-b for q
+     B := B[1..d,d+1..2*d]; # A^(-1)
+     #Constructing the polynomial
+     M:=add(q[i]*Z^(i-1),i=1...d)+Z^d mod p;
+    return M,A,B;
+end:
+
+
+#LAMinpoly over Q
+LAMinpoly2 := proc(m, gamma, X, Z) 
+uses RDP=Algebraic:-RecursiveDensePolynomials;
+    local n, deg, d, monombasis, g, A, B, q, i, j, b, M, R, T;
+
+    n := nops(m);  # number of variables
+    deg := [seq(degree(m[i], X[i]), i=1..n)];
+    d := mul(deg[i], i=1..n);
+
+    # Generate monomial basis for the field extension
+    monombasis := Basemaker(X, deg, m);
+
+    # Build powers of gamma
+    g[0] := RDP:-rpoly(1, getring(gamma));
+    for i from 1 to d do
+        g[i] := RDP:-mulrpoly(gamma, g[i-1]);
+    od;
+
+    # Construct matrix A
+    A := Matrix(d, d);
+    for i from 1 to d do
+        g[i-1] := expand(RDP:-rpoly(g[i-1]));
+        A[1..d, i] := Monomlist(g[i-1], monombasis, X);
+    od;
+
+    # Construct right-hand side vector b
+    g[d] := expand(RDP:-rpoly(g[d]));
+    b := Vector(Monomlist(g[d], monombasis, X));
+
+    # Check invertibility of A
+    if Determinant(A) = 0 then
+        return FAIL;
+    end if;
+
+    # Solve the system A*q = -b
+    q := -LinearAlgebra:-LinearSolve(A, b);
+
+    #Compute A⁻¹
+    B := MatrixInverse(A);
+
+    # Construct the minimal polynomial M(Z)
+    M := add(q[i]*Z^(i-1), i=1..d) + Z^d;
+
+    return M, A, B;
+end proc:
+
+

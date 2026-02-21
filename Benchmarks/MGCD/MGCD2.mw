@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Worksheet>
+<Version major="2023" minor="0"/>
+<Label-Scheme value="2" prefix=""/>
+<View-Properties presentation="false" autoexpanding_sections="true" UserProfileName="Maple Default Profile" NumericFormat-ApplyInteger="true" NumericFormat-ApplyRational="true" NumericFormat-ApplyExponent="false" editable="true">
+</View-Properties>
+<MapleNet-Properties prettyprint="3" warnlevel="3" compactdisplay="false" preplot="" helpbrowser="standard" displayprecision="-1" echo="1" scientificx="true" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" imaginaryunit="I" longdelim="true" elisiontermsthreshold="10000" elisiondigitsafter="100" elisiondigitsbefore="100" plotdevice="inline" errorbreak="1" plotoptions="" plotdriver="opengl" quiet="false" elisiontermsbefore="100" elisiontermsafter="100" historytimestamp="false" screenwidth="79" indentamount="4" plotoutput="terminal" screenpixelheight="1200" rtablesize="40" useclientjvm="true" format="worksheet" labelwidth="20" postplot="" typesetting="extended" ansi="false" ansicolor="[]" elisiondigitsthreshold="10000" showassumed="1" ansilprint="false" trailingsemicolon="true" errorcursor="false" labelling="true" screenheight="25" prompt="&gt; " verboseproc="1" latexwidth="8.0" ShowLabels="true"/>
+<Styles>
+<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="16" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[40,120,40]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[120,0,14]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 3" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Atomic Variable" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[175,0,175]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Dictionary Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[147,0,15]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="2D Math" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="List Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="true"/>
+<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.3" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 1" alignment="left" bullet="numeric" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="newline" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 2" alignment="left" bullet="alphabetic" firstindent="0" leftmargin="36" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 3" alignment="left" bullet="roman" firstindent="0" leftmargin="72" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 4" alignment="left" bullet="ALPHABETIC" firstindent="0" leftmargin="108" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 5" alignment="left" bullet="ROMAN" firstindent="0" leftmargin="144" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Annotation Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkError" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Bullet Item" alignment="left" bullet="dot" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="List Item" alignment="left" bullet="indent" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Dash Item" alignment="left" bullet="dash" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Error" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Pencil-style name="Pencil 1" pen-color="[0,0,0]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
+<Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
+</Styles>
+<Startup-Code startupcode=""/>
+<Task-table>
+	<Task-category name="&lt;default&gt;"/>
+</Task-table>
+<Task/>
+<Group hide-input="false" labelreference="L113" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;
+with(PolynomialTools):
+interface(rtablesize=40):
+with(ExcelTools):
+<Font foreground="[0,128,128]">#LAMinpolyMaple file contains the LAMinpoly algorithm to get M(z).
+#PhigammaMaple file maps phi_p(f1), phi_p(f2) to their corresponding polynomials in Z_p[z]/&lt;M(z)&gt; using phi_{gamma} isomorphism.
+#Get contains getvars, getring,..., and conv2cons for basic operations regarding the ring and extensions
+#MonOpMaple 
+#ContMaple
+#PGCD
+#MGCD
+</Font></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L226" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font foreground="[0,128,128]">#Read subrutines</Font>
+currentdir(&quot;C:/Users/mahsa/OneDrive/Documents/GitHub/Maple-Thesis-MGCD-MRES/Maple Internship/MGCD Time/Michael&quot;):
+read &quot;Get&quot;; read &quot;LAMinpolyMaple&quot;; read &quot;PhigammaMaple&quot;; read &quot;MonOpMaple&quot;;  read &quot;PGCDMaple&quot;; read &quot;MGCDMaple&quot;; read &quot;MGCD2&quot;; read &quot;Bench.mpl&quot;;
+RDP:=Algebraic:-RecursiveDensePolynomials;</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEkUkRQRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LVEpJkFzc2lnbjtGJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC1GLDYlUSpBbGdlYnJhaWNGJ0YvRjItRjY2LVEvJmNvbG9uOyZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRJjAuMGVtRicvRk5GVi1GLDYlUTpSZWN1cnNpdmVEZW5zZVBvbHlub21pYWxzRidGL0YyRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSRSRFBHRihJOlJlY3Vyc2l2ZURlbnNlUG9seW5vbWlhbHNHNiQvSSttb2R1bGVuYW1lR0YoSSpBbGdlYnJhaWNHRiVGJjcjRi4=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L339" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" size="16" background="[255,255,153]" foreground="[0,0,255]">#1</Font><Font opaque="true" background="[255,255,153]" foreground="[0,0,255]">:Number of Variables changing from 1 to 5</Font></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L711" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" background="[204,255,204]">flagalg:=MGCD2; #Using RDP=Algebraic:-RecursiveDensePolynomials
+</Font><Font opaque="true">vars:=<Font foreground="[128,0,0]">[seq(</Font>1..5)];
+</Font>R:=<Font foreground="[128,0,0]">Benchmain(flagalg,vars</Font>,24,12,24,3,0);
+Export(R,&quot;MGCD2.xls&quot;,&quot;#var&quot;);</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEoZmxhZ2FsZ0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtRiw2JVEmTUdDRDJGJ0YvRjJGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SShmbGFnYWxnR0YoSSZNR0NEMkdGKDcjRi4=</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEldmFyc0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSShtZmVuY2VkR0YkNiYtRiM2Li1JI21uR0YkNiRRIjFGJ0Y5LUY2Ni1RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRictRlU2JFEiMkYnRjlGWC1GVTYkUSIzRidGOUZYLUZVNiRRIjRGJ0Y5RlgtRlU2JFEiNUYnRjkvJStmb3JlZ3JvdW5kR1EoWzAsMCwwXUYnLyUpcmVhZG9ubHlHRj1GOUY5LyUlb3BlbkdRJyZsc3FiO0YnLyUmY2xvc2VHUScmcnNxYjtGJ0Y5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSV2YXJzR0YoNyciIiIiIiMiIiQiIiUiIiY3I0Yu</Equation></Text-field>
+</Output>
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">MGCD2
+MGCD2 := proc(A0, B0, T::anything := NULL)
+local A, B, ring, A1, B1, Char, E, X, Xpoly, cc, i, m, n, Xmin, conta, contb, k, 
+  LCap, LCbp, lmap, lmbp, minmon, H, prod, p, Ap, Bp, Cp, lcCp, lmCp, least, 
+  CRT, H2, test1, MP, test2, summon, timings, irat, M, gama, gamma, phimatrix,
+  invphimatrix, lcmintest, xx, yy, ca, cb, nca, ncb, C, counter, j, s, nfac, 
+  fac, ss, l, LA, Rand, ZD, L, AL, BL, GCDL, wt, LCH2, slc, randfunction, 
+  minpolys, st, tt, pt, laminpolytime, pgcdtime, CRTRNRtime, phigammatime, lmt
+  , Result, divtime, Np;
+     |Calls Seconds  Words|
+PROC |    1   0.391 2466677|
+   1 |    1   0.000      0| timings := true;
+   2 |    1   0.000      4| tt := time();
+   3 |    1   0.000      0| pt := 0;
+   4 |    1   0.000      0| lmt := 0;
+   5 |    1   0.000      0| pgcdtime := 0;
+   6 |    1   0.000      0| CRTRNRtime := 0;
+   7 |    1   0.000      0| divtime := 0;
+   8 |    1   0.000     73| A1, B1, ring := ConvRing(A0,B0);
+   9 |    1   0.000  18513| A := semi(A1);
+  10 |    1   0.016  17955| B := semi(B1);
+  11 |    1   0.000      4| Char, X, E := op(ring);
+  12 |    1   0.000      0| n := nops(X);
+  13 |    1   0.000      0| m := nops(E);
+  14 |    1   0.000      0| k := n-m;
+  15 |    1   0.000      7| Xpoly := X[1 .. k];
+  16 |    1   0.000     19| Xmin := [seq(X[i],i = nops(X) .. nops(Xpoly)+1,-1)
+                              ];
+  17 |    1   0.000   1379| MP := [seq(Algebraic:-RecursiveDensePolynomials:-
+                              getalgext(ring,-i),i = 1 .. m)];
+  18 |    1   0.000   1197| minpolys := map(convert,MP,POLYNOMIAL);
+  19 |    1   0.000      0| H := [];
+  20 |    1   0.000      0| p := 2147483648;
+  21 |    1   0.000      0| Np := [];
+  22 |    1   0.000      0| do
+  23 |   17   0.000  38415|     do
+  24 |   17   0.000  11414|         p := nextprime(p);
+  25 |   17   0.000      0|         lcmintest := true;
+  26 |   17   0.000      0|         for i to m do
+  27 |   51   0.000    841|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false
+                                        end if
+                                    end do
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  29 |   17   0.000     68|     st := time();
+  30 |   17   0.141 1636199|     Ap, Bp := Algebraic:-RecursiveDensePolynomials
+                                  :-phirpoly(A,p), Algebraic:-
+                                  RecursiveDensePolynomials:-phirpoly(B,p);
+  31 |   17   0.000    224|     pt := pt+time()-st;
+  32 |   17   0.108  77339|     Cp := traperror(PGCDAlg(Ap,Bp,p));
+  33 |   17   0.000    272|     pgcdtime := pgcdtime+time()-st;
+  34 |   17   0.000     55|     if Cp = lasterror and nops([Cp]) = 2 and
+<Font encoding="UTF-8">                                [Cp][1] = &quot;inverse does not exist\134n&quot; then
+</Font>  35 |    0   0.000      0|         ZD := Cp[2];
+  36 |    0   0.000      0|         next
+                                end if;
+  37 |   17   0.000   1811|     if Algebraic:-RecursiveDensePolynomials:-
+                                  tdegrpoly(Cp) = 0 then
+  38 |    0   0.000      0|         printf(&quot;Cp=%a is a constant&quot;,Cp);
+  39 |    0   0.000      0|         return Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(1,X)
+                                end if;
+  40 |   17   0.000     68|     st := time();
+  41 |   17   0.000   1673|     lcCp := Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(Cp,Xpoly);
+  42 |   17   0.015  53184|     lmCp := Algebraic:-RecursiveDensePolynomials:-
+                                  rpoly(lmrpoly(Cp,Xpoly[1 .. k-1],X));
+  43 |   17   0.000    256|     lmt := lmt+time()-st;
+  44 |   17   0.000      0|     if not assigned(minmon) then
+  45 |    1   0.000      0|         CRT := Cp;
+  46 |    1   0.000      0|         minmon := lmCp;
+  47 |    1   0.000      0|         summon := minmon;
+  48 |    1   0.000      0|         least := minmon;
+  49 |    1   0.000      4|         H := [Cp]
+                                else
+  50 |   16   0.000      0|         summon := lmCp+minmon;
+  51 |   16   0.000  27380|         least := Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(tmrpoly
+                                      (Algebraic:-RecursiveDensePolynomials:-
+                                      rpoly(summon,X),Xpoly,X));
+  52 |   16   0.000  21915|         Cp := Algebraic:-RecursiveDensePolynomials
+                                      :-scarpoly(Algebraic:-
+                                      RecursiveDensePolynomials:-invrpoly(lcCp
+                                      ),Cp);
+  53 |   16   0.000    192|         if lmCp = least and minmon &lt;&gt; least then
+  54 |    0   0.000      0|             H := [Cp];
+  55 |    0   0.000      0|             CRT := Cp;
+  56 |    0   0.000      0|             minmon := least;
+  57 |    0   0.000      0|             Np := [p]
+                                    elif lmCp = least and minmon = least then
+  58 |   16   0.000    245|             H := [op(H), Cp];
+  59 |   16   0.000     64|             st := time();
+  60 |   16   0.080 342145|             CRT := Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          ichremrpoly(map(Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          retextsrpoly,H));
+  61 |   16   0.000    252|             CRTRNRtime := CRTRNRtime+time()-st;
+  62 |   16   0.000    229|             Np := [op(Np), p]
+                                    end if
+                                end if;
+  63 |   17   0.000     68|     st := time();
+  64 |   17   0.015 131535|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  65 |   17   0.000    268|     CRTRNRtime := CRTRNRtime+time()-st;
+  66 |   17   0.000     51|     if irat &lt;&gt; FAIL then
+  67 |    1   0.000     12|         H2 := subsop(1 = ring,irat);
+  68 |    1   0.000   2131|         randfunction := rand(p);
+  69 |    1   0.000      4|         st := time();
+  70 |    1   0.000   1070|         do
+  71 |    1   0.000     10|             L := {seq(Xpoly[i] = randfunction(),i
+                                          = 2 .. k)};
+  72 |    1   0.016  39287|             AL, BL, GCDL := Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(A,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(B,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(H2,L),p)
+                                    until Algebraic:-RecursiveDensePolynomials:-
+                                      degrpoly(GCDL,Xpoly[1]) = Algebraic:-
+                                      RecursiveDensePolynomials:-degrpoly(H2,
+                                      Xpoly[1]);
+  73 |    1   0.000  38803|         if Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      divrpoly(AL,GCDL) and Algebraic
+                                      :-RecursiveDensePolynomials:-
+                                      divrpoly(BL,GCDL) then
+  74 |    1   0.000     16|             divtime := divtime+time()-st;
+  75 |    1   0.000     12|             tt := time()-tt;
+  76 |    1   0.000      9|             if timings = true and T &lt;&gt; NULL then
+<Font encoding="UTF-8">  77 |    0   0.000      0|                 printf(&quot;MGCD: time=%.3f Reduce mod\134
+                                               p=%.3f  PGCDAlg=%.3f lm=%.3f  C\134
+                                              RT and RNR=%.3f Division test=%.\134
+                                              3f\134n&quot;,tt,pt,pgcdtime,lmt,
+</Font>                                              phigammatime,CRTRNRtime,divtime)
+                                        end if;
+  78 |    1   0.000      5|             return [H2, nops(Np)]
+                                    end if
+                                end if
+                            end do
+end proc
+
+MGCD2
+MGCD2 := proc(A0, B0, T::anything := NULL)
+local A, B, ring, A1, B1, Char, E, X, Xpoly, cc, i, m, n, Xmin, conta, contb, k, 
+  LCap, LCbp, lmap, lmbp, minmon, H, prod, p, Ap, Bp, Cp, lcCp, lmCp, least, 
+  CRT, H2, test1, MP, test2, summon, timings, irat, M, gama, gamma, phimatrix,
+  invphimatrix, lcmintest, xx, yy, ca, cb, nca, ncb, C, counter, j, s, nfac, 
+  fac, ss, l, LA, Rand, ZD, L, AL, BL, GCDL, wt, LCH2, slc, randfunction, 
+  minpolys, st, tt, pt, laminpolytime, pgcdtime, CRTRNRtime, phigammatime, lmt
+  , Result, divtime, Np;
+     |Calls Seconds  Words|
+PROC |    1   0.500 3129774|
+   1 |    1   0.000      0| timings := true;
+   2 |    1   0.000      4| tt := time();
+   3 |    1   0.000      0| pt := 0;
+   4 |    1   0.000      0| lmt := 0;
+   5 |    1   0.000      0| pgcdtime := 0;
+   6 |    1   0.000      0| CRTRNRtime := 0;
+   7 |    1   0.000      0| divtime := 0;
+   8 |    1   0.000     73| A1, B1, ring := ConvRing(A0,B0);
+   9 |    1   0.000  17955| A := semi(A1);
+  10 |    1   0.000  17955| B := semi(B1);
+  11 |    1   0.000      4| Char, X, E := op(ring);
+  12 |    1   0.000      0| n := nops(X);
+  13 |    1   0.000      0| m := nops(E);
+  14 |    1   0.000      0| k := n-m;
+  15 |    1   0.000      7| Xpoly := X[1 .. k];
+  16 |    1   0.000     19| Xmin := [seq(X[i],i = nops(X) .. nops(Xpoly)+1,-1)
+                              ];
+  17 |    1   0.000    428| MP := [seq(Algebraic:-RecursiveDensePolynomials:-
+                              getalgext(ring,-i),i = 1 .. m)];
+  18 |    1   0.000   1197| minpolys := map(convert,MP,POLYNOMIAL);
+  19 |    1   0.000      0| H := [];
+  20 |    1   0.000      0| p := 2147483648;
+  21 |    1   0.000      0| Np := [];
+  22 |    1   0.000      0| do
+  23 |   16   0.000  36109|     do
+  24 |   16   0.000   1514|         p := nextprime(p);
+  25 |   16   0.000      0|         lcmintest := true;
+  26 |   16   0.000      0|         for i to m do
+  27 |   48   0.000    779|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false
+                                        end if
+                                    end do
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  29 |   16   0.000     64|     st := time();
+  30 |   16   0.046 552704|     Ap, Bp := Algebraic:-RecursiveDensePolynomials
+                                  :-phirpoly(A,p), Algebraic:-
+                                  RecursiveDensePolynomials:-phirpoly(B,p);
+  31 |   16   0.000    256|     pt := pt+time()-st;
+  32 |   16   0.143 118816|     Cp := traperror(PGCDAlg(Ap,Bp,p));
+  33 |   16   0.000    256|     pgcdtime := pgcdtime+time()-st;
+  34 |   16   0.000     48|     if Cp = lasterror and nops([Cp]) = 2 and
+<Font encoding="UTF-8">                                [Cp][1] = &quot;inverse does not exist\134n&quot; then
+</Font>  35 |    0   0.000      0|         ZD := Cp[2];
+  36 |    0   0.000      0|         next
+                                end if;
+  37 |   16   0.000   1168|     if Algebraic:-RecursiveDensePolynomials:-
+                                  tdegrpoly(Cp) = 0 then
+  38 |    0   0.000      0|         printf(&quot;Cp=%a is a constant&quot;,Cp);
+  39 |    0   0.000      0|         return Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(1,X)
+                                end if;
+  40 |   16   0.000     64|     st := time();
+  41 |   16   0.015   1568|     lcCp := Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(Cp,Xpoly);
+  42 |   16   0.016 198368|     lmCp := Algebraic:-RecursiveDensePolynomials:-
+                                  rpoly(lmrpoly(Cp,Xpoly[1 .. k-1],X));
+  43 |   16   0.000    208|     lmt := lmt+time()-st;
+  44 |   16   0.000      0|     if not assigned(minmon) then
+  45 |    1   0.000      0|         CRT := Cp;
+  46 |    1   0.000      0|         minmon := lmCp;
+  47 |    1   0.000      0|         summon := minmon;
+  48 |    1   0.000      0|         least := minmon;
+  49 |    1   0.000      4|         H := [Cp]
+                                else
+  50 |   15   0.000      0|         summon := lmCp+minmon;
+  51 |   15   0.000  25665|         least := Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(tmrpoly
+                                      (Algebraic:-RecursiveDensePolynomials:-
+                                      rpoly(summon,X),Xpoly,X));
+  52 |   15   0.016  25110|         Cp := Algebraic:-RecursiveDensePolynomials
+                                      :-scarpoly(Algebraic:-
+                                      RecursiveDensePolynomials:-invrpoly(lcCp
+                                      ),Cp);
+  53 |   15   0.000    180|         if lmCp = least and minmon &lt;&gt; least then
+  54 |    0   0.000      0|             H := [Cp];
+  55 |    0   0.000      0|             CRT := Cp;
+  56 |    0   0.000      0|             minmon := least;
+  57 |    0   0.000      0|             Np := [p]
+                                    elif lmCp = least and minmon = least then
+  58 |   15   0.000    222|             H := [op(H), Cp];
+  59 |   15   0.000     60|             st := time();
+  60 |   15   0.248 1329292|             CRT := Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          ichremrpoly(map(Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          retextsrpoly,H));
+  61 |   15   0.000    212|             CRTRNRtime := CRTRNRtime+time()-st;
+  62 |   15   0.000    207|             Np := [op(Np), p]
+                                    end if
+                                end if;
+  63 |   16   0.000     64|     st := time();
+  64 |   16   0.016 593239|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  65 |   16   0.000    228|     CRTRNRtime := CRTRNRtime+time()-st;
+  66 |   16   0.000     48|     if irat &lt;&gt; FAIL then
+  67 |    1   0.000     12|         H2 := subsop(1 = ring,irat);
+  68 |    1   0.000   2127|         randfunction := rand(p);
+  69 |    1   0.000      4|         st := time();
+  70 |    1   0.000    295|         do
+  71 |    1   0.000     10|             L := {seq(Xpoly[i] = randfunction(),i
+                                          = 2 .. k)};
+  72 |    1   0.000  48081|             AL, BL, GCDL := Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(A,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(B,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(H2,L),p)
+                                    until Algebraic:-RecursiveDensePolynomials:-
+                                      degrpoly(GCDL,Xpoly[1]) = Algebraic:-
+                                      RecursiveDensePolynomials:-degrpoly(H2,
+                                      Xpoly[1]);
+  73 |    1   0.000 155112|         if Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      divrpoly(AL,GCDL) and Algebraic
+                                      :-RecursiveDensePolynomials:-
+                                      divrpoly(BL,GCDL) then
+  74 |    1   0.000     12|             divtime := divtime+time()-st;
+  75 |    1   0.000     12|             tt := time()-tt;
+  76 |    1   0.000      9|             if timings = true and T &lt;&gt; NULL then
+<Font encoding="UTF-8">  77 |    0   0.000      0|                 printf(&quot;MGCD: time=%.3f Reduce mod\134
+                                               p=%.3f  PGCDAlg=%.3f lm=%.3f  C\134
+                                              RT and RNR=%.3f Division test=%.\134
+                                              3f\134n&quot;,tt,pt,pgcdtime,lmt,
+</Font>                                              phigammatime,CRTRNRtime,divtime)
+                                        end if;
+  78 |    1   0.000      5|             return [H2, nops(Np)]
+                                    end if
+                                end if
+                            end do
+end proc
+
+MGCD2
+MGCD2 := proc(A0, B0, T::anything := NULL)
+local A, B, ring, A1, B1, Char, E, X, Xpoly, cc, i, m, n, Xmin, conta, contb, k, 
+  LCap, LCbp, lmap, lmbp, minmon, H, prod, p, Ap, Bp, Cp, lcCp, lmCp, least, 
+  CRT, H2, test1, MP, test2, summon, timings, irat, M, gama, gamma, phimatrix,
+  invphimatrix, lcmintest, xx, yy, ca, cb, nca, ncb, C, counter, j, s, nfac, 
+  fac, ss, l, LA, Rand, ZD, L, AL, BL, GCDL, wt, LCH2, slc, randfunction, 
+  minpolys, st, tt, pt, laminpolytime, pgcdtime, CRTRNRtime, phigammatime, lmt
+  , Result, divtime, Np;
+     |Calls Seconds  Words|
+PROC |    1   1.172 7048451|
+   1 |    1   0.000      0| timings := true;
+   2 |    1   0.000      4| tt := time();
+   3 |    1   0.000      0| pt := 0;
+   4 |    1   0.000      0| lmt := 0;
+   5 |    1   0.000      0| pgcdtime := 0;
+   6 |    1   0.000      0| CRTRNRtime := 0;
+   7 |    1   0.000      0| divtime := 0;
+   8 |    1   0.000     73| A1, B1, ring := ConvRing(A0,B0);
+   9 |    1   0.000  17955| A := semi(A1);
+  10 |    1   0.000  17955| B := semi(B1);
+  11 |    1   0.000      4| Char, X, E := op(ring);
+  12 |    1   0.000      0| n := nops(X);
+  13 |    1   0.000      0| m := nops(E);
+  14 |    1   0.000      0| k := n-m;
+  15 |    1   0.000      7| Xpoly := X[1 .. k];
+  16 |    1   0.000     19| Xmin := [seq(X[i],i = nops(X) .. nops(Xpoly)+1,-1)
+                              ];
+  17 |    1   0.000    428| MP := [seq(Algebraic:-RecursiveDensePolynomials:-
+                              getalgext(ring,-i),i = 1 .. m)];
+  18 |    1   0.000   1197| minpolys := map(convert,MP,POLYNOMIAL);
+  19 |    1   0.000      0| H := [];
+  20 |    1   0.000      0| p := 2147483648;
+  21 |    1   0.000      0| Np := [];
+  22 |    1   0.000      0| do
+  23 |   19   0.015  42916|     do
+  24 |   19   0.000   2416|         p := nextprime(p);
+  25 |   19   0.000      0|         lcmintest := true;
+  26 |   19   0.000      0|         for i to m do
+  27 |   57   0.000    928|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false
+                                        end if
+                                    end do
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  29 |   19   0.000     76|     st := time();
+  30 |   19   0.062 656336|     Ap, Bp := Algebraic:-RecursiveDensePolynomials
+                                  :-phirpoly(A,p), Algebraic:-
+                                  RecursiveDensePolynomials:-phirpoly(B,p);
+  31 |   19   0.000    304|     pt := pt+time()-st;
+  32 |   19   0.171 208810|     Cp := traperror(PGCDAlg(Ap,Bp,p));
+  33 |   19   0.000    304|     pgcdtime := pgcdtime+time()-st;
+  34 |   19   0.000     57|     if Cp = lasterror and nops([Cp]) = 2 and
+<Font encoding="UTF-8">                                [Cp][1] = &quot;inverse does not exist\134n&quot; then
+</Font>  35 |    0   0.000      0|         ZD := Cp[2];
+  36 |    0   0.000      0|         next
+                                end if;
+  37 |   19   0.015   1387|     if Algebraic:-RecursiveDensePolynomials:-
+                                  tdegrpoly(Cp) = 0 then
+  38 |    0   0.000      0|         printf(&quot;Cp=%a is a constant&quot;,Cp);
+  39 |    0   0.000      0|         return Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(1,X)
+                                end if;
+  40 |   19   0.000     76|     st := time();
+  41 |   19   0.000   1862|     lcCp := Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(Cp,Xpoly);
+  42 |   19   0.125 447306|     lmCp := Algebraic:-RecursiveDensePolynomials:-
+                                  rpoly(lmrpoly(Cp,Xpoly[1 .. k-1],X));
+  43 |   19   0.000    256|     lmt := lmt+time()-st;
+  44 |   19   0.000      0|     if not assigned(minmon) then
+  45 |    1   0.000      0|         CRT := Cp;
+  46 |    1   0.000      0|         minmon := lmCp;
+  47 |    1   0.000      0|         summon := minmon;
+  48 |    1   0.000      0|         least := minmon;
+  49 |    1   0.000      4|         H := [Cp]
+                                else
+  50 |   18   0.000      0|         summon := lmCp+minmon;
+  51 |   18   0.015  30798|         least := Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(tmrpoly
+                                      (Algebraic:-RecursiveDensePolynomials:-
+                                      rpoly(summon,X),Xpoly,X));
+  52 |   18   0.000  37584|         Cp := Algebraic:-RecursiveDensePolynomials
+                                      :-scarpoly(Algebraic:-
+                                      RecursiveDensePolynomials:-invrpoly(lcCp
+                                      ),Cp);
+  53 |   18   0.000    216|         if lmCp = least and minmon &lt;&gt; least then
+  54 |    0   0.000      0|             H := [Cp];
+  55 |    0   0.000      0|             CRT := Cp;
+  56 |    0   0.000      0|             minmon := least;
+  57 |    0   0.000      0|             Np := [p]
+                                    elif lmCp = least and minmon = least then
+  58 |   18   0.000    294|             H := [op(H), Cp];
+  59 |   18   0.000     72|             st := time();
+  60 |   18   0.690 3810997|             CRT := Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          ichremrpoly(map(Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          retextsrpoly,H));
+  61 |   18   0.000    268|             CRTRNRtime := CRTRNRtime+time()-st;
+  62 |   18   0.000    276|             Np := [op(Np), p]
+                                    end if
+                                end if;
+  63 |   19   0.000     76|     st := time();
+  64 |   19   0.047 1494147|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  65 |   19   0.000    284|     CRTRNRtime := CRTRNRtime+time()-st;
+  66 |   19   0.000     57|     if irat &lt;&gt; FAIL then
+  67 |    1   0.000     12|         H2 := subsop(1 = ring,irat);
+  68 |    1   0.000   2138|         randfunction := rand(p);
+  69 |    1   0.000      4|         st := time();
+  70 |    1   0.000    295|         do
+  71 |    1   0.000     10|             L := {seq(Xpoly[i] = randfunction(),i
+                                          = 2 .. k)};
+  72 |    1   0.016  60813|             AL, BL, GCDL := Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(A,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(B,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(H2,L),p)
+                                    until Algebraic:-RecursiveDensePolynomials:-
+                                      degrpoly(GCDL,Xpoly[1]) = Algebraic:-
+                                      RecursiveDensePolynomials:-degrpoly(H2,
+                                      Xpoly[1]);
+  73 |    1   0.016 209388|         if Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      divrpoly(AL,GCDL) and Algebraic
+                                      :-RecursiveDensePolynomials:-
+                                      divrpoly(BL,GCDL) then
+  74 |    1   0.000     16|             divtime := divtime+time()-st;
+  75 |    1   0.000     12|             tt := time()-tt;
+  76 |    1   0.000      9|             if timings = true and T &lt;&gt; NULL then
+<Font encoding="UTF-8">  77 |    0   0.000      0|                 printf(&quot;MGCD: time=%.3f Reduce mod\134
+                                               p=%.3f  PGCDAlg=%.3f lm=%.3f  C\134
+                                              RT and RNR=%.3f Division test=%.\134
+                                              3f\134n&quot;,tt,pt,pgcdtime,lmt,
+</Font>                                              phigammatime,CRTRNRtime,divtime)
+                                        end if;
+  78 |    1   0.000      5|             return [H2, nops(Np)]
+                                    end if
+                                end if
+                            end do
+end proc
+
+MGCD2
+MGCD2 := proc(A0, B0, T::anything := NULL)
+local A, B, ring, A1, B1, Char, E, X, Xpoly, cc, i, m, n, Xmin, conta, contb, k, 
+  LCap, LCbp, lmap, lmbp, minmon, H, prod, p, Ap, Bp, Cp, lcCp, lmCp, least, 
+  CRT, H2, test1, MP, test2, summon, timings, irat, M, gama, gamma, phimatrix,
+  invphimatrix, lcmintest, xx, yy, ca, cb, nca, ncb, C, counter, j, s, nfac, 
+  fac, ss, l, LA, Rand, ZD, L, AL, BL, GCDL, wt, LCH2, slc, randfunction, 
+  minpolys, st, tt, pt, laminpolytime, pgcdtime, CRTRNRtime, phigammatime, lmt
+  , Result, divtime, Np;
+     |Calls Seconds  Words|
+PROC |    1   1.469 11012742|
+   1 |    1   0.000      0| timings := true;
+   2 |    1   0.000      4| tt := time();
+   3 |    1   0.000      0| pt := 0;
+   4 |    1   0.000      0| lmt := 0;
+   5 |    1   0.000      0| pgcdtime := 0;
+   6 |    1   0.000      0| CRTRNRtime := 0;
+   7 |    1   0.000      0| divtime := 0;
+   8 |    1   0.000     73| A1, B1, ring := ConvRing(A0,B0);
+   9 |    1   0.000  17955| A := semi(A1);
+  10 |    1   0.000  17955| B := semi(B1);
+  11 |    1   0.000      4| Char, X, E := op(ring);
+  12 |    1   0.000      0| n := nops(X);
+  13 |    1   0.000      0| m := nops(E);
+  14 |    1   0.000      0| k := n-m;
+  15 |    1   0.000      7| Xpoly := X[1 .. k];
+  16 |    1   0.000     19| Xmin := [seq(X[i],i = nops(X) .. nops(Xpoly)+1,-1)
+                              ];
+  17 |    1   0.000    428| MP := [seq(Algebraic:-RecursiveDensePolynomials:-
+                              getalgext(ring,-i),i = 1 .. m)];
+  18 |    1   0.000   1197| minpolys := map(convert,MP,POLYNOMIAL);
+  19 |    1   0.000      0| H := [];
+  20 |    1   0.000      0| p := 2147483648;
+  21 |    1   0.000      0| Np := [];
+  22 |    1   0.000      0| do
+  23 |   18   0.000  40707|     do
+  24 |   18   0.000   1684|         p := nextprime(p);
+  25 |   18   0.000      0|         lcmintest := true;
+  26 |   18   0.000      0|         for i to m do
+  27 |   54   0.000    880|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false
+                                        end if
+                                    end do
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  29 |   18   0.000     72|     st := time();
+  30 |   18   0.140 621792|     Ap, Bp := Algebraic:-RecursiveDensePolynomials
+                                  :-phirpoly(A,p), Algebraic:-
+                                  RecursiveDensePolynomials:-phirpoly(B,p);
+  31 |   18   0.000    272|     pt := pt+time()-st;
+  32 |   18   0.108 261972|     Cp := traperror(PGCDAlg(Ap,Bp,p));
+  33 |   18   0.000    288|     pgcdtime := pgcdtime+time()-st;
+  34 |   18   0.000     54|     if Cp = lasterror and nops([Cp]) = 2 and
+<Font encoding="UTF-8">                                [Cp][1] = &quot;inverse does not exist\134n&quot; then
+</Font>  35 |    0   0.000      0|         ZD := Cp[2];
+  36 |    0   0.000      0|         next
+                                end if;
+  37 |   18   0.000   1314|     if Algebraic:-RecursiveDensePolynomials:-
+                                  tdegrpoly(Cp) = 0 then
+  38 |    0   0.000      0|         printf(&quot;Cp=%a is a constant&quot;,Cp);
+  39 |    0   0.000      0|         return Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(1,X)
+                                end if;
+  40 |   18   0.000     72|     st := time();
+  41 |   18   0.000   1764|     lcCp := Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(Cp,Xpoly);
+  42 |   18   0.141 624928|     lmCp := Algebraic:-RecursiveDensePolynomials:-
+                                  rpoly(lmrpoly(Cp,Xpoly[1 .. k-1],X));
+  43 |   18   0.000    280|     lmt := lmt+time()-st;
+  44 |   18   0.000      0|     if not assigned(minmon) then
+  45 |    1   0.000      0|         CRT := Cp;
+  46 |    1   0.000      0|         minmon := lmCp;
+  47 |    1   0.000      0|         summon := minmon;
+  48 |    1   0.000      0|         least := minmon;
+  49 |    1   0.000      4|         H := [Cp]
+                                else
+  50 |   17   0.000      0|         summon := lmCp+minmon;
+  51 |   17   0.000  29087|         least := Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(tmrpoly
+                                      (Algebraic:-RecursiveDensePolynomials:-
+                                      rpoly(summon,X),Xpoly,X));
+  52 |   17   0.015  42534|         Cp := Algebraic:-RecursiveDensePolynomials
+                                      :-scarpoly(Algebraic:-
+                                      RecursiveDensePolynomials:-invrpoly(lcCp
+                                      ),Cp);
+  53 |   17   0.000    204|         if lmCp = least and minmon &lt;&gt; least then
+  54 |    0   0.000      0|             H := [Cp];
+  55 |    0   0.000      0|             CRT := Cp;
+  56 |    0   0.000      0|             minmon := least;
+  57 |    0   0.000      0|             Np := [p]
+                                    elif lmCp = least and minmon = least then
+  58 |   17   0.000    269|             H := [op(H), Cp];
+  59 |   17   0.000     68|             st := time();
+  60 |   17   0.893 7088282|             CRT := Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          ichremrpoly(map(Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          retextsrpoly,H));
+  61 |   17   0.000    252|             CRTRNRtime := CRTRNRtime+time()-st;
+  62 |   17   0.000    252|             Np := [op(Np), p]
+                                    end if
+                                end if;
+  63 |   18   0.000     72|     st := time();
+  64 |   18   0.156 2013833|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  65 |   18   0.000    268|     CRTRNRtime := CRTRNRtime+time()-st;
+  66 |   18   0.000     54|     if irat &lt;&gt; FAIL then
+  67 |    1   0.000     12|         H2 := subsop(1 = ring,irat);
+  68 |    1   0.000   2131|         randfunction := rand(p);
+  69 |    1   0.000      4|         st := time();
+  70 |    1   0.000    295|         do
+  71 |    1   0.000     10|             L := {seq(Xpoly[i] = randfunction(),i
+                                          = 2 .. k)};
+  72 |    1   0.016  73156|             AL, BL, GCDL := Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(A,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(B,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(H2,L),p)
+                                    until Algebraic:-RecursiveDensePolynomials:-
+                                      degrpoly(GCDL,Xpoly[1]) = Algebraic:-
+                                      RecursiveDensePolynomials:-degrpoly(H2,
+                                      Xpoly[1]);
+  73 |    1   0.000 168192|         if Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      divrpoly(AL,GCDL) and Algebraic
+                                      :-RecursiveDensePolynomials:-
+                                      divrpoly(BL,GCDL) then
+  74 |    1   0.000     16|             divtime := divtime+time()-st;
+  75 |    1   0.000     12|             tt := time()-tt;
+  76 |    1   0.000      9|             if timings = true and T &lt;&gt; NULL then
+<Font encoding="UTF-8">  77 |    0   0.000      0|                 printf(&quot;MGCD: time=%.3f Reduce mod\134
+                                               p=%.3f  PGCDAlg=%.3f lm=%.3f  C\134
+                                              RT and RNR=%.3f Division test=%.\134
+                                              3f\134n&quot;,tt,pt,pgcdtime,lmt,
+</Font>                                              phigammatime,CRTRNRtime,divtime)
+                                        end if;
+  78 |    1   0.000      5|             return [H2, nops(Np)]
+                                    end if
+                                end if
+                            end do
+end proc
+
+MGCD2
+MGCD2 := proc(A0, B0, T::anything := NULL)
+local A, B, ring, A1, B1, Char, E, X, Xpoly, cc, i, m, n, Xmin, conta, contb, k, 
+  LCap, LCbp, lmap, lmbp, minmon, H, prod, p, Ap, Bp, Cp, lcCp, lmCp, least, 
+  CRT, H2, test1, MP, test2, summon, timings, irat, M, gama, gamma, phimatrix,
+  invphimatrix, lcmintest, xx, yy, ca, cb, nca, ncb, C, counter, j, s, nfac, 
+  fac, ss, l, LA, Rand, ZD, L, AL, BL, GCDL, wt, LCH2, slc, randfunction, 
+  minpolys, st, tt, pt, laminpolytime, pgcdtime, CRTRNRtime, phigammatime, lmt
+  , Result, divtime, Np;
+     |Calls Seconds  Words|
+PROC |    1   7.594 46923927|
+   1 |    1   0.000      0| timings := true;
+   2 |    1   0.000      4| tt := time();
+   3 |    1   0.000      0| pt := 0;
+   4 |    1   0.000      0| lmt := 0;
+   5 |    1   0.000      0| pgcdtime := 0;
+   6 |    1   0.000      0| CRTRNRtime := 0;
+   7 |    1   0.000      0| divtime := 0;
+   8 |    1   0.000     73| A1, B1, ring := ConvRing(A0,B0);
+   9 |    1   0.062 443279| A := semi(A1);
+  10 |    1   0.079 443279| B := semi(B1);
+  11 |    1   0.000      4| Char, X, E := op(ring);
+  12 |    1   0.000      0| n := nops(X);
+  13 |    1   0.000      0| m := nops(E);
+  14 |    1   0.000      0| k := n-m;
+  15 |    1   0.000      8| Xpoly := X[1 .. k];
+  16 |    1   0.000     19| Xmin := [seq(X[i],i = nops(X) .. nops(Xpoly)+1,-1)
+                              ];
+  17 |    1   0.000    428| MP := [seq(Algebraic:-RecursiveDensePolynomials:-
+                              getalgext(ring,-i),i = 1 .. m)];
+  18 |    1   0.000   1197| minpolys := map(convert,MP,POLYNOMIAL);
+  19 |    1   0.000      0| H := [];
+  20 |    1   0.000      0| p := 2147483648;
+  21 |    1   0.000      0| Np := [];
+  22 |    1   0.000      0| do
+  23 |   17   0.093  38566|     do
+  24 |   17   0.000   1555|         p := nextprime(p);
+  25 |   17   0.000      0|         lcmintest := true;
+  26 |   17   0.000      0|         for i to m do
+  27 |   51   0.000    847|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false
+                                        end if
+                                    end do
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  29 |   17   0.000     68|     st := time();
+  30 |   17   1.608 14062676|     Ap, Bp := Algebraic:-RecursiveDensePolynomials
+                                  :-phirpoly(A,p), Algebraic:-
+                                  RecursiveDensePolynomials:-phirpoly(B,p);
+  31 |   17   0.000    272|     pt := pt+time()-st;
+  32 |   17   5.564 29724650|     Cp := traperror(PGCDAlg(Ap,Bp,p));
+  33 |   17   0.000    272|     pgcdtime := pgcdtime+time()-st;
+  34 |   17   0.000     51|     if Cp = lasterror and nops([Cp]) = 2 and
+<Font encoding="UTF-8">                                [Cp][1] = &quot;inverse does not exist\134n&quot; then
+</Font>  35 |    0   0.000      0|         ZD := Cp[2];
+  36 |    0   0.000      0|         next
+                                end if;
+  37 |   17   0.000   1904|     if Algebraic:-RecursiveDensePolynomials:-
+                                  tdegrpoly(Cp) = 0 then
+  38 |    0   0.000      0|         printf(&quot;Cp=%a is a constant&quot;,Cp);
+  39 |    0   0.000      0|         return Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(1,X)
+                                end if;
+  40 |   17   0.000     68|     st := time();
+  41 |   17   0.000   1734|     lcCp := Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(Cp,Xpoly);
+  42 |   17   0.015 121821|     lmCp := Algebraic:-RecursiveDensePolynomials:-
+                                  rpoly(lmrpoly(Cp,Xpoly[1 .. k-1],X));
+  43 |   17   0.000    216|     lmt := lmt+time()-st;
+  44 |   17   0.000      0|     if not assigned(minmon) then
+  45 |    1   0.000      0|         CRT := Cp;
+  46 |    1   0.000      0|         minmon := lmCp;
+  47 |    1   0.000      0|         summon := minmon;
+  48 |    1   0.000      0|         least := minmon;
+  49 |    1   0.000      4|         H := [Cp]
+                                else
+  50 |   16   0.000     80|         summon := lmCp+minmon;
+  51 |   16   0.000  35684|         least := Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(tmrpoly
+                                      (Algebraic:-RecursiveDensePolynomials:-
+                                      rpoly(summon,X),Xpoly,X));
+  52 |   16   0.000  23600|         Cp := Algebraic:-RecursiveDensePolynomials
+                                      :-scarpoly(Algebraic:-
+                                      RecursiveDensePolynomials:-invrpoly(lcCp
+                                      ),Cp);
+  53 |   16   0.000    192|         if lmCp = least and minmon &lt;&gt; least then
+  54 |    0   0.000      0|             H := [Cp];
+  55 |    0   0.000      0|             CRT := Cp;
+  56 |    0   0.000      0|             minmon := least;
+  57 |    0   0.000      0|             Np := [p]
+                                    elif lmCp = least and minmon = least then
+  58 |   16   0.000    245|             H := [op(H), Cp];
+  59 |   16   0.000     64|             st := time();
+  60 |   16   0.126 826542|             CRT := Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          ichremrpoly(map(Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          retextsrpoly,H));
+  61 |   16   0.000    228|             CRTRNRtime := CRTRNRtime+time()-st;
+  62 |   16   0.000    229|             Np := [op(Np), p]
+                                    end if
+                                end if;
+  63 |   17   0.000     68|     st := time();
+  64 |   17   0.015 342025|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  65 |   17   0.000    244|     CRTRNRtime := CRTRNRtime+time()-st;
+  66 |   17   0.000     51|     if irat &lt;&gt; FAIL then
+  67 |    1   0.000     12|         H2 := subsop(1 = ring,irat);
+  68 |    1   0.000   2134|         randfunction := rand(p);
+  69 |    1   0.000      4|         st := time();
+  70 |    1   0.000    295|         do
+  71 |    1   0.000     20|             L := {seq(Xpoly[i] = randfunction(),i
+                                          = 2 .. k)};
+  72 |    1   0.016 796519|             AL, BL, GCDL := Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(A,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(B,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(H2,L),p)
+                                    until Algebraic:-RecursiveDensePolynomials:-
+                                      degrpoly(GCDL,Xpoly[1]) = Algebraic:-
+                                      RecursiveDensePolynomials:-degrpoly(H2,
+                                      Xpoly[1]);
+  73 |    1   0.016  52654|         if Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      divrpoly(AL,GCDL) and Algebraic
+                                      :-RecursiveDensePolynomials:-
+                                      divrpoly(BL,GCDL) then
+  74 |    1   0.000     16|             divtime := divtime+time()-st;
+  75 |    1   0.000     12|             tt := time()-tt;
+  76 |    1   0.000      9|             if timings = true and T &lt;&gt; NULL then
+<Font encoding="UTF-8">  77 |    0   0.000      0|                 printf(&quot;MGCD: time=%.3f Reduce mod\134
+                                               p=%.3f  PGCDAlg=%.3f lm=%.3f  C\134
+                                              RT and RNR=%.3f Division test=%.\134
+                                              3f\134n&quot;,tt,pt,pgcdtime,lmt,
+</Font>                                              phigammatime,CRTRNRtime,divtime)
+                                        end if;
+  78 |    1   0.000      5|             return [H2, nops(Np)]
+                                    end if
+                                end if
+                            end do
+end proc
+
+MGCD2
+MGCD2 := proc(A0, B0, T::anything := NULL)
+local A, B, ring, A1, B1, Char, E, X, Xpoly, cc, i, m, n, Xmin, conta, contb, k, 
+  LCap, LCbp, lmap, lmbp, minmon, H, prod, p, Ap, Bp, Cp, lcCp, lmCp, least, 
+  CRT, H2, test1, MP, test2, summon, timings, irat, M, gama, gamma, phimatrix,
+  invphimatrix, lcmintest, xx, yy, ca, cb, nca, ncb, C, counter, j, s, nfac, 
+  fac, ss, l, LA, Rand, ZD, L, AL, BL, GCDL, wt, LCH2, slc, randfunction, 
+  minpolys, st, tt, pt, laminpolytime, pgcdtime, CRTRNRtime, phigammatime, lmt
+  , Result, divtime, Np;
+     |Calls Seconds  Words|
+PROC |    1  15.000 131533004|
+   1 |    1   0.000      0| timings := true;
+   2 |    1   0.000      4| tt := time();
+   3 |    1   0.000      0| pt := 0;
+   4 |    1   0.000      0| lmt := 0;
+   5 |    1   0.000      0| pgcdtime := 0;
+   6 |    1   0.000      0| CRTRNRtime := 0;
+   7 |    1   0.000      0| divtime := 0;
+   8 |    1   0.000     73| A1, B1, ring := ConvRing(A0,B0);
+   9 |    1   0.047 443279| A := semi(A1);
+  10 |    1   0.063 443279| B := semi(B1);
+  11 |    1   0.000      4| Char, X, E := op(ring);
+  12 |    1   0.000      0| n := nops(X);
+  13 |    1   0.000      0| m := nops(E);
+  14 |    1   0.000      0| k := n-m;
+  15 |    1   0.000      8| Xpoly := X[1 .. k];
+  16 |    1   0.000     19| Xmin := [seq(X[i],i = nops(X) .. nops(Xpoly)+1,-1)
+                              ];
+  17 |    1   0.000    428| MP := [seq(Algebraic:-RecursiveDensePolynomials:-
+                              getalgext(ring,-i),i = 1 .. m)];
+  18 |    1   0.000   1197| minpolys := map(convert,MP,POLYNOMIAL);
+  19 |    1   0.000      0| H := [];
+  20 |    1   0.000      0| p := 2147483648;
+  21 |    1   0.000      0| Np := [];
+  22 |    1   0.000      0| do
+  23 |   18   0.000  41394|     do
+  24 |   18   0.000   1684|         p := nextprime(p);
+  25 |   18   0.000      0|         lcmintest := true;
+  26 |   18   0.000      0|         for i to m do
+  27 |   54   0.000    920|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false
+                                        end if
+                                    end do
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  29 |   18   0.000     72|     st := time();
+  30 |   18   1.765 14890028|     Ap, Bp := Algebraic:-RecursiveDensePolynomials
+                                  :-phirpoly(A,p), Algebraic:-
+                                  RecursiveDensePolynomials:-phirpoly(B,p);
+  31 |   18   0.000    288|     pt := pt+time()-st;
+  32 |   18  10.640 94190104|     Cp := traperror(PGCDAlg(Ap,Bp,p));
+  33 |   18   0.000    288|     pgcdtime := pgcdtime+time()-st;
+  34 |   18   0.000     54|     if Cp = lasterror and nops([Cp]) = 2 and
+<Font encoding="UTF-8">                                [Cp][1] = &quot;inverse does not exist\134n&quot; then
+</Font>  35 |    0   0.000      0|         ZD := Cp[2];
+  36 |    0   0.000      0|         next
+                                end if;
+  37 |   18   0.000   3600|     if Algebraic:-RecursiveDensePolynomials:-
+                                  tdegrpoly(Cp) = 0 then
+  38 |    0   0.000      0|         printf(&quot;Cp=%a is a constant&quot;,Cp);
+  39 |    0   0.000      0|         return Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(1,X)
+                                end if;
+  40 |   18   0.000     72|     st := time();
+  41 |   18   0.000   1836|     lcCp := Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(Cp,Xpoly);
+  42 |   18   0.126 1625375|     lmCp := Algebraic:-RecursiveDensePolynomials:-
+                                  rpoly(lmrpoly(Cp,Xpoly[1 .. k-1],X));
+  43 |   18   0.000    264|     lmt := lmt+time()-st;
+  44 |   18   0.000      0|     if not assigned(minmon) then
+  45 |    1   0.000      0|         CRT := Cp;
+  46 |    1   0.000      0|         minmon := lmCp;
+  47 |    1   0.000      0|         summon := minmon;
+  48 |    1   0.000      0|         least := minmon;
+  49 |    1   0.000      4|         H := [Cp]
+                                else
+  50 |   17   0.000    833|         summon := lmCp+minmon;
+  51 |   17   0.000  55456|         least := Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(tmrpoly
+                                      (Algebraic:-RecursiveDensePolynomials:-
+                                      rpoly(summon,X),Xpoly,X));
+  52 |   17   0.031  78200|         Cp := Algebraic:-RecursiveDensePolynomials
+                                      :-scarpoly(Algebraic:-
+                                      RecursiveDensePolynomials:-invrpoly(lcCp
+                                      ),Cp);
+  53 |   17   0.000    204|         if lmCp = least and minmon &lt;&gt; least then
+  54 |    0   0.000      0|             H := [Cp];
+  55 |    0   0.000      0|             CRT := Cp;
+  56 |    0   0.000      0|             minmon := least;
+  57 |    0   0.000      0|             Np := [p]
+                                    elif lmCp = least and minmon = least then
+  58 |   17   0.000    269|             H := [op(H), Cp];
+  59 |   17   0.000     68|             st := time();
+  60 |   17   2.157 13165413|             CRT := Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          ichremrpoly(map(Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          retextsrpoly,H));
+  61 |   17   0.000    268|             CRTRNRtime := CRTRNRtime+time()-st;
+  62 |   17   0.000    252|             Np := [op(Np), p]
+                                    end if
+                                end if;
+  63 |   18   0.000     72|     st := time();
+  64 |   18   0.124 5516928|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  65 |   18   0.000    284|     CRTRNRtime := CRTRNRtime+time()-st;
+  66 |   18   0.000     54|     if irat &lt;&gt; FAIL then
+  67 |    1   0.000     12|         H2 := subsop(1 = ring,irat);
+  68 |    1   0.000   2131|         randfunction := rand(p);
+  69 |    1   0.000      4|         st := time();
+  70 |    1   0.000    295|         do
+  71 |    1   0.000     25|             L := {seq(Xpoly[i] = randfunction(),i
+                                          = 2 .. k)};
+  72 |    1   0.047 900356|             AL, BL, GCDL := Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(A,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(B,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(H2,L),p)
+                                    until Algebraic:-RecursiveDensePolynomials:-
+                                      degrpoly(GCDL,Xpoly[1]) = Algebraic:-
+                                      RecursiveDensePolynomials:-degrpoly(H2,
+                                      Xpoly[1]);
+  73 |    1   0.000 167564|         if Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      divrpoly(AL,GCDL) and Algebraic
+                                      :-RecursiveDensePolynomials:-
+                                      divrpoly(BL,GCDL) then
+  74 |    1   0.000     16|             divtime := divtime+time()-st;
+  75 |    1   0.000     12|             tt := time()-tt;
+  76 |    1   0.000      9|             if timings = true and T &lt;&gt; NULL then
+<Font encoding="UTF-8">  77 |    0   0.000      0|                 printf(&quot;MGCD: time=%.3f Reduce mod\134
+                                               p=%.3f  PGCDAlg=%.3f lm=%.3f  C\134
+                                              RT and RNR=%.3f Division test=%.\134
+                                              3f\134n&quot;,tt,pt,pgcdtime,lmt,
+</Font>                                              phigammatime,CRTRNRtime,divtime)
+                                        end if;
+  78 |    1   0.000      5|             return [H2, nops(Np)]
+                                    end if
+                                end if
+                            end do
+end proc
+
+MGCD2
+MGCD2 := proc(A0, B0, T::anything := NULL)
+local A, B, ring, A1, B1, Char, E, X, Xpoly, cc, i, m, n, Xmin, conta, contb, k, 
+  LCap, LCbp, lmap, lmbp, minmon, H, prod, p, Ap, Bp, Cp, lcCp, lmCp, least, 
+  CRT, H2, test1, MP, test2, summon, timings, irat, M, gama, gamma, phimatrix,
+  invphimatrix, lcmintest, xx, yy, ca, cb, nca, ncb, C, counter, j, s, nfac, 
+  fac, ss, l, LA, Rand, ZD, L, AL, BL, GCDL, wt, LCH2, slc, randfunction, 
+  minpolys, st, tt, pt, laminpolytime, pgcdtime, CRTRNRtime, phigammatime, lmt
+  , Result, divtime, Np;
+     |Calls Seconds  Words|
+PROC |    1  48.766 350897783|
+   1 |    1   0.000      0| timings := true;
+   2 |    1   0.000      4| tt := time();
+   3 |    1   0.000      0| pt := 0;
+   4 |    1   0.000      0| lmt := 0;
+   5 |    1   0.000      0| pgcdtime := 0;
+   6 |    1   0.000      0| CRTRNRtime := 0;
+   7 |    1   0.000      0| divtime := 0;
+   8 |    1   0.000     73| A1, B1, ring := ConvRing(A0,B0);
+   9 |    1   0.078 443279| A := semi(A1);
+  10 |    1   0.078 443279| B := semi(B1);
+  11 |    1   0.000      4| Char, X, E := op(ring);
+  12 |    1   0.000      0| n := nops(X);
+  13 |    1   0.000      0| m := nops(E);
+  14 |    1   0.000      0| k := n-m;
+  15 |    1   0.000      8| Xpoly := X[1 .. k];
+  16 |    1   0.000     19| Xmin := [seq(X[i],i = nops(X) .. nops(Xpoly)+1,-1)
+                              ];
+  17 |    1   0.000    428| MP := [seq(Algebraic:-RecursiveDensePolynomials:-
+                              getalgext(ring,-i),i = 1 .. m)];
+  18 |    1   0.016   1197| minpolys := map(convert,MP,POLYNOMIAL);
+  19 |    1   0.000      0| H := [];
+  20 |    1   0.000      0| p := 2147483648;
+  21 |    1   0.000      0| Np := [];
+  22 |    1   0.000      0| do
+  23 |   18   0.031  41454|     do
+  24 |   18   0.000   1684|         p := nextprime(p);
+  25 |   18   0.000      0|         lcmintest := true;
+  26 |   18   0.000      0|         for i to m do
+  27 |   54   0.000    965|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false
+                                        end if
+                                    end do
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  29 |   18   0.000     72|     st := time();
+  30 |   18   2.468 14890557|     Ap, Bp := Algebraic:-RecursiveDensePolynomials
+                                  :-phirpoly(A,p), Algebraic:-
+                                  RecursiveDensePolynomials:-phirpoly(B,p);
+  31 |   18   0.000    288|     pt := pt+time()-st;
+  32 |   18  33.955 263780201|     Cp := traperror(PGCDAlg(Ap,Bp,p));
+  33 |   18   0.000    288|     pgcdtime := pgcdtime+time()-st;
+  34 |   18   0.000     54|     if Cp = lasterror and nops([Cp]) = 2 and
+<Font encoding="UTF-8">                                [Cp][1] = &quot;inverse does not exist\134n&quot; then
+</Font>  35 |    0   0.000      0|         ZD := Cp[2];
+  36 |    0   0.000      0|         next
+                                end if;
+  37 |   18   0.015   5436|     if Algebraic:-RecursiveDensePolynomials:-
+                                  tdegrpoly(Cp) = 0 then
+  38 |    0   0.000      0|         printf(&quot;Cp=%a is a constant&quot;,Cp);
+  39 |    0   0.000      0|         return Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(1,X)
+                                end if;
+  40 |   18   0.000     72|     st := time();
+  41 |   18   0.030   1836|     lcCp := Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(Cp,Xpoly);
+  42 |   18   0.658 5649598|     lmCp := Algebraic:-RecursiveDensePolynomials:-
+                                  rpoly(lmrpoly(Cp,Xpoly[1 .. k-1],X));
+  43 |   18   0.000    288|     lmt := lmt+time()-st;
+  44 |   18   0.000      0|     if not assigned(minmon) then
+  45 |    1   0.000      0|         CRT := Cp;
+  46 |    1   0.000      0|         minmon := lmCp;
+  47 |    1   0.000      0|         summon := minmon;
+  48 |    1   0.000      0|         least := minmon;
+  49 |    1   0.000      4|         H := [Cp]
+                                else
+  50 |   17   0.000    833|         summon := lmCp+minmon;
+  51 |   17   0.000  74749|         least := Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(tmrpoly
+                                      (Algebraic:-RecursiveDensePolynomials:-
+                                      rpoly(summon,X),Xpoly,X));
+  52 |   17   0.000 219368|         Cp := Algebraic:-RecursiveDensePolynomials
+                                      :-scarpoly(Algebraic:-
+                                      RecursiveDensePolynomials:-invrpoly(lcCp
+                                      ),Cp);
+  53 |   17   0.000    204|         if lmCp = least and minmon &lt;&gt; least then
+  54 |    0   0.000      0|             H := [Cp];
+  55 |    0   0.000      0|             CRT := Cp;
+  56 |    0   0.000      0|             minmon := least;
+  57 |    0   0.000      0|             Np := [p]
+                                    elif lmCp = least and minmon = least then
+  58 |   17   0.000    269|             H := [op(H), Cp];
+  59 |   17   0.000     68|             st := time();
+  60 |   17  10.734 45715849|             CRT := Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          ichremrpoly(map(Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          retextsrpoly,H));
+  61 |   17   0.000    268|             CRTRNRtime := CRTRNRtime+time()-st;
+  62 |   17   0.000    252|             Np := [op(Np), p]
+                                    end if
+                                end if;
+  63 |   18   0.000     72|     st := time();
+  64 |   18   0.640 18234442|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  65 |   18   0.000    284|     CRTRNRtime := CRTRNRtime+time()-st;
+  66 |   18   0.000     54|     if irat &lt;&gt; FAIL then
+  67 |    1   0.000     12|         H2 := subsop(1 = ring,irat);
+  68 |    1   0.000   2124|         randfunction := rand(p);
+  69 |    1   0.000      4|         st := time();
+  70 |    1   0.000    295|         do
+  71 |    1   0.000     30|             L := {seq(Xpoly[i] = randfunction(),i
+                                          = 2 .. k)};
+  72 |    1   0.047 1169536|             AL, BL, GCDL := Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(A,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(B,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(H2,L),p)
+                                    until Algebraic:-RecursiveDensePolynomials:-
+                                      degrpoly(GCDL,Xpoly[1]) = Algebraic:-
+                                      RecursiveDensePolynomials:-degrpoly(H2,
+                                      Xpoly[1]);
+  73 |    1   0.016 217940|         if Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      divrpoly(AL,GCDL) and Algebraic
+                                      :-RecursiveDensePolynomials:-
+                                      divrpoly(BL,GCDL) then
+  74 |    1   0.000     16|             divtime := divtime+time()-st;
+  75 |    1   0.000     12|             tt := time()-tt;
+  76 |    1   0.000      9|             if timings = true and T &lt;&gt; NULL then
+<Font encoding="UTF-8">  77 |    0   0.000      0|                 printf(&quot;MGCD: time=%.3f Reduce mod\134
+                                               p=%.3f  PGCDAlg=%.3f lm=%.3f  C\134
+                                              RT and RNR=%.3f Division test=%.\134
+                                              3f\134n&quot;,tt,pt,pgcdtime,lmt,
+</Font>                                              phigammatime,CRTRNRtime,divtime)
+                                        end if;
+  78 |    1   0.000      5|             return [H2, nops(Np)]
+                                    end if
+                                end if
+                            end do
+end proc
+
+MGCD2
+MGCD2 := proc(A0, B0, T::anything := NULL)
+local A, B, ring, A1, B1, Char, E, X, Xpoly, cc, i, m, n, Xmin, conta, contb, k, 
+  LCap, LCbp, lmap, lmbp, minmon, H, prod, p, Ap, Bp, Cp, lcCp, lmCp, least, 
+  CRT, H2, test1, MP, test2, summon, timings, irat, M, gama, gamma, phimatrix,
+  invphimatrix, lcmintest, xx, yy, ca, cb, nca, ncb, C, counter, j, s, nfac, 
+  fac, ss, l, LA, Rand, ZD, L, AL, BL, GCDL, wt, LCH2, slc, randfunction, 
+  minpolys, st, tt, pt, laminpolytime, pgcdtime, CRTRNRtime, phigammatime, lmt
+  , Result, divtime, Np;
+     |Calls Seconds  Words|
+PROC |    1  90.594 726387982|
+   1 |    1   0.000      0| timings := true;
+   2 |    1   0.000      4| tt := time();
+   3 |    1   0.000      0| pt := 0;
+   4 |    1   0.000      0| lmt := 0;
+   5 |    1   0.000      0| pgcdtime := 0;
+   6 |    1   0.000      0| CRTRNRtime := 0;
+   7 |    1   0.000      0| divtime := 0;
+   8 |    1   0.015     73| A1, B1, ring := ConvRing(A0,B0);
+   9 |    1   0.063 443279| A := semi(A1);
+  10 |    1   0.078 443279| B := semi(B1);
+  11 |    1   0.000      4| Char, X, E := op(ring);
+  12 |    1   0.000      0| n := nops(X);
+  13 |    1   0.000      0| m := nops(E);
+  14 |    1   0.000      0| k := n-m;
+  15 |    1   0.000      8| Xpoly := X[1 .. k];
+  16 |    1   0.000     19| Xmin := [seq(X[i],i = nops(X) .. nops(Xpoly)+1,-1)
+                              ];
+  17 |    1   0.000    428| MP := [seq(Algebraic:-RecursiveDensePolynomials:-
+                              getalgext(ring,-i),i = 1 .. m)];
+  18 |    1   0.000   1197| minpolys := map(convert,MP,POLYNOMIAL);
+  19 |    1   0.000      0| H := [];
+  20 |    1   0.000      0| p := 2147483648;
+  21 |    1   0.000      0| Np := [];
+  22 |    1   0.000      0| do
+  23 |   17   0.063  39151|     do
+  24 |   17   0.000   1555|         p := nextprime(p);
+  25 |   17   0.000      0|         lcmintest := true;
+  26 |   17   0.000      0|         for i to m do
+  27 |   51   0.000    912|             if den(minpolys[i]) mod p = 0 then
+  28 |    0   0.000      0|                 lcmintest := false
+                                        end if
+                                    end do
+                                until Algebraic:-RecursiveDensePolynomials:-rpoly(
+                                  Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(A,Xpoly)) mod p &lt;&gt; 0 and lcmintest =
+                                  true;
+  29 |   17   0.000     68|     st := time();
+  30 |   17   1.675 14062298|     Ap, Bp := Algebraic:-RecursiveDensePolynomials
+                                  :-phirpoly(A,p), Algebraic:-
+                                  RecursiveDensePolynomials:-phirpoly(B,p);
+  31 |   17   0.000    272|     pt := pt+time()-st;
+  32 |   17  68.046 574455749|     Cp := traperror(PGCDAlg(Ap,Bp,p));
+  33 |   17   0.000    272|     pgcdtime := pgcdtime+time()-st;
+  34 |   17   0.000     51|     if Cp = lasterror and nops([Cp]) = 2 and
+<Font encoding="UTF-8">                                [Cp][1] = &quot;inverse does not exist\134n&quot; then
+</Font>  35 |    0   0.000      0|         ZD := Cp[2];
+  36 |    0   0.000      0|         next
+                                end if;
+  37 |   17   0.031   6868|     if Algebraic:-RecursiveDensePolynomials:-
+                                  tdegrpoly(Cp) = 0 then
+  38 |    0   0.000      0|         printf(&quot;Cp=%a is a constant&quot;,Cp);
+  39 |    0   0.000      0|         return Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(1,X)
+                                end if;
+  40 |   17   0.000     68|     st := time();
+  41 |   17   0.000   1734|     lcCp := Algebraic:-RecursiveDensePolynomials:-
+                                  lcrpoly(Cp,Xpoly);
+  42 |   17   1.200 11435045|     lmCp := Algebraic:-RecursiveDensePolynomials:-
+                                  rpoly(lmrpoly(Cp,Xpoly[1 .. k-1],X));
+  43 |   17   0.000    272|     lmt := lmt+time()-st;
+  44 |   17   0.000      0|     if not assigned(minmon) then
+  45 |    1   0.000      0|         CRT := Cp;
+  46 |    1   0.000      0|         minmon := lmCp;
+  47 |    1   0.000      0|         summon := minmon;
+  48 |    1   0.000      0|         least := minmon;
+  49 |    1   0.000      4|         H := [Cp]
+                                else
+  50 |   16   0.000    784|         summon := lmCp+minmon;
+  51 |   16   0.000  88400|         least := Algebraic:-
+                                      RecursiveDensePolynomials:-rpoly(tmrpoly
+                                      (Algebraic:-RecursiveDensePolynomials:-
+                                      rpoly(summon,X),Xpoly,X));
+  52 |   16   0.064 418816|         Cp := Algebraic:-RecursiveDensePolynomials
+                                      :-scarpoly(Algebraic:-
+                                      RecursiveDensePolynomials:-invrpoly(lcCp
+                                      ),Cp);
+  53 |   16   0.000    192|         if lmCp = least and minmon &lt;&gt; least then
+  54 |    0   0.000      0|             H := [Cp];
+  55 |    0   0.000      0|             CRT := Cp;
+  56 |    0   0.000      0|             minmon := least;
+  57 |    0   0.000      0|             Np := [p]
+                                    elif lmCp = least and minmon = least then
+  58 |   16   0.000    245|             H := [op(H), Cp];
+  59 |   16   0.000     64|             st := time();
+  60 |   16  17.578 85705852|             CRT := Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          ichremrpoly(map(Algebraic:-
+                                          RecursiveDensePolynomials:-
+                                          retextsrpoly,H));
+  61 |   16   0.000    252|             CRTRNRtime := CRTRNRtime+time()-st;
+  62 |   16   0.000    229|             Np := [op(Np), p]
+                                    end if
+                                end if;
+  63 |   17   0.000     68|     st := time();
+  64 |   17   1.671 37459206|     irat := Algebraic:-RecursiveDensePolynomials:-
+                                  irrrpoly(CRT);
+  65 |   17   0.000    268|     CRTRNRtime := CRTRNRtime+time()-st;
+  66 |   17   0.000     51|     if irat &lt;&gt; FAIL then
+  67 |    1   0.000     12|         H2 := subsop(1 = ring,irat);
+  68 |    1   0.000   2131|         randfunction := rand(p);
+  69 |    1   0.000      4|         st := time();
+  70 |    1   0.016    295|         do
+  71 |    1   0.000     25|             L := {seq(Xpoly[i] = randfunction(),i
+                                          = 2 .. k)};
+  72 |    1   0.078 1645592|             AL, BL, GCDL := Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(A,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(B,L),p), Algebraic:-
+                                          RecursiveDensePolynomials:-phirpoly(
+                                          Algebraic:-RecursiveDensePolynomials
+                                          :-evalrpoly(H2,L),p)
+                                    until Algebraic:-RecursiveDensePolynomials:-
+                                      degrpoly(GCDL,Xpoly[1]) = Algebraic:-
+                                      RecursiveDensePolynomials:-degrpoly(H2,
+                                      Xpoly[1]);
+  73 |    1   0.016 172844|         if Algebraic:-
+                                      RecursiveDensePolynomials:-
+                                      divrpoly(AL,GCDL) and Algebraic
+                                      :-RecursiveDensePolynomials:-
+                                      divrpoly(BL,GCDL) then
+  74 |    1   0.000     16|             divtime := divtime+time()-st;
+  75 |    1   0.000     12|             tt := time()-tt;
+  76 |    1   0.000      9|             if timings = true and T &lt;&gt; NULL then
+<Font encoding="UTF-8">  77 |    0   0.000      0|                 printf(&quot;MGCD: time=%.3f Reduce mod\134
+                                               p=%.3f  PGCDAlg=%.3f lm=%.3f  C\134
+                                              RT and RNR=%.3f Division test=%.\134
+                                              3f\134n&quot;,tt,pt,pgcdtime,lmt,
+</Font>                                              phigammatime,CRTRNRtime,divtime)
+                                        end if;
+  78 |    1   0.000      5|             return [H2, nops(Np)]
+                                    end if
+                                end if
+                            end do
+end proc
+
+</Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L709" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" size="16" background="[255,255,153]" foreground="[0,0,255]">#2: </Font><Font opaque="true" background="[255,255,153]" foreground="[0,0,128]">Total degree of the polynomials are changing from 1 to 15
+tdeg:=</Font><Font foreground="[128,0,0]">[4,6,8,10,12,16,20,24,28,32,36,40</Font>]<Font opaque="true" background="[255,255,153]" foreground="[0,0,128]">
+</Font>R:=<Font foreground="[128,0,0]">Benchmain(flagalg,2</Font>,tdeg,10,24,3,0);
+Export(R,&quot;MGCD2.xls&quot;,&quot;Tdeg&quot;);
+</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L704" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" size="16" background="[255,255,153]" foreground="[0,0,255]">#3 </Font><Font opaque="true" background="[255,255,153]" foreground="[0,0,128]">Degree of the field is in [4,8,12,16,24,32,64,72] with max number of extensions
+#numext will be chosen to be the maximum</Font>
+dF:<Font opaque="true" foreground="[128,0,0]">=[4,8,12,16,24,32,64,72];
+</Font></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L725" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">R:=<Font foreground="[128,0,0]">Benchmain(flagalg,2</Font>,10,10,dF,numext,0);
+Export(R,&quot;MGCD2.xls&quot;,&quot;dF&quot;);</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L706" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" size="16" background="[255,255,153]" foreground="[0,0,255]">#4 </Font><Font opaque="true" background="[255,255,153]" foreground="[0,0,128]">Number of extensions for a field of degree 64 is changing from 1..6 </Font></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L708" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font opaque="true" background="[204,255,204]">
+</Font>R:=<Font foreground="[128,0,0]">Benchmain(flagalg,2</Font>,10,10,64,[seq(1..6)],0);
+Export(R,&quot;MGCD2.xls&quot;,&quot;#exts&quot;);
+</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L730" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Worksheet>
