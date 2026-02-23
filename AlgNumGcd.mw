@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Worksheet>
+<Version major="2023" minor="0"/>
+<Label-Scheme value="2" prefix=""/>
+<View-Properties presentation="false" autoexpanding_sections="true" UserProfileName="Maple Default Profile" NumericFormat-ApplyInteger="true" NumericFormat-ApplyRational="true" NumericFormat-ApplyExponent="false" editable="true">
+</View-Properties>
+<MapleNet-Properties prettyprint="3" warnlevel="3" compactdisplay="false" preplot="" helpbrowser="standard" displayprecision="-1" echo="1" scientificx="true" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" imaginaryunit="I" longdelim="true" elisiontermsthreshold="10000" elisiondigitsafter="100" elisiondigitsbefore="100" plotdevice="inline" errorbreak="1" plotoptions="" plotdriver="opengl" quiet="false" elisiontermsbefore="100" elisiontermsafter="100" historytimestamp="false" screenwidth="79" indentamount="4" plotoutput="terminal" screenpixelheight="1200" rtablesize="[10, 10]" useclientjvm="true" format="worksheet" labelwidth="20" postplot="" typesetting="extended" ansi="false" ansicolor="[]" elisiondigitsthreshold="10000" showassumed="1" ansilprint="false" trailingsemicolon="true" errorcursor="false" labelling="true" screenheight="25" prompt="&gt; " verboseproc="1" latexwidth="8.0" ShowLabels="true"/>
+<Styles>
+<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="16" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[40,120,40]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[120,0,14]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 3" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Atomic Variable" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[175,0,175]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Dictionary Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[147,0,15]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="2D Math" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="List Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="true"/>
+<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.3" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 1" alignment="left" bullet="numeric" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="newline" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 2" alignment="left" bullet="alphabetic" firstindent="0" leftmargin="36" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 3" alignment="left" bullet="roman" firstindent="0" leftmargin="72" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 4" alignment="left" bullet="ALPHABETIC" firstindent="0" leftmargin="108" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 5" alignment="left" bullet="ROMAN" firstindent="0" leftmargin="144" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Annotation Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkError" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Bullet Item" alignment="left" bullet="dot" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="List Item" alignment="left" bullet="indent" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Dash Item" alignment="left" bullet="dash" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Error" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Pencil-style name="Pencil 1" pen-color="[0,0,0]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
+<Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
+</Styles>
+<Startup-Code startupcode=""/>
+<Task-table>
+	<Task-category name="&lt;default&gt;"/>
+</Task-table>
+<Task/>
+<Group hide-input="false" labelreference="L113" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;
+with(PolynomialTools):
+currentdir();
+read &quot;recden&quot;;
+<Font foreground="[0,128,128]">#The recden codes are in the following Code Edit Region for convenience
+</Font></Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkjbXNHNiMvSSttb2R1bGVuYW1lRzYiSSxUeXBlc2V0dGluZ0dJKF9zeXNsaWJHRic2I1FXQzpcVXNlcnNcbWFoc2FcT25lRHJpdmVcRGVza3RvcFxDb3Vyc2VzXFJBflNwcmluZ34yMDIzRic=">UVdDOlxVc2Vyc1xtYWhzYVxPbmVEcml2ZVxEZXNrdG9wXENvdXJzZXNcUkF+U3ByaW5nfjIwMjM2Ig==</Equation></Text-field>
+</Output>
+</Group><CodeEditor-ExecGroup view="presentation" hide-input="false" labelreference="L102" drawlabel="true" applyint="true" applyrational="true" display="code"><EC-CodeEditor id="CodeEditRegion0" expanded="false" visible="true" pixel-width="500" pixel-height="200" code-language="text/maple" autofit="true" wrapping="true" show-border="true" code-line-numbers="true">#Find the leading monomial of Rpoly format
+#X1 is the list of variables which we do want to find lm w.r.t them i.e lm(F,[x,y],[x,y,z],p)
+#Note:X1 and X are not necessarily equal
+lmrpoly:=proc(F,X1,X)
+local f,lc,R,M,E,Rnew,m,lm1 ;
+   #switch to the simple polynomial to find its leading monomial
+   #rpoly command is back and forth
+   f:=rpoly(F);
+   lc:=lcoeff(f,X1,'lm');
+   lm1:=rpoly(lm,X);
+   R:=getring(F);
+   #reconstruct R
+   M:=op(1,R);  
+   E:=op(3,R);
+   Rnew:=[M,X,E];
+   m:=POLYNOMIAL(Rnew,op(2,lm1));
+   return(m);
+end:
+#Find the smallest monomial in f
+tmrpoly:=proc(F,X1,X)
+local f,lc,lm1,m,R,E,Rnew,M;
+    f:=rpoly2maple(op(2,F),X);
+    lc:=tcoeff(f,X1,'lm');
+    lm1:=rpoly(lm,X);
+    R:=op(1,F);
+    M:=op(1,R);
+    E:=op(3,R);
+    Rnew:=[M,X,E];
+    m:=POLYNOMIAL(Rnew,op(2,lm1));
+    return(m);
+end:
+#Finding the denominator of f
+#If f belongs to Q[x], then the denominator of f is the smallest positive integer such that den(f)*f belongs to Z[x]
+#input: a rpoly F
+#output: den(F)
+den:=proc(F)
+    idenomrpoly(F);
+end:
+#Semi-Associate of f
+#Semi-associate of f is defined as rf s.t r is the smallest rational for which den(f.r)=1
+#Example: if f(x,y,z)=2/5*x^2+4/3*y^3+8/11*z^2 then den(f)=5*11*3 but r=den(f)/gcd(2,4,8)
+semi:=proc(F)
+    mulrpoly(1/icontrpoly(F),F);
+end:</EC-CodeEditor></CodeEditor-ExecGroup>
+<Group labelreference="L165" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L123" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font foreground="[0,0,255]">#Monomlist, RED, Basemaker,LAMinpoly</Font>
+</Text-field>
+</Input>
+</Group><CodeEditor-ExecGroup view="presentation" labelreference="L129" drawlabel="true" applyint="true" applyrational="true" display="code"><EC-CodeEditor id="CodeEditRegion1" expanded="false" visible="true" pixel-width="500" pixel-height="200" code-language="text/maple" autofit="true" wrapping="true" show-border="true" code-line-numbers="true">#LAminpoly
+#Monomlist
+#input: a polynomial f, a list of monomials called B, the list of variables called X
+#Output:Coordinate vector of f w.r.t B
+with(LinearAlgebra):
+Monomlist:=proc(f,B1,X)
+local m,v,i,mon,j,cof,c,d,B;
+#At some examples B1 is Vector and the nops(B1) does not give the correct result so we need to convert it to list
+   B:=convert(B1,list);
+   d:=nops(B);
+   v:=Vector(d); 
+   c:=coeffs(f,X,'m');
+   cof:=[c];
+   mon:=[m];
+   for j to nops(mon) do
+      if member(mon[j],B,'i') then
+         v[i]:=cof[j];
+      else error &quot;monomial not in B&quot;
+      fi;
+   od;
+return v;
+end:
+#RED
+#input: a polynomial, a, the list of minimal polynomials,m, and the list of variables,X.
+#output: the polynomial ,a, mod m[1],m[2],...
+RED:=proc(a,m,X)
+   local  a1,i;
+      a1:=a;
+      for i to nops(m) do
+         a1:=rem(a1,m[-i],X[-i]);
+      od;
+      return(a1);
+   end:
+ #Basemaker
+#input:The list of variables, the list of degree of each variable
+#output: The list of all the possible monomials constructed by X mod m[i]s
+Basemaker := proc(X,D::list(integer))
+local x,i,M,m,Z;
+if nops(X)=1 then
+   x := X[1];
+   seq( x^i,i=0..D[1]-1 );
+else
+   M := Basemaker(X[2..-1],D[2..-1]);
+   x := X[1];
+   Z := [seq( x^i,i=0..D[1]-1 )];
+   [seq(seq( x*m, m in M ), x in Z)]
+fi
+end: 
+LAMinpoly:=proc(m,p,gamma,X,Z)
+   local n,deg,d,monombasis,g,A,B,det,q,i,j,b,M,st;
+     n:=nops(m); #nops(m)=nops(X)
+     deg:=[seq(degree(m[i],X[i]),i=1..n)];
+     d:=mul(deg[i],i=1..n);
+     monombasis:=Basemaker(X,deg,m); 
+     #It is a basis for K=Z_p[z1,z2]/&lt;z1^2-2,z2^2-3&gt;: {1,z1,z2,z1z2}
+     g[0]:=rpoly(1,getring(gamma));
+     for i to d do
+        g[i]:=mulrpoly(gamma,g[i-1]); 
+     od;
+     A:=Matrix(d);
+     #Creating the matrix of coeffs
+     for i from 1 to d do
+         g[i-1] := expand(rpoly(g[i-1]));
+         A[1..d,i]:=Monomlist(g[i-1],monombasis,X);
+     od;    
+     g[d] := expand(rpoly(g[d]));
+     b:=Monomlist(g[d],monombasis,X);
+     # Construct the augmented matrix B = [A|I|b] and row reduce it
+     B:=Matrix(d,2*d+1,datatype=integer[8]);
+     B[1..d,1..d] := A;
+     for i to d do B[i,d+i] := 1; od;
+     for i to d do B[i,2*d+1] := b[i] od;
+     #Check for appropriate C here: If det(A)&lt;&gt;0, then A is invertible and we are good.
+     #Otherwise, MGCD goes back and chooses another C   
+     #if Det(A) mod p=0 then return(FAIL); fi;
+     Modular:-RowReduce(p,B,d,2*d+1,2*d+1,'det',0,0,0,0,true);
+     if det=0 then return FAIL fi;
+     q := -B[1..d,2*d+1]; # Solve of Aq=-b for q
+     B := B[1..d,d+1..2*d]; # A^(-1)
+     #B:=Inverse(A) mod p;
+     #q:=-B.b mod p; #As det(A)&lt;&gt;0 we are sure that there is a solution
+     #Constructing the polynomial
+     M:=add(q[i]*Z^(i-1),i=1...d)+Z^d mod p;
+    return M,A,B;
+end:
+</EC-CodeEditor></CodeEditor-ExecGroup>
+<Group labelreference="L132" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font foreground="[0,0,255]">#phiminpoly, Phi isomorphism</Font></Text-field>
+</Input>
+</Group><CodeEditor-ExecGroup view="presentation" hide-input="false" labelreference="L134" drawlabel="true" applyint="true" applyrational="true" display="code"><EC-CodeEditor id="CodeEditRegion4" expanded="false" visible="true" pixel-width="500" pixel-height="200" code-language="text/maple" autofit="true" wrapping="true" show-border="true" code-line-numbers="true">#The isomorphism phi
+#Let m=[m1(z1),m2(z2),..,mn(zn)] be the list of minimal polynomials in maple version.
+#To build the ring of Q[z1,..zn]/&lt;m1..mn&gt; in RECDEN format,we need to present m2 as a polynomial
+#over Q[z1]/&lt;m1&gt;, m3 as a polynomial over Q[z1,z2]/&lt;m1,m2&gt;,..,and m_n as a polynomial 
+#over Q[z1,z2,..z_(n-1)]/&lt;m1,m2,..,m_(n-1)&gt;
+with(ListTools):
+phiminpoly:=proc(m,Xmin1) 
+local n,M,i,Xmin;
+   n:=nops(m);
+   M:=[seq(1..n)];
+   Xmin:=Reverse(Xmin1);
+   M[1]:=rpoly(m[1],Xmin[n]);
+   for i from 2 to n do
+      Xmin[-i..n]; 
+      M[i]:=phirpoly(rpoly(m[i],Xmin[-i..n]),op(M[1..i-1]));
+      getring(M[i]);
+od;
+return(M);
+end:
+with(ListTools):
+with(PolynomialTools):
+with(ArrayTools):
+with(RandomTools):
+#phi : L=Q(a1,..an)----&gt;K=Q(gamma) is an isomorhism from Q[x1,..xn]/&lt;m1,..mn&gt; to Q[z]/&lt;m(z)&gt;. If  we want to call phi, then flag:=1 else if we want to call phi^(-1) then flag:=-1 
+#X is the list of minimal polynomials' variables 
+#If we call phi then the minpoly of the single extension is w.r.t Z:=op(indets(M)
+#If we call phi^(-1) then we need to have the variable of the single extension
+#Inputs: the polynomial f1, m=[m1,..mn]=list of minimal polynomials from Q[x1,..xn]/&lt;m1,..mn&gt;,Xmin=minimal polynomials' variables,  Xpoly=polynomial's variables, flag=1 or -1, gama,M,A,Ainv= The out puts of LAMinpoly
+Phi:=proc(f1,m,Xmin,Xpoly,flag,M,A,Ainv) 
+   local n,Z,deg,d,monombasis,F,final,newf,i,basis2,f,fmin,Ringfmin,Ring,R1,R2,R3,R33,Rfinal,R, phimin,XT,Xmin1,Rf;
+        #The variable of the single extension's minimal polynomial
+        Z:=op(indets(M));
+        Ring:=getring(f1);
+        #The characteristic of the field
+        R1:=op(1,Ring);
+        n:=nops(m); #nops(m)=nops(X)
+        deg:=[seq(degree(m[i],Xmin[i]),i=1..n)];
+        d:=degree(M);   #d:=mul(deg[i],i=1..n);
+        monombasis:= Basemaker(Xmin,deg); #set it as an input
+        f:=expand(rpoly(f1));
+        if flag=1 then #we want to calculate Phi(f) so f is in L and we need Ainv 
+           R2:=[op(Xpoly),Z];
+           #Get the RECDEN format of the minimal polynomial M
+           fmin:=phirpoly(rpoly(1,Z),rpoly(M,[Z])); #Make the input M as RECDEN
+           Ringfmin:=getring(fmin); 
+           #This is the Minpoly of single extension in recden version [[],[],[]]
+           R33:=[op(1,op(3,Ringfmin))];
+           #The ring of single extension is Rfinal
+           Rfinal:=[R1,R2,R33];
+           F:= Monomlist(f,monombasis,Xmin);
+           final:=Ainv.F;
+           #write final as a polyomial w.r.t Z in Q[Z]/&lt;m(Z)&gt; 
+           newf:=add(final[i]*Z^(i-1),i=1...d);
+           return rpoly(newf,Rfinal); #It is costy to convert
+       elif flag=-1 then #We want to call phi^(-1)
+#Note: Every two bases of a vector space have the same cardinality. Hence, if the base of Q[x,y]/&lt;m1,m2&gt; has d items then the basis of Q[z]/&lt;m(z)&gt; has d items too. Remember these two vector spaces are isomorphic.
+#When we call phi^(-1) we have a polynomial over Q[Z]/&lt;m(Z)&gt; and we want to map it to the corresponding polynomial in Q[x,y]/&lt;m1,m2&gt;
+# write f w.r.t the basis ord:=[1,Z,Z^2,..,Z^(d-1)] of Q[Z]/&lt;m(Z)&gt; where deg(M(Z))=d
+          basis2:=Array(1..d);
+          for i to d do
+             basis2[i]:=Z^(i-1); #A basis for the single extension Q[Z]/&lt;M(Z)&gt;
+          od;
+          F:=Monomlist(f,basis2,Z); #The coordinate of f relative to basis2
+          final:=A.F;
+          newf:=expand(RED((add(final[i]*monombasis[i],i=1..d)),m,Xmin)); #it's in Q[x,y]/&lt;m1,m2&gt;
+          #Now, we are to construct the ring of multiple extensions
+          phimin:=phiminpoly(m,Xmin);
+          Xmin1:= [ seq( Xmin[-i], i=1..nops(Xmin) ) ]; #Reverse did not work here:(
+          XT:=[op(Xpoly),op(Xmin1)];
+          #R1; #The characteristic of the field
+          if R1&lt;&gt;0 then #If the characteristic of the field &lt;&gt;0
+          newf:=phirpoly(rpoly(newf,XT),op(phimin),R1);
+          else #If the characteristic of the field =0
+          newf:=phirpoly(rpoly(newf,XT),op(phimin));
+          fi;	
+          return(newf);
+       fi;
+end:</EC-CodeEditor>
+<Input><Text-field prompt="&gt; " style="Maple Input" spaceabove="0" linebreak="space" rightmargin="0" linespacing="0.0" initial="0" firstindent="0" leftmargin="0" bulletsuffix="" alignment="left" bullet="none" spacebelow="0" pagebreak-before="false"></Text-field>
+</Input></CodeEditor-ExecGroup><CodeEditor-ExecGroup view="presentation" hide-input="false" labelreference="L127" drawlabel="true" applyint="true" applyrational="true" display="code"><EC-CodeEditor id="CodeEditRegion2" expanded="false" visible="true" pixel-width="500" pixel-height="200" code-language="text/maple" autofit="true" wrapping="true" show-border="true" code-line-numbers="true">#PGCD
+#X is the list of the polynomials' variables, XT is the list of the whole variables
+#We did not use minpoly in PGCD So PGCD is the same for single &amp; multiple extensions
+PGCD:= proc(A,B,p)
+local k,Xk,minmon,least,conta,contb,c,ap,bp,g,interpol,lcinterpol,j,Aj,Bj,Cj,gj,G,lcCj,lcA,lcB,lcAk, lcBk,Randfunction,LM,lm,ring,ring2,count,XT,X,n,m,AL,BL,L,i,GCDL,deginterpol,prod, interpolj,vj,prodj,q;
+   #Check if A and B are in the same field
+   
+   checkconsistency(A,B);
+   ring:=getring(A);
+#XT is the whole variables containing the polynomial's variables and the minpolys variables
+   XT:=getvars(A);
+   n:=nops(XT);
+   m:=nops(getalgexts(A)); 
+   X:=XT[1..n-m];
+   #k must be the number of polynomial variables
+   k:=nops(X);
+   Xk:=X[1..k-1]; #Polynomial variables= The whole variables - the variable of the minpoly
+   #Base case
+   if k = 1 then  
+   	 G:=gcdrpoly(A,B);
+      #G:=scarpoly(lcrpoly(G),G); #Monic GCD
+      return G;
+   fi;
+   #Calculate the Content/Primpart of  A and B
+   conta:=contrpoly(A,Xk,'ap');
+   contb:=contrpoly(B,Xk,'bp');
+   #c is the gcd of the content of A and B
+   c:=gcdrpoly(conta,contb);
+   #g is the gcd of the leading coefficients of pp of A and B w.r.t Xk
+   g:=gcdrpoly(lcrpoly(ap,Xk),lcrpoly(bp,Xk));
+   lcA:=lcrpoly(ap,X);
+   lcB:=lcrpoly(bp,X); 
+   #q is the array of eval points. We need tracking q to avoid repetitious evaluation points
+   q:=[];
+   #Randfunction is the function producing the rand eval points 
+   Randfunction:=rand(p);
+   lcAk:=lcrpoly(ap,Xk);  
+   lcBk:=lcrpoly(bp,Xk);
+   #count is the counter of the acceptable eval points
+   count:=0;
+   while true do 
+      do
+         j:= Randfunction() mod p;
+      until not member(j,q) and evalrpoly(lcAk,X[k]=j) mod p&lt;&gt;0 and evalrpoly(lcBk,X[k]=j) mod p&lt;&gt;0;
+      Aj:=evalrpoly(ap,X[k]=j);
+      Bj:=evalrpoly(bp,X[k]=j);
+      Cj:=PGCD(Aj,Bj,p);
+      #lm=The leading monomial of Cj
+      lm:=lmrpoly(Cj,Xk,XT,p);
+      #m=min(lm,n) where n=min(lm(ap),lm(bp))
+      gj:=evalrpoly(g,X[k]=j);
+      Cj:=scarpoly(gj,Cj);
+      #To count the number of acceptable evaluation points
+      if count=0 then 
+         minmon:=lm;
+         least:=lm;
+         count:=count+1;
+         deginterpol:=0;
+         interpol:=Cj;
+         prod:=rpoly(X[k]-j,ring);
+         q := [j]; # missing !!!
+      else
+          least:=tmrpoly(addrpoly(lm,minmon),X,XT,p);
+          if lm = least and minmon = least then 
+             prodj:=evalrpoly(prod,X[k]=j);
+             #print(PRODJ(prod,prodj),q,j);
+             q:=[op(q),j];  #add j to q
+             if count=1 then 
+                interpolj:=interpol; #When count=1, interpol=Cj and Cj does not have X[k] in it so evalrpoly returns an error.
+             else 
+                interpolj:=evalrpoly(interpol,X[k]=j); 
+             fi;   
+             vj:=mulrpoly(invrpoly(prodj),subrpoly(Cj,interpolj));
+             #The ring to which vj, interpol, and prod belong must be the same but at the second iteration when count=1, vj and interpol do not have y as their variable so we must reconstruct the ringto which  vj and interpol belong.
+             vj:=rpoly(rpoly(vj),ring); # adding X[k]
+             interpol:=rpoly(rpoly(interpol),ring);
+             interpol:=addrpoly(interpol,mulrpoly(prod,vj));
+             prod:=mulrpoly(prod, rpoly(X[k]-j,ring));
+             deginterpol:=degrpoly(interpol,X[k]); #We did not initialize interpol since its ring changes at each iteration and it causes error. If we fixed a ring for interpol then it was more expensive than simply initialize its degree of y =0 at the first iteration
+             count:=count+1;
+         elif lm = least and minmon&lt;&gt;least then
+         	printf(&quot; All the evaluation points before j=%d are unlucky&quot;,j);
+             q:=[j];
+             prod:=rpoly(X[k]-j,ring); # this was missing!!
+             interpol:=Cj;
+             minmon:= least;
+             count:=1;
+         elif lm&lt;&gt;least then  #Recognizing as an unlucky prime!
+             printf(&quot;%d is an unlucky evaluation point\134n&quot;,j);
+         fi;
+      fi;
+      if  count&gt;deginterpol+1  then   #Line 90 is equivalent to line 30 of PGCD algorithm in the paper
+        G:=pprpoly(interpol,Xk);
+        do
+        #Make our algorithm a Monte Carlo algorithm
+           L:=[seq(X[i]= Randfunction() mod p, i=2..k)];
+           AL, BL, GCDL:= evalrpoly(A,L), evalrpoly(B,L), evalrpoly(G,L);
+       until degrpoly(GCDL,X[1])=degrpoly(G,X[1]);
+       if divrpoly(AL,GCDL) and divrpoly(BL,GCDL) then
+     
+       G:=mulrpoly(c,G);
+          return (G);
+        fi;
+      fi;
+   od;
+end:
+untrace(PGCD);</EC-CodeEditor>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkjbWlHNiMvSSttb2R1bGVuYW1lRzYiSSxUeXBlc2V0dGluZ0dJKF9zeXNsaWJHRic2JVElUEdDREYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJw==">SSVQR0NERzYi</Equation></Text-field>
+</Output></CodeEditor-ExecGroup>
+<Group hide-input="false" labelreference="L120" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font size="14" foreground="[255,0,0]">#MGCD</Font>
+with(ListTools): 
+#Takes A,B in Q[z]/&lt;m(z)&gt;[x1,..xn] and gives GCD(A,B)  
+MGCD:= proc(A1,B1,<Font opaque="true">sprime)
+</Font>local A,B,ringA,X,Xpoly,Minpolys,cc,i,m,n,Xmin,conta,contb,k,ap,bp,LCap,LCbp,lmap,lmbp,minmon,H,prod,p,Ap,Bp,Cp,lcCp,lmCp,least,CRT,H2,test1,test2,summon,irat,M,gama,gamma,<Font foreground="[128,0,0]">phimatrix,invphimatrix,PhiAp,PhiBp,</Font> <Font foreground="[128,0,0]">lcmintest,xx,yy,ca,cb,nca,ncb,C,counter,j,s,nfac,fac,ss,l,LA,Rand,ZD,L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,laminpolytime,pgcdtime;</Font><Font foreground="[0,128,128]">
+#We use semi of the inputs to eliminate fractions
+   tt := time();
+   laminpolytime := 0;
+   pgcdtime := 0;</Font>
+   A:=semi(A1);
+   B:=semi(B1);
+   checkconsistency(A,B,alpha);
+   ringA:=getring(A);
+   <Font foreground="[0,128,128]">#get the whole variables</Font>
+   X:=getvars(A);
+   <Font foreground="[128,0,0]">n:=nops(X);</Font>
+   <Font foreground="[0,128,128]">#get the minimal polynomials</Font><Font foreground="[255,0,0]">
+   </Font><Font foreground="[128,0,0]">minpolys:=getalgexts(A);</Font><Font foreground="[255,0,0]">  </Font><Font foreground="[0,128,128]">#The list of minimal polynomials</Font><Font foreground="[255,0,0]">
+   </Font><Font foreground="[128,0,0]">m:=nops(minpolys);</Font><Font foreground="[255,0,0]"> </Font><Font foreground="[128,0,0]">
+   </Font><Font foreground="[0,128,128]">#get the polynomials' variables</Font><Font foreground="[255,0,0]">
+   </Font><Font foreground="[128,0,0]">Xpoly:=X[1..n-m];
+   </Font><Font foreground="[0,128,128]">#get the minimal polynomials' variables</Font><Font foreground="[128,0,0]">
+   Xmin:=Reverse(X[n-m+1..n]); </Font>
+   
+   <Font foreground="[0,128,128]">#We need to convert minpolys from rpoly to simple polynomials</Font>
+   Minpolys := map(rpoly,minpolys);
+   ap, bp:= A,B;
+   <Font foreground="[0,128,128]">#k is the nops of the variables of polynomials</Font>
+   <Font foreground="[128,0,0]">k:= nops(Xpoly);
+   H:=[];
+   </Font><Font foreground="[0,128,128]">#we do not need bound when we are using iratrecon since the loop terminates when iratrecon gives the proper answer</Font>
+ <Font opaque="true">  if nargs=2 then p := 2^31; else p:= sprime-1; fi;<Font background="[204,255,255]">
+</Font></Font>   <Font foreground="[0,128,128]">#The main loop</Font>
+   while true do
+   <Font foreground="[0,128,128]">#recognizing lc-bad and det-bad primes</Font>
+      do
+         p:= nextprime(p);
+         <Font opaque="true" encoding="UTF-8">printf(&quot;MGCD:prime=%d\134n&quot;,p);</Font><Font opaque="true">
+         <Font foreground="[128,0,0]">lcmintest:=true;
+         for i to m do   </Font><Font foreground="[0,128,128]">#p must not divide lc of ^M_i</Font><Font foreground="[128,0,0]">
+              if den(minpolys[i])</Font> mod p=0 then lcmintest:=false; fi;
+         od;
+         <Font foreground="[0,128,128]">#p is a bad prime if p|LC(A)</Font><Font foreground="[255,0,0]"> </Font>
+         if rpoly(lcrpoly(A,Xpoly)) mod p = 0 then 
+<Font encoding="UTF-8">            printf(&quot;p=%d is an lc-bad prime\134n&quot;,p); 
+</Font>         fi;
+      until rpoly(lcrpoly(A,Xpoly)) mod p &lt;&gt; 0<Font foreground="[128,0,0]">
+      and
+     </Font> <Font foreground="[0,128,128]">#As we used the semi of inputs as our inputs, we do not need to check if den(A)&amp; den(B) mod p&lt;&gt;0
+</Font><Font foreground="[128,0,0]">      </Font> lcmintest=true<Font foreground="[128,0,0]">;
+      </Font><Font foreground="[0,128,128]">#If p | lcoeff of A^,M^, where A^ is the semi associate of A and m^ is the semi-associate of the minimal polynomial then p is a lc-bad prime.</Font>
+     <Font foreground="[128,0,0]">
+         Rand:=rand(1..p-1);
+         C:=[seq(Rand(),i=1..m-1)];
+         gama := Xmin[1]+add(C[i]*Xmin[i+1],i=1..m-1);
+         gamma := phirpoly(rpoly(gama,getcofring(A)),p);
+         st := time();
+         LA:=</Font>LAMinpoly(Minpolys,p,gamma,Xmin,X[n]);
+         laminpolytime := laminpolytime + time()-st;
+         if LA=FAIL then 
+            <Font foreground="[128,0,0]" encoding="UTF-8">printf(&quot;p=%d is a det-bad prime or C=%a is an inappropriate list of constants\134n&quot;,p,C); </Font>
+            next;
+         fi;
+
+ M,phimatrix,invphimatrix:=LA;
+#</Font><Font encoding="UTF-8">printf(&quot;gamma:=%a and M(z)=%a\134n&quot;,gama,M);
+</Font>   <Font foreground="[255,0,0]">
+</Font>   Ap:= phirpoly(ap,p); <Font foreground="[0,128,128]">#Now everything is in Zp</Font>
+   Bp:= phirpoly(bp,p);
+  <Font opaque="true"> PhiAp:=Phi(Ap,Minpolys,Xmin,Xpoly,1,M,phimatrix,invphimatrix); #In Z_p(gamma)
+   PhiBp:=Phi(Bp,Minpolys,Xmin,Xpoly,1,M,phimatrix,invphimatrix);
+   st := time();
+</Font>   <Font opaque="true">Cp:=traperror<Font foreground="[128,0,0]">(PGCD(</Font>PhiAp<Font foreground="[128,0,0]">,</Font>PhiBp<Font foreground="[128,0,0]">,p));
+   pgcdtime := pgcdtime+time()-st;</Font>
+  <Font foreground="[0,128,128]"> #if there is a zero divisor then go to the first loop and change the prime
+   #print Z-D primes</Font><Font foreground="[128,0,0]">
+   if Cp=lasterror and nops([Cp])=2 and Cp[1]=&quot;inverse does not exist&quot; then
+<Font encoding="UTF-8">      ZD:=Cp[2];  printf(&quot;p=%d is a ZD prime ZD=%a\134n&quot;,p,ZD);</Font>
+      next;
+   elif Cp=lasterror then error lasterror;
+   fi;
+   </Font><Font foreground="[0,128,128]">#When the modular gcd is constant we are done!
+</Font><Font foreground="[128,0,0]">   </Font>if degrpoly(Cp)=0 then printf(&quot;Cp=%a is a constant&quot;,Cp); return(rpoly(1,X)) fi;<Font foreground="[0,128,128]">
+</Font>   Cp:=Phi(Cp,Minpolys,Xmin,Xpoly,-1,M,phimatrix,invphimatrix);
+   getring(Cp);</Font>
+   lcCp:= lcrpoly(Cp,Xpoly[1..k-1]);
+   lmCp:=rpoly(lmrpoly(Cp,Xpoly[1..k-1],X));
+   if not assigned(minmon) then 
+      CRT:=Cp;
+      minmon:=lmCp;
+      summon:=minmon;
+      least:=minmon;
+      <Font opaque="true" foreground="[128,0,0]">H:=[Cp];</Font><Font bold="false" foreground="[255,0,0]">
+</Font>   else
+   summon:=lmCp+minmon;
+   least:=rpoly(tmrpoly(rpoly(summon,X),Xpoly,X));
+   C<Font foreground="[128,0,0]">p:= scarpoly(invrpoly(lcrpoly(Cp)),Cp);</Font>
+   <Font foreground="[0,128,128]">#Test for unlucky primes</Font>
+      if lmCp = least and minmon&lt;&gt;least then  
+         i<Font foreground="[128,0,0]" encoding="UTF-8">f p&gt;sprime then printf(&quot;p=%d and All the previous primes were unlucky\134n&quot;,p); fi;</Font><Font foreground="[128,0,0]">
+         H:=[Cp];
+         CRT:=Cp; 
+         minmon:=least;</Font>
+      elif  lmCp = least and minmon= least then<Font foreground="[128,0,0]">
+         H:=[op(H),Cp];
+         </Font>CRT:=ichremrpoly(map(retextsrpoly,H));<Font foreground="[0,0,255]">
+</Font>      elif lmCp&lt;&gt;least then  
+ <Font foreground="[128,0,0]">        <Font encoding="UTF-8">printf(&quot;%a is an unlucky prime\134n&quot;,p);
+</Font>      fi;
+   fi;
+   irat:=irrrpoly(CRT);</Font>
+   <Font foreground="[128,0,0]">if  irat&lt;&gt; FAIL then 
+      H2</Font>:=subsop(1=ringA,irat);<Font foreground="[0,128,128]">#We do not use the bound.When RNR has a correct solution the loop termintes.</Font><Font foreground="[128,0,0]">
+   </Font><Font foreground="[0,128,128]">#Make our algorithm a Monte Carlo algorithm</Font><Font foreground="[128,0,0]">
+       randfunction:=rand(p);
+     </Font><Font opaque="true" foreground="[0,128,128]"> </Font><Font opaque="true" foreground="[0,0,128]">do
+        #Make our algorithm a Monte Carlo algorithm
+           L:=[seq(Xpoly[i]= randfunction(), i=2..k)];
+           AL, BL, GCDL:= evalrpoly(A,L), evalrpoly(B,L), evalrpoly(H2,L);
+       until degrpoly(GCDL,Xpoly[1])=degrpoly(H2,Xpoly[1]);</Font><Font opaque="true" foreground="[0,128,128]">
+
+</Font><Font opaque="true" foreground="[128,0,0]">      if divrpoly(AL,GCDL) and divrpoly(BL,GCDL) then
+         tt := time()-tt;
+<Font encoding="UTF-8">         if timings=true then printf(&quot;MGCD: time=%.3f  LAminpoly=%.3f  PGCD=%.3f\134n&quot;,tt,laminpolytime,pgcdtime); fi;</Font></Font><Font opaque="true" foreground="[255,102,0]">
+</Font>         return (H2);
+      fi;
+    fi;
+od;
+end:</Text-field>
+</Input>
+</Group>
+<Group labelreference="L168" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">#This MGCD <Font opaque="true" background="[255,153,0]" foreground="[128,0,0]">does not </Font>reduce the multiple extension to a single extension</Text-field>
+</Input>
+</Group><CodeEditor-ExecGroup view="presentation" labelreference="L170" drawlabel="true" applyint="true" applyrational="true" display="code"><EC-CodeEditor id="CodeEditRegion5" expanded="true" visible="true" pixel-width="500" pixel-height="200" code-language="text/maple" autofit="true" wrapping="true" show-border="true" code-line-numbers="true">#MGCD using multiple extensions
+with(ListTools): 
+#Takes A,B in Q[z]/&lt;m(z)&gt;[x1,..xn] and gives GCD(A,B)  
+MGCD2:= proc(A1,B1,sprime)
+local A,B,ringA,X,Xpoly,Minpolys,minpolys,cc,i,m,n,Xmin,conta,contb,k,ap,bp,LCap,LCbp,lmap,lmbp,minmon,H,prod,p,Ap,Bp,Cp,lcCp,lmCp,least,CRT,H2,test1,test2,summon,irat,M,gama,phimatrix,invphimatrix,PhiAp,PhiBp, lcmintest,xx,yy,ca,cb,nca,ncb,C,counter,j,s,nfac,fac,ss,l,LA,Rand,ZD,L,AL,BL,GCDL,wt,LCH2,slc,randfunction,st,tt,pt;
+#We use semi of the inputs to eliminate fractions
+   tt := time();
+   pt := 0.0;
+   A:=semi(A1);
+   B:=semi(B1);
+   checkconsistency(A,B,alpha);
+   ringA:=getring(A);
+   #get the whole variables
+   X:=getvars(A);
+   n:=nops(X);
+   #get the minimal polynomials
+   minpolys:=getalgexts(A);  #The list of minimal polynomials
+   m:=nops(minpolys); 
+   #get the polynomials' variables
+   Xpoly:=X[1..n-m];
+   #get the minimal polynomials' variables
+   Xmin:=Reverse(X[n-m+1..n]); 
+   
+   #We need to convert minpolys from rpoly to simple polynomials
+   Minpolys := map(rpoly,minpolys);
+   ap, bp:= A,B;
+   #k is the nops of the variables of polynomials
+   k:= nops(Xpoly);
+   H:=[];
+   #we do not need bound when we are using iratrecon since the loop terminates when iratrecon gives the proper answer
+   if nargs=2 then p := 2^31 else p:= sprime-1 fi;
+   #The main loop
+   while true do
+   #recognizing lc-bad and det-bad primes
+      do
+         p:= nextprime(p);
+         printf(&quot;MGCD2:prime=%d\134n&quot;,p);
+         lcmintest:=true;
+         for i to m do   #p must not divide lc of ^M_i
+              if den(minpolys[i]) mod p=0   then
+              lcmintest:=false;
+           fi;
+         od;
+         #p is a bad prime if p|LC(A) 
+         if rpoly(lcrpoly(A,Xpoly)) mod p = 0 then 
+            printf(&quot;p=%d is an lc-bad prime\134n&quot;,p); 
+         fi;
+      until rpoly(lcrpoly(A,Xpoly)) mod p &lt;&gt; 0
+      and
+      #As we used the semi of inputs as our inputs, we do not need to check if den(A)&amp; den(B) mod p&lt;&gt;0
+       lcmintest=true;   #If p | lcoeff of A^,M^, where A^ is the semi associate of A and m^ is the semi-associate of the minimal polynomial then p is a lc-bad prime.
+   Ap:= phirpoly(ap,p); #Now everything is in Zp
+   Bp:= phirpoly(bp,p);
+   st := time();
+   Cp:=traperror(PGCD(Ap,Bp,p));
+   pt := pt+time()-st;
+   #if there is a zero divisor then go to the first loop and change the prime
+   #print Z-D primes
+   if Cp=lasterror and nops([Cp])=2 and Cp[1]=&quot;inverse does not exist&quot; then 
+      ZD:=Cp[2];  printf(&quot;p=%d is a ZD prime ZD=%a\134n&quot;,p,ZD);
+      next;
+   fi;
+   #When the modular gcd is constant we are done!
+   if degrpoly(Cp)=0 then printf(&quot;Cp=%a is a constant&quot;,Cp); return(rpoly(1,X)) fi;
+   lcCp:= lcrpoly(Cp,Xpoly[1..k-1]);
+   lmCp:=rpoly(lmrpoly(Cp,Xpoly[1..k-1],X));
+   if not assigned(minmon) then 
+      CRT:=Cp;
+      minmon:=lmCp;
+      summon:=minmon;
+      least:=minmon;
+      H:=[Cp];
+   else
+   summon:=lmCp+minmon;
+   least:=rpoly(tmrpoly(rpoly(summon,X),Xpoly,X));
+   Cp:= scarpoly(invrpoly(lcrpoly(Cp)),Cp);
+   #Test for unlucky primes
+      if lmCp = least and minmon&lt;&gt;least then  
+         if p&gt;sprime then printf(&quot;p=%d and All the previous primes were unlucky\134n&quot;,p); fi;
+         H:=[Cp];
+         CRT:=Cp; 
+         minmon:=least;
+      elif  lmCp = least and minmon= least then
+         H:=[op(H),Cp];
+         CRT:=ichremrpoly(map(retextsrpoly,H));
+      elif lmCp&lt;&gt;least then  
+         printf(&quot;%a is an unlucky prime\134n&quot;,p);
+      fi;
+   fi;
+   irat:=irrrpoly(CRT);
+   if  irat&lt;&gt; FAIL then 
+      H2:=subsop(1=ringA,irat);#We do not use the bound.When RNR has a correct solution the loop termintes.
+   #Make our algorithm a Monte Carlo algorithm
+       randfunction:=rand(p);
+      do
+        #Make our algorithm a Monte Carlo algorithm
+           L:=[seq(Xpoly[i]= randfunction(), i=2..k)];
+           AL, BL, GCDL:= evalrpoly(A,L), evalrpoly(B,L), evalrpoly(H2,L);
+      until degrpoly(GCDL,Xpoly[1])=degrpoly(H2,Xpoly[1]);
+      if divrpoly(AL,GCDL) and divrpoly(BL,GCDL) then
+         tt := time()-tt;
+         if timings=true then printf(&quot;MGCD2: time=%.3f  PGCD=%.3f\134n&quot;,tt,pt); fi;
+         return (H2);
+      fi;
+    fi;
+od;
+end:
+</EC-CodeEditor></CodeEditor-ExecGroup>
+<Group hide-input="false" labelreference="L166" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">untrace(PGCD):
+mini1:=z^2-2;
+mini2:=w^2-3;
+M1:=rpoly(mini1,z);
+M2:=phirpoly(rpoly(mini2,[w,z]),M1);
+f1:=phirpoly(rpoly((w+5)*(x+w+y)*(14*x+2*w+z*s),[x,y,s,w,z]),M1,M2);
+f2:=phirpoly(rpoly((x+w+y)*(x+2*w+z+s),[x,y,s,w,z]),M1,M2);
+timings := false:
+Mahsa1:=MGCD(f1,f2,5);</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEmbWluaTFGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUklbXN1cEdGJDYlLUYsNiVRInpGJ0YvRjItSSNtbkdGJDYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRictRjY2LVEoJm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EsMC4yMjIyMjIyZW1GJy9GTkZqbkZVRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSZtaW5pMUdGKCwmKiQpSSJ6R0YoIiIjIiIiRjNGMiEiIjcjRi4=</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEmbWluaTJGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUklbXN1cEdGJDYlLUYsNiVRIndGJ0YvRjItSSNtbkdGJDYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRictRjY2LVEoJm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EsMC4yMjIyMjIyZW1GJy9GTkZqbi1GVjYkUSIzRidGOUY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSZtaW5pMkdGKCwmKiQpSSJ3R0YoIiIjIiIiRjMiIiQhIiI3I0Yu</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEjTTFGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUklbXN1cEdGJDYlLUYsNiVRInpGJ0YvRjItSSNtbkdGJDYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRictRjY2LVEoJm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EsMC4yMjIyMjIyZW1GJy9GTkZqbkZVRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNNMUdGKCwmKiQpSSJ6R0YoIiIjIiIiRjNGMiEiIjcjLUkrUE9MWU5PTUlBTEdGKDYkNyUiIiE3I0YxNyI3JSEiI0Y6RjM=</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYqLUkjbWlHRiQ2JVEjTTJGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUYjNiYtSSVtc3VwR0YkNiUtRiw2JVEid0YnRi9GMi1JI21uR0YkNiRRIjJGJ0Y5LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy1GNjYtUSgmbWludXM7RidGOUY7Rj5GQEZCRkRGRkZIL0ZLUSwwLjIyMjIyMjJlbUYnL0ZORlxvLUZYNiRRIjNGJ0Y5RjktSSdtc3BhY2VHRiQ2Ji8lJ2hlaWdodEdRJjAuMGV4RicvJSZ3aWR0aEdRJjAuM2VtRicvJSZkZXB0aEdGZm8vJSpsaW5lYnJlYWtHUSVhdXRvRictRjY2L1EkbW9kRicvJSVib2xkR0YxL0YzUSVib2xkRicvJStmb250d2VpZ2h0R0ZlcEY7Rj5GQEZCRkRGRkZIL0ZLUSYwLjBlbUYnL0ZORmlwRmFvLUkobWZlbmNlZEdGJDYoLUYjNiYtRlI2JS1GLDYlUSJ6RidGL0YyRldGZW5GaG5GV0Y5RjkvSSttc2VtYW50aWNzR0YkUSQ8LD5GJy8lJW9wZW5HUScmbGFuZztGJy8lJmNsb3NlR1EnJnJhbmc7RidGZXFGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNNMkdGKC1JJG1vZEdGKDYkLCYqJClJIndHRigiIiMiIiJGNiIiJCEiIi1JJDwsPkdGJTYjLCYqJClJInpHRihGNUY2RjZGNUY4NyMtSStQT0xZTk9NSUFMR0YoNiQ3JSIiITckRjRGPzcjNyUhIiNGRUY2NyU3IyEiJEZFNyNGNg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYqLUkjbWlHRiQ2JVEjZjFGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUYjNi4tRiM2Ji1JKG1mZW5jZWRHRiQ2JC1GIzYmLUYjNiYtSSNtbkdGJDYkUSMxNEYnRjktRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZcby1GLDYlUSJ3RidGL0YyRjktRjY2LVEnJnBsdXM7RidGOUY7Rj5GQEZCRkRGRkZIL0ZLUSwwLjIyMjIyMjJlbUYnL0ZORmVvLUZlbjYkUSM3MEYnRjlGOUY5RmhuLUklbXN1cEdGJDYlLUYsNiVRInhGJ0YvRjItRmVuNiRRIjJGJ0Y5LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJ0Y5RmFvLUYjNiYtRlQ2JC1GIzYqLUYjNiZGU0Zobi1GLDYlUSJ5RidGL0YyRjlGYW8tRiM2Ji1GVDYkLUYjNiYtRiM2Ji1GLDYlUSJ6RidGL0YyRmhuRl5vRjlGYW8tRiM2Ji1GZW42JFEiNUYnRjlGaG5GaXFGOUY5RjlGaG4tRiw2JVEic0YnRi9GMkY5RmFvLUYjNiYtRmVuNiRRIzgwRidGOUZobkZeb0Y5RmFvLUZlbjYkUSM0OEYnRjlGOUY5RmhuRl1wRjlGYW8tRiM2Ji1GVDYkLUYjNihGYXFGYW8tRiM2Ji1GZW42JFEjMTBGJ0Y5RmhuRl5vRjlGYW8tRmVuNiRRIjZGJ0Y5RjlGOUZobkZecUY5RmFvLUYjNiYtRlQ2JC1GIzYmLUYjNihGXnJGaG5GaXFGaG5GXm9GOUZhby1GIzYmLUZlbjYkUSIzRidGOUZobkZpcUY5RjlGOUZobkZhckY5RmFvLUYjNiZGZ3NGaG5GXm9GOUZhby1GZW42JFEjMzBGJ0Y5RjktSSdtc3BhY2VHRiQ2Ji8lJ2hlaWdodEdRJjAuMGV4RicvJSZ3aWR0aEdRJjAuM2VtRicvJSZkZXB0aEdGYXUvJSpsaW5lYnJlYWtHUSVhdXRvRictRjY2L1EkbW9kRicvJSVib2xkR0YxL0YzUSVib2xkRicvJStmb250d2VpZ2h0R0ZgdkY7Rj5GQEZCRkRGRkZIRltvRl1vRlx1LUZUNigtRiM2KC1GIzYmLUZbcDYlRl5vRmBwRmNwLUY2Ni1RKCZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkhGZG9GZm9GZHRGOS1GNjYuUSIsRidGOS9JK21zZW1hbnRpY3NHRiRRJDwsPkYnRjsvRj9GMUZARkJGREZGRkhGW28vRk5RLDAuMzMzMzMzM2VtRictRiM2Ji1GW3A2JUZpcUZgcEZjcEZbd0ZgcEY5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOUZhdy8lJW9wZW5HUScmbGFuZztGJy8lJmNsb3NlR1EnJnJhbmc7RidGYXdGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNmMUdGKC1JJG1vZEdGKDYkLC4qJiwmKiYiIzkiIiJJIndHRihGNkY2IiNxRjZGNilJInhHRigiIiNGNkY2KiYsKiomRjNGNkkieUdGKEY2RjYqJiwmKiZGN0Y2SSJ6R0YoRjZGNiomIiImRjZGQ0Y2RjZGNkkic0dGKEY2RjYqJiIjISlGNkY3RjZGNiIjW0Y2RjZGOkY2RjYqJiwoRkBGNiomIiM1RjZGN0Y2RjYiIidGNkY2Rj9GNkY2KiYsJiooRkVGNkY3RjZGQ0Y2RjYqJiIiJEY2RkNGNkY2RjZGRkY2RjYqJkZORjZGN0Y2RjYiI0lGNi1JJDwsPkdGJTYkLCYqJClGN0Y7RjZGNkZTISIiLCYqJClGQ0Y7RjZGNkY7RmZuNyMtSStQT0xZTk9NSUFMR0YoNiQ3JSIiITcnRjpGP0ZGRjdGQzckNyU3IyEiJEZfbzcjRjY3JSEiI0Zfb0Y2NyU3JDckNyQ3I0ZVNyNGTjckNyRGX29GUzckRl9vRkU3JDckRl1wNyNGTTckRmBwNyRGX29GNjckNyQ3JDcjRkk3I0ZIRmRwNyM3JDcjRjg3I0Y1NyNGW3E=</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYqLUkjbWlHRiQ2JVEjZjJGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUYjNi4tSSVtc3VwR0YkNiUtRiw2JVEieEYnRi9GMi1JI21uR0YkNiRRIjJGJ0Y5LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy1GNjYtUScmcGx1cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRLDAuMjIyMjIyMmVtRicvRk5GXG8tRiM2Ji1JKG1mZW5jZWRHRiQ2JC1GIzYqLUYjNiYtRlg2JFEiM0YnRjktRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZecC1GLDYlUSJ3RidGL0YyRjlGaG4tRiw2JVEieUYnRi9GMkZobi1GLDYlUSJ6RidGL0YyRmhuLUYsNiVRInNGJ0YvRjJGOUY5RmpvRlRGOUZobi1GIzYmLUZhbzYkLUYjNigtRiM2JkZXRmpvRmBwRjlGaG5GZnBGaG5GaXBGOUY5RmpvRmNwRjlGaG4tRiM2JkZgcEZqb0ZpcEY5RmhuLUYjNiZGZnBGam9GYHBGOUZobi1GWDYkUSI2RidGOUY5LUknbXNwYWNlR0YkNiYvJSdoZWlnaHRHUSYwLjBleEYnLyUmd2lkdGhHUSYwLjNlbUYnLyUmZGVwdGhHRmByLyUqbGluZWJyZWFrR1ElYXV0b0YnLUY2Ni9RJG1vZEYnLyUlYm9sZEdGMS9GM1ElYm9sZEYnLyUrZm9udHdlaWdodEdGX3NGO0Y+RkBGQkZERkZGSEZdcEZfcEZbci1GYW82KC1GIzYoLUYjNiYtRlI2JUZgcEZXRmVuLUY2Ni1RKCZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkhGW29GXW9GZ29GOS1GNjYuUSIsRidGOS9JK21zZW1hbnRpY3NHRiRRJDwsPkYnRjsvRj9GMUZARkJGREZGRkhGXXAvRk5RLDAuMzMzMzMzM2VtRictRiM2Ji1GUjYlRmZwRldGZW5GanNGV0Y5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOUZgdC8lJW9wZW5HUScmbGFuZztGJy8lJmNsb3NlR1EnJnJhbmc7RidGYHRGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNmMkdGKC1JJG1vZEdGKDYkLC4qJClJInhHRigiIiMiIiJGNiomLCoqJiIiJEY2SSJ3R0YoRjZGNkkieUdGKEY2SSJ6R0YoRjZJInNHRihGNkY2RjRGNkY2KiYsKComRjVGNkY7RjZGNkY9RjZGPkY2RjZGPEY2RjYqJkY7RjZGPkY2RjYqJkY9RjZGO0Y2RjYiIidGNi1JJDwsPkdGJTYkLCYqJClGO0Y1RjZGNkY6ISIiLCYqJClGPUY1RjZGNkY1Rks3Iy1JK1BPTFlOT01JQUxHRig2JDclIiIhNydGNEY8Rj5GO0Y9NyQ3JTcjISIkRlQ3I0Y2NyUhIiNGVEY2NyU3JDckNyQ3I0ZENyRGVEY2NyRGVEZaNyQ3JEZcbzcjRjU3I0ZaNyQ3JDckRlxvNyNGOkZhbzcjRmFvNyNGZm8=</Equation></Text-field>
+</Output>
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">MGCD:prime=5
+MGCD:prime=7
+p=7 is an lc-bad prime
+MGCD:prime=11
+p=11 is a ZD prime ZD=POLYNOMIAL([11, [z], [[1, 0, 1, 0, 1]]],[1, 1, 1])
+MGCD:prime=13
+MGCD:prime=17
+</Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYqLUkjbWlHRiQ2JVEnTWFoc2ExRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LVEpJkFzc2lnbjtGJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC1GIzYoLUYsNiVRInhGJ0YvRjItRjY2LVEnJnBsdXM7RidGOUY7Rj5GQEZCRkRGRkZIL0ZLUSwwLjIyMjIyMjJlbUYnL0ZORlgtRiw2JVEid0YnRi9GMkZULUYsNiVRInlGJ0YvRjJGOS1JJ21zcGFjZUdGJDYmLyUnaGVpZ2h0R1EmMC4wZXhGJy8lJndpZHRoR1EmMC4zZW1GJy8lJmRlcHRoR0Zfby8lKmxpbmVicmVha0dRJWF1dG9GJy1GNjYvUSRtb2RGJy8lJWJvbGRHRjEvRjNRJWJvbGRGJy8lK2ZvbnR3ZWlnaHRHRl5wRjtGPkZARkJGREZGRkgvRktRJjAuMGVtRicvRk5GYnBGam4tSShtZmVuY2VkR0YkNigtRiM2KC1GIzYmLUklbXN1cEdGJDYlRlotSSNtbkdGJDYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRictRjY2LVEoJm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSEZXRlktRl9xNiRRIjNGJ0Y5RjktRjY2LlEiLEYnRjkvSSttc2VtYW50aWNzR0YkUSQ8LD5GJ0Y7L0Y/RjFGQEZCRkRGRkZIRmFwL0ZOUSwwLjMzMzMzMzNlbUYnLUYjNiYtRlxxNiUtRiw2JVEiekYnRi9GMkZecUZicUZlcUZecUY5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOUZeci8lJW9wZW5HUScmbGFuZztGJy8lJmNsb3NlR1EnJnJhbmc7RidGXnJGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSdNYWhzYTFHRigtSSRtb2RHRig2JCwoSSJ4R0YoIiIiSSJ3R0YoRjNJInlHRihGMy1JJDwsPkdGJTYkLCYqJClGNCIiI0YzRjMiIiQhIiIsJiokKUkiekdGKEY8RjNGM0Y8Rj43Iy1JK1BPTFlOT01JQUxHRig2JDclIiIhNydGMkY1SSJzR0YoRjRGQjckNyU3IyEiJEZINyNGMzclISIjRkhGMzckNyQ3IzckRkhGTzcjNyNGTzcjRlY=</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L184" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L187" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">MGCD2(f1,f2,5);</Text-field>
+</Input>
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">MGCD2:prime=5
+MGCD2:prime=7
+p=7 is an lc-bad prime
+MGCD2:prime=11
+p=11 is a ZD prime ZD=POLYNOMIAL([11, [w, z], [[[8], 0, [1]], [9, 0, 1]]],[[5], [1]])
+MGCD2:prime=13
+MGCD2:prime=17
+</Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUYjNigtSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LVEnJnBsdXM7RicvRjVRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y/LyUpc3RyZXRjaHlHRj8vJSpzeW1tZXRyaWNHRj8vJShsYXJnZW9wR0Y/LyUubW92YWJsZWxpbWl0c0dGPy8lJ2FjY2VudEdGPy8lJ2xzcGFjZUdRLDAuMjIyMjIyMmVtRicvJSdyc3BhY2VHRk4tRi42JVEid0YnRjFGNEY3LUYuNiVRInlGJ0YxRjRGOy1JJ21zcGFjZUdGJDYmLyUnaGVpZ2h0R1EmMC4wZXhGJy8lJndpZHRoR1EmMC4zZW1GJy8lJmRlcHRoR0Zmbi8lKmxpbmVicmVha0dRJWF1dG9GJy1GODYvUSRtb2RGJy8lJWJvbGRHRjMvRjVRJWJvbGRGJy8lK2ZvbnR3ZWlnaHRHRmVvRj1GQEZCRkRGRkZIRkovRk1RJjAuMGVtRicvRlBGaW9GVy1JKG1mZW5jZWRHRiQ2KC1GIzYoLUYjNiYtSSVtc3VwR0YkNiVGUS1JI21uR0YkNiRRIjJGJ0Y7LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy1GODYtUSgmbWludXM7RidGO0Y9RkBGQkZERkZGSEZKRkxGTy1GZnA2JFEiM0YnRjtGOy1GODYuUSIsRidGOy9JK21zZW1hbnRpY3NHRiRRJDwsPkYnRj0vRkFGM0ZCRkRGRkZIRkpGaG8vRlBRLDAuMzMzMzMzM2VtRictRiM2Ji1GY3A2JS1GLjYlUSJ6RidGMUY0RmVwRmlwRlxxRmVwRjsvJStmb3JlZ3JvdW5kR1EoWzAsMCwwXUYnLyUpcmVhZG9ubHlHRj9GO0Y7RmVxLyUlb3BlbkdRJyZsYW5nO0YnLyUmY2xvc2VHUScmcmFuZztGJ0ZlcUY7">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyMtSSRtb2RHRig2JCwoSSJ4R0YoIiIiSSJ3R0YoRjFJInlHRihGMS1JJDwsPkdGJTYkLCYqJClGMiIiI0YxRjEiIiQhIiIsJiokKUkiekdGKEY6RjFGMUY6Rjw3Iy1JK1BPTFlOT01JQUxHRig2JDclIiIhNydGMEYzSSJzR0YoRjJGQDckNyU3IyEiJEZGNyNGMTclISIjRkZGMTckNyQ3IzckRkZGTTcjNyNGTTcjRlQ=</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L188" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L189" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L178" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">M1:=z1^2-2;
+M2:=z2^2-3;
+M3:=z3^2-5;
+M4:=z4^2-7;
+M5:=z5^2-11;
+g:=x^2+z1*z2*x*y+53124/15321*z3*z4*x-z5*y^2-z1*z3*y+z2*z4+12345/67891:
+g:=rpoly(g,[x,y,z5,z4,z3,z2,z1],[M1,M2,M3,M4,M5]);
+a:=rpoly(x^2+z1*x+z2*z3*y+z4*z5*y^2+1,[x,y,z5,z4,z3,z2,z1],[M1,M2,M3,M4,M5]);
+b:=rpoly(x^2+z5*x+z1*z3*y+z4*z3*y^2-1,[x,y,z5,z4,z3,z2,z1],[M1,M2,M3,M4,M5]);</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEjTTFGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUklbXN1cEdGJDYlLUYsNiVRI3oxRidGL0YyLUkjbW5HRiQ2JFEiMkYnRjkvJTFzdXBlcnNjcmlwdHNoaWZ0R1EiMEYnLUY2Ni1RKCZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRLDAuMjIyMjIyMmVtRicvRk5Gam5GVUY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNNMUdGKCwmKiQpSSN6MUdGKCIiIyIiIkYzRjIhIiI3I0Yu</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEjTTJGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUklbXN1cEdGJDYlLUYsNiVRI3oyRidGL0YyLUkjbW5HRiQ2JFEiMkYnRjkvJTFzdXBlcnNjcmlwdHNoaWZ0R1EiMEYnLUY2Ni1RKCZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRLDAuMjIyMjIyMmVtRicvRk5Gam4tRlY2JFEiM0YnRjlGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNNMkdGKCwmKiQpSSN6MkdGKCIiIyIiIkYzIiIkISIiNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEjTTNGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUklbXN1cEdGJDYlLUYsNiVRI3ozRidGL0YyLUkjbW5HRiQ2JFEiMkYnRjkvJTFzdXBlcnNjcmlwdHNoaWZ0R1EiMEYnLUY2Ni1RKCZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRLDAuMjIyMjIyMmVtRicvRk5Gam4tRlY2JFEiNUYnRjlGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNNM0dGKCwmKiQpSSN6M0dGKCIiIyIiIkYzIiImISIiNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEjTTRGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUklbXN1cEdGJDYlLUYsNiVRI3o0RidGL0YyLUkjbW5HRiQ2JFEiMkYnRjkvJTFzdXBlcnNjcmlwdHNoaWZ0R1EiMEYnLUY2Ni1RKCZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRLDAuMjIyMjIyMmVtRicvRk5Gam4tRlY2JFEiN0YnRjlGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNNNEdGKCwmKiQpSSN6NEdGKCIiIyIiIkYzIiIoISIiNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEjTTVGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUklbXN1cEdGJDYlLUYsNiVRI3o1RidGL0YyLUkjbW5HRiQ2JFEiMkYnRjkvJTFzdXBlcnNjcmlwdHNoaWZ0R1EiMEYnLUY2Ni1RKCZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRLDAuMjIyMjIyMmVtRicvRk5Gam4tRlY2JFEjMTFGJ0Y5Rjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNNNUdGKCwmKiQpSSN6NUdGKCIiIyIiIkYzIiM2ISIiNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYqLUkjbWlHRiQ2JVEiZ0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtRiM2Li1JJW1zdXBHRiQ2JS1GLDYlUSJ4RidGL0YyLUkjbW5HRiQ2JFEiMkYnRjkvJTFzdXBlcnNjcmlwdHNoaWZ0R1EiMEYnLUY2Ni1RJyZwbHVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EsMC4yMjIyMjIyZW1GJy9GTkZcby1GIzYmLUkobWZlbmNlZEdGJDYkLUYjNiYtRiM2KC1GLDYlUSN6MUYnRi9GMi1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGOUY7Rj5GQEZCRkRGRkZIL0ZLUSYwLjBlbUYnL0ZORl5wLUYsNiVRI3oyRidGL0YyRmpvLUYsNiVRInlGJ0YvRjJGOUZobi1JJm1mcmFjR0YkNigtRiM2KC1GWDYkUSYxNzcwOEYnRjlGam8tRiw2JVEjejNGJ0YvRjJGam8tRiw2JVEjejRGJ0YvRjJGOS1GWDYkUSU1MTA3RidGOS8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXHIvJSliZXZlbGxlZEdGPUY5RjlGam9GVEY5LUY2Ni1RKCZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkhGW29GXW8tRiM2Ji1GLDYlUSN6NUYnRi9GMkZqby1GUjYlRmNwRldGZW5GOUZhci1GIzYoRmdvRmpvRl5xRmpvRmNwRjlGaG4tRiM2JkZgcEZqb0ZhcUY5RmhuLUZncDYoLUZYNiRRJjEyMzQ1RidGOS1GWDYkUSY2Nzg5MUYnRjlGZ3FGanFGXXJGX3JGOS1JJ21zcGFjZUdGJDYmLyUnaGVpZ2h0R1EmMC4wZXhGJy8lJndpZHRoR1EmMC4zZW1GJy8lJmRlcHRoR0ZcdC8lKmxpbmVicmVha0dRJWF1dG9GJy1GNjYvUSRtb2RGJy8lJWJvbGRHRjEvRjNRJWJvbGRGJy8lK2ZvbnR3ZWlnaHRHRlt1RjtGPkZARkJGREZGRkhGXXBGX3BGZ3MtRmFvNigtRiM2Li1GIzYmLUZSNiVGZnJGV0ZlbkZhci1GWDYkUSMxMUYnRjlGOS1GNjYuUSIsRidGOS9JK21zZW1hbnRpY3NHRiRRJDwsPkYnRjsvRj9GMUZARkJGREZGRkhGXXAvRk5RLDAuMzMzMzMzM2VtRictRiM2Ji1GUjYlRmFxRldGZW5GYXItRlg2JFEiN0YnRjlGOUZpdS1GIzYmLUZSNiVGXnFGV0ZlbkZhci1GWDYkUSI1RidGOUY5Rml1LUYjNiYtRlI2JUZgcEZXRmVuRmFyLUZYNiRRIjNGJ0Y5RjlGaXUtRiM2Ji1GUjYlRmdvRldGZW5GYXJGV0Y5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOUZcdi8lJW9wZW5HUScmbGFuZztGJy8lJmNsb3NlR1EnJnJhbmc7RidGXHZGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJnR0YoLUkkbW9kR0YoNiQsLiokKUkieEdGKCIiIyIiIkY2KiYsJiooSSN6MUdGKEY2SSN6MkdGKEY2SSJ5R0YoRjZGNiooIyImM3giIiUyXkY2SSN6M0dGKEY2SSN6NEdGKEY2RjZGNkY0RjZGNiomSSN6NUdGKEY2KUY8RjVGNiEiIiooRjpGNkZBRjZGPEY2RkYqJkY7RjZGQkY2RjYjIiZYQiIiJiIqeSdGNi1JJDwsPkdGJTYnLCYqJClGREY1RjZGNiIjNkZGLCYqJClGQkY1RjZGNiIiKEZGLCYqJClGQUY1RjZGNiIiJkZGLCYqJClGO0Y1RjZGNiIiJEZGLCYqJClGOkY1RjZGNkY1RkY3Iy1JK1BPTFlOT01JQUxHRig2JDclIiIhNylGNEY8RkRGQkZBRjtGOjcnNyU3IzcjNyM3IyEjNkZhbzcjNyM3IzcjRjY3JTcjNyM3IyEiKEZhb0ZbcDclNyM3IyEiJkZhb0ZccDclNyMhIiRGYW9GXXA3JSEiI0Zhb0Y2NyU3JTcjNyQ3IzcjNyNGSTcjNyRGYW9GXXA3IzcjNyRGYW83IzckRmFvRkY3JEZhbzcjNyM3IzcjRkY3JDcjNyRGYW83JEZhbzcjNyNGPjcjNyM3IzckRmFvNyRGYW9GNjcjNyNGam8=</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYqLUkjbWlHRiQ2JVEiYUYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtRiM2LC1GIzYoLUYsNiVRI3o0RidGL0YyLUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y5RjtGPkZARkJGREZGRkgvRktRJjAuMGVtRicvRk5GWi1GLDYlUSN6NUYnRi9GMkZWLUklbXN1cEdGJDYlLUYsNiVRInlGJ0YvRjItSSNtbkdGJDYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRidGOS1GNjYtUScmcGx1cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRLDAuMjIyMjIyMmVtRicvRk5Gam8tRiM2KC1GLDYlUSN6MkYnRi9GMkZWLUYsNiVRI3ozRidGL0YyRlZGXG9GOUZmby1Gam42JS1GLDYlUSJ4RidGL0YyRl9vRmNvRmZvLUYjNiYtRiw2JVEjejFGJ0YvRjJGVkZmcEY5RmZvLUZgbzYkUSIxRidGOUY5LUknbXNwYWNlR0YkNiYvJSdoZWlnaHRHUSYwLjBleEYnLyUmd2lkdGhHUSYwLjNlbUYnLyUmZGVwdGhHRmZxLyUqbGluZWJyZWFrR1ElYXV0b0YnLUY2Ni9RJG1vZEYnLyUlYm9sZEdGMS9GM1ElYm9sZEYnLyUrZm9udHdlaWdodEdGZXJGO0Y+RkBGQkZERkZGSEZZRmVuRmFxLUkobWZlbmNlZEdGJDYoLUYjNi4tRiM2Ji1Gam42JUZmbkZfb0Zjby1GNjYtUSgmbWludXM7RidGOUY7Rj5GQEZCRkRGRkZIRmlvRltwLUZgbzYkUSMxMUYnRjlGOS1GNjYuUSIsRidGOS9JK21zZW1hbnRpY3NHRiRRJDwsPkYnRjsvRj9GMUZARkJGREZGRkhGWS9GTlEsMC4zMzMzMzMzZW1GJy1GIzYmLUZqbjYlRlNGX29GY29GYXMtRmBvNiRRIjdGJ0Y5RjlGZ3MtRiM2Ji1Gam42JUZhcEZfb0Zjb0Zhcy1GYG82JFEiNUYnRjlGOUZncy1GIzYmLUZqbjYlRl5wRl9vRmNvRmFzLUZgbzYkUSIzRidGOUY5RmdzLUYjNiYtRmpuNiVGW3FGX29GY29GYXNGX29GOS8lK2ZvcmVncm91bmRHUShbMCwwLDBdRicvJSlyZWFkb25seUdGPUY5RjlGanMvJSVvcGVuR1EnJmxhbmc7RicvJSZjbG9zZUdRJyZyYW5nO0YnRmpzRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJhR0YoLUkkbW9kR0YoNiQsLCooKUkieUdGKCIiIyIiIkkjejRHRihGNkkjejVHRihGNkY2KihGNEY2SSN6MkdGKEY2SSN6M0dGKEY2RjYqJClJInhHRihGNUY2RjYqJkY+RjZJI3oxR0YoRjZGNkY2RjYtSSQ8LD5HRiU2JywmKiQpRjhGNUY2RjYiIzYhIiIsJiokKUY3RjVGNkY2IiIoRkgsJiokKUY7RjVGNkY2IiImRkgsJiokKUY6RjVGNkY2IiIkRkgsJiokKUZARjVGNkY2RjVGSDcjLUkrUE9MWU5PTUlBTEdGKDYkNyUiIiE3KUY+RjRGOEY3RjtGOkZANyc3JTcjNyM3IzcjISM2RmduNyM3IzcjNyNGNjclNyM3IzcjISIoRmduRmFvNyU3IzcjISImRmduRmJvNyU3IyEiJEZnbkZjbzclISIjRmduRjY3JTclNyNGYG83IzcjNyRGZ243JEZnbkZjbzckRmduNyRGZ25GYW83IzcjNyM3IzcjNyRGZ25GNjcjRmRw</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYqLUkjbWlHRiQ2JVEiYkYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtRiM2LC1GIzYoLUYsNiVRI3o0RidGL0YyLUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y5RjtGPkZARkJGREZGRkgvRktRJjAuMGVtRicvRk5GWi1GLDYlUSN6M0YnRi9GMkZWLUklbXN1cEdGJDYlLUYsNiVRInlGJ0YvRjItSSNtbkdGJDYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRidGOS1GNjYtUScmcGx1cztGJ0Y5RjtGPkZARkJGREZGRkgvRktRLDAuMjIyMjIyMmVtRicvRk5Gam8tRiM2KC1GLDYlUSN6MUYnRi9GMkZWRmZuRlZGXG9GOUZmby1Gam42JS1GLDYlUSJ4RidGL0YyRl9vRmNvRmZvLUYjNiYtRiw2JVEjejVGJ0YvRjJGVkZjcEY5LUY2Ni1RKCZtaW51cztGJ0Y5RjtGPkZARkJGREZGRkhGaW9GW3AtRmBvNiRRIjFGJ0Y5RjktSSdtc3BhY2VHRiQ2Ji8lJ2hlaWdodEdRJjAuMGV4RicvJSZ3aWR0aEdRJjAuM2VtRicvJSZkZXB0aEdGZnEvJSpsaW5lYnJlYWtHUSVhdXRvRictRjY2L1EkbW9kRicvJSVib2xkR0YxL0YzUSVib2xkRicvJStmb250d2VpZ2h0R0ZlckY7Rj5GQEZCRkRGRkZIRllGZW5GYXEtSShtZmVuY2VkR0YkNigtRiM2Li1GIzYmLUZqbjYlRmhwRl9vRmNvRltxLUZgbzYkUSMxMUYnRjlGOS1GNjYuUSIsRidGOS9JK21zZW1hbnRpY3NHRiRRJDwsPkYnRjsvRj9GMUZARkJGREZGRkhGWS9GTlEsMC4zMzMzMzMzZW1GJy1GIzYmLUZqbjYlRlNGX29GY29GW3EtRmBvNiRRIjdGJ0Y5RjlGZHMtRiM2Ji1Gam42JUZmbkZfb0Zjb0ZbcS1GYG82JFEiNUYnRjlGOUZkcy1GIzYmLUZqbjYlLUYsNiVRI3oyRidGL0YyRl9vRmNvRltxLUZgbzYkUSIzRidGOUY5RmRzLUYjNiYtRmpuNiVGXnBGX29GY29GW3FGX29GOS8lK2ZvcmVncm91bmRHUShbMCwwLDBdRicvJSlyZWFkb25seUdGPUY5RjlGZ3MvJSVvcGVuR1EnJmxhbmc7RicvJSZjbG9zZUdRJyZyYW5nO0YnRmdzRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJiR0YoLUkkbW9kR0YoNiQsLCooKUkieUdGKCIiIyIiIkkjejNHRihGNkkjejRHRihGNkY2KihGNEY2SSN6MUdGKEY2RjdGNkY2KiQpSSJ4R0YoRjVGNkY2KiZGPUY2SSN6NUdGKEY2RjZGNiEiIi1JJDwsPkdGJTYnLCYqJClGP0Y1RjZGNiIjNkZALCYqJClGOEY1RjZGNiIiKEZALCYqJClGN0Y1RjZGNiIiJkZALCYqJClJI3oyR0YoRjVGNkY2IiIkRkAsJiokKUY6RjVGNkY2RjVGQDcjLUkrUE9MWU5PTUlBTEdGKDYkNyUiIiE3KUY9RjRGP0Y4RjdGU0Y6Nyc3JTcjNyM3IzcjISM2RmduNyM3IzcjNyNGNjclNyM3IzcjISIoRmduRmFvNyU3IzcjISImRmduRmJvNyU3IyEiJEZnbkZjbzclISIjRmduRjY3JTclNyM3IzcjNyM3I0ZANyM3IzckRmduNyM3JEZnbkY2NyM3JEZnbjckRmduRmJvNyM3JEZnbkZgbzcjNyNGYG8=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L177" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">k:=1;
+timings := true;
+T:=[seq(0,k=1..10)];
+for k to 5 do
+  f1:=mulrpoly(g,powrpoly(a,k));
+  f2:=mulrpoly(g,powrpoly(b,k));
+  <Font encoding="UTF-8">printf(&quot;k=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d  deg(g,x)=%d  deg(g,y)=%d\134n&quot;,
+</Font>     k,degrpoly(f1,x),degrpoly(f1,y),degrpoly(f2,x),degrpoly(f2,y),degrpoly(g,x),degrpoly(g,y));
+  t:=time():
+  Mahsa1:=MGCD(f1,f2,2^31);
+  tMGCD1:=time()-t;
+  tt:=time():
+  Mahsa2:=MGCD2(f1,f2,2^31);
+  tMGCD2:=time()-tt;
+<Font encoding="UTF-8">  printf(&quot;Check=%a\134n&quot;,evalb(Mahsa1=Mahsa2));</Font>
+  T[k]:=tMGCD2/tMGCD1;
+od:
+T;</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEia0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSSNtbkdGJDYkUSIxRidGOUY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJrR0YoIiIiNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEodGltaW5nc0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtRiw2JUYxRi9GMkY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSh0aW1pbmdzR0YoSSV0cnVlR0YmNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEiVEYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSShtZmVuY2VkR0YkNiYtRiM2OC1JI21uR0YkNiRRIjBGJ0Y5LUY2Ni1RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGVEZYRlRGWEZURlhGVEZYRlRGWEZURlhGVEZYRlRGWEZULyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJUR0YoNywiIiFGL0YvRi9GL0YvRi9GL0YvRi83I0Yu</Equation></Text-field>
+</Output>
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">k=1  deg(f1,x)=4  deg(f1,y)=4  deg(f2,x)=4  deg(f2,y)=4  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=4.801  LAminpoly=3.746  PGCD=0.424
+MGCD2:prime=2147483659
+MGCD2:prime=2147483693
+MGCD2: time=12.368  PGCD=12.204
+Check=true
+k=2  deg(f1,x)=6  deg(f1,y)=6  deg(f2,x)=6  deg(f2,y)=6  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=5.358  LAminpoly=3.765  PGCD=0.469
+MGCD2:prime=2147483659
+MGCD2:prime=2147483693
+MGCD2: time=34.588  PGCD=34.222
+Check=true
+k=3  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=6.033  LAminpoly=3.749  PGCD=0.523
+MGCD2:prime=2147483659
+MGCD2:prime=2147483693
+MGCD2: time=63.229  PGCD=62.630
+Check=true
+k=4  deg(f1,x)=10  deg(f1,y)=10  deg(f2,x)=10  deg(f2,y)=10  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=6.876  LAminpoly=3.749  PGCD=0.594
+MGCD2:prime=2147483659
+MGCD2:prime=2147483693
+MGCD2: time=98.352  PGCD=97.396
+Check=true
+k=5  deg(f1,x)=12  deg(f1,y)=12  deg(f2,x)=12  deg(f2,y)=12  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=7.930  LAminpoly=3.659  PGCD=0.675
+MGCD2:prime=2147483659
+MGCD2:prime=2147483693
+MGCD2: time=139.404  PGCD=138.318
+Check=true
+</Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkobWZlbmNlZEc2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUklbXJvd0dGJDY4LUkjbW5HRiQ2JFEsMi41NzYxMjk5NzNGJy8lLG1hdGh2YXJpYW50R1Enbm9ybWFsRictSSNtb0dGJDYtUSIsRidGMi8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdRJXRydWVGJy8lKXN0cmV0Y2h5R0Y7LyUqc3ltbWV0cmljR0Y7LyUobGFyZ2VvcEdGOy8lLm1vdmFibGVsaW1pdHNHRjsvJSdhY2NlbnRHRjsvJSdsc3BhY2VHUSYwLjBlbUYnLyUncnNwYWNlR1EsMC4zMzMzMzMzZW1GJy1GLzYkUSw2LjQ1NTM5MzgwNEYnRjJGNS1GLzYkUSwxMC40ODA1MjM3OUYnRjJGNS1GLzYkUSwxNC4zMDM4MTAzNUYnRjJGNS1GLzYkUSwxNy41Nzk0NDUxNEYnRjJGNS1GLzYkUSIwRidGMkY1RmVuRjVGZW5GNUZlbkY1RmVuLyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y7RjJGMi8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7Ric=">NywkIit0KkhoZCMhIiokIisvUVJia0YlJCIrekIwWzUhIikkIitONVFJOUYqJCIrOVglenYiRioiIiFGL0YvRi9GLw==</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L185" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L175" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">A := powrpoly(a,5):
+B := powrpoly(b,5):
+for k from 6 to 10 do
+  A:=mulrpoly(a,A);
+  B:=mulrpoly(b,B):
+  f1:=mulrpoly(g,A);
+  f2:=mulrpoly(g,B);
+  <Font encoding="UTF-8">printf(&quot;k=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d  deg(g,x)=%d  deg(g,y)=%d\134n&quot;,
+</Font>     k,degrpoly(f1,x),degrpoly(f1,y),degrpoly(f2,x),degrpoly(f2,y),degrpoly(g,x),degrpoly(g,y));:  MGCD(f1,f2,2^31);
+od:</Text-field>
+</Input>
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">k=6  deg(f1,x)=14  deg(f1,y)=14  deg(f2,x)=14  deg(f2,y)=14  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=8.845  LAminpoly=3.718  PGCD=0.765
+k=7  deg(f1,x)=16  deg(f1,y)=16  deg(f2,x)=16  deg(f2,y)=16  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=10.358  LAminpoly=3.671  PGCD=0.916
+k=8  deg(f1,x)=18  deg(f1,y)=18  deg(f2,x)=18  deg(f2,y)=18  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=11.585  LAminpoly=3.690  PGCD=1.009
+k=9  deg(f1,x)=20  deg(f1,y)=20  deg(f2,x)=20  deg(f2,y)=20  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=13.496  LAminpoly=3.800  PGCD=1.295
+k=10  deg(f1,x)=22  deg(f1,y)=22  deg(f2,x)=22  deg(f2,y)=22  deg(g,x)=2  deg(g,y)=2
+MGCD:prime=2147483659
+MGCD:prime=2147483693
+MGCD: time=14.937  LAminpoly=3.826  PGCD=1.308
+</Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L171" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Worksheet>
