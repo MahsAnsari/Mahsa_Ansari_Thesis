@@ -1,0 +1,2939 @@
+# Updated MBM December 7th, 2004.
+# Updated MBM March 10th, 2006.
+# Updated MBM June 12th, 2006.
+# Updated MBM October 3, 2013 (interprpoly)
+
+macro(speedupZpt=true): # to use modp1
+
+if substring(interface(version),1..19) = `TTY Iris, Release 5` or
+   substring(interface(version),1..36) = `Maple Worksheet Interface, Release 5`
+then
+   macro(RELEASE6=false);
+   lprint("Reading recden for Maple 5");
+else
+   macro(RELEASE6=true);
+   macro(Add='Add');
+   macro(Multiply='Multiply');
+fi:
+
+# POLYNOMIAL( R::<ringtype>, A::<rpolytype> )
+#
+# The purpose of this data type is to provide efficient computation for
+# multivariate polynomials over the rings Z, Q, and Zp, Zm and simple
+# algebraic extensions of Q and Zp.  The operations we want to implement
+# include polynomial division, GCD, resultant and factorization.
+#
+# The data structure is a recursive dense representation for polynomials.
+# Thus it is most useful for naturally recursive algorithms such as GCD
+# algorithms but it is less useful for computing Groebner bases.
+# In particular, if p is a machine prime then the data structure will be
+# particularly efficient so that "modular" algorithms may be implemented
+# efficiently.
+#
+# POLYNOMIAL( R::<ringtype>, A::<rpolytype> )
+#
+# All information about the polynomial ring to which the polynomial A
+# belongs is stored in R and the polynomial itself is stored in A.
+# Most binary operations, e.g. addition, are valid only for polynomials in
+# the same ring.  Scalar multiplication, an exception, is valid for any
+# any subfield (or subring) of R.
+#
+# <ringtype> ::= [ M::nonnegint, X::list(name), E::list(<rpolytype>) ]
+#
+# The first entry is the modulus M.  By convention, if M=0 we are over Q.
+# The second entry is the list of variable names.  The third argument is
+# a list of simple monic algebraic extensions over the ground field F.
+# They are stored in reverse order, i.e. the first extension over F is
+# is E[-1], then E[-2], etc.
+#
+# <rpolytype> ::= 0 || list(<datatype>)
+# <datatype> ::= <rational> || <rpolytype>
+#
+# The data structure is recursive dense with the Maple integer 0 indicating
+# a zero coefficient.  Thus a is the zero polynomial iff A = 0.
+#
+# Example: the polynomial 2*x^2-y^2 in Z[x,y] is represented as
+#
+#      POLYNOMIAL( [0,[x,y],[]], [[0,0,-1],0,[2]] )
+#
+# Example: the finite field GF(16) may be represented by Z2[x]/<x^4+x+1>
+# The polynomial x*y^2-y may be represented by
+#
+#      POLYNOMIAL( [2,[y,x],[[1,1,0,0,1]]], [0,[-1],[0,1]] )
+# 
+# Example: the number field Q(sqrt(2),sqrt(3-sqrt(2))) may be represented by
+# Q[a,b]/<a^2+b-3,b^2-2> and the polynomial a*x^2-2*b-1 would be 
+#
+#   POLYNOMIAL( [0,[x,a,b],[[[-3,1],0,[1]],[-2,0,1]]], [[[1,-1]],0,[0,[1]]] )
+#
+# Example: Hence elements of finite fields and algebraic number fields are
+# represented by simple algebraic extensions.  Thus the element a+b+1 in
+# the number field would be represented by
+#
+#   POLYNOMIAL( [0,[a,b],[[[-3,1],0,[1]],[-2,0,1]]], [[1,1],[1]] )
+#
+# The field extensions may be reducible, but they must be monic.
+# Example, the ring R := Q[z]/<z^3-1> = [0,[z],[-1,0,0,1]] is fine
+# but invalid is rring( R, x, z*x^2-1 ) = R[x]/(z*x^2-1) )
+#
+# NB: minimal polynomials are made monic automatically in the RootOf 
+# representation if and only if leading coefficients are invertible.
+# E.g. RootOf( RootOf(z^2-2)*z^2-1 ); ==> RootOf(2*_Z^2-RootOf(_Z^2-2))
+# E.g. RootOf( RootOf(z^2-z)*z^2-1 ); ==> RootOf(RootOf(_Z^2-_Z)*_Z^2-1)
+#
+# Polynomials may be constructed in two ways, first, directly, using the rpoly
+# command which builds a polynomial over the given ring.  E.g. to build
+# the polynomial f = x^2+a+3 where a = sqrt(2) we may use
+#
+#     f := rpoly(x^2+a*y+3,[x,y,a],a^2-2);
+# or  f := rpoly(x^2+a*y+3,[x,y,a],a=RootOf(z^2-2));
+#
+# Alternatively we can first build the coefficient ring K = Q(sqrt(2))
+# then the polynomial ring K[x] then convert f to K[x] as follows:
+#
+#   K := rring(a,a^2-2);
+#   Kxy := rring(K,[x,y]);
+#   f := rpoly(x^2+a*y+3,Kxy);
+# 
+# Example: build the finite field GF(16) represented by Z2[x]/<x^4+x+1>
+# Then create the polynomial x*y^2-y in the polynomial ring P = GF(16)[y].
+#
+#   GF16 := rring(x,x^4+x+1,2); ==> [2, [x], [[1, 1, 0, 0, 1]]]
+#   P := rring(GF16,y); ==> [2, [y, x], [[1, 1, 0, 0, 1]]]
+#   f := rpoly(P,x*y^2-y); ==> POLYNOMIAL( P, [0,[1],[0,1]])
+#
+# In one step this is f := rpoly(x*y^2-y,[y,x],x^4+x+1,2);
+# Example: construct the number field Q(sqrt(2),sqrt(3-sqrt(2))).
+# Then create the element sqrt(2)*sqrt(3-sqrt(2)) in K.
+# 
+#   K := rring([x,y],[x^2-3-y,y^2-2]); ==> [0, [x,y], [[[-3,-1],0,[1]], [-2,0,1]]]
+#   f := rpoly(x*y,K); ==> POLYNOMIAL(K, [0, [0, 1]])
+#   rpoly(f); ==> x*y
+#
+# In one step this is f := rpoly(x*y,[x,y],[x^2-3-y,y^2-2]);
+# Example: Repeat the above example using the RootOf representation.
+#
+#   r := [y=RootOf(z^2-2), x=RootOf(z^2-3-RootOf(z^2-2))];
+#   K := rring([x,y],r); ==> [0, [x,y], [[[-3,-1],0,[1]], [-2,0,1]]]
+#   f := rpoly(x*y,K); ==> POLYNOMIAL(K, [0, [0, 1]])
+#   rpoly(f,RootOf); ==> RootOf(_Z^2-3-RootOf(_Z^2-2))*RootOf(_Z^2-2)
+#
+# In one step f := rpoly(x*y,[x,y],r); ==> POLYNOMIAL(K, [0, [0, 1]])
+# The field operations are done by addrpoly, subrpoly, mulrpoly, invrpoly.
+# Multiplying A=(a+b+1) * B=(a*x^2-2*b-1) is done with scarpoly(A,B) though
+# the final implementation should permit * for scalar multiplication.
+#
+# It appears to be important to be able to access the ring directly.
+# Thus op(1,f) should return the ring as a valid Maple object
+# and op(2,f) should give access to the polynomial data itself.
+# Likewise, in order to make certain operations cost O(1), e.g.
+# retracting from Q[z]/<m(z)> to Q[z], it is important to be able
+# to form a new polynomial by changing the ring.
+# Thus subsop(1=new ring,f) should be supported.
+# Furthermore, a number of operations apply directly to the ring such as
+# the defect of an algebraic number field.  Moreover, it appears to be
+# useful to apply other operations to rings such as ring morphisms such
+# as mapping the ring Q[x,y]/<y^2-2> mod p for a prime p.
+# And for input, we provide rring to create the ring directly.
+#
+# Although the data structure is intended to represent polynomials, and
+# this clearly includes elements of field extensions e.g. GF(16) as illustrated
+# above, also we permit constants for uniformity e.g. 3 in GF(5) is
+# 
+#   POLYNOMIAL([5,[],[]],3)
+#
+# For uniformity it seems better to have operations lcrpoly, tcrpoly, coeffrpoly
+# and coeffsrpoly always return a POLYNOMIAL so that the ring information is not lost.
+# This means that invrpoly(lcrpoly(a)) and powrpoly(lcrpoly(a),n) always work.
+# To provide an interface to routines for working with Maple rationals, 
+# we've provided ilcrpoly, itcrpoly, icoeffrpoly, icoeffsrpoly, idenomrpoly.
+# It seems that the most natural internal Maple structure of a POLYNOMIAL 
+# DAG with two fields, one for the ring and one for the polynomial as 
+# defined here will work just fine now that Maple 6 has immediate integers.
+# This means that the cost in storage for a constant (e.g. 3 mod 5 above)
+# will be 3 words plus the 2 words in the simpl table which note is less
+# than the storage requried for a Maple software float.
+#
+# Operations defined
+#
+# getring(A::POLYNOMIAL)::POLYRING == op(1,A)
+# getpoly(A::POLYNOMIAL)::POLYDATA == op(2,A)
+# getchar(A::POLYNOMIAL)::nonnegint == op([1,1],A)
+# getvars(A::POLYNOMIAL)::list(name) == op([1,2],A)
+# getexts(A::POLYNOMIAL)::list(POLYDATA) == op([1,3],A)
+#
+# iszerorpoly(A::POLYNOMIAL)::boolean
+# isunivariate(A::POLYNOMIAL)::boolean
+# ismonomial(A::POLYNOMIAL)::boolean
+# isconstant(A::POLYNOMIAL)::boolean
+# isretrpoly(A::POLYNOMIAL,S::POLYRING)::boolean 
+# isretrpoly(A::POLYNOMIAL,S::POLYRING,b::name)::boolean
+# issubring(R::POLYRING,S::POLYRING)::boolean # is R a subring of S
+# hassamering(A::POLYNOMIAL,B::POLYNOMIAL)::boolean
+#
+# getcofring(A::{POLYNOMIAL,POLYRING})::POLYRING
+# getcofring(A::{POLYNOMIAL,POLYRING},N::integer)::POLYRING
+# getpolvars(A::POLYNOMIAL)::list(name)
+# getalgext(A::{POLYNOMIAL,POLYRING})::POLYNOMIAL
+# getalgext(A::{POLYNOMIAL,POLYRING},N::integer)::POLYNOMIAL
+# getalgexts(A::{POLYNOMIAL,POLYRING})::list(POLYNOMIMAL)
+#
+# In the let ext denotes field extensions:
+#   ext = {polynomial(rational,X),list(polynomial(rational,X)),RootOf,list(RootOf)}
+#
+# convert(A::POLYNOMIAL,POLYNOMIAL)::polynom(rational)
+# convert(A::POLYNOMIAL,POLYNOMIAL,RootOf)::polynom(algnum)
+# convert(A::polynom(rational),R::POLYRING)::POLYNOMIAL
+# convert(A::polynom(rational,X),POLYNOMIAL,X::list(name),R::ext,M::posint)::POLYNOMIAL
+#
+# The above use of convert will now be superceeded by:
+# rpoly(A::POLYNOMIAL)::expression 
+# rpoly(A::POLYNOMIAL,RootOf)::expression 
+# rpoly(a::polynomial(rational),R::POLYRING)::POLYNOMIAL
+# rpoly(a::polynomial(rational),X::{name,list(name)},E::ext,M::posint)::POLYNOMIAL
+#
+# The ring may be created directly
+# rring(X::{name,list(name)} [,E::ext] [,M::posint])
+# rring(R::POLYRING, X::{name,list(name)}) # creates the ring R[X]
+# rring(R::POLYRING, X::{name,list(name)} [,E::ext]) # creates the ring R[X]/E
+# rring(R::POLYRING, f::POLYNOMIAL ) # creates the ring R/f
+#
+# monrpoly(R::POLYRING,D::list(integer))::POLYNOMIAL
+# consrpoly(R::POLYRING,C::POLYNOMIAL))::POLYNOMIAL
+# list2rpoly(L::list(POLYNOMIAL),x::name)::POLYNOMIAL
+# makemainrpoly(f::POLYNOMIAL,x::name)::POLYNOMIAL
+# shiftrpoly(A::POLYNOMIAL,N::{integer,list(integer)})::POLYNOMIAL
+# maprpoly(F::procedure,A::POLYNOMIAL,N::nonnegint)::POLYNOMIAL
+#
+# modsrpoly(A::POLYNOMIAL)::POLYNOMIAL
+# modprpoly(A::POLYNOMIAL)::POLYNOMIAL
+# iquorpoly(A::POLYNOMIAL,b::integer)::POLYNOMIAL
+#
+# degrpoly(A::POLYNOMIAL)::{-infinity,nonnegint} # degree in main variable
+# degrpoly(A::POLYNOMIAL,X::{posint,name})::{-infinity,nonnegint}
+# degrpoly(A::POLYNOMIAL,X::list(name))::list({-infinity,nonnegint})
+# tdegrpoly(A::POLYNOMIAL)::{-infinity,nonnegint}
+# ldegrpoly(A::POLYNOMIAL)::{-infinity,nonnegint} # low degree in main variable
+# ldegrpoly(A::POLYNOMIAL,X::{posint,name})::{-infinity,nonnegint}
+# ldegrpoly(A::POLYNOMIAL,X::list(name))::list({-infinity,nonnegint})
+# coeffrpoly(A::POLYNOMIAL,N::nonnegint)::POLYNOMIAL # in main variable
+# coeffrpoly(A::POLYNOMIAL,N::nonnegint,x::name)::POLYNOMIAL # in x
+# icoeffrpoly(A::POLYNOMIAL,N::nonnegint)::rational
+# icoeffrpoly(A::POLYNOMIAL,N::nonnegint,x::name)::rational
+# lcrpoly(A::POLYNOMIAL)::POLYNOMIAL # in main variable
+# redrpoly(A::POLYNOMIAL)::POLYNOMIAL
+# tcrpoly(A::POLYNOMIAL)::POLYNOMIAL # in main variable
+# lcrpoly(A::POLYNOMIAL,X::{posint,name,list(name)})::POLYNOMIAL
+# tcrpoly(A::POLYNOMIAL,X::{posint,name,list(name)})::POLYNOMIAL
+# coeffsrpoly(A::POLYNOMIAL)::sequence(POLYNOMIAL) # in all polynomial variables
+# icoeffsrpoly(A::POLYNOMIAL)::sequence(rational) # in all polynomial variables
+# coeffsrpoly(A::POLYNOMIAL,X::{integer,name,list(name)})::sequence(POLYNOMIAL)
+# icoeffsrpoly(A::POLYNOMIAL,X::{integer,name,list(name)})::sequence(rational)
+# maxnrpoly(A::POLYNOMIAL)::nonnegint
+# onenrpoly(A::POLYNOMIAL)::nonnegint
+#
+# addrpoly(A::POLYNOMIAL, B::POLYNOMIAL)::POLYNOMIAL # binary addition
+# addrpoly(A::POLYNOMIAL [,POLYNOMIAL*])::POLYNOMIAL # nary addition
+# subrpoly(A::POLYNOMIAL, B::POLYNOMIAL)::POLYNOMIAL
+# mulrpoly(A::POLYNOMIAL, B::POLYNOMIAL)::POLYNOMIAL # binary multipication
+# mulrpoly(r::rational, B::POLYNOMIAL  )::POLYNOMIAL # scalar multiplication
+# mulrpoly(A::POLYNOMIAL,[,POLYNOMIAL*])::POLYNOMIAL # nary multiplication
+# powrpoly(A::POLYNOMIAL,N::integer)::POLYNOMIAL
+# scarpoly(A::rational,B::POLYNOMIAL)::POLYNOMIAL
+# scarpoly(A::POLYNOMIAL,B::POLYNOMIAL)::POLYNOMIAL
+# divrpoly(A::POLYNOMIAL,B::POLYNOMIAL,Q::NAME)::boolean
+# negrpoly(A::POLYNOMIAL)::POLYNOMIAL
+# invrpoly(A::POLYNOMIAL)::POLYNOMIAL
+#
+# remrpoly(A::POLYNOMIAL,B::POLYNOMIAL)::POLYNOMIAL
+# remrpoly(A::POLYNOMIAL,B::POLYNOMIAL,Q::name)::POLYNOMIAL
+# quorpoly(A::POLYNOMIAL,B::POLYNOMIAL)::POLYNOMIAL
+# quorpoly(A::POLYNOMIAL,B::POLYNOMIAL,R::name)::POLYNOMIAL
+# premrpoly(A::POLYNOMIAL,B::POLYNOMIAL)::POLYNOMIAL # pseudo-remainder
+# premrpoly(A::POLYNOMIAL,B::POLYNOMIAL,M::name,Q::name)::POLYNOMIAL
+# gcdexrpoly(A::POLYNOMIAL,B::POLYNOMIAL)::[POLYNOMIAL,POLYNOMIAL,POLYNOMIAL]
+# powmodrpoly(A::POLNOMIAL,n::nonnegint,B::POLYNOMIAL)::POLYNOMIAL
+# diffrpoly(A::POLYNOMIAL)::POLYNOMIAL
+# diffrpoly(A::POLYNOMIAL,x::{name,posint})::POLYNOMIAL
+#
+# gcdrpoly(A::POLYNOMIAL,B::POLYNOMIAL)::POLYNOMIAL
+# gcdrpoly(A::POLYNOMIAL,B::POLYNOMIAL,...)::POLYNOMIAL
+# lcmrpoly(A::POLYNOMIAL,B::POLYNOMIAL)::POLYNOMIAL
+# lcmrpoly(A::POLYNOMIAL,B::POLYNOMIAL,...)::POLYNOMIAL
+# resrpoly(A::POLYNOMIAL,B::POLYNOMIAL)::POLYNOMIAL
+# resrpoly(A::POLYNOMIAL,B::POLYNOMIAL,x::name)::POLYNOMIAL # resultant in x
+# subresrpoly(A::POLYNOMIAL,B::POLYNOMIAL)::POLYNOMIAL # subresultant prs
+# discrpoly(A::POLYOMIAL)::POLYNOMIAL # discriminant
+# discrpoly(A::POLYOMIAL,x::name)::POLYNOMIAL # discriminant
+#
+# contrpoly(A::POLYNOMIAL,X::{integer,name,list(name)},PP::name)::POLYNOMIAL
+# pprpoly(A::POLYNOMIAL,X::{integer,name,list(name)},C::name)::POLYNOMIAL
+# icontrpoly(A::POLYNOMIAL,PP:name)::rational
+# ipprpoly(A::POLYNOMIAL,C::name)::POLYNOMIAL
+# idenomrpoly(A::POLYNOMIAL)::integer
+#
+# irredrpoly(A::POLYNOMIAL)::boolean
+#
+# nrpoly(A::POLYNOMIAL)::POLYNOMIAL
+# nrprpoly := proc(a::POLYNOMIAL,m::POLYNOMIAL)
+# nmirpoly(A::POLYNOMIAL)::POLYNOMIAL
+# randrpoly(R::POLYRING,N::nonnegint)::POLYNOMIAL
+# randffelem(R::POLYRING)::POLYNOMIAL
+#
+# evalrpoly(A::POLYNOMIAL,point::name={rational,POLYNOMIAL})::{rational,POLYNOMIAL}
+# evalrpoly(A::POLYNOMIAL,points::set(name={rational,POLYNOMIAL}))::{rational,POLYNOMIAL}
+# evalrpoly(A::POLYNOMIAL,points::list(name={rational,POLYNOMIAL}))::{rational,POLYNOMIAL}
+# interprpoly(U::list(POLYNOMIAL),M::{list(rational),list(POLYNOMIAL)},z::name)::POLYNOMIAL
+# ichremrpoly(U::list(POLYNOMIAL))::POLYNOMIAL
+# chremrpoly(U::list(POLYNOMIAL))::POLYNOMIAL
+# irrrpoly(A::POLYNOMIAL,(NB,DB)::nonnegint)::{FAIL,POLYNOMIAL}
+# rrrpoly((A,B)::POLYNOMIAL,(NB,DB)::nonnegint)::{FAIL,[POLYNOMIAL,POLYNOMIAL]}
+#
+# extrpoly(A::POLYNOMIAL,B::{name,POLYNOMIAL})::POLYNOMIAL
+# phirpoly(A::POLYNOMIAL,B::{integer,POLYNOMIAL})::POLYNOMIAL
+# phirpoly(A::POLYRING,B::{integer,POLYNOMIAL})::POLYRING
+# modrpoly is a synonym for phirpoly
+# liftrpoly(A::POLYRING)::POLYRING
+# liftrpoly(A::POLYNOMIAL)::POLYNOMIAL
+# retextsrpoly(A::POLYRING)::POLYRING
+# retextsrpoly(A::POLYNOMIAL)::POLYNOMIAL
+# retcharpoly(A::POLYRING [,m::posint])::POLYRING
+# retcharpoly(A::POLYNOMIAL [,m::posint])::POLYNOMIAL
+# retvarpoly(A::POLYRING)::POLYRING
+# retvarpoly(A::POLYNOMIAL)::POLYNOMIAL
+#
+# linsolrpoly(A::matrix(POLYNOMIAL),b::vector(POLYNOMIAL))::{FAIL,vector(POLYNOMIAL)}
+# nullspacerpoly(A::matrix(POLYNOMIAL))::list(vector(POLYNOMIAL))
+# rrefrpoly(A::matrix(POLYNOMIAL))::matrix(POLYNOMIAL) # reduced row Echelon form
+#
+# Suggested extensions for the data structure
+# 1: Encode a bit to imply whether Zp is represented in the symmetric or positive range
+#    See modsrpoly and modprpoly below.
+# 2: Encode whether the extensions and the polynomial are irreducible, reducible or not known
+#    So that we can decide what to do in PGCD and MGCD.
+# 3: Implement GF(2^k) using a bit vector and other small fields efficiently.
+# 4: Use as the representation for a polynomial f over char(0)
+#      f = s * g where g is primitive over Z and s is in Q, i.e. factor
+#    out the icontent.  Then we can avoid arithmetic with fractions. 
+#    Polynomial multiplication is easy.  Polynomial division is set up.
+#    But polynomial + and - are tricky.  Magma uses this to gain a factor
+#    of over 100 in efficiency for polys over number fields.
+#
+# Questions about the generality of the data structure
+#
+# 1: Do we support Q(x) which would enable us to support arithmetic for algebraic functions
+#    it would also permit rational reconstruction on whole polynomials with the result being
+#    a polynomial over e.g. Zp(x) - rather than needing to do it coefficient by coefficient.
+#    The logical data structure extension for this is
+#    POLYNOMIAL( R, N, D ) where N is the numerator and D is the denominator.
+#    NO: we can program rational reconstruction to clear the denominator.
+# 2: Do we support series?  Taylor, Laurent, Puisseaux?  How general do we go?
+#    NO (Bruno - July/2000) it is not necessary as the only "series" like operation
+#    that we need to be able to do is Taylor series and this can be done with
+#    an algebraic extension of x^n which can be treated as a special case.
+# 3: The invrpoly(a) command accepts a POLYNOMIAL of rational but if the operation
+#    is coming from Zm then invrpoly(a) returns 1/a not reduced mod m.
+#    Should lcrpoly return a POLYNOMIAL([M,[],[]],a) or something like that ?
+#    If so then tcrpoly, coeffrpoly, coeffsrpoly, etc. should do the same.
+#    YES (Mike, Stephen, Oct 15/2001) (DONE)
+# 5: Should the ring encode the extensions as POLYNOMIALs rather than data.
+#    Then the ring would be a valid structure and we could change
+#    the underlying data representation for the polynomials without
+#    having to change code.  Routines like getalgext would be trivial.
+#    E.g. we could put in modp1 polynomials or bit vectors into the
+#    data without affecting some of the code.
+#    NO: it's not necessary.
+#
+# Questions about the definition of operations
+#
+# 1: Should gcdrpoly return a result monic over Q or primitive over Z
+#    E.g. what should gcdrpoly(4*x+2,4*x+2) return?
+#    Over Z the GCD is 4*x+2.  Over Q it is x+1/2 and the factor of 2
+#    is lost.  Primitive over Z seems best, namely, 2*x+1.  Ditto for
+#    factorization routines.  Note: ipprpoly(4*x+2) ==> 2*x+1
+#    YES (Mike, Janez - Oct 5/2000) (DONE)
+# 1' Should the data structure just factor out the denomination
+#    i.e. represent 2*x^2+4/3 as [c,f] = [2/3,3*x^2+2]
+#    YES: but this will be non-trivial to implement.
+#    Rep of 3 in Q : POLYNOMIAL( [0,[],[]], c )
+#    Rep of -3*x+3*z/2 in Q[z]/<z^2+2/3> :
+#          POLYNOMIAL( [M,[x,z],[3*z^2+2], -3/2, 2*x-z )
+#          POLYNOMIAL( [M,[x,z],[[2,0,3]], -3/2, [[0,-1],[2]] )
+#
+# 2: What should invrpoly (and recinv) do when an inverse cannot be
+#    computed?  We are using the Euclidean algorithm to compute the
+#    inverse of x which has quadratic algebraic time complexity.
+#    If it hits a zero divisor this does not mean in general that x
+#    is not invertible.  The error generated also contains the
+#    zero divisor that was encountered.
+#
+# 2' What is the output format for zero divisors?
+#    The recinv routine generates the error
+#        ERROR( "inverse does not exist", [M,N,E,Z] );
+#    where the variable info is not availabale.
+#    E.g. the output might be  [0, 1, [[-1, 0, 0, 1]], [-1, 1]]
+#    which corresponds to M = 0, N = 1, E = [y^3-1], Z = y-1
+#    Decision: all userlevel level routines must output a POLYNOMIAL.
+#    In this case 
+#        POLYNOMIAL( [0,[y],[[-1, 0, 0, 1]], [-1,1] ) = y-1 mod <y^3-1>
+#    They do this by instead of calling, e.g. recrem(...), they call
+#         zerodivisor( recrem, [...], X );
+#    The zerodivisor routine calls recrem(...), traps the error from recinv
+#    and converts [M,N,E,Z] to POLYNOMIAL(R,Z) where R = [M,X[-N..-1],E].
+#    Example:
+#
+#    > f := rpoly(y-1,y,y^3-1);
+#                                             3
+#                          f := (y - 1) mod <y  - 1>
+#
+#    > invrpoly(f);
+#    Error, (in zerodivisor) inverse does not exist, POLYNOMIAL([0, [y],
+#    [[-1, 0, 0, 1]]],[-1, 1])
+#    > lasterror[1];
+#                          "inverse does not exist"
+#
+#    > lasterror[2];
+#                                          3
+#                            (y - 1) mod <y  - 1>
+#
+# 3: How do we tell ichremrpoly and phirpoly to use the positive
+#    or symmetric range?
+#
+# 4: How to embed Zp in Zp^k.  And how to reduce Zpq mod p.
+#    The phirpoly command reduces Z to Zm and F[z] to F[z]/m(z)
+#    The case Zm to Zp where m=p*q is now allowed.  Use phirpoly(f,p).
+#    The case Zp to Zm where m=p^k is not allows.  It is a retration.
+#    Use retcharpoly(f,m).  The default retcharpoly(f) retracts to Q.
+#    This retrations note costs O(1) time as the data rep is not changed.
+#
+# 5: What arithmetic routines should go in the kernel?
+# 6: What should lcrpoly (and coeffrpoly & tcrpoly) do if one askes
+#    for a coefficient in an extension variable?  An error?  Or work anyway?
+#    E.g.  f := rpoly((2*z+1)*x+3*z+1,[x,z],z^2-2);
+#          lcrpoly(f,1) yields rpoly(2*z+1,z,z^2-2) but
+#          lcrpoly(f,2)?  An error or 2 ?
+#
+# This file is consider the "base code" or "core facilities".
+# It is split into two sets, one set A which use op to access the
+# data structure, including also subroutines working directly
+# with the ring and polynomial components of the data structure
+# and another set B which does not use op or work with the
+# data structure directly, but uses routines from A and B.
+#
+# Principal Author: Michael Monagan, 2000, 2001, 2002, 2003, 2004, 2006.
+#
+
+###########################################################################
+#
+# Data structure dependent routines - i.e. depend on what op returns
+#
+###########################################################################
+
+`type/POLYRING` := [nonnegint,list(name),list]:
+`type/POLYDATA` := {0,rational,list(POLYDATA)}:
+`type/POLYNOMIAL` := POLYNOMIAL(POLYRING,POLYDATA):
+
+getring := proc(a::POLYNOMIAL) option inline; op(1,a) end:
+getpoly := proc(a::POLYNOMIAL) option inline; op(2,a) end:
+getchar := proc(a::POLYNOMIAL) option inline; op([1,1],a) end:
+getvars := proc(a::POLYNOMIAL) option inline; op([1,2],a) end:
+getexts := proc(a::POLYNOMIAL) option inline; op([1,3],a) end:
+
+iszerorpoly := proc(a::POLYNOMIAL) option inline; evalb(op(2,a)=0) end: 
+hassamering := proc(a::POLYNOMIAL,b::POLYNOMIAL) option inline; evalb(op(1,a)=op(1,b)) end:
+isunivariate := proc(a::POLYNOMIAL) evalb(nops(getvars(a))-nops(getexts(a))=1) end:
+ismonomial := proc(a::POLYNOMIAL) local R,A,M,X,E,N;
+   R,A := op(a);
+   if A=0 then RETURN(false) fi; # by definition
+   M,X,E := op(R);
+   N := nops(X)-nops(E);
+   to N do if {0,op(1..-2,A)} <> {0} then RETURN(false) fi; A := A[-1]; od;
+   true;
+end:
+isconstant := proc(a::POLYNOMIAL) local R,A,M,X,E,N;
+   R,A := op(a);
+   if A=0 then RETURN(true) fi; # by definition
+   M,X,E := op(R);
+   N := nops(X)-nops(E);
+   to N do if nops(A)>1 then RETURN(false) fi; A := A[1]; od;
+   true;
+end:
+isretrpoly := proc(a::POLYNOMIAL,S::POLYRING,b::name) local R,A,N;
+   #
+   #--> isretrpoly(a,S) or isretrpoly(a,S,'b');
+   # Given a in R = S[X]/F test if a is in S, which must be a subring of R.
+   # If so, assign b (optional 2nd input) the value a retracted to be in S.
+   # Example, given 
+   # f := rpoly(2*z,[x,z],z^2+1); ==> POLYNOMIAL([0,[x,z],[[1,0,1]],[[0,2]])
+   # Q := rring([],0); ==> [0, [], []]  
+   # G := rring(z^2+1,z); ==> [0,[z],[[1,0,1]]]  
+   # Then isretrpoly(f,Q); ==> false
+   # But  isretrpoly(f,G); ==> true
+   #
+   R,A := op(a);
+   if not issubring(S,R) then ERROR("invalid input") fi;
+   if A=0 then if nargs=3 then b := POLYNOMIAL(S,A); fi; RETURN(true); fi;
+   N := nops(R[2])-nops(S[2]);
+   to N do if nops(A)<>1 then RETURN(false) fi; A := A[1]; od;
+   if nargs=3 then b := POLYNOMIAL(S,A) fi;
+   true;
+end:
+
+issubring := proc(K::POLYRING,L::POLYRING) local N,M;
+   if K[1]<>L[1] then RETURN(false) fi;
+   N := nops(K[2]);
+   if N>nops(L[2]) then RETURN(false) fi;
+   if N>0 and K[2]<>L[2][-N..-1] then RETURN(false) fi;
+   M := min(N,nops(L[3]));
+   if M=0 then RETURN( evalb( K[3]=[] ) ) fi;
+   if K[3] <> L[3][-M..-1] then RETURN(false) fi;
+   true;
+   #N := nops(K[3]);
+   #if N>nops(L[3]) then RETURN(false) fi;
+   #if N>0 and K[3]<>L[3][-N..-1] then RETURN(false) fi;
+   #true;
+end:
+projring := proc(R::POLYRING)
+   if nops(op(2,R))=0 then ERROR( "cannot project the constants"  ) fi;
+   if nops(op(2,R))=nops(op(3,R)) then
+      subsop( [2,1]=NULL, [3,1]=NULL, R ) 
+   else subsop([2,1]=NULL,R)
+   fi;
+end:
+
+
+`print/POLYNOMIAL` := proc(R,A)
+local M,X,E,display,ideal,i,dummy;
+
+# POLYNOMIAL([2,[x],[]],[x^2+1]) ==> x^2+1 mod 2
+# POLYNOMIAL([0,[x,b,a],[]],[x-a*b+1]) ==> x-a*b+1
+# POLYNOMIAL([0,[x,b,a],[b^2-a,a^3-2]],x-a*b+1) ==> x-a*b+1 mod <b^2-a,a^3-2>
+# POLYNOMIAL([2,[x],[x^4+x+1]],[x^2+1]) ==> x^2+1 mod <x^4+x+1,2>
+
+   M,X,E := op(R);
+   display := rpoly2maple(A,X);
+   if E<>[] then
+       ideal := NULL;
+       for i from nops(E) by -1 to 1 do 
+           ideal := ideal, rpoly2maple(E[-i],X[-i..-1]);
+       od;
+       if M<>0 then ideal := ideal,M; fi;
+       # This works for R5, R6, R7 and R8
+       display := subs( dummy=ideal, '`mod`'(display,'<dummy>') );
+   else
+       if M<>0 then display := '`mod`'(display,M) fi;
+   fi;
+   display
+
+end:
+
+`convert/POLYNOMIAL` := proc(A,X::{name,list(name),POLYRING})
+local e,m,relations,opt,N,M,Y,E,R,rels,rofs,k,r,a,x;
+   if op(0,A)=POLYNOMIAL then
+      a := rpoly2maple(op(2,A),op(2,op(1,A)));
+      if nargs=2 and X=RootOf then
+         M,Y,E := op(op(1,A));
+         rofs := NULL;
+         for k to nops(E) do
+             r := rpoly2maple(E[-k],Y[-k..-1]);
+             r := subs([rofs],r);
+             r := RootOf(r,Y[-k]);
+             if M>0 then r := r mod M fi;
+             rofs := rofs, Y[-k]=r;
+         od;
+         a := subs([rofs],a);
+      fi;
+      RETURN(a);
+   fi;
+   if type(X,name) then RETURN(procname(A,[X],args[3..nargs])) fi;
+   if type(X,POLYRING) then # X is a ringtype
+       if a=0 then RETURN(POLYNOMIAL(X,a)) fi;
+       M,Y,E := op(X); N := nops(Y)-nops(E);
+       a := convert(A,POLYNOMIAL,Y);
+       if M<>0 then a := phirpoly(a,M) fi;
+       for k from nops(E) by -1 to 1 do
+           m := POLYNOMIAL( [M,Y[N+k..-1],E[k+1..-1]], E[k] );
+           a := phirpoly(a,m);
+       od;
+       RETURN(a);
+   fi;
+   N := nops(X); M := 0; relations := {};
+   for opt in [args[3..nargs]] do
+       if type(opt,nonnegint) then M := opt;
+       elif type(opt,list) then relations := {op(opt)};
+       elif type(opt,name=RootOf) then relations := {opt};
+       elif type(opt,polynom(rational,X[-1])) then relations := {opt};
+       else ERROR("invalid optional arguments",opt)
+       fi;
+   od;
+   rels := NULL; rofs := NULL;
+   for k to nops(relations) do
+       r := select(type,relations,identical(X[-k])=RootOf);
+       relations := relations minus r;
+       if nops(r)=1 then
+          x,r := op(r[1]); rofs := rofs,r=x;
+          r := subs([rofs],_Z=x,op(1,r));  # watch the order; _Z=x after [rofs]
+          relations := relations union {r};
+       elif nops(r)>1 then ERROR("invalid relations")
+       fi;
+       r := select(type,relations,polynom(rational,X[-k..-1]));
+       relations := relations minus r;
+       if nops(r)=1 then
+          r := maple2rpoly(r[1],X[-k..-1],k,[rels],M);
+          r := POLYNOMIAL([M,X[-k..-1],[rels]],r);
+       else ERROR("invalid relations (must be univariate)");
+       fi;
+       # Check that r is a valid extension (non-constant, monic)
+       if iszerorpoly(r) then ERROR("extension cannot be zero") fi;
+       if isconstant(r) then ERROR("extension cannot be a constant") fi;
+       # if not isretrpoly(lcrpoly(r),[M,[],[]]) then ERROR("extension must be monic") fi;
+       r := ipprpoly(r); # Make it primitive over Z/Zm.
+       rels := getpoly(r), rels;
+   od;
+   rels := [rels];
+   a := subs([rofs],A);
+   if not type(a,polynom(rational,X)) then ERROR("unable to convert"); fi;
+   a := maple2rpoly(a,X,N,rels,M);
+   POLYNOMIAL([M,X,rels],a);
+end:
+`convert/POLYRING` := proc(A::POLYNOMIAL,R::POLYRING) local S;
+   S := op(1,A);
+   if S=R then RETURN(A) fi;
+   convert( convert(A,POLYNOMIAL), POLYNOMIAL, R );
+end:
+
+
+rpoly := eval(`convert/POLYNOMIAL`):
+
+rring := proc(R,x,f) local S,g;
+   if type(R,POLYRING) and type(x,name) and nargs=2 then # create R[x]
+      subsop(2=[x,op(R[2])],R);
+   elif type(R,POLYRING) and type(x,list(name)) and nargs=2 then # create R[x]
+      if nops(x)=0 then R; else subsop(2=[op(x),op(R[2])],R); fi;
+   elif type(R,POLYRING) and type(x,POLYNOMIAL) and getring(x)=R then # create R/x
+      phirpoly(R,x);
+   elif type(R,POLYRING) and type(x,name) and nargs=3 and type(f,polynom(anything,x)) then
+      S := rring(R,x);
+      g := rpoly(f,S);
+      g := phirpoly(rpoly(0,S),g);
+      getring(g);
+   elif type(R,POLYRING) and type(x,list(name)) and nargs=3 and type(f,list(polynom)) then
+      if nops(x)=0 and nops(f)=0 then RETURN(R) fi;
+      if nops(f)=0 then RETURN( rring(R,x) ) fi;
+      S := rring(R,x[1],f[1]);
+      rring(S,x[2..-1],f[2..-1]);
+   elif not type(R,POLYRING) then
+      g := rpoly(0,args);
+      getring(g);
+   else ERROR("invalid input");
+   fi;
+end:
+
+rpoly2maple := proc(A,X) local i,n;
+   if A=0 or X=[] then RETURN(A) fi;
+   # add( rpoly2maple(A[i],X[2..-1])*X[1]^(i-1), i=1..nops(A) );
+   n := nops(A);
+   # use `+`(...) not add(...) so the constant is last in the output
+   `+`( seq( rpoly2maple(A[-i],X[2..-1])*X[1]^(n-i), i=1..n ) );
+end:
+
+maple2rpoly := proc(A,X,N,R,M) local i,T,rels,k;
+   if N=0 then
+      ASSERT(type(A,rational));
+      if M=0 then RETURN(A) else RETURN(A mod M) fi;
+   fi;
+   T := taylor(A,X[1],infinity); if T=0 then RETURN(0) fi;
+   T := [seq( coeff(T,X[1],i), i=0..op(-1,T))];
+   if nops(R)=N then rels := R[2..-1] else rels := R fi;
+   T := map( maple2rpoly,T,X[2..-1],N-1,rels,M );
+   for k from nops(T) to 1 by -1 while T[k]=0 do od;
+   T := T[1..k]; if T=[] then RETURN(0) fi;
+   if nops(R)=N then T := zerodivisor( recrem, [T,R[1],N,rels,M], X ); fi;
+   T;
+end:
+
+monrpoly := proc(R::POLYRING,v::list(integer)) POLYNOMIAL(R,recmon(v)) end:
+recmon := proc(v) local A,i; A := 1; for i to nops(v) do A := [0$v[-i],A] od; A; end:
+
+consrpoly := proc(R::POLYRING,c::POLYNOMIAL)
+# Given c in S, S a subring of R coerce c to R
+local S,A,i;
+   S := getring(c);
+   if not issubring(S,R) then ERROR("constant must be in a subring of R") fi;
+   A := getpoly(c);
+   if A=0 then RETURN( POLYNOMIAL(R,0) ) fi;
+   for i to nops(R[2]) - nops(S[2]) do A := [A] od;
+   POLYNOMIAL(R,A);
+end:
+
+list2rpoly := proc(L::list(POLYNOMIAL),x::name) local c,R;
+   R := {seq(getring(c),c=L)};
+   if nops(R)=1 then R := R[1] else ERROR("inconsistent types") fi;
+   POLYNOMIAL( [R[1],[x,op(R[2])],R[3]], [seq(op(2,c),c=L)] );
+end:
+
+makemainrpoly := proc(f::POLYNOMIAL,x::name) local i;
+# Let f in K[u,v,...,x,y,z,...], K a coefficient ring.
+# Put f in K[x,u,v,...,y,z,...], i.e. make x the main variable.
+   list2rpoly( [seq( coeffrpoly(f,i,x), i=0..degrpoly(f,x) )], x );
+end:
+
+degrpoly := proc(a::POLYNOMIAL,x::{posint,name,list(name)})
+local R,A,M,X,E,N,k,L,C,D;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X);
+   if nargs=1 then
+      #if N>nops(E)+1 then ERROR("polynomials must be univariate") fi;
+      if N<=nops(E) then ERROR("not a polynomial") fi; 
+      if A=0 then -infinity else nops(A)-1 fi;
+   elif type(x,posint) then
+      if x=1 then if A=0 then -infinity else nops(A)-1 fi;
+      else max(recdeg(A,x))
+      fi;
+   elif type(x,name) then
+      if not member(x,X,'k') then ERROR("not a polynomial in this variable") fi;
+      RETURN( degrpoly(a,k) );
+   else
+      L := nops(x);
+      if L>N or x<>X[1..L] then ERROR("invalid variables") fi;
+      C := A; D := NULL; for k to L while C<>0 do D := D,nops(C)-1; C := C[-1] od;
+      [D,-infinity$(L-k+1)]
+   fi;
+end:
+
+recdeg := proc(A,N) local a;
+   if A=0 then NULL elif N=1 then nops(A)-1 else max(seq(recdeg(a,N-1),a=A)) fi;
+end:
+
+ldegrpoly := proc(a::POLYNOMIAL,x::{posint,name,list(name)})
+local R,A,M,X,E,N,k,L,C,D;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X);
+   if nargs=1 then
+      #if N>nops(E)+1 then ERROR("polynomials must be univariate") fi;
+      if N<=nops(E) then ERROR("not a polynomial") fi; 
+      if A=0 then -infinity else min( recldeg( A, 1 ) ) fi;
+   elif type(x,posint) then
+      if x=1 then
+         if A=0 then -infinity else min ( recldeg ( A, x ) ) fi;
+      else
+         min (recldeg(A,x));
+      fi;
+   elif type(x,name) then
+      if not member(x,X,'k') then ERROR("not a polynomial in this variable") fi;
+      RETURN( ldegrpoly(a,k) );
+   else
+      L := nops(x);
+      if L>N or x<>X[1..L] then ERROR("invalid variables") fi;
+      C := A; D := NULL;
+      for k to L while C<>0 do
+          D := D, min ( recldeg ( C, k ) );
+          C := C[1]
+      od;
+      [D,0$(L-k+1)]
+   fi;
+end:
+
+recldeg := proc(A,N) local a, i, res;
+   if A=0 then
+     NULL
+   elif N=1 then
+     i := 1;
+     while op(i,A) = 0 and i <= nops (A) do i := i + 1; od;
+     RETURN ( i - 1 )
+   else
+     min (seq(recldeg(a,N-1),a=A))
+   fi;
+end:
+
+tdegrpoly := proc(a::POLYNOMIAL)
+local R,A,M,X,E,N,D;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X)-nops(E);
+   if N=0 then ERROR("not a polynomial") fi;
+   D := rectdeg(A,N);
+   if D=-1 then -infinity else D fi;
+end:
+
+rectdeg := proc(A,N) local i;
+   if A=0 then -1
+   elif N=1 then nops(A)-1
+   else max( seq( (i-1)+rectdeg(A[i],N-1), i=1..nops(A) ) )
+   fi
+end:
+
+
+shiftrpoly := proc(a::POLYNOMIAL,n::{integer,list({integer,identical(-infinity)})})
+local R,A,M,X,E,N;
+   if type(n,integer) then RETURN(shiftrpoly(a,[n])) fi;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X)-nops(E);
+   if N<nops(n) then ERROR("cannot shift") fi;
+   A := recshift(A,n);
+   POLYNOMIAL(R,A)
+end:
+
+recshift := proc(A,N)
+local B;
+   if A=0 then RETURN(0) fi;
+   if N=[] then RETURN(A) fi;
+   if N[1]>0 then
+      B := [0$N[1],op(A)];
+   elif N[1]<0 then
+      if nops(A)>-N[1] and {op(1..-N[1],A)}={0} then
+         B := A[1-N[1]..-1];
+      else ERROR("cannot shift")
+      fi;
+   else 
+      B := A;
+   fi;
+   if nops(N)=1 then B else map(recshift,B,N[2..-1]) fi;
+end:
+
+
+lcrpoly := proc(a::POLYNOMIAL,Y::{nonnegint,name,list(name)})
+local R,A,M,X,E,N,C,L;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X);
+   if nargs=1 then 
+      L := N-nops(E);
+   elif type(Y,name) then 
+      if Y=X[1] then L := 1; else ERROR("invalid variable") fi;
+   elif type(Y,list(name)) then 
+      L := nops(Y); if L>N or Y<>X[1..L] then ERROR("invalid variables") fi;
+   else 
+      L := Y;
+      if L>N then ERROR("invalid variables") fi;
+   fi;
+   C := A; to L while C<>0 do C := C[-1] od;
+   if L+nops(E)>N then E := E[nops(E)+L-N+1..-1] fi;
+   POLYNOMIAL([M,X[L+1..-1],E],C);
+end:
+
+redrpoly := proc(a::POLYNOMIAL)
+local R,A,M,X,E,i;
+   R,A := op(a);
+   if A=0 then RETURN(a) fi;
+   M,X,E := op(R);
+   A := A[1..-2];
+   for i from nops(A) by -1 to 1 while A[i]=0 do od;
+   A := A[1..i]; if A=[] then A := 0 fi;
+   POLYNOMIAL(R,A);
+end:
+
+
+ilcrpoly := proc(f) getpoly(lcrpoly(f,nops(getvars(f)))); end:
+itcrpoly := proc(f) getpoly(tcrpoly(f,nops(getvars(f)))); end:
+
+
+tcrpoly := proc(a::POLYNOMIAL,Y::{nonnegint,name,list(name)})
+local R,A,M,X,E,N,C,L,i;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X);
+   if nargs=1 then
+      L := N-nops(E);
+   elif type(Y,name) then 
+      if Y=X[1] then L := 1; else ERROR("invalid variable") fi;
+   elif type(Y,list(name)) then 
+      L := nops(Y); if L>N or Y<>X[1..L] then ERROR("invalid variables") fi;
+   else
+      L := Y; if L>N then ERROR("invalid variables") fi;
+   fi;
+   C := A; to L while C<>0 do for i while C[i]=0 do od; C := C[i]; od;
+   if L+nops(E)>N then E := E[nops(E)+L-N+1..-1] fi;
+   POLYNOMIAL([M,X[L+1..-1],E],C);
+end:
+
+
+coeffrpoly := proc(a::POLYNOMIAL,n::nonnegint,x::name)
+local R,A,M,X,E,N,C,p;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X);
+   if N<=nops(E) then ERROR("not a polynomial") fi; 
+   if nargs=2 then
+      if A=0 or n+1>nops(A) then C := 0; else C := A[n+1]; fi;
+      POLYNOMIAL([M,X[2..-1],E],C);
+   else # coefficient in x
+      if not member(x,X,'p') then ERROR("not a polynomial in",x) fi;
+      if p>N-nops(E) then ERROR("not a polynomial in",x) fi;
+      POLYNOMIAL([M,subsop(p=NULL,X),E],reccof(A,n,p));
+   fi;
+end:
+
+
+reccof := proc(A,n,N) local c,C,i;
+   if A=0 then RETURN(0) fi;
+   if N=1 then if n+1>nops(A) then RETURN(0) else RETURN(A[n+1]) fi; fi;
+   C := [seq( reccof(c,n,N-1), c=A )];
+   for i from nops(C) by -1 to 1 while C[i]=0 do od;
+   if i=0 then 0 elif i=nops(C) then C else C[1..i] fi;
+end:
+
+
+icoeffrpoly := proc() local c;
+   c := getpoly(coeffrpoly(args)); 
+   if type(c,rational) then RETURN(c) fi;
+   ERROR( "coefficient is not a rational constant" );
+end:
+
+
+coeffsrpoly := proc(a::POLYNOMIAL,Y::{nonnegint,name,list(name)})
+local R,A,M,X,E,N,L;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X);
+   if nargs=1 then
+      L := N-nops(E);
+   elif type(Y,name) then
+      L := 1;
+      if X[1] <> Y then ERROR("invalid operation") fi;
+   elif type(Y,list(name)) then
+      L := nops(Y);
+      if L>N or {op(Y)} <> {op(X[1..L])} then ERROR("invalid operation") fi;
+   else
+      L := Y;
+      if L>N then ERROR("invalid operation") fi;
+   fi;
+   if L+nops(E)>N then E := E[nops(E)+L-N+1..-1] fi;
+   R := [M,X[L+1..-1],E];
+   recofs(A,L,R)
+end:
+
+recofs := proc(A,L,R) local a;
+   if A=0 then elif L=0 then POLYNOMIAL(R,A) else seq(recofs(a,L-1,R),a=A) fi
+end:
+
+addrpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL)
+local R,A,S,B,M,X,E,N,C;
+    if nargs>2 then RETURN( addrpoly(addrpoly(a,b),args[3..nargs]) ) fi; 
+    R,A := op(a);
+    S,B := op(b);
+    if R<>S then ERROR("inconsisent rings") fi;
+    M,X,E := op(R);
+    N := nops(X);
+    C := recadd(A,B,N,M);
+    POLYNOMIAL(R,C);
+end:
+
+subrpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL)
+local R,A,M,X,E,N,B,C;
+    checkconsistency(a,b);
+    R,A := op(a);
+    M,X,E := op(R);
+    N := nops(X);
+    B := op(2,b);
+    #C := recsub(A,B,N,M);
+    C := recadd(A,-B,N,M);
+    POLYNOMIAL(R,C);
+end:
+
+negrpoly := proc(a::POLYNOMIAL)
+local R,A,M,X,E,N,C;
+    R,A := op(a);
+    M,X,E := op(R);
+    N := nops(X);
+    C := recneg(A,N,M);
+    POLYNOMIAL(R,C);
+end:
+
+recneg := proc(A,N,M) if M=0 then -A else -A mod M fi end:
+
+recadd := proc(A,B,N,M)
+local i,C,m,n;
+    if N=0 then if M=0 then RETURN(A+B) else RETURN(A+B mod M) fi; fi;
+    if A=0 then RETURN(B) fi;
+    if B=0 then RETURN(A) fi;
+if speedupZpt then
+    if N=1 and M<>0 then
+if RELEASE6 then
+       C := modp1(ConvertOut(Add(ConvertIn(A,_Z),ConvertIn(B,_Z))),M);
+else
+       C := modp1(ConvertOut(Add(ConvertIn(A),ConvertIn(B))),M);
+fi;
+       if C=[] then RETURN(0) else RETURN(C) fi;
+    fi;
+fi;
+    m := nops(A);
+    n := nops(B);
+    if m>n then 
+       C := [seq(recadd(A[i],B[i],N-1,M),i=1..n),op(n+1..m,A)]
+    elif m<n then 
+       C := [seq(recadd(A[i],B[i],N-1,M),i=1..m),op(m+1..n,B)]
+    else # m=n
+       if N=1 then C := `if`(M=0,A+B,modp(A+B,M)) else C := [seq(recadd(A[i],B[i],N-1,M),i=1..m)]; fi;
+       for i from nops(C) by -1 to 1 while C[i] = 0 do od; if i=0 then 0 else C[1..i] fi;
+    fi;
+end:
+
+recsub := proc(A,B,N,M)
+local i,m,n,C;
+    if N=0 then if M=0 then RETURN(A-B) else RETURN(A-B mod M) fi; fi;
+    if A=0 then RETURN(recneg(B,N,M)) fi;
+    if B=0 then RETURN(A) fi;
+if speedupZpt then
+    if N=1 and M<>0 then
+if RELEASE6 then
+       C := modp1(ConvertOut(Subtract(ConvertIn(A,_Z),ConvertIn(B,_Z))),M);
+else
+       C := modp1(ConvertOut(Subtract(ConvertIn(A),ConvertIn(B))),M);
+fi;
+       if C=[] then RETURN(0) else RETURN(C) fi;
+    fi;
+fi;
+    m := nops(A);
+    n := nops(B);
+    if m>n then 
+       C := [seq(recsub(A[i],B[i],N-1,M),i=1..n),op(n+1..m,A)]
+    elif m<n then 
+       C := [seq(recsub(A[i],B[i],N-1,M),i=1..m), seq(recneg(B[i],N-1,M),i=m+1..n)]
+    else # m=n
+       if N=1 then C := `if`(M=0,A-B,A-B mod M) else C := [seq(recsub(A[i],B[i],N-1,M),i=1..m)] fi;
+       for i from nops(C) by -1 to 1 while C[i] = 0 do od; if i=0 then 0 else C[1..i] fi;
+    fi;
+end:
+
+invrpoly := proc(a::POLYNOMIAL) 
+local R,A,M,X,E,N,i,n;
+    R,A := op(a);
+    M,X,E := op(R);
+    N := nops(X);
+    if A=0 then ERROR("division by zero") fi;
+    # if N>nops(E) then ERROR("unable to compute inverse") fi;
+    for n from 0 while N > nops(E) do
+        if nops(A)>1 then ERROR("unable to compute inverse") fi;
+        N,A := N-1,A[1];
+    od;
+    i := zerodivisor( recinv, [A,N,E,M], X );
+    while n > 0 do n,i := n-1,[i] od;
+    POLYNOMIAL( R, i );
+end:
+
+#pinvrpoly := proc(a::POLYNOMIAL)
+#local R,A,M,X,E,N,i;
+#    R,A := op(a);
+#    M,X,E := op(R);
+#    N := nops(X);
+#    if N>nops(E) then ERROR("unable to compute inverse") fi;
+#    if M=0 then i := precinv(A,N,E) else i := recinv(A,N,E,M); fi;
+#    POLYNOMIAL(R,i);
+#end:
+ 
+zerodivisor := proc( F::procedure, A::list, X::list )
+local M,N,E,R,Z;
+   global Zer;
+
+# This routine calls the function F with input A.
+# If a zero divisor is encoutered, it will convert the raw
+# zero divisor error data into a POLYNOMIAL representation.
+# It needs the variables X to do this.
+
+    Z := traperror( F(op(A)) );
+    if Z <> lasterror then RETURN(Z) fi;
+    if type([Z],[identical("inverse does not exist"),list]) then
+       # return zero divisor as part of the error message
+       Z := op(2,[Z]); M,N,E,Z := op(Z); R := [M,X[-N..-1],E];
+       Zer:= POLYNOMIAL(R,Z); # zero divisor as a ring element
+       ERROR("inverse does not exist",Zer);
+    else ERROR(lasterror);
+    fi;
+
+end:
+
+recinv := proc(a,N,E,M)
+# Uses the MONIC half extended Euclidean algorithm
+local i,g,r1,r2,s1,s2,s,t,q,minpoly,one,F;
+global lastzerodivisors;
+
+    if a=0 then ERROR("division by zero") fi;
+    if N=0 then if M=0 then RETURN(1/a) else RETURN(1/a mod M) fi; fi;
+
+    minpoly := E[1];
+    F := E[2..-1];
+
+if speedupZpt then
+    if N=1 and M<>0 and F=[] then
+if RELEASE6 then
+       g := modp1(ConvertOut(Gcdex(ConvertIn(a,_Z),ConvertIn(minpoly,_Z),'s')),M);
+else
+       g := modp1(ConvertOut(Gcdex(ConvertIn(a),ConvertIn(minpoly),'s')),M);
+fi;
+       if nops(g)>1 then ERROR("inverse does not exist",[M,N,E,g]) fi;
+       RETURN(modp1(ConvertOut(s),M));
+    fi;
+fi;
+
+    one := recmon([0$N]);
+    if a=one then RETURN(a) fi;
+
+    (r1,r2) := (a,minpoly);
+    (s1,s2) := (one,0);
+    i := recinv(r1[-1],N-1,F,M);
+    (r1,s1) := scamul(i,r1,N,F,M),scamul(i,s1,N,F,M);
+    while r2 <> 0 do
+        i := recinv(r2[-1],N-1,F,M);
+        (r2,s2) := scamul(i,r2,N,F,M),scamul(i,s2,N,F,M);
+        (r1,r2) := r2,recrem(r1,r2,N,F,M,'q');
+        t := recmul(q,s2,N,F,M);
+        #(s1,s2) := s2,recadd(s1,recneg(t,N,M),N,M);
+        (s1,s2) := s2,recsub(s1,t,N,M);
+    od;
+    if nops(r1)>1 then ERROR("inverse does not exist",[M,N,E,r1]) fi;
+    RETURN( s1 );
+
+end:
+
+scafix := proc(X,Y) local m,n;
+# If n = |X| check that the last n entries of Y = X
+    n := nops(X);
+    m := nops(Y);
+    evalb( n<=m and X = Y[m-n+1..m] );
+end:
+
+scarpoly := proc(a::{rational,POLYNOMIAL},b::POLYNOMIAL)
+local R,A,M,X,E,N,B,Ra,Ma,Xa,Ea,Na;
+    R,B := op(b);
+    M,X,E := op(R);
+    N := nops(X);
+    if type(a,rational) then
+       if M=0 then RETURN( POLYNOMIAL(R,a*B) ) fi;
+       A := a mod M;
+       POLYNOMIAL(R,recsca(B,A,N,0,E,M));
+    else
+       Ra,A := op(a); Ma,Xa,Ea := op(Ra); Na := nops(Xa);
+       if M=Ma and scafix(Xa,X) and scafix(Ea,E) then
+          POLYNOMIAL(R,recsca(B,A,N,Na,Ea,M))
+       else ERROR("scalar multiplication invalid");
+       fi;
+    fi;
+end:
+
+recsca := proc(a,x,N,L,R,M) local A,k;
+    if a=0 or x=0 then 0
+    #elif L=0 and M=0 then x*a # shortcut - let Maple do it
+    elif N=L then recmul(a,x,N,R,M)
+    elif N=1 and L=0 then # scalar times s list (mod M)
+        if M>0 then A := x*a mod M else A := x*a fi;
+        for k from nops(A) by -1 to 1 while A[k] = 0 do od;
+        if k=0 then 0 else A[1..k] fi;
+    else
+        A := map(recsca,a,x,N-1,L,R,M); 
+        for k from nops(A) by -1 to 1 while A[k] = 0 do od;
+        if k=0 then 0 else A[1..k] fi;
+    fi;
+end:
+
+scamul := proc(x,a,N,E,M)
+local A,k;
+    if a=0 or x=0 then RETURN(0) fi;
+if speedupZpt then
+    if N=1 and M<>0 and E=[] then
+if RELEASE6 then
+       A := modp1(ConvertOut(Multiply(ConvertIn([x mod M],_Z),ConvertIn(a,_Z))),M);
+else
+       A := modp1(ConvertOut(Multiply(ConvertIn([x mod M]),ConvertIn(a))),M);
+fi;
+       if A=[] then RETURN(0) else RETURN(A) fi;
+    fi;
+fi;
+    A := map(recmul,a,x,N-1,E,M);
+    for k from nops(A) by -1 to 1 while A[k] = 0 do od;
+    if k=0 then 0 else A[1..k] fi;
+end:
+
+checkconsistency := proc(a,b)
+if op(1,a) <> op(1,b) then ERROR("inconsistent types",a,b) fi;
+end:
+
+mulrpoly := proc(a::{rational,POLYNOMIAL},b::POLYNOMIAL)
+local R,A,M,X,E,N,B,C;
+    if nargs>2 then RETURN( mulrpoly(mulrpoly(a,b),args[3..nargs]) ) fi; 
+    if type(a,rational) then RETURN( scarpoly(a,b) ) fi;
+    R,A := op(a);
+    if R <> op(1,b) then RETURN( scarpoly(a,b) ) fi;
+    M,X,E := op(R);
+    N := nops(X);
+    B := op(2,b);
+    C := zerodivisor( recmul, [A,B,N,E,M], X );
+    POLYNOMIAL(R,C);
+end:
+
+powrpoly := proc(a::POLYNOMIAL,n::integer)
+local m,b,s;
+    if iszerorpoly(a) then if n=0 then ERROR("0^0 is undefined") else RETURN(a) fi; fi;
+    if n>=0 then s := a; m := n; else s := invrpoly(a); m := -n; fi;
+    if m=1 then RETURN(s) fi;
+    if isconstant(a) then # use repeated multiplication
+       b := rpoly(1,getring(a));
+       while m>0 do b := mulrpoly(s,b); m := m-1; od;
+       b;
+    else # use the square and multiply algorithm
+       b := rpoly(1,getring(a));
+       while m>0 do if irem(m,2,'m')=1 then b := mulrpoly(b,s) fi; s := mulrpoly(s,s) od;
+       b;
+    fi;
+end:
+
+recmul := proc(A,B,N,E,M) local C,i,j,k,l,m,n,minpoly,R,s,x;
+
+    if A=0 or B=0 then RETURN(0) fi;
+    if N=0 then if M=0 then RETURN(A*B) else RETURN(A*B mod M) fi; fi;
+
+if speedupZpt then
+    if not RELEASE6 then x := NULL fi; # compatibility with Release 5
+    if N=1 and M<>0 and nops(E)=0 then
+       C := modp1(ConvertOut(Multiply(ConvertIn(A,x),ConvertIn(B,x))),M);
+       if C=[] then RETURN(0) else RETURN(C) fi;
+    fi;
+    if N=1 and M<>0 and nops(E)=1 then
+       C := modp1(ConvertOut(
+            Rem(Multiply(ConvertIn(A,x),ConvertIn(B,x)),ConvertIn(E[1],x))),M);
+       if C=[] then RETURN(0) else RETURN(C) fi;
+    fi;
+    if N=2 and M<>0 and nops(E)=1 then # Fq[x]
+        RETURN(GFqMUL(A,B,E[1],M));
+    fi;
+fi;
+
+    if nops(E)=N then
+       minpoly := E[1];
+       C := recmul(A,B,N,E[2..-1],M);
+       C := recrem(C,minpoly,N,E[2..-1],M);
+       RETURN(C);
+    fi;
+    m := nops(A)-1;
+    n := nops(B)-1;
+    C := array(0..m+n);
+    if nops(E)=N-1 and nops(E)>0 then R := E[2..-1] else R := E fi;
+    for k from 0 to m+n do
+        s := 0;
+        j := min(k,n);
+        i := k-j;
+if N=1 then # optimize for Q[x]
+    if A=B then # optimize square case
+        j := j+1;
+        i := i+1;
+        s := 2*add( A[i+l]*A[j-l], l=0..iquo(j-i+1,2)-1 );
+        if irem(k,2)=0 then s := s+A[iquo(k,2)+1]^2; fi;
+        #j := j+1;
+        #i := i+1;
+        #while j>i do t := t+A[i]*A[j]; j := j-1; i := i+1; od;
+        #s := s+2*t;
+        #if j=i then s := s+A[i]^2; fi;
+    else
+        j := j+1;
+        i := i+1;
+        s := add( A[i+l]*B[j-l], l=0..min(j-1,m+1-i) );
+        #j := j+1;
+        #while j > 0 and i <= m do
+        #    i := i+1; 
+        #    s := s+A[i]*B[j];
+        #    j := j-1;
+        #od;
+    fi;
+else
+    if A=B then # optimize for the square case
+        j := j+1;
+        i := i+1;
+        while j>i do
+            s := recadd(s,recmul(A[i],A[j],N-1,R,M),N-1,M);
+            i := i+1;
+            j := j-1;
+        od;
+        #s := recsca(s,2,1,0,R,M);
+        s := recsca(s,2,N-1,0,R,M);
+        if i=j then # incorporate the square term
+            s := recadd(s,recmul(A[i],A[j],N-1,R,M),N-1,M)
+        fi;
+    else
+        j := j+1;
+        while j > 0 and i <= m do
+            i := i+1;
+            s := recadd(s,recmul(A[i],B[j],N-1,R,M),N-1,M);
+            j := j-1;
+        od;
+    fi;
+        if nops(E)=N-1 and nops(E)>0 then
+	    s := recrem(s,E[1],N-1,R,M);
+        fi;
+fi;
+        C[k] := s;
+    od;
+    for k from m+n by -1 to 0 while C[k] = 0 do od;
+    C := [seq(C[i],i=0..k)];
+    if C=[] then 0 else C fi;
+end:
+
+
+GFqMUL := proc(A,B,M,p) local da,db,dc,m,z,a,b,c,i,j,k,x,s,t;
+# This is univariate multiplication of A by B in R[x] where R = Fp[y]/<M(y)>,
+# that is, a finite ring (field) with one ring (field) extension over Fp.
+# Author: Michael Monagan, 2002.
+    da := nops(A)-1; if da=0 then RETURN( recsca(B,A[1],2,1,[M],p) ) fi;
+    db := nops(B)-1; if db=0 then RETURN( recsca(A,B[1],2,1,[M],p) ) fi;
+    dc := da+db;
+if not RELEASE6 then x := NULL fi; # compatibility with Release 5
+    m := modp1(ConvertIn(M,x),p); # minimal polynomial
+    z := modp1(Zero(x),p); # the zero polynomial
+if RELEASE6 then
+    a := [seq( modp1(ConvertIn(t,x),p), t=A )];
+    b := [seq( modp1(ConvertIn(t,x),p), t=B )];
+    #c := Array(0..dc, [seq(z,i=0..dc)]);
+    c := Array(0..dc);
+else
+    a := [seq( modp1(ConvertIn(`if`(t=0,[],t),x),p), t=A )];
+    b := [seq( modp1(ConvertIn(`if`(t=0,[],t),x),p), t=B )];
+    #c := array(0..dc, [seq(z,i=0..dc)]);
+    c := array(0..dc);
+fi;
+    #for i from 0 to da do
+    #    for j from 0 to db do
+    #        c[i+j] := modp1( Add(c[i+j],Rem(Multiply(a[i+1],b[j+1]),m)), p );
+    #    od;
+    #od;
+    #while dc>=0 and c[dc]=z do dc := dc-1 od; # drop leading zeroes
+    #if dc<0 then 0 else subs([]=0,[seq(modp1(ConvertOut(c[i]),p),i=0..dc)]) fi;
+    for k from 0 to dc do
+        j := min(k,db);
+        i := k-j;
+        i,j := i+1,j+1;
+        s := modp1( Multiply(a[i],b[j]), p );
+        j := j-1;
+        while j > 0 and i <= da do
+            i := i+1;
+            s := modp1( Add(s,Multiply(a[i],b[j])), p );
+            j := j-1;
+        od;
+	c[k] := modp1( ConvertOut(Rem(s,m)), p );
+    od;
+    while c[dc] = [] do dc := dc-1; od;
+    if dc<0 then 0 else subs([]=0,[seq(c[i],i=0..dc)]) fi;
+end:
+
+
+remrpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL,q::name)
+local R,A,M,X,E,N,B,C,Q;
+    checkconsistency(a,b);
+    R,A := op(a);
+    M,X,E := op(R);
+    N := nops(X);
+    if N<>nops(E)+1 then ERROR("polynomials must be univariate") fi;
+    B := op(2,b);
+    if B=0 then ERROR("division by zero") fi;
+    if nargs=2 then Q := NULL fi;
+    C := zerodivisor( recrem, [A,B,N,E,M,Q], X );
+    if nargs=3 then q := POLYNOMIAL(R,Q) fi;
+    POLYNOMIAL(R,C);
+end:
+
+quorpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL,r::name)
+local R,A,M,X,E,N,B,C,Q;
+    checkconsistency(a,b);
+    R,A := op(a);
+    M,X,E := op(R);
+    N := nops(X);
+    if N<>nops(E)+1 then ERROR("polynomials must be univariate") fi;
+    B := op(2,b);
+    if B=0 then ERROR("division by zero") fi;
+    C := zerodivisor( recrem, [A,B,N,E,M,'Q'], X );
+    if nargs=3 then r := POLYNOMIAL(R,C) fi;
+    POLYNOMIAL(R,Q);
+end:
+
+#
+# For r := premrpoly(a,b,'m','q'); at the end of the algorithm we have
+#   m a = b q + r and r=0 or deg(r)<deg(b) where
+#     m = lc(b)^(deg(a)-deg(b)+1)
+# The code works if lc(b) is a zero divisor.
+# The definition for this case is just what the algorithm does.
+# If the ring is not an integral domain, then it is possible that m = 0.
+# For a = x^2+1, b = 2*x+3 in Z4, we obtain m = 0, q = 2*x+1, r = 1.
+# And it is true that 0*(x^2+1) = (2*x+1)(2*x+3) + 1 mod 4
+# But you cannot compute the psuedo-quotient q from a,b,r,m
+# by dividing m a - r by b which requires inverting lc(b).
+# The pseudo-quotient must be computed in the algorithm.
+#
+premrpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL,multiplier::name,pseudoquotient::name)
+local R,M,X,E,N,S,x,p,q,m,lb,n,d,t;
+    checkconsistency(a,b);
+    R := getring(a);
+    M,X,E := op(R);
+    N := nops(X);
+    if N=nops(E) then ERROR("inputs must be polynomials") fi;
+    S := [M,X[2..-1],E];
+    x := X[1];
+    if iszerorpoly(b) then ERROR("division by zero") fi;
+    p := a; # p is the pseudo remainder
+    m := rpoly(1,S); # m is the multiplier
+    if nargs>3 then q := rpoly(0,R); fi; # q is the psuedo-quotient
+    if iszerorpoly(a) or degrpoly(a) < degrpoly(b) then
+        if nargs>2 then multiplier := m; fi;
+        if nargs>3 then pseudoquotient := q; fi;
+        RETURN(p);
+    fi;
+    lb := lcrpoly(b,1);
+    for n from 0 while not iszerorpoly(p) and degrpoly(p) >= degrpoly(b) do
+        d := degrpoly(p)-degrpoly(b);
+        t := scarpoly(lcrpoly(p,1),rpoly(x^d,R));
+        p := scarpoly(lb,p);
+        p := subrpoly(p,mulrpoly(t,b));
+        if nargs>2 then m := mulrpoly(lb,m); fi;
+        if nargs>3 then q := addrpoly(scarpoly(lb,q),t); fi;
+    od;
+    # We have  (l^n)*a  =  b*q  +  p  for some (unspecified) q.
+    # The correct multiplier is  l^d where d = deg(a)-deb(b) + 1.
+    # Therefore the pseudo-remainder to return is l^(d-n) * p
+    # And the correct pseudo-quotient to returned is l^(d-n) * q.
+    d := degrpoly(a)-degrpoly(b)+1;
+    t := powrpoly(lb,d-n);
+    if nargs>2 then multiplier := mulrpoly(t,m); fi;
+    if nargs>3 then pseudoquotient := scarpoly(t,q); fi;
+    p := scarpoly(t,p);
+end:
+
+recrem := proc(a,b,N,E,M,quo)
+local m,n,r,i,d,q,j,temp,x;
+   if a=0 then if nargs=6 then quo := 0 fi; RETURN(0) fi;
+   m := nops(a)-1;
+   n := nops(b)-1;
+   if m<n then if nargs=6 then quo := 0 fi; RETURN(a) fi;
+
+if speedupZpt then
+   if not RELEASE6 then x := NULL fi; # compatibility with Release 5
+   if nargs=5 and N=1 and M<>0 then
+      r := modp1(ConvertOut(Rem(ConvertIn(a,x),ConvertIn(b,x))),M);
+      if r=[] then RETURN(0) else RETURN(r) fi;
+   fi;
+   if nargs=6 and N=1 and M<>0 then
+      r := modp1(Rem(ConvertIn(a,x),ConvertIn(b,x),'q'),M);
+      (r,q) := modp1(ConvertOut(r),M),modp1(ConvertOut(q),M);
+      if q=[] then quo := 0 else quo := q fi;
+      if r=[] then RETURN(0) else RETURN(r) fi;
+   fi;
+   if N=2 and nops(E)=1 and M<>0 then # Fq[x]
+      RETURN( GFqREM(a,b,E[1],M,args[6..nargs]) );
+   fi;
+fi;
+if N=1 and M=0 then # optimize hard remainder
+   r := array(0..m);
+   for i from 0 to m do r[i] := a[i+1] od; 
+   i := 1/b[-1];
+   while m>=n do
+       d := m-n;
+       q := i*r[m];
+       r[m] := q;
+       for j from n-1 by -1 to 0 do
+           r[j+d] := r[j+d]-q*b[j+1];
+       od;
+       for m from m-1 by -1 to 0 while r[m]=0 do od;
+   od;
+else
+   r := array(0..m,a);
+   i := recinv(b[-1],N-1,E,M);
+   while m>=n do
+       d := m-n;
+       q := recmul(i,r[m],N-1,E,M);
+       r[m] := q;
+       for j from n-1 by -1 to 0 do
+           r[j+d] := recsub(r[j+d],recmul(q,b[j+1],N-1,E,M),N-1,M);
+       od;
+       for m from m-1 by -1 to 0 while r[m]=0 do od;
+   od;
+fi;
+   if nargs=6 then quo := [seq(r[j],j=n..nops(a)-1)] fi;
+   r := [seq(r[j],j=0..m)];
+   if r = [] then 0 else r fi;
+end:
+
+
+GFqREM := proc(A,B,M,p,Q) local da,db,dq,dr,m,o,z,q,i,j,r,b,g,s,t,x;
+# This is univariate division of A by B in R[x] where R = Fp[y]/<M(y)>,
+# that is, a finite ring (field) with one ring (field) extension over Fp.
+# If M(y) is not irreducible over Fp then the algorithm may fail.
+# Then the output is an error "inverse does not exist" and the zero divisor.
+# Author: Michael Monagan, 2002, 2003.
+    da := nops(A)-1;
+    db := nops(B)-1;
+    dq := da-db;
+if not RELEASE6 then x := NULL fi; # compatibility with Release 5
+    m := modp1(ConvertIn(M,x),p); # minimal polynomial
+    z := modp1(Zero(x),p); # the zero polynomial
+    o := modp1( One(x),p); # the one polynomial
+if RELEASE6 then
+    if nargs=5 then q := Array(0..dq,[seq(z,i=0..dq)]); fi;
+    r := Array( 0..da, [seq(modp1(ConvertIn(t,x),p),t=A)] );
+    b := Array( 0..db, [seq(modp1(ConvertIn(t,x),p),t=B)] );
+else
+    if nargs=5 then q := array(0..dq,[seq(z,i=0..dq)]); fi;
+    r := array( 0..da, [seq(modp1(ConvertIn(`if`(t=0,[],t),x),p),t=A)] );
+    b := array( 0..db, [seq(modp1(ConvertIn(`if`(t=0,[],t),x),p),t=B)] );
+fi;
+    # invert lcoeff(b,x)
+    s := b[db];
+    if s <> o then
+       g := modp1(Gcdex(b[db],m,'s'),p);
+       if g <> o then
+          g := modp1(ConvertOut(g),p);
+          ERROR("inverse does not exist",[p,1,[M],g]);
+       fi;
+    fi;
+    dr := da;
+    while dr>=db do
+        t := r[dr]; if s<>o then t := modp1(Rem(Multiply(t,s),m),p) fi;
+        if nargs=5 then q[dr-db] := t fi;
+        r[dr] := z; (i,j) := (dr-1,db-1);
+        while j>=0 do
+           r[i] := modp1(Subtract(r[i],Rem(Multiply(t,b[j]),m)),p);
+           (i,j) := (i-1,j-1);
+        od;
+        #while r[dr]=z and dr>0 do dr := dr-1; r[dr] := modp1(Rem(r[dr],m),p); od;
+        #if r[dr]=z then dr := dr-1; fi;
+        while dr>=0 and r[dr]=z do dr := dr-1 od;
+    od;
+    if nargs=5 then Q := subs([]=0,[seq(modp1(ConvertOut(q[i]),p),i=0..da-db)]) fi;
+    if dr<0 then 0 else  subs([]=0,[seq(modp1(ConvertOut(r[i]),p),i=0..dr)]) fi;
+end:
+
+
+gcdexrpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL)
+# Given a,b in F[x] find g, s, t in F[x] s.t. s*a + t*b = g = GCD(a,b).
+local R,A,M,X,E,N,B,G,S,T,Z;
+    checkconsistency(a,b);
+    R,A := op(a);
+    M,X,E := op(R);
+    N := nops(X);
+    B := op(2,b);
+    if N>nops(E)+1 then ERROR("polynomials must be univariate") fi;
+    if A=0 and B=0 
+    then G,S,T := (0,0,0);
+    else G,S,T := zerodivisor( recgcdex, [A,B,N,E,M], X );
+    fi;
+    [POLYNOMIAL(R,G), POLYNOMIAL(R,S), POLYNOMIAL(R,T)];
+end:
+
+recgcdex := proc(a,b,N,E,M)
+local r1,r2,s1,s2,t1,t2,one,tmp,i,q,g,s,t;
+# MONIC Extended Euclidean algorithm
+    if a=0 then (r1,t1,s1) := recgcdex(b,a,N,E,M); RETURN(r1,s1,t1) fi;
+if speedupZpt then
+   if N=1 and M<>0 then
+      if RELEASE6 then
+         g := modp1(Gcdex(ConvertIn(a,_Z),ConvertIn(b,_Z),'s','t'),M);
+      else
+         g := modp1(Gcdex(ConvertIn(a),ConvertIn(b),'s','t'),M);
+      fi;
+      RETURN(modp1(ConvertOut(g),M),modp1(ConvertOut(s),M),modp1(ConvertOut(t),M));
+   fi;
+fi;
+    one := recmon([0$N]);
+    (r1,r2) := (a,b);
+    (s1,s2) := (one,0);
+    (t1,t2) := (0,one);
+    i := recinv(r1[-1],N-1,E,M);
+    (r1,s1,t1) := (scamul(i,r1,N,E,M),scamul(i,s1,N,E,M),scamul(i,t1,N,E,M));
+    while r2 <> 0 do
+        i := recinv(r2[-1],N-1,E,M);
+        (r2,s2,t2) := (scamul(i,r2,N,E,M), scamul(i,s2,N,E,M), scamul(i,t2,N,E,M));
+		(r1,r2) := (r2,recrem(r1,r2,N,E,M,'q'));
+		tmp := recmul(q,s2,N,E,M);
+		#(s1,s2) := (s2, recadd(s1,recneg(tmp,N,M),N,M));
+		(s1,s2) := (s2, recsub(s1,tmp,N,M));
+		tmp := recmul(q,t2,N,E,M);
+		#(t1,t2) := (t2, recadd(t1,recneg(tmp,N,M),N,M));
+		(t1,t2) := (t2, recsub(t1,tmp,N,M));
+    od;
+    (r1,s1,t1);
+end:
+
+
+divrpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL,q::name)
+local R,A,M,X,E,N,Na,Rb,B,Mb,Xb,Eb,Nb,Q,consistent;
+    R,A := op(a);
+    M,X,E := op(R);
+    Na := nops(X);
+    Rb,B := op(b);
+    Mb,Xb,Eb := op(Rb);
+    Nb := nops(Xb);
+    consistent := evalb( M=Mb and E=Eb and Nb<=Na and scafix(Xb,X) );
+    if not consistent then ERROR("inconsistent polynomial rings for division") fi;
+    if B=0 then ERROR("division by zero") fi;
+    if nargs=2 then Q := NULL; fi;
+    if not zerodivisor( recdiv, [A,B,Na,Nb,E,M,Q], X ) then RETURN(false) fi;
+    if nargs>2 then q := POLYNOMIAL(R,Q); fi;
+    true
+end:
+
+recdiv := proc(A,B,Na,Nb,E,M,Q)
+local r,q,i,da,db,dr,t;
+    if A=0 then
+       if nargs=7 then Q := 0 fi; 
+       true;
+    elif Na>Nb then
+       if nargs=7 then
+	  q := array(1..nops(A),A);
+	  for i to nops(A) do
+	      if not recdiv(A[i],B,Na-1,Nb,E,M,evaln(q[i])) then RETURN(false) fi;
+	  od;
+	  Q := [seq(q[i],i=1..nops(A))];
+	  true
+       else
+          for i to nops(A) do
+              if not recdiv(A[i],B,Na-1,Nb,E,M) then RETURN(false) fi;
+          od;
+          true;
+       fi;
+    elif A=B then
+       if nargs=7 then Q := recmon([0$Na]) fi;
+       true;
+    elif Na=nops(E)+1 then # division in Q[x], Q(alpha)[x], Zp[x] and GF(q)[x]
+       evalb( recrem(A,B,Na,E,M,args[7..nargs]) = 0 );
+    elif Na=nops(E) then
+        if nargs=7 then Q := recmul(recinv(B,Nb,E,M),A,Na,E,M) fi;
+        true;
+    elif nops(A)<nops(B) then false # can't divide
+    else
+       da := nops(A)-1;
+       db := nops(B)-1;
+       if nargs=7 then q := array(0..da-db,sparse); fi;
+       #(r,dr) := (A,da);
+       if RELEASE6 then r := Array(0..da,A) else r := array(0..da,A); fi;
+       dr := da;
+
+       #while dr>=db do
+           #if not recdiv(r[dr+1],B[db+1],Na-1,Nb-1,E,M,'t') then RETURN(false) fi;
+           #if nargs=7 then q[dr-db] := t fi;
+           ##t := scamul(t,recmon([dr-db,0$(Na-1)]),Na,E,M);
+           ##r := recsub(r,recmul(t,B,Na,E,M),Na,M);
+           #r := recsub(r,recshift(recsca(B,t,Na,Na-1,E,M),[dr-db]),Na,M);
+           #if r=0 then
+           #   if nargs=7 then Q := [seq(q[i],i=0..da-db)] fi;
+           #   RETURN(true);
+           #fi;
+           #dr := nops(r)-1;
+       #od;
+
+       while dr>=db do
+           if not recdiv(r[dr],B[db+1],Na-1,Nb-1,E,M,'t') then RETURN(false) fi;
+           if nargs=7 then q[dr-db] := t fi;
+           # Compute r := r - t*x^(dr-db)*B overwriting r
+           for i from 0 to db-1 do 
+               r[dr-db+i] := recsub(r[dr-db+i],recmul(t,B[i+1],Na-1,E,M),Na-1,M);
+           od;
+           dr := dr-1; while dr>=0 and r[dr]=0 do dr := dr-1 od;
+           if dr=-1 then 
+              if nargs=7 then Q := [seq(q[i],i=0..da-db)] fi;
+              RETURN(true);
+           fi;
+       od;
+       false;
+    fi;
+end:
+
+
+gcdrpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL)
+local R,A,M,X,E,N,B,G,Z,one;
+    if nargs=1 then RETURN( ipprpoly(pprpoly(a)) ) fi;
+    if nargs>2 then RETURN( gcdrpoly(gcdrpoly(a,b),args[3..nargs]) ) fi;
+    checkconsistency(a,b);
+    R,A := op(a);
+    M,X,E := op(R);
+    N := nops(X);
+    B := op(2,b);
+    if N<>nops(E)+1 then ERROR("univariate only implemented") fi;
+    if A=0 and B=0 then RETURN( POLYNOMIAL(R,0) ) fi;
+    if A=0 then RETURN( ipprpoly(pprpoly(b)) ) fi;
+    if B=0 then RETURN( ipprpoly(pprpoly(a)) ) fi;
+    one := recmon([0$N]);
+    if A=one then RETURN(a) fi;
+    if B=one then RETURN(b) fi;
+if speedupZpt then
+    if N=1 and M<>0 then 
+    if RELEASE6 then
+       G := modp1(ConvertOut(Gcd(ConvertIn(A,_Z),ConvertIn(B,_Z))),M);
+       RETURN( POLYNOMIAL(R,G) );
+    else
+       G := modp1(ConvertOut(Gcd(ConvertIn(A),ConvertIn(B))),M);
+       RETURN( POLYNOMIAL(R,G) );
+    fi;
+    fi;
+    if N=2 and M<>0 and nops(E)=1 then
+       G := subs( []=0, zerodivisor( GFqGCD, [A,B,E[1],M], X ) );
+       RETURN( POLYNOMIAL(R,G) );
+    fi;
+fi;
+    G := zerodivisor( recgcd, [A,B,N,E,M], X );
+    G := ipprpoly( POLYNOMIAL(R,G) );
+end:
+
+
+resrpoly := proc(aa::POLYNOMIAL,bb::POLYNOMIAL,x::name)
+local R,A,M,X,E,N,B,F,a,b,c,d,e,da,db,r,dr,l;
+    a,b := aa,bb;
+    checkconsistency(a,b);
+    if nargs=3 then # take the resultant in x
+       a := makemainrpoly(a,x);
+       b := makemainrpoly(b,x);
+       RETURN( resrpoly(a,b) );
+    fi;
+    R,A := op(a);
+    M,X,E := op(R);
+    B := op(2,b);
+    N := nops(X);
+    if N=nops(E) then ERROR("cannot take the resultant of two constants") fi;
+    F := [M,X[2..-1],E];
+    if A=0 or B=0 then RETURN( POLYNOMIAL(F,0) ) fi;
+if speedupZpt then
+   if N=1 and M<>0 then
+if RELEASE6 then
+      r := modp1(Resultant(ConvertIn(A,_Z),ConvertIn(B,_Z)),M);
+else
+      r := modp1(Resultant(ConvertIn(A),ConvertIn(B)),M);
+fi;
+      RETURN( POLYNOMIAL(F,r) );
+   fi;
+fi;
+    da := degrpoly(a);
+    db := degrpoly(b);
+    if N-nops(E)>1 then # multivariate polynomials
+        # The following special cases just expand the determinant.
+        if da=1 and db=1 then 
+           c,d := coeffrpoly(b,1),coeffrpoly(b,0);
+           a,b := coeffrpoly(a,1), coeffrpoly(a,0);
+           RETURN( subrpoly( mulrpoly(a,d), mulrpoly(b,c) ) );
+        fi;
+        if da=1 and db=2 and iszerorpoly(coeffrpoly(b,1)) then
+           c,e := coeffrpoly(b,2), coeffrpoly(b,0);
+           a,b := coeffrpoly(a,1), coeffrpoly(a,0);
+           RETURN( addrpoly( mulrpoly(c,b,b), mulrpoly(a,a,e) ) );
+        fi;
+        if da=2 and db=1 and iszerorpoly(coeffrpoly(a,1)) then
+           c,e := coeffrpoly(a,2), coeffrpoly(a,0);
+           a,b := coeffrpoly(b,1), coeffrpoly(b,0);
+           RETURN( addrpoly( mulrpoly(c,b,b), mulrpoly(a,a,e) ) );
+        fi;
+        if da=2 and db=3 and iszerorpoly(coeffrpoly(b,2)) and
+                             iszerorpoly(coeffrpoly(b,1)) then
+           d,e := coeffrpoly(b,3),coeffrpoly(b,0);
+           a,b,c := coeffrpoly(a,2),coeffrpoly(a,1),coeffrpoly(a,0);
+           RETURN( addrpoly( mulrpoly(a,a,a,e,e),
+                             mulrpoly(3,a,e,d,b,c),
+                             mulrpoly(-1,d,b,b,b,e),
+                             mulrpoly(d,d,c,c,c) ) );
+        fi;   
+        RETURN( subresrpoly(aa,bb) );
+    fi;
+    R := convert(1,POLYNOMIAL,F);
+    while db > 0 do
+        l := lcrpoly(b);
+        r := remrpoly(a,b);
+        dr := degrpoly(r);
+        if dr = -infinity then RETURN( convert(0,POLYNOMIAL,F) ); fi;
+        R := mulrpoly(R,powrpoly(l,da-dr));
+        if irem( da*db, 2 ) = 1 then R := negrpoly(R) fi;
+        a,b := b,r;
+        da,db := db,dr;
+    od;
+    l := lcrpoly(b);
+    R := mulrpoly( R, powrpoly(l,da) );
+end:
+
+
+discrpoly := proc(f::POLYNOMIAL,x::name)
+    if nargs=2 then RETURN( discrpoly(makemainrpoly(f,x)) ) fi;
+    resrpoly(f,diffrpoly(f));
+end:
+
+
+subresrpoly := proc(p,q,last)
+local d,u,v,r,g,h,du,dv,R,M,X,E,s;
+    u := p;  du := degrpoly(u);
+    v := q;  dv := degrpoly(v);
+    if du<dv then # MBM: must interchange
+        u,v := v,u; du,dv := dv,du; s := (-1)^(du*dv);
+    else s := 1; # s keeps track of the sign
+    fi;
+    R := getring(p);
+    M,X,E := op(R);
+    R := [M,X[2..-1],E];
+    g,h := rpoly(1,R)$2;
+    while dv > 0 do
+        d := du-dv;
+        s := s*(-1)^(du*dv);
+        u,v := v,premrpoly(u,v); du,dv := dv,degrpoly(v);
+        if d>0 then if not divrpoly(v,mulrpoly(g,powrpoly(h,d)),'v') then print(division,FAIL); fi; fi;
+        g := coeffrpoly(u,du);
+        if d>0 then divrpoly(powrpoly(g,d),powrpoly(h,d-1),'h'); fi;
+    od;
+    if nargs=3 and last then RETURN(u) fi;
+    v := coeffrpoly(v,0); # drop x from the ring
+    divrpoly(powrpoly(v,du),powrpoly(h,du-1),'r');
+    if s=-1 then r := negrpoly(r); fi;
+    r
+end:
+
+#recgcd := proc(A,B,N,E,M)
+## This is the monic Euclidean algorithm for R[x] 
+#local i,r1,r2,q,g;
+#    i := recinv(A[-1],N-1,E,M);
+#    r1 := scamul(i,A,N,E,M);
+#    r2 := B;
+#    while r2<>0 do
+#        i := recinv(r2[-1],N-1,E,M);
+#        r2 := scamul(i,r2,N,E,M);
+#        r1,r2 := r2,recrem(r1,r2,N,E,M);
+#    od;
+#    r1;
+#end:
+
+recgcd := proc(A,B,N,E,M)
+# This is the monic Euclidean algorithm for R[x] coded to run "inplace",
+# i.e., the two polynomials are represented as two arrays of coefficients
+# and the remainder of A and B is computed "inline" and "inplace" in A.
+# NOTE: R may not necessarilly be a field.  For example, if we are
+# computing a GCD in Q(i)/[x] where i = sqrt(-1), using the modular algorithm,
+# then if the prime p chosen is p = 9967, then since z^2+1 is irreducible
+# modulo this prime, we would be computing over a finite field.  However
+# if p = 9973 then y^2+1 = (y+2798) (y+7175) hence y+2798 for example,
+# is not invertible.  If in the monic Euclidean algorithm the leading
+# coefficient of any remainder is not invertible, an error will be generated.
+# The error can be trapped and this prime can then be skipped.
+# However, if the monic Euclidean algorithm does succeed, the value returned
+# is the unique GCD of A and B.  The correctness of this statement
+# assumes that the GCD computed does not shortcut the termination of the
+# algorithm by, for example, if a remainder is a constant concluding that
+# the GCD must be 1.  This is not necessarilly true.  If a remainder is
+# a constant, we must test if it is invertible.
+# Author: Michael Monagan, 2000. 
+local i,k,m,n,a,b,g,one;
+   if A=0 or B=0 then ERROR("recgcd may not be called with 0") fi;
+   one := recmon([0$(N-1)]);
+   m,n := nops(A),nops(B);
+   a,b := array(1..m,A),array(1..n,B);
+   if m<n then m,n := n,m; a,b := eval(b),eval(a) fi;
+   i := recinv(a[m],N-1,E,M);
+   a[m] := one;
+   for k to m-1 do a[k] := recmul(i,a[k],N-1,E,M) od;
+   userinfo(2,gcdrpoly,Degrees(m-1,n-1));
+   while n>0 do
+      i := recinv(b[n],N-1,E,M);
+      b[n] := one;
+      for k to n-1 do b[k] := recmul(i,b[k],N-1,E,M) od;
+      for k to n-1 do a[m-n+k] := recsub(a[m-n+k],b[k],N-1,M) od;
+      m := m-1; while m>0 and a[m]=0 do m := m-1 od;
+      while m>=n do
+         for k to n-1 do a[m-n+k] := recsub(a[m-n+k],recmul(a[m],b[k],N-1,E,M),N-1,M) od;
+         m := m-1; while m>0 and a[m]=0 do m := m-1 od;
+      od;
+      m,n := n,m;
+      userinfo(2,gcdrpoly,Degrees(m-1,n-1));
+      a,b := eval(b),eval(a);
+   od;
+   g := [seq(a[k],k=1..m)];
+end:
+
+GFqGCD := proc(A,B,M,p)
+# This is the monic Euclidean algorithm for R[x] where R = Fp[y]/<m(y)>,
+# that is, a finite ring (field) with one ring (field) extension over Fp.
+# If M(y) is not irreducible over Fp then the algorithm may fail.
+# If this happens the output is an error and the zero divisor encountered.
+# Author: Michael Monagan, 2002.
+local i,k,m,n,a,b,g,one,zero,t,mp,x;
+   if A=0 or B=0 then ERROR("GFqGCD may not be called with 0") fi;
+if not RELEASE6 then x := NULL fi; # compatibility with Release 5
+   one := modp1(One(x),p);
+   zero := modp1(Zero(x),p);
+   mp := modp1(ConvertIn(M,x),p);
+   m,n := nops(A),nops(B);
+if RELEASE6 then
+   a := Array(1..m,[seq(modp1(ConvertIn(t,x),p),t=A)]);
+   b := Array(1..n,[seq(modp1(ConvertIn(t,x),p),t=B)]);
+else
+   a := array(1..m,[seq(modp1(ConvertIn(`if`(t=0,[],t),x),p),t=A)]);
+   b := array(1..n,[seq(modp1(ConvertIn(`if`(t=0,[],t),x),p),t=B)]);
+fi;
+   if m<n then m,n := n,m; a,b := eval(b),eval(a) fi;
+   g := modp1(Gcdex(a[m],mp,'i'),p);
+   if g <> one then
+      g := modp1(ConvertOut(g),p);
+      ERROR( "inverse does not exist", [p,1,[M],g] )
+   fi;
+   a[m] := one; for k to m-1 do a[k] := modp1(Rem(Multiply(i,a[k]),mp),p) od;
+   while n>0 do
+      g := modp1(Gcdex(b[n],mp,'i'),p);
+      if g <> one then
+         g := modp1(ConvertOut(g),p);
+         ERROR( "inverse does not exist", [p,1,[M],g] )
+      fi;
+      b[n] := one; for k to n-1 do b[k] := modp1(Rem(Multiply(i,b[k]),mp),p) od;
+      for k to n-1 do a[m-n+k] := modp1(Subtract(a[m-n+k],b[k]),p) od;
+      m := m-1; while m>0 and a[m]=zero do m := m-1 od;
+      while m>=n do
+         for k to n-1 do 
+             a[m-n+k] := modp1(Subtract(a[m-n+k],Rem(Multiply(a[m],b[k]),mp)),p)
+         od;
+         m := m-1; while m>0 and a[m]=zero do m := m-1 od;
+      od;
+      m,n := n,m;
+      a,b := eval(b),eval(a);
+   od;
+   g := [seq(modp1(ConvertOut(a[k]),p),k=1..m)];
+end:
+
+
+evalrpoly := proc(a::POLYNOMIAL,
+   point::{name={POLYNOMIAL,rational},set(name={POLYNOMIAL,rational}),
+                                     list(name={POLYNOMIAL,rational})})
+#--> evalrpoly(a(x),x=alpha) means evaluate the polynomial a(x) at the
+# point x=alpha where alpha is an element of a subfield(ring) of the
+# field(ring) generated by E not containing x.  Similarly
+#--> evalrpoly(a(x,y),{x=alpha,y=beta}) means evaluate the polynomial a(x,y)
+# at x=alpha,y=beta where ...
+# For example, consider the polynomial a(x,y,z) mod <g(y,z),f(z),m> .
+# One may evaluate at x=alpha where alpha can be in Z/<m> or Z[z]/<f(z)>
+# or Z[y,z]/<g(y,z),f(z)>.  On may evaluate at y=beta where beta must be
+# in either Z/<m> or Z[z]/<f(z)>.  One may also evaluate z in Z/<m>.
+# The input value for Z/<m> is a rational which is converted to Z/<m>.
+# The input value for Z[z]/<f(z)> and Z[y,z]/<g(y,z),f(z)> must be a POLYNOMIAL
+local R,A,M,X,N,E,F,K,x,alpha,L,B,Ralpha,Malpha,Xalpha,Ealpha,i,d;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X);
+   if type(point,{set,list}) then # evaluate bottom to top
+      A := a;
+      for i to N do
+          x := X[-i];
+          alpha := subs(point,x);
+          if alpha=x then next fi;
+          A := evalrpoly(A,x=alpha);
+      od;
+      RETURN(A);
+   fi;
+   x,alpha := op(point);
+   if not member(x,X,'L') then ERROR("input is not a polynomial in",x) fi;
+   if type(alpha,rational) then
+      K := 0;
+      F := [];
+      if M<>0 then alpha := modp(alpha,M); fi;
+   else
+      # check that alpha is an element of a subfield of E
+      Ralpha,alpha := op(alpha);
+      Malpha,Xalpha,Ealpha := op(Ralpha);
+      K := nops(Xalpha);
+      if K=0 then F := []; else F := E[-K..-1]; fi; # scafix here too
+      if M=Malpha and K<=N-L and scafix(Xalpha,X) and scafix(Ealpha,E) then
+      else ERROR("invalid evaluation point",point);
+      fi;
+   fi;
+   B := receval(A,N-L+1,N,alpha,K,F,M);
+   if N=1 then RETURN(B) fi;
+   X := subsop(L=NULL,X);
+   for i from N-L+2 to nops(E) do # evaluate extensions dependant on x
+       d := nops(E[-i]);
+       E[-i] := receval(E[-i],N-L+1,i,alpha,K,F,M);
+       if nops(E[-i])<d then
+          ERROR("evaluation may not cause an extension to lose degree")
+       fi;
+   od;
+   if L>N-nops(E) then E := subsop(-(N-L+1)=NULL,E) fi;
+   POLYNOMIAL([M,X,E],B);
+end:
+
+receval := proc(A,L,N,alpha,K,E,M)
+# N is the number of variables in A
+# L is the index of the variable being evaluated (L <= N)
+# K is the number of variables in alpha
+local a,m,n,k,s,S,B,x;
+   if A=0 then 0
+   elif N=L then
+if speedupZpt then
+   if not RELEASE6 then x := NULL fi;
+   if nops(E)=0 and M>0 and N=1 then # K = 0
+      RETURN(modp1(Eval(ConvertIn(A,x),alpha),M))
+   fi;
+   if nops(E)=1 and M>0 and N=2 and K=1 then
+         if alpha=0 then RETURN(A[1]) fi;
+         n := nops(A);
+         a := modp1(ConvertIn(alpha,x),M);
+         m := modp1(ConvertIn(E[1],x),M);
+         s := modp1(ConvertIn(A[n],x),M);
+         for k from n-1 by -1 to 1 do
+             s := modp1(Rem(Multiply(s,a),m),M);
+             if A[k]<>0 then s := modp1(Add(s,ConvertIn(A[k],x)),M); fi;
+         od;
+         s := modp1(ConvertOut(s),M);
+         if s=[] then RETURN(0) else RETURN(s) fi;
+   fi;
+fi;
+      if alpha=0 then RETURN(A[1]) fi;
+      n := nops(A);
+      S := A[n];
+      for k from n-1 by -1 to 1 do
+          S := recsca(S,alpha,N-1,K,E,M);
+          S := recadd(S,A[k],N-1,M);
+      od;
+      S;
+   else
+   #if nops(E)=0 and N=2 and M>0 and L=1 and K=0 then
+   #      B := [seq( modp1(ConvertIn(B,_Z),M), B=A )];
+   #      B := modp1( ConvertOut(Eval(B,alpha)), M );
+   #      if B=[] then B := 0 fi;
+   #      RETURN(B);
+   #fi;
+      B := [seq(receval(a,L,N-1,alpha,K,E,M),a=A)];
+      k := nops(B); while k>0 and B[k]=0 do k := k-1 od;
+      if k=0 then 0 else B[1..k] fi;
+   fi;
+end:
+
+phirpoly := proc(a::{POLYNOMIAL,POLYRING},m::{POLYNOMIAL,nonnegint})
+# Compute a mod m where the modulus m can be a polynomial or an integer
+# Case m::integer and M>0 is allowed provided m|M.
+# Case m::integer and M>0 and M|m should be done by retcharpoly.
+local R,A,M,X,E,N,rels,i,r,Rm,Am,Mm,Xm,Em,B;
+
+if nargs>2 then return phirpoly(phirpoly(a,m),args[3..nargs]); fi;
+if type(a,POLYRING) then RETURN( getring(phirpoly(POLYNOMIAL(a,0),m)) ); fi;
+
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X);
+   
+   if type(m,integer) then
+      if M=0 or irem(M,m)=0 then
+      # reduce also the algebraic extensions and ensure no loss of degree
+         rels := NULL;
+         for i from 1 to nops(E) do
+             r := recphi(E[-i],m,i,0,E,0);
+             if r=0 or nops(r)<nops(E[-i]) then ERROR("invalid map") fi;
+             rels := r,rels;
+         od;
+         POLYNOMIAL([m,X,[rels]],recphi(A,m,N,0,E,M))
+      else ERROR("invalid operation");
+      fi;
+   else # polynomial case
+      Rm,Am := op(m);
+      Mm,Xm,Em := op(Rm);
+      if nops(Xm)-nops(Em) <> 1 then ERROR("modulus must be univariate") fi;
+      if Am=0 then ERROR("modulus must be non-zero") fi;
+      #r := Am[-1];
+      #for i to nops(Xm)-1 do 
+      #   if nops(r)>1 then ERROR("modulus must be monic") fi;
+      #   r := r[1];
+      #od;
+      if Mm <> M or Em <> E or Xm <> X[-nops(Xm)..-1] then ERROR("unable to map") fi;
+      B := zerodivisor( recphi, [A,Am,N-nops(Xm),nops(Xm),E,M], X );
+      POLYNOMIAL([M,X,[Am,op(E)]],B)
+   fi;
+end:
+modrpoly := eval(phirpoly):
+
+
+recphi := proc(A,m,L,N,R,M)
+local B,k;
+   if A=0 then 0
+   elif L=0 then
+        if type(m,integer) then A mod m else recrem(A,m,N,R,M) fi;
+   else 
+        if L=1 and type(m,integer) then B := modp(A,m); else B := map(recphi,A,m,L-1,N,R,M); fi;
+        k := nops(B); while k>0 and B[k]=0 do k := k-1 od;
+        if k=0 then 0 else B[1..k] fi;
+   fi;
+end:
+
+
+liftrpoly := proc(R::{POLYNOMIAL,POLYRING})
+# drop the last algebraic extension or the modulus
+local M,X,E;
+   if type(R,POLYNOMIAL) then RETURN( POLYNOMIAL(liftrpoly(getring(R)),getpoly(R)) ) fi;
+   M,X,E := op(R);
+   if nops(E)>0 then E := E[2..-1]; else M := 0; fi;
+   [M,X,E];
+end:
+
+
+retcharpoly := proc(a::{POLYNOMIAL,POLYRING},m::posint)
+# Retract from characteristic p to characteristic m (default 0)
+   if nargs=1 then
+      if type(a,POLYRING) then RETURN( subsop( 1=0, a ) ) fi;
+      POLYNOMIAL( retcharpoly(getring(a)), getpoly(a) );
+   elif type(a,POLYRING) then 
+      if a[1]=0 or irem(m,a[1])<>0 then ERROR("invalid operation") fi;
+      subsop(1=m,a);
+   else POLYNOMIAL( retcharpoly(getring(a),m), getpoly(a) );
+   fi;
+end:
+
+
+retextsrpoly := proc(a::{POLYNOMIAL,POLYRING})
+# Retract all algebraic extensions
+   if type(a,POLYRING) then RETURN( subsop( 3=[], a ) ) fi;
+   POLYNOMIAL( retextsrpoly(getring(a)), getpoly(a) );
+end:
+
+
+retvarpoly := proc(a::{POLYNOMIAL,POLYRING})
+# Let a be in R[x] or R[x]/<m(x)> with deg[x](a)=0.  Retract a to be in R.
+local R,A,M,X,E,N;
+   if type(a,POLYNOMIAL) then R,A := op(a); else R := a; fi;
+   M,X,E := op(R);
+   N := nops(X);
+   if N=0 then ERROR("input cannot be Zn or Q") fi;
+   if assigned(A) and nops(A)>1 then ERROR("input must be a constant") fi;
+   X := X[2..-1];
+   if N=nops(E) then E := E[2..-1] fi;
+   R := [M,X,E];
+   if assigned(A) then POLYNOMIAL(R,A[1]); else R fi;
+end:
+
+
+# Let a be in Q[alpha,beta]/<m1(beta,alpha),m2(alpha)>[x,y,z] then
+# Then a = POLYNOMIAL( [M=0,X=[x,y,z,beta,alpha],E=[m1,m2]], ... )
+#--> getalgext(a) gets m1(beta,alpha) the main extension
+#--> getalgext(a,1) gets m1(beta,alpha) (the first extension)
+#--> getalgext(a,2) gets m2(alpha)
+#--> getalgext(a,-2) gets m1(beta,alpha)
+#--> getalgext(a,-1) gets m2(alpha) (the last extension)
+getalgext := proc(a::{POLYNOMIAL,POLYRING},n::integer)
+local R,A,M,X,E;
+  if nargs=1 then # make this case fast
+     if type(a,list) then R := a; else R := getring(a); fi;
+     M,X,E := op(R);
+     X := X[nops(X)-nops(E)+1..-1];
+  else
+     R := getcofring(args);
+     M,X,E := op(R); 
+  fi;
+  if E = [] then ERROR("no extensions") fi;
+  POLYNOMIAL( [M,X,E[2..-1]], E[1] );
+end:
+
+getalgexts := proc(a::{POLYNOMIAL,POLYRING})
+local R,A,M,X,E,N,i;
+     if type(a,POLYRING) then R := a; else R := getring(a) fi;
+     M,X,E := op(R);
+     N := nops(E);
+     [seq( getalgext(a,N-i), i=0..N-1 )];
+end:
+ 
+
+getcofring := proc(a::{POLYNOMIAL,POLYRING},n::integer)
+local R,M,X,E,N,Y;
+  if type(a,list) then R := a else R := op(1,a) fi;
+  M,X,E := op(R); N := nops(E); Y := X[nops(X)-N+1..-1];
+  if nargs=1 then RETURN( [M,Y,E] ) fi;
+  if n=0 or n=N+1 then RETURN( [M,[],[]] ) fi;
+  if n>0 then
+     if n>N then ERROR("extension index out of range") fi;
+     [M,Y[n..-1],E[n..-1]];
+  else # n<0 then use negative indexing
+     if n<-N then ERROR("extension index out of range") fi;
+     [M,Y[n..-1],E[N+n+1..-1]];
+  fi;
+end:
+
+getpolvars := proc(a::POLYNOMIAL) local R,M,X,E,N;
+  R := op(1,a);
+  M,X,E := op(R);
+  N := nops(E);
+  X[1..-N-1];
+end:
+
+
+extrpoly := proc(a::POLYNOMIAL,b::{name,POLYNOMIAL})
+# Let a be in F[x1,x2,...,xn].
+# If b = y, a variable, put a in F[x1,x2,...,y].
+# If b is in in F[y] then extrpoly(a,b) == phirpoly(extrpoly(a,x),b)
+local R,A,M,X,E,N,B,Rb,Mb,Xb,Eb,Nb,x,n;
+   R,A := op(a);
+   M,X,E := op(R);
+   N := nops(X);
+if type(b,name) then
+   x := b;
+   n := nops(E);
+   R := [ M, [op(1..N-n,X),x,op(N-n+1..N,X)], E ];
+   A := recext(A,N-n);
+   POLYNOMIAL(R,A);
+else
+   Rb,B := op(b);
+   if B=0 or nops(B)=1 then ERROR("invalid extension") fi;
+   Mb,Xb,Eb := op(Rb);
+   Nb := nops(Xb);
+   x := Xb[1];
+   n := nops(E);
+   if M=Mb and scafix(Xb[2..-1],X) and Eb=E and not member(x,X) then
+      R := [ M, [op(1..N-n,X),op(Xb)], [B,op(E)] ];
+      A := recext(A,N-n);
+      POLYNOMIAL(R,A);
+   else error "inputs have incompatible rings";
+   fi;
+fi
+end:
+
+recext := proc(A,L) if A=0 then 0 elif L=0 then [A] else map(recext,A,L-1) fi; end:
+
+#
+#--> maprpoly(f,a,n)
+#
+# Map the function f onto the coefficients of the polynomial a.
+# Note, it is assumed that f(0) = 0.
+# By default map onto the coefficient field implied by E the extensions in a.
+# Otherwise, if n is specified, map n levels down before applying f
+#
+maprpoly := proc(f,a::POLYNOMIAL,N::nonnegint)
+local R,A,M,X,E;
+   R,A := op(a);
+   M,X,E := op(R);
+   if nargs=3 then A := recmap(f,A,N) else A := recmap(f,A,nops(X)-nops(E)) fi;
+   POLYNOMIAL(R,A);
+end:
+
+recmap := proc(f,A,n)
+   if A=0 then A # assumes f(0) = 0
+   elif n=0 then f(A) 
+   else map2(recmap,f,A,n-1)
+   fi
+end: 
+
+interprpoly := proc(g::list(POLYNOMIAL),alpha::{list(rational),list(POLYNOMIAL)},z::name) 
+local R,A,M,X,E,N,C,u,ALPHA,m,i,Mb,B,Xb,Eb,one,n;
+   R := map( g -> op(1,g), {op(g)} );
+   if nops(R) <> 1 then ERROR("polynomials must be over the same ring") fi;
+   R,A := op(g[1]);
+   M,X,E := op(R);
+   N := nops(R);
+     if type(alpha,list(rational)) then
+      if M=0 then ALPHA := alpha else ALPHA := modp(alpha,M) fi;
+      if E<>[] then # allow points in ground field in Maple format
+         n := nops(E);
+         to n do ALPHA := [seq( [u], u=ALPHA )]; od;
+         R := [M,X[nops(X)-n+1..-1],E];
+         C := [seq( POLYNOMIAL(R,u), u=ALPHA )];
+         return interprpoly(g,C,z);
+      fi;
+      R := [M,[z],E];
+      if M=0 then ALPHA := -ALPHA else ALPHA := modp(-ALPHA,M) fi;
+      m := [seq( POLYNOMIAL(R,[u,1]), u=ALPHA )];
+   else
+      R := map( a -> op(1,a), {op(alpha)} );
+      if nops(R) <> 1 then ERROR("moduli must be over the same ring") fi;
+      R,B := op(alpha[1]);
+      Mb,Xb,Eb := op(R);
+      if Mb=M and nops(Xb)=0 and nops(E)>0 then # allow points in ground field in rpoly format
+         ALPHA := [seq( op(2,u), u=alpha )]; # strip off POLYNOMIAL
+         return( interprpoly(g,ALPHA,z) );
+      fi;
+      if Mb<>M or Eb<>E or not scafix(Xb,X) then ERROR("incompatible moduli") fi;
+      one := monrpoly(R,[0$nops(Xb)]);
+      R := [M,[z,op(Xb)],E];
+      m := map( a -> POLYNOMIAL(R,[op(2,scarpoly(-1,a)),op(2,one)]), alpha );
+   fi;
+   u := [seq( extrpoly(g[i],m[i]), i=1..nops(g) )];
+   liftrpoly( chremrpoly(u) );
+end:
+
+ichremrpoly := proc(U::list(POLYNOMIAL)) local M,X,E,u,m;
+  if nops(U)=0 then ERROR("at least one image expected") fi;
+  M := [seq(getchar(u),u=U)];
+  if has(M,0) then ERROR("polynomials cannot be input over the rationals"); fi;
+  X := {seq(getvars(u),u=U)};
+  if nops(X)>1 then ERROR("images must be in the same variables") fi;
+  E := {seq(getexts(u),u=U)};
+  if E <> {[]} then ERROR("no extensions are allowed") fi;
+  u,m := recichrem(U,M);
+  u
+end:
+
+recichrem := proc(u::list(POLYNOMIAL),m::list(integer)) 
+local R,A,M,X,E,n,u1,u2,m1,m2,m1m2,v0,v1,a,b,x;
+  
+  n := nops(u);
+  if n=1 then RETURN(u[1],m[1]) fi;
+  u1,m1 := recichrem(u[1..n-1],m[1..n-1]);
+  u2,m2 := u[n],m[n];
+  
+  # This is the divide and conquer approach  
+  # l := iquo(n,2);
+  # u1,m1 := chremrpoly(u[1..l],m[1..l]);
+  # u2,m2 := chremrpoly(u[l+1..n],m[l+1..n]);
+  
+  v0 := u1;
+  
+  # all this to compute v1
+  v0 := liftrpoly(v0);
+  u2 := liftrpoly(u2);       # now v0 and u2 are over the same ring
+  a := subrpoly(u2,v0);      # so we can subtract them over Z
+  
+  b := 1/m1 mod m2; #inverse of m1 mod m2        
+   
+  #v1 := scarpoly(b,a);
+  #v1 := liftrpoly(phirpoly(v1,m2));
+  #v1 := addrpoly(v0,scarpoly(m1,v1));
+  #m1m2 := m1*m2;
+  #RETURN(phirpoly(v1,m1m2), m1m2);
+
+  v1 := addrpoly(v0,maprpoly(x -> modp(b*x,m2)*m1, a)); 
+  m1m2 := m1*m2;
+  RETURN(subsop([1,1]=m1m2,v1),m1m2);
+
+end:
+
+irrrpoly := proc(a::POLYNOMIAL,gamma::integer) local R,A,M,X,E,N,B,C,G,L;
+global last_monomial;
+    R,A := op(a);
+    M,X,E := op(R);
+    N := nops(X);
+    if M=0 then ERROR("polynomial must be over the integers modulo n") fi;
+    if M=2 then ERROR("cannot do rational reconstruction modulo 2") fi;
+    B := isqrt(iquo(M,4)); C := iquo(B,8); # trivially satisfies 2 B C < M
+    if C=0 then RETURN(FAIL) fi;
+    if nargs=2 then G := gamma else G := 0 fi;
+# If last_monomial = [3,1,2] say then irrrpoly last failed on
+# a polynomial f on the coefficient op([3,1,2],getpoly(f));
+# The idea is to start working on that coefficient and cycle round.
+    if assigned(last_monomial) and nops(last_monomial)=N then L := last_monomial else L := [1$N] fi;
+    last_monomial := [];
+    A := recirrr(A,N,M,B,C,G,L); 
+    if A=FAIL then RETURN(FAIL) fi;
+    POLYNOMIAL([0,X,E],A)
+end:
+
+macro(iratrecon=readlib(iratrecon)):
+recirrr := proc(A,N,M,B,C,G,L) local a,r,i,m,n,d;
+global last_monomial;
+    if A=0 then 0
+    elif N>0 then
+       #  map(recirrr,A,N-1,M,B,C,G);
+       # NB: here, map is running over the coefficients of A of
+       # least degree to greatest degree which is exactly what we want
+       # because the trailing coefficient is likely to be larger
+       # and hence rational reconstruction can fail earlier
+       m := nops(A); if L[N] > m then i := 1; else i := L[N] fi; # start position
+       to m do 
+          r := recirrr(A[i],N-1,M,B,C,G,L); 
+          if r=FAIL then last_monomial := [op(last_monomial),i]; RETURN(FAIL); fi;
+          a[i] := r; i := i+1; if i>m then i := 1; fi; 
+       od;
+       RETURN([seq(a[i],i=1..m)]);
+    else if iratrecon(A,M,B,C,'n','d') and irem(G,d)=0 then n/d else FAIL fi; 
+    fi
+end:
+macro(iratrecon=iratrecon):
+
+
+rrrpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL,NB::nonnegint,DB::nonnegint)
+# Given a,b in F[x] find n,d in F[x] s.t. n/d == a(x) mod b(x).
+# Such n/d exists and is unique if GCD(n,d)=1 and degree(n)+degree(d)<degree(b).
+# This routines looks for n of degree NB and d of degree DB.
+local R,A,M,X,E,N,B,C;
+    checkconsistency(a,b);
+    R,A := op(a);
+    M,X,E := op(R);
+    N := nops(X);
+    B := op(2,b);
+    if N>nops(E)+1 then ERROR("polynomials must be univariate") fi;
+    if B=0 then ERROR("division by zero") fi;
+    if not (NB+DB<nops(B)-1) then ERROR("invalid bounds") fi;
+    C := traperror( recrr, [A,B,N,E,M,NB,DB], X );
+    if C=FAIL then RETURN(FAIL) fi;
+    [POLYNOMIAL(R,C[1]),POLYNOMIAL(R,C[2])];
+end:
+
+recrr := proc(a,b,N,E,M,NB,DB)
+local r1,r2,s1,s2,one,t,i,n,d,q,notfound;
+
+    if b=0 then ERROR("division by zero"); fi;
+    one := recmon([0$N]);
+    if a=0 then RETURN([0,one]) fi;
+    if nops(a)>=nops(b) then RETURN( recrr(recrem(a,b,N,E,M),b,args[3..nargs]) ) fi;
+
+    # Note that the algorithm starts with deg(r1) < deg(r2)
+    # Note this is the MONIC half extended Euclidean algorithm
+
+    (r1,r2) := (a,b);
+    (s1,s2) := (one,0);
+    i := recinv(r1[-1],N-1,E,M);
+    (r1,s1) := scamul(i,r1,N,E,M),scamul(i,s1,N,E,M);
+    notfound := true;
+    while r2 <> 0 do
+        i := recinv(r2[-1],N-1,E,M);
+        (r2,s2) := scamul(i,r2,N,E,M),scamul(i,s2,N,E,M);
+        (r1,r2) := r2,recrem(r1,r2,N,E,M,'q');
+        if notfound then
+           t := recmul(q,s2,N,E,M);
+           #(s1,s2) := s2,recadd(s1,recneg(t,N,M),N,M);
+           (s1,s2) := s2,recsub(s1,t,N,M);
+        fi;
+        if notfound and nops(r1)-1<=NB then
+           if nops(s1)-1>DB then RETURN(FAIL) fi;
+           (n,d) := (r1,s1); notfound := false;
+        fi;
+    od;
+    if nops(r1)>1 then RETURN(FAIL) fi;
+    i := recinv(d[-1],N-1,E,M);
+    [scamul(i,n,N,E,M), scamul(i,d,N,E,M)];
+
+end:
+
+diffrpoly := proc(a::POLYNOMIAL,x::{name,posint})
+local R,A,M,X,E,N,D,k;
+    (R,A) := op(a);
+    (M,X,E) := op(R); 
+    N := nops(X);
+    if N<nops(E)+1 then ERROR("must be a polynomial") fi;
+    if nargs=1 then RETURN( diffrpoly(a,1) ) fi;
+    if type(x,name) then
+       if not member(x,X,'k') then ERROR("not a polynomial in this variable") fi;
+       RETURN( diffrpoly(a,k) );
+    else # x is an integer
+       if x<1 or x>N then ERROR("not a polynomial in this variable") fi;
+       D := recdiff(A,N,N-x+1,E,M);
+       POLYNOMIAL(R,D);
+    fi;
+end:
+
+recdiff := proc(A,N,L,E,M) local D,k;
+    if A=0 then return 0 fi;
+    if N>L then D := [seq( recdiff(A[k],N-1,L,E,M),  k=1..nops(A) )]
+    elif M=0 then D := [seq( (k-1)*A[k], k=2..nops(A) )]; # shortcut
+    else D := [seq( recsca(A[k],k-1,N-1,0,E,M), k=2..nops(A) )];
+    fi;
+    for k from nops(D) by -1 to 1 while D[k]=0 do od;
+    if k=0 then D := 0; else D := D[1..k]; fi;
+end:
+
+nrpoly := proc(a::POLYNOMIAL)
+# compute the next polynomial (over a finite ring)
+local R,A,M,X,E,N,d,one,b;
+    (R,A) := op(a); (M,X,E) := op(R); N := nops(X);
+    if N=nops(E)+1 and M<>0 then else ERROR("input must be a polynomial over a finite ring") fi;
+    if a=0 then one := monrpoly(R,[0$N]); RETURN(one); fi;
+    b := POLYNOMIAL(R,recnp(A,N,E,M));
+end:
+
+recnp := proc(A,N,E,M)
+local B,d,i,a;
+    if N=0 then RETURN( A+1 mod M ) fi;
+    if A=0 then RETURN( recmon([0$N]) ) fi;
+    B := A;
+    d := nops(A)-1;
+    for i to d+1 do
+        a := recnp(B[i],N-1,E,M);
+        B := subsop(i=a,B);
+        if a<>0 then RETURN(B) fi;
+    od;
+    if N<=nops(E) and nops(A)=nops(E[-N]-1) then RETURN(0) fi;
+    recmon([d+1,0$(N-1)]);
+end:
+
+nrprpoly := proc(a::POLYNOMIAL,m::POLYNOMIAL)
+# compute the next polynomial from a which is relatively prime to m
+local b;
+    b := nrpoly(a); while degrpoly(gcdrpoly(b,m)) > 0 do b := nrpoly(b) od; b;
+end:
+
+nmirpoly := proc(a::POLYNOMIAL)
+# compute the next monic irreducible polynomial
+local R,A,M,X,E,N,d,x,b,one;
+    (R,A) := op(a); (M,X,E) := op(R); N := nops(X);
+    if N=nops(E)+1 and M<>0 and isprime(M) then else ERROR("not implemented") fi;
+    if A=0 then x := monrpoly(R,[0$(N-1),1]); RETURN(x); fi;
+    d := degrpoly(a);
+    if d=0 then x := monrpoly(R,[1,0$(N-1)]); RETURN(x); fi;
+    if nops(E)=0 and A[-1]<>1 then RETURN(nmirpoly(monrpoly(R,[d+1]))) fi;
+    if nops(E)>0 and A[-1]<>recmon([0$(N-1)]) then
+       RETURN(nmirpoly(monrpoly(R,[d+1,0$(N-1)]))) fi;
+    b := POLYNOMIAL(R,recnmp(A,N,E,M));
+    if irredrpoly(b) then b else nmirpoly(b) fi;
+end:
+
+recnmp := proc(A,N,E,M)
+local B,d,i,a;
+    if N=0 then RETURN( A+1 mod M ) fi;
+    if A=0 then RETURN( recmon([0$N]) ) fi;
+    B := A;
+    d := nops(A)-1;
+    for i to d do
+        a := recnmp(B[i],N-1,E,M);
+        B := subsop(i=a,B);
+        if a<>0 then RETURN(B) fi;
+    od;
+    if N<=nops(E) and nops(A)=nops(E[-N]-1) then RETURN(0) fi;
+    recmon([d+1,0$(N-1)]);
+end:
+
+randrpoly := proc(R::POLYRING,d::nonnegint)
+# create a random polynomial of degree d over a finite ring
+# R should be a univariate polynomial ring over a finite ring
+local M,X,E,N;
+    M,X,E := op(R); N := nops(X);
+    if M=0 then ERROR("polynomial must be over a finite ring") fi;
+    if nops(X)<>nops(E)+1 then ERROR("multivariate case not implemented") fi;
+    liftrpoly( randffelem( [M,X,[recmon([d+1,0$(N-1)]),op(E)]] ) );
+end:
+
+randffelem := proc(R::[integer,list(name),list],rng::procedure)
+# create a random element from the finite field R
+local M,X,E,N;
+    M,X,E := op(R); N := nops(X);
+    if M=0 then ERROR("polynomial must be over a finite ring") fi;
+    if nargs=1 then RETURN( randffelem(R,rand(M)) ) fi;
+    if N<>nops(E) then ERROR("invalid ring") fi;
+    POLYNOMIAL( R, recran(rng,E) )
+end:
+
+recran := proc(Zp,E)
+local i,n,A;
+    if E = [] then RETURN( Zp() ) fi;
+    n := nops(E[1]);
+    A := [seq( recran(Zp,E[2..-1]), i=1..n-1 )]; 
+    for i from n-1 by -1 to 1 while A[i]=0 do od;
+    if i=0 then RETURN(0) else RETURN(A[1..i]) fi;
+end:
+
+###################################################################################
+#
+# Operations not dependent on op or the structure
+#
+
+
+# idenomrpoly( 3*x^2+x/4-1/6 ) = 12
+idenomrpoly := proc(a::POLYNOMIAL) local x;
+   ilcm( seq(denom(x), x={icoeffsrpoly(a)} ) );
+end:
+
+
+# icoeffsrpoly( 3*x^3+x/4-1/6 ) = -1/6, 1/4, 3 
+icoeffsrpoly := proc(a::POLYNOMIAL) irecofs(getpoly(a),nops(getvars(a))) end:
+irecofs := proc(A,L) local a;
+if A=0 then NULL elif L=0 then A else seq(irecofs(a,L-1),a=A) fi
+end:
+
+
+# The integer content version is like Maple's.  If the polynomial is
+# over Q dividing by the integer content will make it primitive over Z
+# So that this function can be applied to polynomials of characteristic n
+# as well as characteristic 0, we make them monic in that case.
+icontrpoly := proc(a::POLYNOMIAL,pp::name)
+local R,A,M,X,E,N,C,c,i,n,d;
+   R := getring(a);
+   M := getchar(a);
+   X := getvars(a);
+   N := nops(X);
+   if iszerorpoly(a) then if nargs=2 then pp := a; fi; RETURN(a) fi;
+   if M<>0 then
+      c := ilcrpoly(a,N);
+      i := 1/c mod M;
+      if nargs=2 then pp := maprpoly(c -> modp(i*c,M),a,N) fi;  
+      RETURN(c)
+   fi;
+   C := {icoeffsrpoly(a)};
+   if type(C,set(integer)) then 
+      c := igcd(op(C));
+      if nargs=2 then 
+         if c=0 then pp := rpoly(0,R); else pp := maprpoly(x -> iquo(x,c),a,N) fi;
+      fi;
+      c
+   else
+      ASSERT(type(C,set(rational)));
+      n := map(numer,C);
+      d := map(denom,C);
+      c := igcd(op(n))/ilcm(op(d));
+      if nargs=2 then 
+         if c=0 then pp := rpoly(0,R); else pp := maprpoly(x -> x/c,a,N) fi;
+      fi;
+      c
+   fi;
+end:
+
+
+ipprpoly := proc(a::POLYNOMIAL,cc::name)
+local c,pp,u,N;
+   if iszerorpoly(a) then if nargs=2 then cc := 0; fi; RETURN(a) fi;
+   c := icontrpoly(a,'pp');
+   N := nops(getvars(a));
+   u := sign(ilcrpoly(pp,N));
+   if u=-1 then pp := maprpoly(x -> -x,pp,N); fi;
+   if nargs=2 then cc := c*u fi;
+   pp;
+end:
+
+
+modprpoly := proc(a::POLYNOMIAL) local R,A,M,X,E;
+# Change representation for Zp to the positive representation
+  R,A := op(a); M,X,E := op(R);
+  if M=0 then a else POLYNOMIAL([M,X,modp(E,M)],modp(A,M)) fi;
+end:
+
+
+modsrpoly := proc (a::POLYNOMIAL) local R,A,M,X,E;
+# Change representation for Zp to the symmetric representation
+  R,A := op(a); M,X,E := op(R);
+  if M=0 then a else POLYNOMIAL([M,X,mods(E,M)],mods(A,M)) fi;
+end:
+
+
+iquorpoly := proc(a::POLYNOMIAL,b::integer) 
+local R,A,M,X,E,N;
+    if b=1 then RETURN(a) fi;
+    R,A := op(a);
+    M,X,E := op(R);
+    if M<>0 then ERROR("polynomial must be over Z"); fi;
+    N := nops(X);
+    POLYNOMIAL(R,reciquo(A,b,N));
+end:
+
+
+reciquo := proc(A,b,N) local B,i;
+    if A=0 then 0
+    elif N=0 then
+      if not type(A,integer) then ERROR("polynomial must be over Z") fi;
+      if irem(A,b,'i')=0 then i else ERROR("division failed") fi;
+    else B := map(reciquo,A,b,N-1); for i to nops(B) while B[-i] = 0 do od; B[1..-i]
+    fi
+end:
+
+
+chremrpoly := proc(U::list(POLYNOMIAL)) local R,M,X,u,m;
+  if nops(U)=0 then ERROR("at least one image expected") fi;
+  M := {seq( getchar(u), u=U )};
+  if nops(M) <> 1 then ERROR("inconsistent base rings") fi;
+  X := {seq( getvars(u), u=U )};
+  if nops(X)>1 then ERROR("images must be in the same variables") fi;
+  M := [seq( getalgext(u), u=U )]; 
+  R := {seq( getring(u), u=M )};
+  if nops(R) <> 1 then ERROR("images must be over the same ring") fi;
+  u,m := recchrem(U,M);
+  u
+end:
+
+recchrem := proc(u::list(POLYNOMIAL),m::list(POLYNOMIAL)) 
+local n,u1,u2,m1,m2,v0,v1,v,a,i;
+  
+  n := nops(u);
+  if n=1 then RETURN(u[1],m[1]) fi;
+
+  # This is the divide and conquer approach  
+  # l := iquo(n,2);
+  # u1,m1 := chremrpoly(u[1..l],m[1..l]);
+  # u2,m2 := chremrpoly(u[l+1..n],m[l+1..n]);
+  
+  u1,m1 := recchrem(u[1..n-1],m[1..n-1]);
+  u2,m2 := u[n],m[n];
+  
+  # The following is critical for efficiency: when we solve u = v0 + v1 m1 mod m2
+  # for v1 we want m2 to be the smaller (in degree) of m1 and m2.
+
+  if nops(getpoly(m1)) < nops(getpoly(m2)) then u1,m1,u2,m2 := u2,m2,u1,m1 fi;
+
+# The following is is a waste of time because reconstruction
+# is done accross polynomials it is rarely used.
+#
+#p := getchar(u1);
+#X := getvars(u1);
+#
+#if speedupZpt=true and p>0 and nops(X)=1 then
+#if RELEASE6 then
+#  u1,m1 := modp1(ConvertIn(getpoly(u1),_Z),p), modp1(ConvertIn(getpoly(m1),_Z),p);
+#  u2,m2 := modp1(ConvertIn(getpoly(u2),_Z),p), modp1(ConvertIn(getpoly(m2),_Z),p);
+#  v0 := u1;
+#  if not modp1(IsOne(Gcdex(m1,m2,'i')),p) then ERROR( "inverse does not exist" ) fi;
+#  v1 := modp1(Rem(Multiply(i,Subtract(u2,Rem(v0,m2))),m2),p);
+#  a := modp1(ConvertOut(Add(v0,Multiply(v1,m1))),p); if a=[] then a := 0 fi;
+#  m1m2 := modp1(ConvertOut(Multiply(m1,m2)),p);
+#  RETURN( POLYNOMIAL([p,X,[m1m2]],a), POLYNOMIAL([p,X,[]],m1m2) );
+#else
+#  u1,m1 := modp1(ConvertIn(getpoly(u1)),p), modp1(ConvertIn(getpoly(m1)),p);
+#  u2,m2 := modp1(ConvertIn(getpoly(u2)),p), modp1(ConvertIn(getpoly(m2)),p);
+#  v0 := u1;
+#  if not modp1(IsOne(Gcdex(m1,m2,'i')),p) then ERROR( "inverse does not exist" ) fi;
+#  v1 := modp1(Rem(Multiply(i,Subtract(u2,Rem(v0,m2))),m2),p);
+#  a := modp1(ConvertOut(Add(v0,Multiply(v1,m1))),p); if a=[] then a := 0 fi;
+#  m1m2 := modp1(ConvertOut(Multiply(m1,m2)),p);
+#  RETURN( POLYNOMIAL([p,X,[m1m2]],a), POLYNOMIAL([p,X,[]],m1m2) );
+#fi;
+#fi;
+
+  # Let v = v0 + v1*m1.  We have v == u1 mod m1 and v = u2 mod m2.
+  # u1 == v0 (mod m1) ==> v0 == u1 mod m1 ==> v0 = u1.
+  # u2 == v0 + v1*m1 (mod m2) ==> v1 == (u2 - u1)/m1 mod m2.
+  # In the computation the variable a = u2 - (u1 mod m2)
+
+  v0 := liftrpoly(u1);
+   a := subrpoly(u2,phirpoly(v0,m2));
+   i := invrpoly(phirpoly(m1,m2));
+  v1 := liftrpoly(scarpoly(i,a));
+   v := addrpoly(v0,scarpoly(m1,v1));
+   n := mulrpoly(m1,m2);
+   v := phirpoly(v,n);
+   RETURN(v,n);
+
+end:
+
+
+lcmrpoly := proc(a::POLYNOMIAL,b::POLYNOMIAL)
+local R,A,M,X,E,N,B,g,l,i,zero,one;
+    checkconsistency(a,b);
+    R := getring(a);
+    M,X,E := op(R);
+    N := nops(X);
+    if N<>nops(E)+1 then ERROR("polynomials must be univariate") fi;
+    B := op(2,b);
+    zero := convert(0,POLYNOMIAL,R);
+    if A=zero or B=zero then RETURN(zero) fi;
+    one := convert(1,POLYNOMIAL,R);
+    if A=one then l := b;
+    elif B=one then l := a;
+    elif A=B then l := a;
+    else g := gcdrpoly(a,b); l := mulrpoly(quorpoly(a,g),b);
+    fi;
+    i := invrpoly(lcrpoly(l));
+    l := scarpoly(i,l);
+end:
+
+
+contrpoly := proc(a::POLYNOMIAL,Y::{nonnegint,name,list(name)},pp::name)
+local R,M,X,E,N,zero,one,C,g,c;
+   R := getring(a);
+   M,X,E := op(R);
+   N := nops(X);
+   C := {coeffsrpoly(a,Y)};
+   if C={} then # a must be the zero polynomial
+      if type(Y,name) then N := 1 elif type(Y,list) then N := nops(Y) else N := Y fi;
+      c := convert( 0, POLYNOMIAL, [M,X[N+1..-1],E] );
+      if nargs=3 then pp := a; fi;
+      RETURN(c);
+   fi;
+   if type(C[1],rational) then ERROR("invalid operation") fi;
+   R := getring(C[1]);
+   M,X,E := op(R);
+   N := nops(X);
+   if nops(X) = nops(E) then # content is 1
+      g := convert(1,POLYNOMIAL,R);
+   else
+      C := sort( [op(C)], proc(a,b) evalb(degrpoly(a)<degrpoly(b)) end );
+      zero,one := convert(0,POLYNOMIAL,R),convert(1,POLYNOMIAL,R);
+      g := zero;
+      for c in C while g <> one do g := gcdrpoly(c,g); od;
+   fi;
+  
+   if nargs=3 then divrpoly(a,g,pp) fi;
+   g
+end:
+
+
+pprpoly := proc(a::POLYNOMIAL,Y::{nonnegint,name,list(name)},cc::name)
+local c,pp,l;
+   if nargs=1 then 
+      if iszerorpoly(a) then RETURN(a) fi;
+      RETURN(scarpoly(invrpoly(lcrpoly(a)),a));
+   fi;
+   c := contrpoly(a,Y,'pp');
+   l := lcrpoly(pp);
+   if nargs=3 then cc := scarpoly(l,c) fi;
+   pp := scarpoly(invrpoly(l),pp);
+end:
+
+
+powmodrpoly := proc(a::POLYNOMIAL,e::nonnegint,b::POLYNOMIAL)
+local R,A,B,C,M,X,E,N,S,one,zero,r,s,n;
+    checkconsistency(a,b);
+    R := getring(a);
+    M,X,E := op(R);
+    N := nops(X);
+    if N<>nops(E)+1 then ERROR("polynomials must be univariate") fi;
+    zero := convert(0,POLYNOMIAL,R);
+    if a=zero then RETURN(a) fi;
+    if b=zero then ERROR("division by zero") fi;
+if speedupZpt and M<>0 and nops(E)=0 then # Zp[t] case
+    A,B := op(2,a),op(2,b);
+if RELEASE6 then
+    C := modp1( ConvertOut(Powmod(ConvertIn(A,_Z),e,ConvertIn(B,_Z))), M );
+else
+    C := modp1( ConvertOut(Powmod(ConvertIn(A),e,ConvertIn(B))), M );
+fi;
+    if C=[] then RETURN(POLYNOMIAL(R,0)) else RETURN(POLYNOMIAL(R,C)) fi;
+fi;
+    r := convert(1,POLYNOMIAL,R);
+    s := remrpoly(a,b);
+    n := e;
+    while n>0 do
+       if irem(n,2,'n')=1 then r := remrpoly(mulrpoly(r,s),b); fi;
+       s := remrpoly(mulrpoly(s,s),b);
+    od;
+    r;
+end:
+
+
+irredrpoly := proc(a::POLYNOMIAL)
+local R,A,M,X,E,N,g,q,e,x,w,d,k;
+    R := getring(a);
+    M,X,E := op(R);
+    N := nops(X);
+    if N=nops(E)+1 and M<>0 and isprime(M) then else ERROR("not implemented") fi;
+    d := degrpoly(a);
+    if a=0 or d=0 then RETURN(false) fi;
+    if d=1 then RETURN(true) fi;
+    # check if 0 is a root
+    if iszerorpoly(coeffrpoly(a,0)) then RETURN(false) fi;   
+    # check if a is square-free 
+    g := gcdrpoly(diffrpoly(a),a);
+    if degrpoly(g)>0 then RETURN(false) fi;
+    # compute q the cardinality of the field
+    q := M; for e in E do q := q^(nops(e)-1) od;
+    # run the distinct degree algorithm
+    x := monrpoly(R,[1,0$(N-1)]); w := x;
+    for k to iquo(d,2) do 
+        w := powmodrpoly(w,q,a);
+        g := gcdrpoly(subrpoly(w,x),a);
+        if degrpoly(g)>0 then RETURN(false) fi;
+    od;
+    true;
+end:
+
+
+rrefrpoly := proc(A::matrix(POLYNOMIAL))
+local R,n,m,c,i,j,one,zero,r,t;
+    R := getring(A[1,1]);
+    zero := convert(0,POLYNOMIAL,R);
+    one := convert(1,POLYNOMIAL,R);
+    n := linalg[rowdim](A);
+    m := linalg[coldim](A);
+    r := 1;
+    for c to m while r <= n do
+        for i from r to n while A[i,c] = zero do od;
+        if i > n then next fi;
+        if i <> r then # interchange row i with row r
+            for j from c to m do t := A[i,j]; A[i,j] := A[r,j]; A[r,j] := t od
+        fi;
+        t := invrpoly(A[r,c]);
+        for j from c+1 to m do A[r,j] := mulrpoly(A[r,j],t) od;
+        A[r,c] := one;
+        for i from 1 to r-1 do # reduce above pivot row
+            t := A[i,c]; if t = zero then next fi;
+            for j from c+1 to m do A[i,j] := subrpoly(A[i,j],mulrpoly(t,A[r,j])); od;
+            A[i,c] := zero;
+        od;
+        for i from r+1 to n do # reduce below pivot row
+            t := A[i,c]; if t = zero then next fi;
+            for j from c+1 to m do A[i,j] := subrpoly(A[i,j],mulrpoly(t,A[r,j])); od;
+            A[i,c] := zero;
+        od;
+        r := r+1              # go to next row
+    od;                 # go to next column
+    eval(A);
+end:
+
+
+nullspacerpoly := proc(B::matrix(POLYNOMIAL))
+local A,R,l,m,c,i,j,k,zero,r,n,u,v,N,one,s,t;
+    A := copy(B);
+    rrefrpoly(A);
+    R := getring(A[1,1]);
+    zero := convert(0,POLYNOMIAL,R);
+    one := convert(1,POLYNOMIAL,R);
+    l := linalg[rowdim](A);
+    m := linalg[coldim](A);
+    r := 1;
+    for c to m while r <= l do if A[r,c] = zero then else r := r+1 fi; od;
+    r := r-1; # r is now the rank
+    n := m-r; # n is the dimension of the null-space
+    if r>0 then s := array(1..r) fi;
+    u := vector([seq(k+r,k=1..n)]);
+    v := vector([seq(r+1,k=1..n)]);
+    j := 1;
+    for i to l while j <= m do
+        while j <= m and A[i,j] = zero do
+            u[j-i+1] := j;
+            v[j-i+1] := i;
+            j := j+1
+        od;
+        if i <= r then s[i] := j fi;
+        j := j+1
+    od;
+    N := vector(n);
+    for i to n do
+        # N[i], the i'th nullspace vector, is obtained from col(A,u[i])
+        t := vector(m);
+        for j to m do t[j] := zero od;
+        t[u[i]] := one;
+        for j to v[i]-1 do t[s[j]] := negrpoly(A[j,u[i]]) od;
+        N[i] := eval(t);
+    od;
+    [seq( eval(N[i]),i=1..n )];
+end:
+
+
+linsolrpoly := proc(a::matrix(POLYNOMIAL),b::vector(POLYNOMIAL))
+local n,i,j,k,B,R,M,X,E,N,one,zero,x,A;
+    n := linalg[rowdim](a);
+    if linalg[coldim](a) <> n then ERROR("non-square system") fi;
+    R := getring(a[1,1]);
+    one := convert(1,POLYNOMIAL,R);
+    zero := convert(0,POLYNOMIAL,R);
+    A := array(1..n,1..n+1);
+    for i to n do for j to n do A[i,j] := a[i,j]; od; A[i,n+1] := b[i]; od;
+    for k to n do
+        # find a non-zero pivot
+        for i from k to n while A[i,k] = zero do od;
+        if i>n then RETURN(FAIL) fi;
+        if i>k then for j from k to n+1 do A[k,j],A[i,j] := A[i,j],A[k,j] od fi;
+        i := invrpoly(A[k,k]);
+        for j from k+1 to n+1 do A[k,j] := mulrpoly(i,A[k,j]) od;
+        A[k,k] := one;
+        for i from k+1 to n do
+            if A[i,k]=zero then next fi;
+            for j from k+1 to n+1 do A[i,j] := subrpoly(A[i,j],mulrpoly(A[i,k],A[k,j])) od;
+            A[i,k] := zero;
+        od;
+     od;
+     x := vector(n);
+     for i from n by -1 to 1 do
+         x[i] := A[i,n+1];
+         for j from i+1 to n do x[i] := subrpoly(x[i],mulrpoly(x[j],A[i,j])) od;
+     od;
+     eval(x)
+end:
+
+maxnrpoly := proc(a::POLYNOMIAL)
+local X,C;
+    X := getvars(a);
+    C := [icoeffsrpoly(a,X)];
+    C := map(abs,C);
+    max(op(C));
+end:
+
+onenrpoly := proc(a::POLYNOMIAL)
+local X,C;
+    X := getvars(a);
+    C := [icoeffsrpoly(a,X)];
+    C := map(abs,C);
+    `+`(op(C));
+end:
+
+#---------------------------------------------------------------------------
+# compdeg(p::list,q::list)::{less,greater,equal}
+#
+# Compares two vector degrees p & q in lexicographic order and returns:
+# "less" if p < q,
+# "greater" if p > q and
+# "equal" if p = q
+#
+compdeg := proc(A::list(integer),B::list(integer)) local m,n,i;
+(m,n) := (nops(A),nops(B));
+for i to min(m,n) do if A[i]<B[i] then RETURN(less) elif A[i]>B[i] then RETURN(greater) fi; od;
+if m<n then RETURN(less) elif m>n then RETURN(greater) else RETURN(equal) fi;
+end:
+
+mindeg := proc(A::list(integer),B::list(integer)) local m,n,i;
+(m,n) := (nops(A),nops(B));
+for i to min(m,n) do if A[i]<B[i] then RETURN(A) elif A[i]>B[i] then RETURN(B) fi; od;
+if m<n then RETURN(A) elif m>n then RETURN(B) else RETURN(A) fi;
+end:
+
+

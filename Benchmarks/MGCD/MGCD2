@@ -2,15 +2,14 @@
 MGCD2:= proc(A0,B0,T::anything := NULL )
 uses RDP=Algebraic:-RecursiveDensePolynomials,  LTS=ListTools;
 local A,B,ring,A1,B1,Char,E,X,Xpoly,cc,i,m,n,Xmin,conta,contb,k,LCap,LCbp,lmap,lmbp,minmon,H,prod,p,Ap,Bp,Cp,lcCp,lmCp,least,CRT,H2,test1,MP,
-test2,summon,timings,irat,M,gama,gamma,phimatrix,invphimatrix, lcmintest,xx,yy,ca,cb,nca,ncb,C,counter,j,s,nfac,fac,ss,l,LA,Rand,ZD,
-L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, CRTRNRtime, phigammatime,lmt,Result,divtime,Np;
+test2,summon,timings,irat,M,gama,gamma,phimatrix,invphimatrix,PhiAp,PhiBp, lcmintest,xx,yy,ca,cb,nca,ncb,C,counter,j,s,nfac,fac,ss,l,LA,Rand,ZD,
+L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,pgcdtime, CRTRNRtime, Result,divtime,Np;
    timings:=true;
    tt := time();
    pt:=0;
-   lmt:=0;
    pgcdtime := 0;
    CRTRNRtime:=0;
-   divtime:=0;
+    divtime:=0;
    #If A0 be in Q[X] and B0 be in Q(alpha_1,..alpha_n)[X], then ConvRing(A0,B0) convert A0 as a polynomial in Q(alpha_1,..alpha_n)[X] and returns A0,B0, and the ring
    #(we need this for Trager's algorithm)
    A1,B1,ring:=ConvRing(A0,B0);
@@ -25,8 +24,8 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
    MP := [seq(RDP:-getalgext(ring,-i),i=1..m)];
    minpolys := map(convert,MP,POLYNOMIAL); #The list of minimal polynomials
    H:=[];
+   Np:=[];
    p := 2^31; #The smallest prime is nextprime(p)
-   Np:=[]; #Number of good primes 
    while true do  #we do not need bound when we are using iratrecon since the loop terminates when iratrecon gives the proper answer
       do  #If p | lcoeff of A^,M^, where A^ is the semi associate of A and m^ is the semi-associate of the minimal polynomial then p is a lc-bad prime.
          p:= nextprime(p);  #printf("MGCD:prime=%d\n",p);
@@ -39,19 +38,20 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
       st := time();
          Ap,Bp:= RDP:-phirpoly(A,p),RDP:-phirpoly(B,p); #Now inputs are in Zp
       pt := pt+time()-st;
+      st := time(); 
           Cp:=traperror(PGCDAlg(Ap,Bp,p));
       pgcdtime := pgcdtime+time()-st;
-      #if there is a zero divisor then go to the first loop and change the prime print Z-D primes
+   #if there is a zero divisor then go to the first loop and change the prime print Z-D primes
       if Cp=lasterror and nops([Cp])=2 and [Cp][1]="inverse does not exist\n" then
-           ZD:=Cp[2];  #printf("p=%d is a ZD prime ZD=%a\n",p,ZD);
-           next;
+          ZD:=Cp[2];  #printf("p=%d is a ZD prime ZD=%a\n",p,ZD);
+          next;
+      elif Cp=lasterror then error lasterror;
       fi;
    #When the modular gcd is constant we are done!
    if RDP:-tdegrpoly(Cp)=0 then printf("Cp=%a is a constant",Cp); return(RDP:-rpoly(1,X)) fi;
-   st:=time();
-     lcCp:= RDP:-lcrpoly(Cp,Xpoly);
-     lmCp:=RDP:-rpoly(lmrpoly(Cp,Xpoly[1..k-1],X));
-   lmt:=lmt+time()-st;
+   lcCp:= RDP:-lcrpoly(Cp,Xpoly);
+   lmCp:=RDP:-rpoly(lmrpoly(Cp,Xpoly[1..k-1],X));
+   
    if not assigned(minmon) then 
       CRT:=Cp;
       minmon:=lmCp;
@@ -64,21 +64,20 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
    Cp:= RDP:-scarpoly(RDP:-invrpoly(lcCp),Cp);
    #Test for unlucky primes
       if lmCp = least and minmon<>least then  
-         #if p>sprime then printf("p=%d and All the previous primes were unlucky\n",p); fi;
          H:=[Cp];
          CRT:=Cp; 
+          Np:=[p];
          minmon:=least;
-         Np:=[p];
       elif  lmCp = least and minmon= least then
          H:=[op(H),Cp];
+          Np:=[op(Np),p];
          st:=time():
-            CRT:=RDP:-ichremrpoly(map(RDP:-retextsrpoly,H)); # Using retextsrpoly, we drop extensions for Chinese remaindering
+              CRT:=RDP:-ichremrpoly(map(RDP:-retextsrpoly,H)); # Using retextsrpoly, we drop extensions for Chinese remaindering
          CRTRNRtime:= CRTRNRtime+time()-st;
-         Np:=[op(Np),p];
       fi;
    fi;
    st:=time():
-       irat:=RDP:-irrrpoly(CRT);
+      irat:=RDP:-irrrpoly(CRT);
    CRTRNRtime:= CRTRNRtime+time()-st;
    if  irat<> FAIL then 
       H2:=subsop(1=ring,irat);#We do not use the bound.When RNR has a correct solution the loop termintes.
@@ -91,13 +90,14 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
             AL, BL, GCDL:= RDP:-phirpoly(RDP:-evalrpoly(A,L),p), RDP:-phirpoly(RDP:-evalrpoly(B,L),p), RDP:-phirpoly(RDP:-evalrpoly(H2,L),p); #Reduce mod p to avoid expression swell in division
            #Choose the new prime here.
        until RDP:-degrpoly(GCDL,Xpoly[1])=RDP:-degrpoly(H2,Xpoly[1]);
-       
       if RDP:-divrpoly(AL,GCDL) and RDP:-divrpoly(BL,GCDL) then
          divtime:=divtime+time()-st; #time for division test including evaluating and reducing mod p 
-         tt := time()-tt;
-         if timings=true and T<>NULL then printf("MGCD: time=%.3f Reduce mod p=%.3f  PGCDAlg=%.3f lm=%.3f  CRT and RNR=%.3f Division test=%.3f\n",tt, pt,
-          pgcdtime,lmt, phigammatime, CRTRNRtime,divtime); fi;
-             return([H2,nops(Np)]);
+      tt := time()-tt;
+         if timings=true and T<>NULL then printf("MGCD2: time=%.3f Reduce mod p=%.3f   PGCDAlg=%.3f    CRT and RNR=%.3f Division test=%.3f NP=%.3f\n",tt, pt,
+         pgcdtime,  CRTRNRtime,divtime,nops(Np)); fi;
+        
+           return(H2);
+      
       fi;
     fi;
 od;

@@ -3,11 +3,10 @@ MGCD:= proc(A0,B0,T::anything := NULL )
 uses RDP=Algebraic:-RecursiveDensePolynomials,  LTS=ListTools;
 local A,B,ring,A1,B1,Char,E,X,Xpoly,cc,i,m,n,Xmin,conta,contb,k,LCap,LCbp,lmap,lmbp,minmon,H,prod,p,Ap,Bp,Cp,lcCp,lmCp,least,CRT,H2,test1,MP,
 test2,summon,timings,irat,M,gama,gamma,phimatrix,invphimatrix,PhiAp,PhiBp, lcmintest,xx,yy,ca,cb,nca,ncb,C,counter,j,s,nfac,fac,ss,l,LA,Rand,ZD,
-L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, CRTRNRtime, phigammatime,lmt,Result,divtime,Np;
+L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, CRTRNRtime, phigammatime,Result,divtime,Np;
    timings:=true;
    tt := time();
    pt:=0;
-   lmt:=0;
    laminpolytime := 0;
    phigammatime:=0;
    pgcdtime := 0;
@@ -39,33 +38,27 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
       until RDP:-rpoly(RDP:-lcrpoly(A,Xpoly)) mod p <> 0  and lcmintest=true;
       #As we used the semi of inputs as our inputs, we do not need to check if den(A)& den(B) mod p<>0
       st := time();
-      Ap,Bp:= RDP:-phirpoly(A,p),RDP:-phirpoly(B,p); #Now inputs are in Zp
+         Ap,Bp:= RDP:-phirpoly(A,p),RDP:-phirpoly(B,p); #Now inputs are in Zp
       pt := pt+time()-st;
       Rand:=rand(1..p-1);
-      if m<=1 then #When the number of exts is 1 or 0, we do not need to call LAminpoly and phi_{gamma}
-         PhiAp:=Ap; 
-         PhiBp:=Bp;   
-      else
-         C:=[seq(Rand(),i=1..m-1)];
-         gama := Xmin[1]+add(C[i]*Xmin[i+1],i=1..m-1);
-         gamma := RDP:-phirpoly(RDP:-rpoly(gama,RDP:-getcofring(A)),p);
-         st := time();
+      C:=[seq(Rand(),i=1..m-1)];
+      gama := Xmin[1]+add(C[i]*Xmin[i+1],i=1..m-1);
+      gamma := RDP:-phirpoly(RDP:-rpoly(gama,RDP:-getcofring(A)),p);
+      st := time();
          LA:=LAMinpoly(minpolys,gamma,Xmin,X[n],p);
-         laminpolytime := laminpolytime + time()-st;
-         if LA=FAIL then 
+      laminpolytime := laminpolytime + time()-st;
+      if LA=FAIL then 
             #printf("p=%d is a det-bad prime or C=%a is an inappropriate list of constants\n",p,C); 
             next;
-         fi;
-
-         M,phimatrix,invphimatrix:=LA;
-         #printf("gamma:=%a and M(z)=%a\n",gama,M);
-         st:=time();
+      fi;
+      M,phimatrix,invphimatrix:=LA;
+      st:=time();
          PhiAp:=Phi(Ap,minpolys,Xmin,Xpoly,1,M,phimatrix,invphimatrix); #Over Z_p(gamma)
          PhiBp:=Phi(Bp,minpolys,Xmin,Xpoly,1,M,phimatrix,invphimatrix);
-         phigammatime:=phigammatime+time()-st;
-     fi;
+      phigammatime:=phigammatime+time()-st;
+   
    st := time(); 
-   Cp:=traperror(PGCDAlg(PhiAp,PhiBp,p));
+      Cp:=traperror(PGCDAlg(PhiAp,PhiBp,p));
    pgcdtime := pgcdtime+time()-st;
    #if there is a zero divisor then go to the first loop and change the prime print Z-D primes
    if Cp=lasterror and nops([Cp])=2 and [Cp][1]="inverse does not exist\n" then
@@ -75,15 +68,12 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
    fi;
    #When the modular gcd is constant we are done!
    if RDP:-tdegrpoly(Cp)=0 then printf("Cp=%a is a constant",Cp); return(RDP:-rpoly(1,X)) fi;
-   if m>1 then
-      st:=time();
-      Cp:=Phi(Cp,minpolys,Xmin,Xpoly,-1,M,phimatrix,invphimatrix,p); #Your phigamma is not mod p!
-      phigammatime:=phigammatime+time()-st;
-   fi;
    st:=time();
-     lcCp:= RDP:-lcrpoly(Cp,Xpoly);
-     lmCp:=RDP:-rpoly(lmrpoly(Cp,Xpoly[1..k-1],X));
-   lmt:=lmt+time()-st;
+      Cp:=Phi(Cp,minpolys,Xmin,Xpoly,-1,M,phimatrix,invphimatrix,p); #Your phigamma is not mod p!
+   phigammatime:=phigammatime+time()-st;
+   lcCp:= RDP:-lcrpoly(Cp,Xpoly);
+   lmCp:=RDP:-rpoly(lmrpoly(Cp,Xpoly[1..k-1],X));
+   
    if not assigned(minmon) then 
       CRT:=Cp;
       minmon:=lmCp;
@@ -96,7 +86,6 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
    Cp:= RDP:-scarpoly(RDP:-invrpoly(lcCp),Cp);
    #Test for unlucky primes
       if lmCp = least and minmon<>least then  
-         #if p>sprime then printf("p=%d and All the previous primes were unlucky\n",p); fi;
          H:=[Cp];
          CRT:=Cp; 
           Np:=[p];
@@ -105,14 +94,12 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
          H:=[op(H),Cp];
           Np:=[op(Np),p];
          st:=time():
-         CRT:=RDP:-ichremrpoly(map(RDP:-retextsrpoly,H)); # Using retextsrpoly, we drop extensions for Chinese remaindering
+              CRT:=RDP:-ichremrpoly(map(RDP:-retextsrpoly,H)); # Using retextsrpoly, we drop extensions for Chinese remaindering
          CRTRNRtime:= CRTRNRtime+time()-st;
-      #elif lmCp<>least then  
-        # printf("%a is an unlucky prime\n",p);
       fi;
    fi;
    st:=time():
-   irat:=RDP:-irrrpoly(CRT);
+      irat:=RDP:-irrrpoly(CRT);
    CRTRNRtime:= CRTRNRtime+time()-st;
    if  irat<> FAIL then 
       H2:=subsop(1=ring,irat);#We do not use the bound.When RNR has a correct solution the loop termintes.
@@ -127,11 +114,11 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
        until RDP:-degrpoly(GCDL,Xpoly[1])=RDP:-degrpoly(H2,Xpoly[1]);
       if RDP:-divrpoly(AL,GCDL) and RDP:-divrpoly(BL,GCDL) then
          divtime:=divtime+time()-st; #time for division test including evaluating and reducing mod p 
-         tt := time()-tt;
-         if timings=true and T<>NULL then printf("MGCD: time=%.3f Reduce mod p=%.3f  LAminpoly=%.3f PGCDAlg=%.3f lm=%.3f  Phigamma=%.3f  CRT and RNR=%.3f Division test=%.3f\n",tt, pt,
-          laminpolytime,pgcdtime,lmt, phigammatime, CRTRNRtime,divtime); fi;
+      tt := time()-tt;
+         if timings=true and T<>NULL then printf("MGCD1: time=%.3f Reduce mod p=%.3f  LAminpoly=%.3f PGCDAlg=%.3f   Phigamma=%.3f  CRT and RNR=%.3f Division test=%.3f NP=%.3f\n",tt, pt,
+          laminpolytime,pgcdtime, phigammatime, CRTRNRtime,divtime,nops(Np)); fi;
         
-           return([H2,nops(Np)]);
+           return(H2);
       
       fi;
     fi;
