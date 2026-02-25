@@ -40,7 +40,7 @@ local A,B,ringA,X,Xpoly,Minpolys,minpolys,cc,i,m,n,Xmin,conta,contb,k,ap,bp,LCap
       do
          p:= nextprime(p);
          Np:=Np+1;
-        # printf("MGCD2:prime=%d\n",p);
+         printf("MGCD2:prime=%d\n",p);
          lcmintest:=true;
          for i to m do   #p must not divide lc of ^M_i
               if den(minpolys[i]) mod p=0   then

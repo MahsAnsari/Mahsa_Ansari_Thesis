@@ -41,7 +41,7 @@ timings:=true;
       do
          p:= nextprime(p);
          Np:=Np+1;
-         #printf("MGCD:prime=%d\n",p);
+         printf("MGCD1:prime=%d\n",p);
          lcmintest:=true;
          for i to m do   #p must not divide lc of ^M_i
               if den(minpolys[i]) mod p=0 then lcmintest:=false; fi;
