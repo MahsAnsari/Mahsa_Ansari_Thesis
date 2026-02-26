@@ -27,7 +27,7 @@ L,AL,BL,GCDL,wt,LCH2,slc,randfunction,minpolys,st,tt,pt,laminpolytime,pgcdtime, 
    minpolys := map(convert,MP,POLYNOMIAL); #The list of minimal polynomials
    H:=[];
    Np:=[];
-   p := 2^31; #The smallest prime is nextprime(p)
+   p := 2^30; #The smallest prime is nextprime(p)
    while true do  #we do not need bound when we are using iratrecon since the loop terminates when iratrecon gives the proper answer
       do  #If p | lcoeff of A^,M^, where A^ is the semi associate of A and m^ is the semi-associate of the minimal polynomial then p is a lc-bad prime.
          p:= nextprime(p);  #printf("MGCD:prime=%d\n",p);

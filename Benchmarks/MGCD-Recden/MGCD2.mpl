@@ -33,7 +33,7 @@ local A,B,ringA,X,Xpoly,Minpolys,minpolys,cc,i,m,n,Xmin,conta,contb,k,ap,bp,LCap
    Np:=0;
     Goodp:=0;
    #we do not need bound when we are using iratrecon since the loop terminates when iratrecon gives the proper answer
-   if nargs=2 then p := 2^31 else p:= sprime-1 fi;
+   if nargs=2 then p := 2^30 else p:= sprime-1 fi;
    #The main loop
    while true do
    #recognizing lc-bad and det-bad primes
