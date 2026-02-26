@@ -1,0 +1,79 @@
+# fact takes N and returns the list of factorizations of N into factors 2 or 3,
+# in the style: [ big_factor, then (k-1) minimal factors each equal to 2 or 3 ].
+# If N has any prime factor other than 2 or 3, it raises an error.
+# If the total number of prime factors (a+b) < 2, it returns [].
+#It keeps only one factorization per length
+#Example: If N=16, then  fact(16)=[[2, 2, 2, 2], [4, 2, 2], [8, 2]]
+###################################################################################
+fact:= proc(N)
+local m, a, b, k, Fact, cand, i,j,r;
+    m := N; a := 0; b := 0;
+
+    # count powers of 2 and 3
+    while m mod 2 = 0 do m := m/2; a := a+1 end do;
+    while m mod 3 = 0 do m := m/3; b := b+1 end do;
+    if m <> 1 then error "N has prime factors other than 2 or 3" fi;
+
+    if a + b < 2 then
+        return [];
+    end if;
+
+  #  Fact := [seq(0,i=1..a+b-1)];
+  Fact:=[seq(0,i=1..a+b-1)];
+
+    # For each length k, take the first valid candidate
+    for k from 2 to a+b do
+        for r from max(0,(k-1)-b) to min(k-1,a) do
+            cand := 2^(a-r) * 3^(b-(k-1-r)),
+                      seq(2,i=1..r),
+                      seq(3,j=1..(k-1-r)) ;
+            Fact[k-1] := [cand];
+            break;  # keep only the first candidate for this length
+        od;
+    od;
+ return [ op(ListTools:-Reverse([op(Fact)])), [N] ]; # longest factorization first
+end proc:
+
+
+##########################################################################
+# Build the Minlist array from N by calling fact(N).
+# Example for N = 2^2*3^3:
+# L = [[2,2,3,3,3],[4,3,3,3],[3,6,6],[12,3],[36,3]]
+# Minlist[1] = [ z1^2-2, z2^2-3, z3^3-5, z4^3-7, z5^3-11 ]
+# Minlist[2] = [ LAminpoly(z1^2-2, z2^2-3), z3^3-5, z4^3-7, z5^3-11 ], etc.
+###########################################################################
+Minpolylist := proc(N,numext) #second number is the #ext
+uses RDP=Algebraic:-RecursiveDensePolynomials;
+local L, L1, n, P, i, k, r, prod, zfresh,Xminpol,minpol,gama,nest,NL,Xmin,NXmin,R,newXmin,gam,j,flag,mins;
+
+    flag:=0;
+    L := fact(N); #When N=2^3*3^2, L=[[2,2,2,3,3],[4,2,3,3],[8,3,3],[24,3]]
+    #if nargs=1 then numext:=nops(L[1]) fi;
+    NL:=nops(L);
+    L1 := L[1];
+    n  := nops(L1);
+    zfresh := z[n+1];
+    #Base polynomials P[i] = z_i^{L1[i]} - ithprime(i)
+    P := [seq( (z[i])^(L1[i]) - ithprime(i), i=1..n ) ]; #This extension has the max lenght
+    if numext=n or not type(numext,integer) then
+        return(P);
+    fi;
+    #For calling LAminpoly
+    Xmin:=ListTools:-Reverse([seq( (z[i]), i=1..n )]);
+    NXmin:=nops(Xmin);
+    R := [seq(0,i=1..NL)]; #the resulted list R[1]=[z1^2-2,z2^2-3,z3^2-5,z4^3-7,z5^3-11]
+    R[1]:=P;
+      for i from 2 to NL do #it used to be 2
+           newXmin:= [op(indets(R[i-1][1])),op(indets(R[i-1][2]))];
+           gam:=op(indets(R[i-1][1]))+op(indets(R[i-1][2]));
+           gama := Algebraic:-RecursiveDensePolynomials:-rpoly(gam, ListTools:-Reverse(newXmin),[R[i-1][1],R[i-1][2]]);
+           R[i][1]:=LAMinpoly([R[i-1][1],R[i-1][2]],gama,newXmin,zfresh,p)[1];
+           zfresh := z[n+i];
+           R[i]:=[R[i][1],seq(R[i-1][j],j=3..nops(R[i-1]))];
+           Xmin:=[zfresh,op(Xmin)];
+           NXmin:=NXmin+1;
+           if numext=nops(R[i]) then flag:=1;  mins:=R[i]; return(mins); fi;
+      od;
+      if flag=0 then error "A field of degree=%d cannot have an extension of length %d", N, numext; fi;
+return (mins,Xmin);
+end proc:

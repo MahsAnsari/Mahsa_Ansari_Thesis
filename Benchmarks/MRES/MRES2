@@ -35,7 +35,7 @@ Np:=0;
    k:= nops(Xpoly);
    H:=[];
    #we do not need bound when we are using iratrecon since the loop terminates when iratrecon returns a repeatious answer
-   p := 2^31; 
+   p := 2^30; 
    #The main loop
    while true do
    #recognizing lc-bad and det-bad primes
@@ -85,7 +85,7 @@ Np:=0;
          tt := time()-tt;
          if timings=true then printf("MRS: time=%.3f  LAminpoly=%.3f  PGCD=%.3f  Np=%d\n",tt,laminpolytime,pgcdtime,Np); fi;
           irat:=subsop(1=ringA,irat);
-         return ([irat,Np]); 
+         return (irat); 
       else 
          PPresult:=previousresult; previousresult:=irat;  
       fi;

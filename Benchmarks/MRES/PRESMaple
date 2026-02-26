@@ -31,11 +31,8 @@ local A,B,H,k,Xk,conta,contb,c,ap,bp,g,interpol,j,Aj,Bj,Cj,gj,R,lcAk, lcBk,Randf
    q:=[];
    Randfunction:=rand(p); #Randfunction is the function producing the rand eval points 
    #count is the counter of the acceptable eval points
-    RDP:-degrpoly(AA,X[1]);
-   RDP:-degrpoly(BB,X[1]);
-   Mahsa;
    count:=0;
-   hh := max( seq( max( RDP:-degrpoly(AA, X[i]),RDP:-degrpoly(BB, X[i]) ),i=1..k ));
+   hh := RDP:-degrpoly(AA, x)*RDP:-degrpoly(BB, X[k])+RDP:-degrpoly(BB, x)*RDP:-degrpoly(AA, X[k]);
    Bound:=(RDP:-degrpoly(AA,x)+RDP:-degrpoly(BB,x))*hh+1; #The number of required eval points
    for i from 1 to Bound do
       do

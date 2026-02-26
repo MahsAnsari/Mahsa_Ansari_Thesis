@@ -91,37 +91,50 @@
 <Group hide-input="false" labelreference="L113" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
 <Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;
 with(PolynomialTools):
-currentdir();
-read &quot;recden&quot;;  read &quot;LAminpoly.mpl&quot;; read &quot;lm.mpl&quot;; read &quot;MGCD1.mpl&quot;;  read &quot;MGCD2.mpl&quot;; read &quot;PGCD.mpl&quot;;  read &quot;minimal Polynomial creator&quot;;
-<Font foreground="[0,128,128]">#The recden codes are in the following Code Edit Region for convenience
-</Font></Text-field>
+interface(rtablesize=40):
+with(ExcelTools):
+<Font foreground="[0,128,128]">#LAMinpolyMaple file contains the LAMinpoly algorithm to get M(z).
+#PhigammaMaple file maps phi_p(f1), phi_p(f2) to their corresponding polynomials in Z_p[z]/&lt;M(z)&gt; using phi_{gamma} isomorphism.
+#Get contains getvars, getring,..., and conv2cons for basic operations regarding the ring and extensions
+#MonOpMaple 
+#ContMaple
+#PGCD
+</Font>#MGCD</Text-field>
 </Input>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkjbXNHNiMvSSttb2R1bGVuYW1lRzYiSSxUeXBlc2V0dGluZ0dJKF9zeXNsaWJHRic2I1FecEM6XFVzZXJzXHBheWFtXE9uZURyaXZlXERvY3VtZW50c1xHaXRIdWJcTWFoc2FfQW5zYXJpX1RoZXNpc1xCZW5jaG1hcmtzXE1HQ0QtUmVjZGVuRic=">UV5wQzpcVXNlcnNccGF5YW1cT25lRHJpdmVcRG9jdW1lbnRzXEdpdEh1YlxNYWhzYV9BbnNhcmlfVGhlc2lzXEJlbmNobWFya3NcTUdDRC1SZWNkZW42Ig==</Equation></Text-field>
-</Output>
 </Group>
 <Group hide-input="false" labelreference="L177" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
-<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">timings := true;
-Xpoly:=[x,y];
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font foreground="[0,128,128]">#Read subrutines</Font>
+currentdir():
+read &quot;Get&quot;; read &quot;LAMinpolyMaple&quot;; read &quot;PhigammaMaple&quot;; read &quot;MonOpMaple&quot;;  read &quot;PGCDMaple&quot;; read &quot;MGCD1&quot;;  read &quot;MGCD2&quot;;  read &quot;Bench.mpl&quot;;
+RDP:=Algebraic:-RecursiveDensePolynomials;
+</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEkUkRQRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LlEpJkFzc2lnbjtGJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC8lKWVxdWFsaXR5R0Y9LUYsNiVRKkFsZ2VicmFpY0YnRi9GMi1GNjYuUS8mY29sb247Jm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZYRk8tRiw2JVE6UmVjdXJzaXZlRGVuc2VQb2x5bm9taWFsc0YnRi9GMkY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSRSRFBHRihJOlJlY3Vyc2l2ZURlbnNlUG9seW5vbWlhbHNHNiQvSSttb2R1bGVuYW1lR0YoSSpBbGdlYnJhaWNHRiVGJjcjRi4=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L200" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">timings := true:
+Xpoly:=[x,y]:
 dF:=[4,8,16,24,32,64,128, 256, 512,1024];
-T:=[seq(0,i=1..nops(dF))];
-k:=1;
-d:=16;
+T:=[seq(0,i=1..nops(dF))]:
+k:=1:
+d:=16: #degree of the GCD is d and degree of the input f1 and f2 is also d
 for i in dF do
    q:=rand()/rand();
    M:=Minpolylist(i, num);
    Xmin:=ListTools:-Reverse([seq(z[j],j=1..nops(M))]);
    XT:=[op(Xpoly),op(Xmin)];
-   g:=rpoly(q*x^d*y^d+randpoly(XT,degree=d),XT,M);
-   a:=rpoly(q*x^d*y^d+randpoly(XT,degree=d),XT,M);
-   b:=rpoly(q*x^d*y^d+randpoly(XT,degree=d),XT,M);
-   f1:=mulrpoly(a,g);
-   f2:=mulrpoly(b,g);
+   g:=RDP:-rpoly(q*x^d*y^d+randpoly(XT,degree=d),XT,M);
+   a:=RDP:-rpoly(q*x^d*y^d+randpoly(XT,degree=d),XT,M);
+   b:=RDP:-rpoly(q*x^d*y^d+randpoly(XT,degree=d),XT,M);
+   f1:=RDP:-mulrpoly(a,g);
+   f2:=RDP:-mulrpoly(b,g);
    DD:=mul(degree(M[j]),j=1..nops(M));
-   <Font encoding="UTF-8">printf(&quot;d=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d  deg(g,x)=%d  deg(g,y)=%d\134n&quot;,
-</Font>     DD,degrpoly(f1,x),degrpoly(f1,y),degrpoly(f2,x),degrpoly(f2,y),degrpoly(g,x),degrpoly(g,y));
+   <Font encoding="UTF-8">printf(&quot;dF=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d  deg(g,x)=%d  deg(g,y)=%d\134n&quot;,
+</Font>     DD,RDP:-degrpoly(f1,x),RDP:-degrpoly(f1,y),RDP:-degrpoly(f2,x),RDP:-degrpoly(f2,y),RDP:-degrpoly(g,x),RDP:-degrpoly(g,y));
   try;
   t:=time():
-  Mahsa1:=timelimit(1000,MGCD1(f1,f2,2^30));
+  Mahsa1:=timelimit(1000,MGCD(f1,f2,2^30));
   tMGCD1:=time()-t;
   tt:=time():
 catch &quot;time expired&quot;: 
@@ -140,127 +153,55 @@ else
    T[k]:=&quot;F&quot;;
 fi;
 k:=k+1;
-od:
-T;</Text-field>
+od:</Text-field>
 </Input>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEodGltaW5nc0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1GLDYlRjFGL0YyRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSh0aW1pbmdzR0YoSSV0cnVlR0YmNyNGLg==</Equation></Text-field>
-</Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEmWHBvbHlGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSShtZmVuY2VkR0YkNiYtRiM2KC1GLDYlUSJ4RidGL0YyLUY2Ni5RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGTy1GLDYlUSJ5RidGL0YyLyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSZYcG9seUdGKDckSSJ4R0YoSSJ5R0YoNyNGLg==</Equation></Text-field>
-</Output>
 <Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjZEZGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSShtZmVuY2VkR0YkNiYtRiM2OC1JI21uR0YkNiRRIjRGJ0Y5LUY2Ni5RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGTy1GVzYkUSI4RidGOUZaLUZXNiRRIzE2RidGOUZaLUZXNiRRIzI0RidGOUZaLUZXNiRRIzMyRidGOUZaLUZXNiRRIzY0RidGOUZaLUZXNiRRJDEyOEYnRjlGWi1GVzYkUSQyNTZGJ0Y5RlotRlc2JFEkNTEyRidGOUZaLUZXNiRRJTEwMjRGJ0Y5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNkRkdGKDcsIiIlIiIpIiM7IiNDIiNLIiNrIiRHIiIkYyMiJDcmIiVDNTcjRi4=</Equation></Text-field>
 </Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEiVEYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JKG1mZW5jZWRHRiQ2Ji1GIzY4LUkjbW5HRiQ2JFEiMEYnRjktRjY2LlEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTlEsMC4zMzMzMzMzZW1GJ0ZPRlZGWkZWRlpGVkZaRlZGWkZWRlpGVkZaRlZGWkZWRlpGVi8lK2ZvcmVncm91bmRHUShbMCwwLDBdRicvJSlyZWFkb25seUdGPUY5RjkvJSVvcGVuR1EnJmxzcWI7RicvJSZjbG9zZUdRJyZyc3FiO0YnRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJUR0YoNywiIiFGL0YvRi9GL0YvRi9GL0YvRi83I0Yu</Equation></Text-field>
-</Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEia0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JI21uR0YkNiRRIjFGJ0Y5Rjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJrR0YoIiIiNyNGLg==</Equation></Text-field>
-</Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEiZEYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JI21uR0YkNiRRIzE2RidGOUY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJkR0YoIiM7NyNGLg==</Equation></Text-field>
-</Output>
-<Output><Text-field style="Line Printed Output" layout="Line Printed Output">d=4  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD1:prime=1073741833
-MGCD1:prime=1073741839
-MGCD1: time=2.422  LAminpoly=0.000  PGCD=2.313 Np=4  Goodp=4 NMEAc=128
-MGCD2:prime=1073741827
-MGCD2:prime=1073741831
-MGCD2:prime=1073741833
-MGCD2:prime=1073741839
-MGCD2: time=10.547  PGCD=10.516 NP=4.000 Goodp=4 NMEA=128.000
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">dF=4  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=0.531 Reduce mod p=0.016  LAminpoly=0.000 PGCDAlg=0.468   Phigamma=0.047  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=0.703 Reduce mod p=0.016   PGCDAlg=0.687    CRT and RNR=0.000 Division test=0.000 NP=3.000
 Check=true
-d=8  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD1:prime=1073741833
-MGCD1:prime=1073741839
-MGCD1: time=3.047  LAminpoly=0.000  PGCD=2.875 Np=4  Goodp=4 NMEAc=132
-MGCD2:prime=1073741827
-MGCD2:prime=1073741831
-MGCD2:prime=1073741833
-MGCD2:prime=1073741839
-MGCD2: time=48.453  PGCD=48.297 NP=4.000 Goodp=4 NMEA=132.000
+dF=8  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=0.672 Reduce mod p=0.016  LAminpoly=0.000 PGCDAlg=0.594   Phigamma=0.062  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=1.046 Reduce mod p=0.000   PGCDAlg=1.016    CRT and RNR=0.000 Division test=0.000 NP=3.000
 Check=true
-d=16  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD1:prime=1073741833
-MGCD1:prime=1073741839
-MGCD1: time=3.703  LAminpoly=0.126  PGCD=3.408 Np=4  Goodp=4 NMEAc=136
-MGCD2:prime=1073741827
-MGCD2:prime=1073741831
-MGCD2:prime=1073741833
-MGCD2:prime=1073741839
-MGCD2: time=133.391  PGCD=133.313 NP=4.000 Goodp=4 NMEA=136.000
+dF=16  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=1.172 Reduce mod p=0.000  LAminpoly=0.016 PGCDAlg=1.077   Phigamma=0.063  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=1.813 Reduce mod p=0.015   PGCDAlg=1.767    CRT and RNR=0.000 Division test=0.000 NP=3.000
 Check=true
-d=24  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD1:prime=1073741833
-MGCD1:prime=1073741839
-MGCD1: time=5.360  LAminpoly=0.265  PGCD=4.749 Np=4  Goodp=4 NMEAc=136
-MGCD2:prime=1073741827
-MGCD2:prime=1073741831
-MGCD2:prime=1073741833
-MGCD2:prime=1073741839
-MGCD2: time=272.093  PGCD=271.999 NP=4.000 Goodp=4 NMEA=136.000
+dF=24  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=1.469 Reduce mod p=0.000  LAminpoly=0.032 PGCDAlg=1.298   Phigamma=0.109  CRT and RNR=0.015 Division test=0.015 NP=3.000
+MGCD2: time=2.000 Reduce mod p=0.000   PGCDAlg=1.984    CRT and RNR=0.016 Division test=0.000 NP=3.000
 Check=true
-d=32  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD1:prime=1073741833
-MGCD1:prime=1073741839
-MGCD1: time=5.375  LAminpoly=0.829  PGCD=4.346 Np=4  Goodp=4 NMEAc=136
-MGCD2:prime=1073741827
-MGCD2:prime=1073741831
-MGCD2:prime=1073741833
-MGCD2:prime=1073741839
-MGCD2: time=521.438  PGCD=521.376 NP=4.000 Goodp=4 NMEA=136.000
+dF=32  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=1.562 Reduce mod p=0.000  LAminpoly=0.125 PGCDAlg=1.328   Phigamma=0.078  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=2.188 Reduce mod p=0.032   PGCDAlg=2.141    CRT and RNR=0.000 Division test=0.000 NP=3.000
 Check=true
-d=64  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD1:prime=1073741833
-MGCD1:prime=1073741839
-MGCD1: time=10.000  LAminpoly=3.859  PGCD=5.797 Np=4  Goodp=4 NMEAc=136
-MGCD2:prime=1073741827
-MGCD2:prime=1073741831
-MGCD2:prime=1073741833
-MGCD2:prime=1073741839
-MGCD2: time=1035.485  PGCD=1035.297 NP=4.000 Goodp=4 NMEA=136.000
+dF=64  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=2.329 Reduce mod p=0.032  LAminpoly=0.125 PGCDAlg=1.985   Phigamma=0.172  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=3.375 Reduce mod p=0.016   PGCDAlg=3.328    CRT and RNR=0.000 Division test=0.016 NP=3.000
 Check=true
-d=128  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD1:prime=1073741833
-MGCD1:prime=1073741839
-MGCD1: time=32.422  LAminpoly=20.951  PGCD=10.781 Np=4  Goodp=4 NMEAc=136
-MGCD2:prime=1073741827
-MGCD2:prime=1073741831
-d=256  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD1:prime=1073741833
-MGCD1:prime=1073741839
-MGCD1:prime=1073741843
-MGCD1: time=154.454  LAminpoly=126.547  PGCD=26.468 Np=5  Goodp=5 NMEAc=170
-MGCD2:prime=1073741827
-d=512  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD1:prime=1073741833
-MGCD1:prime=1073741839
-MGCD1: time=542.906  LAminpoly=491.140  PGCD=48.890 Np=4  Goodp=4 NMEAc=136
-MGCD2:prime=1073741827
-d=1024  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
-MGCD1:prime=1073741827
-MGCD1:prime=1073741831
-MGCD2:prime=1073741827
+dF=128  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=7.609 Reduce mod p=0.016  LAminpoly=0.891 PGCDAlg=6.343   Phigamma=0.329  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=12.219 Reduce mod p=0.032   PGCDAlg=12.187    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=256  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=12.750 Reduce mod p=0.016  LAminpoly=2.968 PGCDAlg=9.233   Phigamma=0.533  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=23.985 Reduce mod p=0.015   PGCDAlg=23.938    CRT and RNR=0.000 Division test=0.016 NP=3.000
+Check=true
+dF=512  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=51.469 Reduce mod p=0.047  LAminpoly=16.751 PGCDAlg=32.890   Phigamma=1.750  CRT and RNR=0.015 Division test=0.016 NP=4.000
+MGCD2: time=61.656 Reduce mod p=0.032   PGCDAlg=61.608    CRT and RNR=0.016 Division test=0.000 NP=4.000
+Check=true
+dF=1024  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=178.860 Reduce mod p=0.015  LAminpoly=101.967 PGCDAlg=71.265   Phigamma=5.377  CRT and RNR=0.000 Division test=0.016 NP=4.000
+MGCD2: time=211.218 Reduce mod p=0.016   PGCDAlg=211.172    CRT and RNR=0.015 Division test=0.015 NP=4.000
+Check=true
 </Text-field>
 </Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkobWZlbmNlZEc2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUklbXJvd0dGJDY4LUkjbW5HRiQ2JFEsNC4zNTQ2NjU1NjZGJy8lLG1hdGh2YXJpYW50R1Enbm9ybWFsRictSSNtb0dGJDYuUSIsRidGMi8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdRJXRydWVGJy8lKXN0cmV0Y2h5R0Y7LyUqc3ltbWV0cmljR0Y7LyUobGFyZ2VvcEdGOy8lLm1vdmFibGVsaW1pdHNHRjsvJSdhY2NlbnRHRjsvJSdsc3BhY2VHUSYwLjBlbUYnLyUncnNwYWNlR1EsMC4zMzMzMzMzZW1GJy8lKWVxdWFsaXR5R0Y7LUYvNiRRLDE1LjkwMTg3MDY5RidGMkY1LUYvNiRRLDM2LjAyMjQxNDI2RidGMkY1LUYvNiRRLDUwLjc2MzYxOTQwRidGMkY1LUYvNiRRLDk3LjAxMTcyMDkzRidGMkY1LUYvNiRRLDEwMy41NDg1MDAwRidGMkY1LUkjbXNHRiQ2I1EiRkYnRjVGam5GNUZqbkY1RmpuLyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y7RjJGMi8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7Ric=">NywkIittYm1hViEiKiQiK3BxPSFmIiEiKSQiK0U5Qy1PRigkIitTPk93XUYoJCIrJDRzNnEqRigkIisrXVtONSEiKFEiRjYiRjJGMkYy</Equation></Text-field>
-</Output>
 </Group>
-<Group hide-input="false" labelreference="L190" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
-<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Group labelreference="L201" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Equation executable="true" style="2D Input" input-equation="" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYlLUkjbW9HRiQ2LlEifkYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGNC8lKXN0cmV0Y2h5R0Y0LyUqc3ltbWV0cmljR0Y0LyUobGFyZ2VvcEdGNC8lLm1vdmFibGVsaW1pdHNHRjQvJSdhY2NlbnRHRjQvJSdsc3BhY2VHUSYwLjBlbUYnLyUncnNwYWNlR0ZDLyUpZXF1YWxpdHlHRjQvJStleGVjdXRhYmxlR0Y0Ri8=">LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYlLUkjbW9HRiQ2LlEifkYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGNC8lKXN0cmV0Y2h5R0Y0LyUqc3ltbWV0cmljR0Y0LyUobGFyZ2VvcEdGNC8lLm1vdmFibGVsaW1pdHNHRjQvJSdhY2NlbnRHRjQvJSdsc3BhY2VHUSYwLjBlbUYnLyUncnNwYWNlR0ZDLyUpZXF1YWxpdHlHRjQvJStleGVjdXRhYmxlR0Y0Ri8=</Equation></Text-field>
 </Input>
 </Group>
 </Worksheet>

@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Worksheet>
+<Version major="2025" minor="1"/>
+<Label-Scheme value="2" prefix=""/>
+<View-Properties presentation="false" autoexpanding_sections="true" UserProfileName="Maple Default Profile" NumericFormat-ApplyInteger="true" NumericFormat-ApplyRational="true" NumericFormat-ApplyExponent="false" editable="true">
+</View-Properties>
+<MapleNet-Properties prettyprint="3" compactdisplay="false" preplot="" helpbrowser="standard" echo="1" scientificx="true" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" writeScrollableTableTypesetting="true" imaginaryunit="I" longdelim="true" elisiontermsthreshold="10000" elisiondigitsbefore="100" plotdevice="inline" elisiontermsbefore="100" historytimestamp="false" indentamount="4" plotoutput="terminal" screenpixelheight="1080" rtablesize="[10, 10]" useclientjvm="true" format="worksheet" labelwidth="20" postplot="" typesetting="extended" elisiondigitsthreshold="10000" ansilprint="false" labelling="true" verboseproc="1" latexwidth="8.0" warnlevel="3" displayprecision="-1" elisiondigitsafter="100" errorbreak="1" plotoptions="" plotdriver="opengl" quiet="false" elisiontermsafter="100" screenwidth="79" ansi="false" ansicolor="[]" showassumed="1" trailingsemicolon="true" errorcursor="false" screenheight="25" prompt="&gt; " ShowLabels="true"/>
+<Styles>
+<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Heading 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="16" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[40,120,40]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[120,0,14]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Ordered List 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Ordered List 3" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Ordered List 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" strikethrough="false" placeholder="false"/>
+<Font name="Atomic Variable" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[175,0,175]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" strikethrough="false" placeholder="false"/>
+<Font name="Dictionary Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[147,0,15]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" strikethrough="false" placeholder="false"/>
+<Font name="2D Math" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="List Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="true"/>
+<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" strikethrough="false" placeholder="false"/>
+<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
+<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.3" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 1" alignment="left" bullet="numeric" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="newline" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 2" alignment="left" bullet="alphabetic" firstindent="0" leftmargin="36" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 3" alignment="left" bullet="roman" firstindent="0" leftmargin="72" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 4" alignment="left" bullet="ALPHABETIC" firstindent="0" leftmargin="108" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 5" alignment="left" bullet="ROMAN" firstindent="0" leftmargin="144" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Annotation Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkError" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Bullet Item" alignment="left" bullet="dot" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="List Item" alignment="left" bullet="indent" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Dash Item" alignment="left" bullet="dash" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Error" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Pencil-style name="Pencil 1" pen-color="[0,0,0]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
+<Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
+</Styles>
+<Startup-Code startupcode=""/>
+<Task-table>
+	<Task-category name="&lt;default&gt;"/>
+</Task-table>
+<Task/>
+<Group hide-input="false" labelreference="L1" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;
+with(PolynomialTools):
+currentdir();
+<Font foreground="[0,128,128]">#Read subrutines</Font>
+currentdir():
+read &quot;Get&quot;; read &quot;LAMinpolyMaple&quot;; read &quot;PhigammaMaple&quot;; read &quot;MonOpMaple&quot;;  read &quot;PGCDMaple&quot;; read &quot;MGCD1&quot;; read &quot;Bench.mpl&quot;; read &quot;MGCD2&quot;;
+RDP:=Algebraic:-RecursiveDensePolynomials;  read &quot;minimal Polynomial creator&quot;;
+<Font foreground="[0,128,128]">#The recden codes are in the following Code Edit Region for convenience</Font>
+timings := true:
+Xpoly := [x, y]:
+dF := 32:
+M := Minpolylist(dF, num);
+Xmin := ListTools:-Reverse([seq(z[j], j = 1 .. nops(M))]):
+XT := [op(Xpoly), op(Xmin)];
+dF:= mul(degree(M[j]), j = 1 .. nops(M));
+
+</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkjbXNHNiMvSSttb2R1bGVuYW1lRzYiSSxUeXBlc2V0dGluZ0dJKF9zeXNsaWJHRic2I1Fnb0M6XFVzZXJzXHBheWFtXE9uZURyaXZlXERvY3VtZW50c1xHaXRIdWJcTWFoc2FfQW5zYXJpX1RoZXNpc1xCZW5jaG1hcmtzXE1HQ0RGJw==">UWdvQzpcVXNlcnNccGF5YW1cT25lRHJpdmVcRG9jdW1lbnRzXEdpdEh1YlxNYWhzYV9BbnNhcmlfVGhlc2lzXEJlbmNobWFya3NcTUdDRDYi</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEkUkRQRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LlEpJkFzc2lnbjtGJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC8lKWVxdWFsaXR5R0Y9LUYsNiVRKkFsZ2VicmFpY0YnRi9GMi1GNjYuUS8mY29sb247Jm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZYRk8tRiw2JVE6UmVjdXJzaXZlRGVuc2VQb2x5bm9taWFsc0YnRi9GMkY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSRSRFBHRihJOlJlY3Vyc2l2ZURlbnNlUG9seW5vbWlhbHNHNiQvSSttb2R1bGVuYW1lR0YoSSpBbGdlYnJhaWNHRiVGJjcjRi4=</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEiTUYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JKG1mZW5jZWRHRiQ2Ji1GIzYuLUYjNiYtSShtc3Vic3VwR0YkNictRiw2JVEiekYnRi9GMi1JI21uR0YkNiRRIjFGJ0Y5LUZpbjYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRicvJS9zdWJzY3JpcHRzaGlmdEdGYW8tRjY2LlEoJm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EsMC4yMjIyMjIyZW1GJy9GTkZob0ZPRlxvRjktRjY2LlEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTlEsMC4zMzMzMzMzZW1GJ0ZPLUYjNiYtRlk2J0ZlbkZcb0Zcb0Zfb0Zib0Zkby1GaW42JFEiM0YnRjlGOUZqby1GIzYmLUZZNidGZW5GZnBGXG9GX29GYm9GZG8tRmluNiRRIjVGJ0Y5RjlGam8tRiM2Ji1GWTYnRmVuLUZpbjYkUSI0RidGOUZcb0Zfb0Zib0Zkby1GaW42JFEiN0YnRjlGOUZqby1GIzYmLUZZNidGZW5GXXFGXG9GX29GYm9GZG8tRmluNiRRIzExRidGOUY5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJNR0YoNycsJiokJkkiekdGKDYjIiIiIiIjRjQhIiNGNCwmKiQmRjI2I0Y1RjVGNCEiJEY0LCYqJCZGMjYjIiIkRjVGNCEiJkY0LCYqJCZGMjYjIiIlRjVGNCEiKEY0LCYqJCZGMjYjIiImRjVGNCEjNkY0NyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjWFRGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSShtZmVuY2VkR0YkNiYtRiM2Mi1GLDYlUSJ4RidGL0YyLUY2Ni5RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGTy1GLDYlUSJ5RidGL0YyRlktSSVtc3ViR0YkNiUtRiw2JVEiekYnRi9GMi1JI21uR0YkNiRRIjVGJ0Y5LyUvc3Vic2NyaXB0c2hpZnRHUSIwRidGWS1GX282JUZhby1GZW82JFEiNEYnRjlGaG9GWS1GX282JUZhby1GZW82JFEiM0YnRjlGaG9GWS1GX282JUZhby1GZW82JFEiMkYnRjlGaG9GWS1GX282JUZhby1GZW82JFEiMUYnRjlGaG8vJStmb3JlZ3JvdW5kR1EoWzAsMCwwXUYnLyUpcmVhZG9ubHlHRj1GOUY5LyUlb3BlbkdRJyZsc3FiO0YnLyUmY2xvc2VHUScmcnNxYjtGJ0Y5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNYVEdGKDcpSSJ4R0YoSSJ5R0YoJkkiekdGKDYjIiImJkYyNiMiIiUmRjI2IyIiJCZGMjYjIiIjJkYyNiMiIiI3I0Yu</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjZEZGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSSNtbkdGJDYkUSMzMkYnRjlGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNkRkdGKCIjSzcjRi4=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L206" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t:=80:
+k:=1:
+T := [seq(0, i = 1 .. t/2)]:
+for i from 2 by 2 to t do
+    q :=rand()/rand();
+    g := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
+    a := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
+    b := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
+    f1 := RDP:-mulrpoly(a, g);
+    f2 := RDP:-mulrpoly(b, g);
+<Font encoding="UTF-8">    printf(&quot;dF=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d  deg(g,x)=%d  deg(g,y)=%d\134n&quot;, dF, </Font>RDP:-degrpoly(f1, x), RDP:-degrpoly(f1, y), RDP:-degrpoly(f2, x), RDP:-degrpoly(f2, y), RDP:-degrpoly(g, x), RDP:-degrpoly(g, y));
+try;
+  t:=time():
+  Mahsa1:=timelimit(1000,MGCD(f1,f2,2^30));
+  tMGCD1:=time()-t;
+  tt:=time():
+catch &quot;time expired&quot;: 
+        tMGCD1:= FAIL; 
+end try;
+try;
+  Mahsa2:=timelimit(1000,MGCD2(f1,f2,2^30));
+  tMGCD2:=time()-tt;
+catch &quot;time expired&quot;: 
+        tMGCD2:= FAIL; 
+end try;
+if tMGCD2&lt;&gt;FAIL and tMGCD1&lt;&gt;FAIL then
+<Font encoding="UTF-8">  printf(&quot;Check=%a\134n&quot;,evalb(Mahsa1=Mahsa2));</Font>
+  T[k]:=tMGCD2/tMGCD1;
+else
+   T[k]:=&quot;F&quot;;
+fi;
+k:=k+1;
+od:
+T;</Text-field>
+</Input>
+<Input><Text-field prompt="&gt; " style="Maple Input" spaceabove="0" linebreak="space" rightmargin="0" linespacing="0.0" initial="0" firstindent="0" leftmargin="0" bulletsuffix="" alignment="left" bullet="none" spacebelow="0" pagebreak-before="false"></Text-field>
+</Input>
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">dF=32  deg(f1,x)=4  deg(f1,y)=4  deg(f2,x)=4  deg(f2,y)=4  deg(g,x)=2  deg(g,y)=2
+MGCD1: time=0.171 Reduce mod p=0.000  LAminpoly=0.032 PGCDAlg=0.046   Phigamma=0.062  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=0.094 Reduce mod p=0.000   PGCDAlg=0.094    CRT and RNR=0.000 Division test=0.000 NP=3.000
+Check=true
+dF=32  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8  deg(g,x)=4  deg(g,y)=4
+MGCD1: time=0.203 Reduce mod p=0.015  LAminpoly=0.031 PGCDAlg=0.110   Phigamma=0.047  CRT and RNR=0.000 Division test=0.000 NP=2.000
+MGCD2: time=0.235 Reduce mod p=0.000   PGCDAlg=0.235    CRT and RNR=0.000 Division test=0.000 NP=2.000
+Check=true
+dF=32  deg(f1,x)=12  deg(f1,y)=12  deg(f2,x)=12  deg(f2,y)=12  deg(g,x)=6  deg(g,y)=6
+MGCD1: time=0.469 Reduce mod p=0.063  LAminpoly=0.063 PGCDAlg=0.296   Phigamma=0.031  CRT and RNR=0.000 Division test=0.016 NP=3.000
+MGCD2: time=0.484 Reduce mod p=0.000   PGCDAlg=0.469    CRT and RNR=0.000 Division test=0.000 NP=3.000
+Check=true
+dF=32  deg(f1,x)=16  deg(f1,y)=16  deg(f2,x)=16  deg(f2,y)=16  deg(g,x)=8  deg(g,y)=8
+MGCD1: time=0.453 Reduce mod p=0.015  LAminpoly=0.047 PGCDAlg=0.360   Phigamma=0.031  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=0.625 Reduce mod p=0.015   PGCDAlg=0.579    CRT and RNR=0.000 Division test=0.015 NP=3.000
+Check=true
+dF=32  deg(f1,x)=20  deg(f1,y)=20  deg(f2,x)=20  deg(f2,y)=20  deg(g,x)=10  deg(g,y)=10
+MGCD1: time=0.781 Reduce mod p=0.000  LAminpoly=0.046 PGCDAlg=0.657   Phigamma=0.078  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=1.079 Reduce mod p=0.016   PGCDAlg=1.048    CRT and RNR=0.000 Division test=0.000 NP=3.000
+Check=true
+dF=32  deg(f1,x)=24  deg(f1,y)=24  deg(f2,x)=24  deg(f2,y)=24  deg(g,x)=12  deg(g,y)=12
+MGCD1: time=0.813 Reduce mod p=0.016  LAminpoly=0.031 PGCDAlg=0.703   Phigamma=0.047  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=1.312 Reduce mod p=0.016   PGCDAlg=1.296    CRT and RNR=0.000 Division test=0.000 NP=3.000
+Check=true
+dF=32  deg(f1,x)=28  deg(f1,y)=28  deg(f2,x)=28  deg(f2,y)=28  deg(g,x)=14  deg(g,y)=14
+MGCD1: time=1.125 Reduce mod p=0.015  LAminpoly=0.046 PGCDAlg=0.984   Phigamma=0.064  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=1.672 Reduce mod p=0.015   PGCDAlg=1.642    CRT and RNR=0.000 Division test=0.000 NP=3.000
+Check=true
+dF=32  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=1.313 Reduce mod p=0.000  LAminpoly=0.063 PGCDAlg=1.172   Phigamma=0.062  CRT and RNR=0.000 Division test=0.016 NP=3.000
+MGCD2: time=1.953 Reduce mod p=0.000   PGCDAlg=1.921    CRT and RNR=0.016 Division test=0.000 NP=3.000
+Check=true
+dF=32  deg(f1,x)=36  deg(f1,y)=36  deg(f2,x)=36  deg(f2,y)=36  deg(g,x)=18  deg(g,y)=18
+MGCD1: time=1.422 Reduce mod p=0.032  LAminpoly=0.061 PGCDAlg=1.249   Phigamma=0.064  CRT and RNR=0.016 Division test=0.000 NP=3.000
+MGCD2: time=2.672 Reduce mod p=0.015   PGCDAlg=2.641    CRT and RNR=0.000 Division test=0.016 NP=3.000
+Check=true
+dF=32  deg(f1,x)=40  deg(f1,y)=40  deg(f2,x)=40  deg(f2,y)=40  deg(g,x)=20  deg(g,y)=20
+MGCD1: time=2.328 Reduce mod p=0.000  LAminpoly=0.046 PGCDAlg=2.188   Phigamma=0.094  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=3.937 Reduce mod p=0.062   PGCDAlg=3.845    CRT and RNR=0.000 Division test=0.015 NP=3.000
+Check=true
+dF=32  deg(f1,x)=44  deg(f1,y)=44  deg(f2,x)=44  deg(f2,y)=44  deg(g,x)=22  deg(g,y)=22
+MGCD1: time=2.313 Reduce mod p=0.016  LAminpoly=0.046 PGCDAlg=2.141   Phigamma=0.094  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=4.281 Reduce mod p=0.016   PGCDAlg=4.218    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=48  deg(f1,y)=48  deg(f2,x)=48  deg(f2,y)=48  deg(g,x)=24  deg(g,y)=24
+MGCD1: time=4.187 Reduce mod p=0.016  LAminpoly=0.062 PGCDAlg=4.000   Phigamma=0.094  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=5.844 Reduce mod p=0.030   PGCDAlg=5.814    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=52  deg(f1,y)=52  deg(f2,x)=52  deg(f2,y)=52  deg(g,x)=26  deg(g,y)=26
+MGCD1: time=3.250 Reduce mod p=0.000  LAminpoly=0.079 PGCDAlg=3.061   Phigamma=0.110  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=6.578 Reduce mod p=0.077   PGCDAlg=6.501    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=56  deg(f1,y)=56  deg(f2,x)=56  deg(f2,y)=56  deg(g,x)=28  deg(g,y)=28
+MGCD1: time=3.610 Reduce mod p=0.016  LAminpoly=0.047 PGCDAlg=3.344   Phigamma=0.171  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=7.781 Reduce mod p=0.016   PGCDAlg=7.749    CRT and RNR=0.000 Division test=0.016 NP=4.000
+Check=true
+dF=32  deg(f1,x)=60  deg(f1,y)=60  deg(f2,x)=60  deg(f2,y)=60  deg(g,x)=30  deg(g,y)=30
+MGCD1: time=5.109 Reduce mod p=0.031  LAminpoly=0.047 PGCDAlg=4.845   Phigamma=0.170  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=8.953 Reduce mod p=0.000   PGCDAlg=8.937    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=64  deg(f1,y)=64  deg(f2,x)=64  deg(f2,y)=64  deg(g,x)=32  deg(g,y)=32
+MGCD1: time=5.875 Reduce mod p=0.000  LAminpoly=0.063 PGCDAlg=5.688   Phigamma=0.109  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=10.141 Reduce mod p=0.031   PGCDAlg=10.078    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=68  deg(f1,y)=68  deg(f2,x)=68  deg(f2,y)=68  deg(g,x)=34  deg(g,y)=34
+MGCD1: time=8.344 Reduce mod p=0.015  LAminpoly=0.111 PGCDAlg=8.061   Phigamma=0.125  CRT and RNR=0.000 Division test=0.016 NP=4.000
+MGCD2: time=11.547 Reduce mod p=0.000   PGCDAlg=11.531    CRT and RNR=0.016 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=72  deg(f1,y)=72  deg(f2,x)=72  deg(f2,y)=72  deg(g,x)=36  deg(g,y)=36
+MGCD1: time=8.171 Reduce mod p=0.000  LAminpoly=0.077 PGCDAlg=7.923   Phigamma=0.171  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=19.079 Reduce mod p=0.016   PGCDAlg=19.047    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=76  deg(f1,y)=76  deg(f2,x)=76  deg(f2,y)=76  deg(g,x)=38  deg(g,y)=38
+MGCD1: time=9.781 Reduce mod p=0.094  LAminpoly=0.031 PGCDAlg=9.407   Phigamma=0.218  CRT and RNR=0.031 Division test=0.000 NP=4.000
+MGCD2: time=15.500 Reduce mod p=0.031   PGCDAlg=15.454    CRT and RNR=0.015 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=80  deg(f1,y)=80  deg(f2,x)=80  deg(f2,y)=80  deg(g,x)=40  deg(g,y)=40
+MGCD1: time=9.047 Reduce mod p=0.031  LAminpoly=0.016 PGCDAlg=8.813   Phigamma=0.156  CRT and RNR=0.015 Division test=0.000 NP=4.000
+MGCD2: time=16.781 Reduce mod p=0.000   PGCDAlg=16.765    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=84  deg(f1,y)=84  deg(f2,x)=84  deg(f2,y)=84  deg(g,x)=42  deg(g,y)=42
+MGCD1: time=10.109 Reduce mod p=0.031  LAminpoly=0.047 PGCDAlg=9.875   Phigamma=0.141  CRT and RNR=0.000 Division test=0.015 NP=4.000
+MGCD2: time=22.078 Reduce mod p=0.000   PGCDAlg=22.062    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=32  deg(f1,x)=88  deg(f1,y)=88  deg(f2,x)=88  deg(f2,y)=88  deg(g,x)=44  deg(g,y)=44
+MGCD1: time=13.047 Reduce mod p=0.015  LAminpoly=0.141 PGCDAlg=12.718   Phigamma=0.142  CRT and RNR=0.015 Division test=0.000 NP=4.000
+MGCD2: time=25.140 Reduce mod p=0.016   PGCDAlg=25.094    CRT and RNR=0.000 Division test=0.015 NP=4.000
+Check=true
+dF=32  deg(f1,x)=92  deg(f1,y)=92  deg(f2,x)=92  deg(f2,y)=92  deg(g,x)=46  deg(g,y)=46
+MGCD1: time=12.531 Reduce mod p=0.016  LAminpoly=0.064 PGCDAlg=12.172   Phigamma=0.249  CRT and RNR=0.030 Division test=0.000 NP=4.000
+MGCD2: time=22.328 Reduce mod p=0.016   PGCDAlg=22.297    CRT and RNR=0.000 Division test=0.015 NP=4.000
+Check=true
+dF=32  deg(f1,x)=96  deg(f1,y)=96  deg(f2,x)=96  deg(f2,y)=96  deg(g,x)=48  deg(g,y)=48
+MGCD1: time=15.438 Reduce mod p=0.015  LAminpoly=0.079 PGCDAlg=15.125   Phigamma=0.203  CRT and RNR=0.000 Division test=0.016 NP=5.000
+MGCD2: time=25.437 Reduce mod p=0.015   PGCDAlg=25.376    CRT and RNR=0.015 Division test=0.016 NP=5.000
+Check=true
+dF=32  deg(f1,x)=100  deg(f1,y)=100  deg(f2,x)=100  deg(f2,y)=100  deg(g,x)=50  deg(g,y)=50
+MGCD1: time=14.984 Reduce mod p=0.031  LAminpoly=0.062 PGCDAlg=14.718   Phigamma=0.141  CRT and RNR=0.000 Division test=0.000 NP=5.000
+MGCD2: time=25.844 Reduce mod p=0.016   PGCDAlg=25.796    CRT and RNR=0.016 Division test=0.016 NP=5.000
+Check=true
+dF=32  deg(f1,x)=104  deg(f1,y)=104  deg(f2,x)=104  deg(f2,y)=104  deg(g,x)=52  deg(g,y)=52
+MGCD1: time=18.969 Reduce mod p=0.016  LAminpoly=0.077 PGCDAlg=18.657   Phigamma=0.189  CRT and RNR=0.015 Division test=0.015 NP=5.000
+MGCD2: time=48.797 Reduce mod p=0.016   PGCDAlg=48.750    CRT and RNR=0.031 Division test=0.000 NP=5.000
+Check=true
+dF=32  deg(f1,x)=108  deg(f1,y)=108  deg(f2,x)=108  deg(f2,y)=108  deg(g,x)=54  deg(g,y)=54
+MGCD1: time=23.968 Reduce mod p=0.030  LAminpoly=0.095 PGCDAlg=23.624   Phigamma=0.173  CRT and RNR=0.015 Division test=0.000 NP=6.000
+MGCD2: time=42.204 Reduce mod p=0.031   PGCDAlg=42.142    CRT and RNR=0.031 Division test=0.000 NP=6.000
+Check=true
+dF=32  deg(f1,x)=112  deg(f1,y)=112  deg(f2,x)=112  deg(f2,y)=112  deg(g,x)=56  deg(g,y)=56
+MGCD1: time=24.250 Reduce mod p=0.047  LAminpoly=0.032 PGCDAlg=23.938   Phigamma=0.203  CRT and RNR=0.000 Division test=0.015 NP=5.000
+MGCD2: time=50.719 Reduce mod p=0.031   PGCDAlg=50.688    CRT and RNR=0.000 Division test=0.000 NP=5.000
+Check=true
+dF=32  deg(f1,x)=116  deg(f1,y)=116  deg(f2,x)=116  deg(f2,y)=116  deg(g,x)=58  deg(g,y)=58
+MGCD1: time=31.421 Reduce mod p=0.032  LAminpoly=0.076 PGCDAlg=31.063   Phigamma=0.188  CRT and RNR=0.047 Division test=0.000 NP=6.000
+MGCD2: time=59.594 Reduce mod p=0.016   PGCDAlg=59.563    CRT and RNR=0.000 Division test=0.015 NP=6.000
+Check=true
+dF=32  deg(f1,x)=120  deg(f1,y)=120  deg(f2,x)=120  deg(f2,y)=120  deg(g,x)=60  deg(g,y)=60
+MGCD1: time=36.734 Reduce mod p=0.000  LAminpoly=0.123 PGCDAlg=36.221   Phigamma=0.249  CRT and RNR=0.031 Division test=0.000 NP=7.000
+MGCD2: time=83.672 Reduce mod p=0.046   PGCDAlg=83.578    CRT and RNR=0.016 Division test=0.000 NP=7.000
+Check=true
+dF=32  deg(f1,x)=124  deg(f1,y)=124  deg(f2,x)=124  deg(f2,y)=124  deg(g,x)=62  deg(g,y)=62
+MGCD1: time=38.656 Reduce mod p=0.078  LAminpoly=0.031 PGCDAlg=38.281   Phigamma=0.235  CRT and RNR=0.000 Division test=0.000 NP=6.000
+MGCD2: time=69.281 Reduce mod p=0.030   PGCDAlg=69.204    CRT and RNR=0.015 Division test=0.000 NP=6.000
+Check=true
+dF=32  deg(f1,x)=128  deg(f1,y)=128  deg(f2,x)=128  deg(f2,y)=128  deg(g,x)=64  deg(g,y)=64
+MGCD1: time=38.640 Reduce mod p=0.046  LAminpoly=0.079 PGCDAlg=38.125   Phigamma=0.360  CRT and RNR=0.015 Division test=0.000 NP=6.000
+MGCD2: time=92.266 Reduce mod p=0.015   PGCDAlg=92.204    CRT and RNR=0.000 Division test=0.016 NP=6.000
+Check=true
+dF=32  deg(f1,x)=132  deg(f1,y)=132  deg(f2,x)=132  deg(f2,y)=132  deg(g,x)=66  deg(g,y)=66
+MGCD1: time=33.000 Reduce mod p=0.062  LAminpoly=0.077 PGCDAlg=32.595   Phigamma=0.203  CRT and RNR=0.031 Division test=0.000 NP=7.000
+MGCD2: time=68.375 Reduce mod p=0.016   PGCDAlg=68.298    CRT and RNR=0.015 Division test=0.000 NP=7.000
+Check=true
+dF=32  deg(f1,x)=136  deg(f1,y)=136  deg(f2,x)=136  deg(f2,y)=136  deg(g,x)=68  deg(g,y)=68
+MGCD1: time=37.078 Reduce mod p=0.032  LAminpoly=0.078 PGCDAlg=36.608   Phigamma=0.298  CRT and RNR=0.031 Division test=0.000 NP=7.000
+MGCD2: time=99.922 Reduce mod p=0.047   PGCDAlg=99.814    CRT and RNR=0.030 Division test=0.000 NP=7.000
+Check=true
+dF=32  deg(f1,x)=140  deg(f1,y)=140  deg(f2,x)=140  deg(f2,y)=140  deg(g,x)=70  deg(g,y)=70
+MGCD1: time=43.172 Reduce mod p=0.032  LAminpoly=0.093 PGCDAlg=42.608   Phigamma=0.392  CRT and RNR=0.016 Division test=0.000 NP=7.000
+MGCD2: time=99.312 Reduce mod p=0.031   PGCDAlg=99.235    CRT and RNR=0.015 Division test=0.015 NP=7.000
+Check=true
+dF=32  deg(f1,x)=144  deg(f1,y)=144  deg(f2,x)=144  deg(f2,y)=144  deg(g,x)=72  deg(g,y)=72
+MGCD1: time=42.703 Reduce mod p=0.064  LAminpoly=0.031 PGCDAlg=42.171   Phigamma=0.421  CRT and RNR=0.000 Division test=0.016 NP=6.000
+MGCD2: time=82.625 Reduce mod p=0.063   PGCDAlg=82.531    CRT and RNR=0.015 Division test=0.000 NP=6.000
+Check=true
+dF=32  deg(f1,x)=148  deg(f1,y)=148  deg(f2,x)=148  deg(f2,y)=148  deg(g,x)=74  deg(g,y)=74
+MGCD1: time=46.343 Reduce mod p=0.016  LAminpoly=0.204 PGCDAlg=45.782   Phigamma=0.265  CRT and RNR=0.016 Division test=0.015 NP=7.000
+MGCD2: time=88.625 Reduce mod p=0.032   PGCDAlg=88.547    CRT and RNR=0.016 Division test=0.015 NP=7.000
+Check=true
+dF=32  deg(f1,x)=152  deg(f1,y)=152  deg(f2,x)=152  deg(f2,y)=152  deg(g,x)=76  deg(g,y)=76
+MGCD1: time=52.469 Reduce mod p=0.096  LAminpoly=0.047 PGCDAlg=51.983   Phigamma=0.312  CRT and RNR=0.031 Division test=0.000 NP=7.000
+MGCD2: time=106.500 Reduce mod p=0.047   PGCDAlg=106.422    CRT and RNR=0.016 Division test=0.015 NP=7.000
+Check=true
+dF=32  deg(f1,x)=156  deg(f1,y)=156  deg(f2,x)=156  deg(f2,y)=156  deg(g,x)=78  deg(g,y)=78
+MGCD1: time=45.516 Reduce mod p=0.032  LAminpoly=0.079 PGCDAlg=45.062   Phigamma=0.281  CRT and RNR=0.015 Division test=0.016 NP=7.000
+MGCD2: time=102.031 Reduce mod p=0.047   PGCDAlg=101.936    CRT and RNR=0.000 Division test=0.000 NP=7.000
+Check=true
+dF=32  deg(f1,x)=160  deg(f1,y)=160  deg(f2,x)=160  deg(f2,y)=160  deg(g,x)=80  deg(g,y)=80
+MGCD1: time=65.546 Reduce mod p=0.000  LAminpoly=0.203 PGCDAlg=64.939   Phigamma=0.312  CRT and RNR=0.046 Division test=0.015 NP=6.000
+MGCD2: time=147.610 Reduce mod p=0.016   PGCDAlg=147.546    CRT and RNR=0.032 Division test=0.000 NP=6.000
+Check=true
+</Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkobWZlbmNlZEc2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUklbXJvd0dGJDZecC1JI21uR0YkNiRRLTAuNTQ5NzA3NjAyM0YnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy1JI21vR0YkNi5RIixGJ0YyLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR1EldHJ1ZUYnLyUpc3RyZXRjaHlHRjsvJSpzeW1tZXRyaWNHRjsvJShsYXJnZW9wR0Y7LyUubW92YWJsZWxpbWl0c0dGOy8lJ2FjY2VudEdGOy8lJ2xzcGFjZUdRJjAuMGVtRicvJSdyc3BhY2VHUSwwLjMzMzMzMzNlbUYnLyUpZXF1YWxpdHlHRjstRi82JFEsMS4xNTc2MzU0NjhGJ0YyRjUtRi82JFEsMS4wMzE5ODI5NDJGJ0YyRjUtRi82JFEsMS4zNzk2OTA5NDlGJ0YyRjUtRi82JFEsMS4zODE1NjIxMDBGJ0YyRjUtRi82JFEsMS42MTM3NzYxMzhGJ0YyRjUtRi82JFEsMS40ODYyMjIyMjJGJ0YyRjUtRi82JFEsMS40ODc0MzMzNTlGJ0YyRjUtRi82JFEsMS44NzkwNDM2MDFGJ0YyRjUtRi82JFEsMS42OTExNTEyMDNGJ0YyRjUtRi82JFEsMS44NTA4NDMwNjFGJ0YyRjUtRi82JFEsMS4zOTU3NDg3NDZGJ0YyRjUtRi82JFEsMi4wMjQwMDAwMDBGJ0YyRjUtRi82JFEsMi4xNTU0MDE2NjJGJ0YyRjUtRi82JFEsMS43NTIzOTc3MjlGJ0YyRjUtRi82JFEsMS43MjYxMjc2NjBGJ0YyRjUtRi82JFEsMS4zODM4Njg2NDhGJ0YyRjUtRi82JFEsMi4zMzQ5NjUxMjFGJ0YyRjUtRi82JFEsMS41ODQ3MDUwNDBGJ0YyRjUtRi82JFEsMS44NTQ4NjkwMTdGJ0YyRjUtRi82JFEsMi4xODM5OTQ0NjBGJ0YyRjUtRi82JFEsMS45MjY4Nzk3NDJGJ0YyRjUtRi82JFEsMS43ODE4MjEwODRGJ0YyRjUtRi82JFEsMS42NDc2ODc1MjRGJ0YyRjUtRi82JFEsMS43MjQ3NzMwOTFGJ0YyRjUtRi82JFEsMi41NzI0NjAzMzBGJ0YyRjUtRi82JFEsMS43NjA4NDc3OTdGJ0YyRjUtRi82JFEsMi4wOTE1MDUxNTVGJ0YyRjUtRi82JFEsMS44OTY2Mjk2NDNGJ0YyRjUtRi82JFEsMi4yNzc3ODA4MDNGJ0YyRjUtRi82JFEsMS43OTIyNDQ0MTJGJ0YyRjUtRi82JFEsMi4zODc4MzY0MzlGJ0YyRjUtRi82JFEsMi4wNzE5Njk2OTdGJ0YyRjUtRi82JFEsMi42OTQ5MTM0MjZGJ0YyRjUtRi82JFEsMi4zMDAzNzk4NzZGJ0YyRjUtRi82JFEsMS45MzQ4NzU3NzBGJ0YyRjUtRi82JFEsMS45MTIzNzA4MDBGJ0YyRjUtRi82JFEsMi4wMjkxODk4NDhGJ0YyRjUtRi82JFEsMi4yNDE2NTEyODdGJ0YyRjUtRi82JFEsMi4yNTIwMDYyMjVGJ0YyLyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y7RjJGMi8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7Ric=">N0okIitCZzIoXCYhIzUkIitvYWpkNiEiKiQiK1VIKT4uIkYoJCIrXDRwejhGKCQiKytAYyJRIkYoJCIrUWh4ODtGKCQiK0FBQSdbIkYoJCIrZkxWKFsiRigkIissTy96PUYoJCIrLjc6InAiRigkIitoSSUzJj1GKCQiK1koW2RSIkYoJCIrKysrQz9GKCQiK2k7U2JARigkIitIeFJfPEYoJCIrZ3c3RTxGKCQiK1snb1FRIkYoJCIrQF4nXEwjRigkIitTXXElZSJGKCQiKzwhcFsmPUYoJCIrZ1cqUj0jRigkIitVKHpvIz5GKCQiKyUzQD15IkYoJCIrQ3ZvWjtGKCQiKyI0dFpzIkYoJCIrSS5Zc0RGKCQiKyh6WjN3IkYoJCIrYl5dIjQjRigkIitWJ0htKj1GKCQiKy4zeXhBRigkIis3V0MjeiJGKCQiK1JrJHlRI0YoJCIrKHBwPjIjRigkIitFTSJccCNGKCQiK3cpei5JI0YoJCIrcWQoWyQ+RigkIisrM1A3PkYoJCIrWykqPUg/RigkIisoR147QyNGKCQiK0RpK19BRig=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L215" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">timings := true:
+Xpoly := [x, y]:
+dF := 64:
+M := Minpolylist(dF, num);
+Xmin := ListTools:-Reverse([seq(z[j], j = 1 .. nops(M))]):
+XT := [op(Xpoly), op(Xmin)];
+k := 1:
+Td:= mul(degree(M[j]), j = 1 .. nops(M));
+</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEiTUYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JKG1mZW5jZWRHRiQ2Ji1GIzYwLUYjNiYtSShtc3Vic3VwR0YkNictRiw2JVEiekYnRi9GMi1JI21uR0YkNiRRIjFGJ0Y5LUZpbjYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRicvJS9zdWJzY3JpcHRzaGlmdEdGYW8tRjY2LlEoJm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EsMC4yMjIyMjIyZW1GJy9GTkZob0ZPRlxvRjktRjY2LlEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTlEsMC4zMzMzMzMzZW1GJ0ZPLUYjNiYtRlk2J0ZlbkZcb0Zcb0Zfb0Zib0Zkby1GaW42JFEiM0YnRjlGOUZqby1GIzYmLUZZNidGZW5GZnBGXG9GX29GYm9GZG8tRmluNiRRIjVGJ0Y5RjlGam8tRiM2Ji1GWTYnRmVuLUZpbjYkUSI0RidGOUZcb0Zfb0Zib0Zkby1GaW42JFEiN0YnRjlGOUZqby1GIzYmLUZZNidGZW5GXXFGXG9GX29GYm9GZG8tRmluNiRRIzExRidGOUY5RmpvLUYjNiYtRlk2J0Zlbi1GaW42JFEiNkYnRjlGXG9GX29GYm9GZG8tRmluNiRRIzEzRidGOUY5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJNR0YoNygsJiokJkkiekdGKDYjIiIiIiIjRjQhIiNGNCwmKiQmRjI2I0Y1RjVGNCEiJEY0LCYqJCZGMjYjIiIkRjVGNCEiJkY0LCYqJCZGMjYjIiIlRjVGNCEiKEY0LCYqJCZGMjYjIiImRjVGNCEjNkY0LCYqJCZGMjYjIiInRjVGNCEjOEY0NyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjWFRGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSShtZmVuY2VkR0YkNiYtRiM2NC1GLDYlUSJ4RidGL0YyLUY2Ni5RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGTy1GLDYlUSJ5RidGL0YyRlktSSVtc3ViR0YkNiUtRiw2JVEiekYnRi9GMi1JI21uR0YkNiRRIjZGJ0Y5LyUvc3Vic2NyaXB0c2hpZnRHUSIwRidGWS1GX282JUZhby1GZW82JFEiNUYnRjlGaG9GWS1GX282JUZhby1GZW82JFEiNEYnRjlGaG9GWS1GX282JUZhby1GZW82JFEiM0YnRjlGaG9GWS1GX282JUZhby1GZW82JFEiMkYnRjlGaG9GWS1GX282JUZhby1GZW82JFEiMUYnRjlGaG8vJStmb3JlZ3JvdW5kR1EoWzAsMCwwXUYnLyUpcmVhZG9ubHlHRj1GOUY5LyUlb3BlbkdRJyZsc3FiO0YnLyUmY2xvc2VHUScmcnNxYjtGJ0Y5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNYVEdGKDcqSSJ4R0YoSSJ5R0YoJkkiekdGKDYjIiInJkYyNiMiIiYmRjI2IyIiJSZGMjYjIiIkJkYyNiMiIiMmRjI2IyIiIjcjRi4=</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjVGRGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSSNtbkdGJDYkUSM2NEYnRjlGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNUZEdGKCIjazcjRi4=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L214" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t:=80:
+k:=1:
+T := [seq(0, i = 1 .. t/2)]:
+for i from 2 by 2 to t do
+    q :=rand()/rand();
+    g := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
+    a := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
+    b := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
+    f1 := RDP:-mulrpoly(a, g);
+    f2 := RDP:-mulrpoly(b, g);
+<Font encoding="UTF-8">    printf(&quot;dF=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d  deg(g,x)=%d  deg(g,y)=%d\134n&quot;, dF, </Font>RDP:-degrpoly(f1, x), RDP:-degrpoly(f1, y), RDP:-degrpoly(f2, x), RDP:-degrpoly(f2, y), RDP:-degrpoly(g, x), RDP:-degrpoly(g, y));
+try;
+  t:=time():
+  Mahsa1:=timelimit(1000,MGCD(f1,f2,2^30));
+  tMGCD1:=time()-t;
+  tt:=time():
+catch &quot;time expired&quot;: 
+        tMGCD1:= FAIL; 
+end try;
+try;
+  Mahsa2:=timelimit(1000,MGCD2(f1,f2,2^30));
+  tMGCD2:=time()-tt;
+catch &quot;time expired&quot;: 
+        tMGCD2:= FAIL; 
+end try;
+if tMGCD2&lt;&gt;FAIL and tMGCD1&lt;&gt;FAIL then
+<Font encoding="UTF-8">  printf(&quot;Check=%a\134n&quot;,evalb(Mahsa1=Mahsa2));</Font>
+  T[k]:=tMGCD2/tMGCD1;
+else
+   T[k]:=&quot;F&quot;;
+fi;
+k:=k+1;
+od:
+T;</Text-field>
+</Input>
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">dF=64  deg(f1,x)=4  deg(f1,y)=4  deg(f2,x)=4  deg(f2,y)=4  deg(g,x)=2  deg(g,y)=2
+MGCD1: time=0.250 Reduce mod p=0.032  LAminpoly=0.109 PGCDAlg=0.047   Phigamma=0.062  CRT and RNR=0.000 Division test=0.000 NP=2.000
+MGCD2: time=0.234 Reduce mod p=0.000   PGCDAlg=0.234    CRT and RNR=0.000 Division test=0.000 NP=2.000
+Check=true
+dF=64  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8  deg(g,x)=4  deg(g,y)=4
+MGCD1: time=0.375 Reduce mod p=0.000  LAminpoly=0.173 PGCDAlg=0.156   Phigamma=0.031  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=0.344 Reduce mod p=0.000   PGCDAlg=0.313    CRT and RNR=0.000 Division test=0.016 NP=3.000
+Check=true
+dF=64  deg(f1,x)=12  deg(f1,y)=12  deg(f2,x)=12  deg(f2,y)=12  deg(g,x)=6  deg(g,y)=6
+MGCD1: time=0.859 Reduce mod p=0.000  LAminpoly=0.280 PGCDAlg=0.500   Phigamma=0.063  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=0.922 Reduce mod p=0.032   PGCDAlg=0.890    CRT and RNR=0.000 Division test=0.000 NP=3.000
+Check=true
+dF=64  deg(f1,x)=16  deg(f1,y)=16  deg(f2,x)=16  deg(f2,y)=16  deg(g,x)=8  deg(g,y)=8
+MGCD1: time=0.938 Reduce mod p=0.016  LAminpoly=0.172 PGCDAlg=0.656   Phigamma=0.078  CRT and RNR=0.000 Division test=0.016 NP=3.000
+MGCD2: time=0.969 Reduce mod p=0.016   PGCDAlg=0.953    CRT and RNR=0.000 Division test=0.000 NP=3.000
+Check=true
+dF=64  deg(f1,x)=20  deg(f1,y)=20  deg(f2,x)=20  deg(f2,y)=20  deg(g,x)=10  deg(g,y)=10
+MGCD1: time=1.047 Reduce mod p=0.032  LAminpoly=0.282 PGCDAlg=0.656   Phigamma=0.077  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=1.281 Reduce mod p=0.032   PGCDAlg=1.249    CRT and RNR=0.000 Division test=0.000 NP=3.000
+Check=true
+dF=64  deg(f1,x)=24  deg(f1,y)=24  deg(f2,x)=24  deg(f2,y)=24  deg(g,x)=12  deg(g,y)=12
+MGCD1: time=1.547 Reduce mod p=0.000  LAminpoly=0.187 PGCDAlg=1.250   Phigamma=0.110  CRT and RNR=0.000 Division test=0.000 NP=3.000
+MGCD2: time=1.703 Reduce mod p=0.016   PGCDAlg=1.671    CRT and RNR=0.016 Division test=0.000 NP=3.000
+Check=true
+dF=64  deg(f1,x)=28  deg(f1,y)=28  deg(f2,x)=28  deg(f2,y)=28  deg(g,x)=14  deg(g,y)=14
+MGCD1: time=1.859 Reduce mod p=0.000  LAminpoly=0.327 PGCDAlg=1.375   Phigamma=0.111  CRT and RNR=0.015 Division test=0.000 NP=3.000
+MGCD2: time=2.860 Reduce mod p=0.016   PGCDAlg=2.844    CRT and RNR=0.000 Division test=0.000 NP=3.000
+Check=true
+dF=64  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  deg(g,x)=16  deg(g,y)=16
+MGCD1: time=2.516 Reduce mod p=0.032  LAminpoly=0.124 PGCDAlg=2.219   Phigamma=0.109  CRT and RNR=0.000 Division test=0.016 NP=3.000
+MGCD2: time=3.703 Reduce mod p=0.031   PGCDAlg=3.656    CRT and RNR=0.000 Division test=0.016 NP=3.000
+Check=true
+dF=64  deg(f1,x)=36  deg(f1,y)=36  deg(f2,x)=36  deg(f2,y)=36  deg(g,x)=18  deg(g,y)=18
+MGCD1: time=3.000 Reduce mod p=0.000  LAminpoly=0.187 PGCDAlg=2.594   Phigamma=0.203  CRT and RNR=0.000 Division test=0.016 NP=3.000
+MGCD2: time=4.031 Reduce mod p=0.016   PGCDAlg=3.999    CRT and RNR=0.000 Division test=0.016 NP=3.000
+Check=true
+dF=64  deg(f1,x)=40  deg(f1,y)=40  deg(f2,x)=40  deg(f2,y)=40  deg(g,x)=20  deg(g,y)=20
+MGCD1: time=4.657 Reduce mod p=0.032  LAminpoly=0.188 PGCDAlg=4.187   Phigamma=0.235  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=11.312 Reduce mod p=0.015   PGCDAlg=11.282    CRT and RNR=0.000 Division test=0.015 NP=4.000
+Check=true
+dF=64  deg(f1,x)=44  deg(f1,y)=44  deg(f2,x)=44  deg(f2,y)=44  deg(g,x)=22  deg(g,y)=22
+MGCD1: time=5.578 Reduce mod p=0.016  LAminpoly=0.187 PGCDAlg=5.188   Phigamma=0.155  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=9.562 Reduce mod p=0.000   PGCDAlg=9.546    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=64  deg(f1,x)=48  deg(f1,y)=48  deg(f2,x)=48  deg(f2,y)=48  deg(g,x)=24  deg(g,y)=24
+MGCD1: time=5.968 Reduce mod p=0.015  LAminpoly=0.266 PGCDAlg=5.515   Phigamma=0.156  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=9.031 Reduce mod p=0.016   PGCDAlg=9.000    CRT and RNR=0.000 Division test=0.015 NP=4.000
+Check=true
+dF=64  deg(f1,x)=52  deg(f1,y)=52  deg(f2,x)=52  deg(f2,y)=52  deg(g,x)=26  deg(g,y)=26
+MGCD1: time=7.641 Reduce mod p=0.030  LAminpoly=0.282 PGCDAlg=7.157   Phigamma=0.156  CRT and RNR=0.000 Division test=0.016 NP=4.000
+MGCD2: time=14.218 Reduce mod p=0.016   PGCDAlg=14.172    CRT and RNR=0.030 Division test=0.000 NP=4.000
+Check=true
+dF=64  deg(f1,x)=56  deg(f1,y)=56  deg(f2,x)=56  deg(f2,y)=56  deg(g,x)=28  deg(g,y)=28
+MGCD1: time=9.031 Reduce mod p=0.000  LAminpoly=0.218 PGCDAlg=8.626   Phigamma=0.156  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=15.875 Reduce mod p=0.015   PGCDAlg=15.813    CRT and RNR=0.016 Division test=0.015 NP=4.000
+Check=true
+dF=64  deg(f1,x)=60  deg(f1,y)=60  deg(f2,x)=60  deg(f2,y)=60  deg(g,x)=30  deg(g,y)=30
+MGCD1: time=11.140 Reduce mod p=0.031  LAminpoly=0.328 PGCDAlg=10.516   Phigamma=0.250  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=20.157 Reduce mod p=0.032   PGCDAlg=20.094    CRT and RNR=0.000 Division test=0.000 NP=4.000
+Check=true
+dF=64  deg(f1,x)=64  deg(f1,y)=64  deg(f2,x)=64  deg(f2,y)=64  deg(g,x)=32  deg(g,y)=32
+MGCD1: time=11.782 Reduce mod p=0.016  LAminpoly=0.188 PGCDAlg=11.345   Phigamma=0.202  CRT and RNR=0.000 Division test=0.000 NP=4.000
+MGCD2: time=20.437 Reduce mod p=0.031   PGCDAlg=20.375    CRT and RNR=0.016 Division test=0.000 NP=4.000
+Check=true
+dF=64  deg(f1,x)=68  deg(f1,y)=68  deg(f2,x)=68  deg(f2,y)=68  deg(g,x)=34  deg(g,y)=34
+MGCD1: time=16.547 Reduce mod p=0.031  LAminpoly=0.234 PGCDAlg=15.937   Phigamma=0.314  CRT and RNR=0.000 Division test=0.000 NP=5.000
+MGCD2: time=30.953 Reduce mod p=0.077   PGCDAlg=30.860    CRT and RNR=0.000 Division test=0.016 NP=5.000
+Check=true
+dF=64  deg(f1,x)=72  deg(f1,y)=72  deg(f2,x)=72  deg(f2,y)=72  deg(g,x)=36  deg(g,y)=36
+MGCD1: time=13.563 Reduce mod p=0.015  LAminpoly=0.249 PGCDAlg=12.952   Phigamma=0.315  CRT and RNR=0.000 Division test=0.000 NP=5.000
+MGCD2: time=25.484 Reduce mod p=0.046   PGCDAlg=25.423    CRT and RNR=0.000 Division test=0.015 NP=5.000
+Check=true
+dF=64  deg(f1,x)=76  deg(f1,y)=76  deg(f2,x)=76  deg(f2,y)=76  deg(g,x)=38  deg(g,y)=38
+MGCD1: time=26.250 Reduce mod p=0.046  LAminpoly=0.267 PGCDAlg=25.641   Phigamma=0.250  CRT and RNR=0.031 Division test=0.000 NP=6.000
+MGCD2: time=83.969 Reduce mod p=0.031   PGCDAlg=83.874    CRT and RNR=0.016 Division test=0.016 NP=6.000
+Check=true
+dF=64  deg(f1,x)=80  deg(f1,y)=80  deg(f2,x)=80  deg(f2,y)=80  deg(g,x)=40  deg(g,y)=40
+MGCD1: time=19.125 Reduce mod p=0.016  LAminpoly=0.249 PGCDAlg=18.499   Phigamma=0.314  CRT and RNR=0.015 Division test=0.000 NP=5.000
+MGCD2: time=36.031 Reduce mod p=0.032   PGCDAlg=35.967    CRT and RNR=0.000 Division test=0.000 NP=5.000
+Check=true
+dF=64  deg(f1,x)=84  deg(f1,y)=84  deg(f2,x)=84  deg(f2,y)=84  deg(g,x)=42  deg(g,y)=42
+MGCD1: time=24.703 Reduce mod p=0.015  LAminpoly=0.249 PGCDAlg=23.968   Phigamma=0.440  CRT and RNR=0.000 Division test=0.016 NP=5.000
+MGCD2: time=55.484 Reduce mod p=0.046   PGCDAlg=55.297    CRT and RNR=0.125 Division test=0.000 NP=5.000
+Check=true
+dF=64  deg(f1,x)=88  deg(f1,y)=88  deg(f2,x)=88  deg(f2,y)=88  deg(g,x)=44  deg(g,y)=44
+MGCD1: time=23.657 Reduce mod p=0.032  LAminpoly=0.235 PGCDAlg=23.124   Phigamma=0.250  CRT and RNR=0.016 Division test=0.000 NP=5.000
+MGCD2: time=39.047 Reduce mod p=0.016   PGCDAlg=38.906    CRT and RNR=0.000 Division test=0.016 NP=5.000
+Check=true
+dF=64  deg(f1,x)=92  deg(f1,y)=92  deg(f2,x)=92  deg(f2,y)=92  deg(g,x)=46  deg(g,y)=46
+MGCD1: time=28.672 Reduce mod p=0.000  LAminpoly=0.298 PGCDAlg=28.079   Phigamma=0.248  CRT and RNR=0.015 Division test=0.016 NP=5.000
+MGCD2: time=46.375 Reduce mod p=0.048   PGCDAlg=46.311    CRT and RNR=0.000 Division test=0.016 NP=5.000
+Check=true
+dF=64  deg(f1,x)=96  deg(f1,y)=96  deg(f2,x)=96  deg(f2,y)=96  deg(g,x)=48  deg(g,y)=48
+MGCD1: time=33.234 Reduce mod p=0.030  LAminpoly=0.235 PGCDAlg=32.657   Phigamma=0.297  CRT and RNR=0.000 Division test=0.000 NP=5.000
+MGCD2: time=72.906 Reduce mod p=0.048   PGCDAlg=72.842    CRT and RNR=0.016 Division test=0.000 NP=5.000
+Check=true
+dF=64  deg(f1,x)=100  deg(f1,y)=100  deg(f2,x)=100  deg(f2,y)=100  deg(g,x)=50  deg(g,y)=50
+MGCD1: time=36.421 Reduce mod p=0.016  LAminpoly=0.251 PGCDAlg=35.860   Phigamma=0.233  CRT and RNR=0.015 Division test=0.000 NP=5.000
+MGCD2: time=88.782 Reduce mod p=0.032   PGCDAlg=88.702    CRT and RNR=0.032 Division test=0.000 NP=5.000
+Check=true
+dF=64  deg(f1,x)=104  deg(f1,y)=104  deg(f2,x)=104  deg(f2,y)=104  deg(g,x)=52  deg(g,y)=52
+MGCD1: time=35.172 Reduce mod p=0.031  LAminpoly=0.375 PGCDAlg=34.360   Phigamma=0.374  CRT and RNR=0.000 Division test=0.016 NP=6.000
+MGCD2: time=82.281 Reduce mod p=0.016   PGCDAlg=82.233    CRT and RNR=0.016 Division test=0.016 NP=6.000
+Check=true
+dF=64  deg(f1,x)=108  deg(f1,y)=108  deg(f2,x)=108  deg(f2,y)=108  deg(g,x)=54  deg(g,y)=54
+MGCD1: time=47.516 Reduce mod p=0.031  LAminpoly=0.328 PGCDAlg=46.717   Phigamma=0.360  CRT and RNR=0.048 Division test=0.000 NP=7.000
+MGCD2: time=123.422 Reduce mod p=0.048   PGCDAlg=123.311    CRT and RNR=0.015 Division test=0.016 NP=7.000
+Check=true
+dF=64  deg(f1,x)=112  deg(f1,y)=112  deg(f2,x)=112  deg(f2,y)=112  deg(g,x)=56  deg(g,y)=56
+MGCD1: time=47.141 Reduce mod p=0.032  LAminpoly=0.406 PGCDAlg=46.327   Phigamma=0.328  CRT and RNR=0.000 Division test=0.016 NP=6.000
+MGCD2: time=147.578 Reduce mod p=0.032   PGCDAlg=147.499    CRT and RNR=0.016 Division test=0.015 NP=6.000
+Check=true
+dF=64  deg(f1,x)=116  deg(f1,y)=116  deg(f2,x)=116  deg(f2,y)=116  deg(g,x)=58  deg(g,y)=58
+MGCD1: time=54.829 Reduce mod p=0.061  LAminpoly=0.344 PGCDAlg=54.094   Phigamma=0.298  CRT and RNR=0.016 Division test=0.000 NP=6.000
+MGCD2: time=144.140 Reduce mod p=0.047   PGCDAlg=144.047    CRT and RNR=0.000 Division test=0.015 NP=6.000
+Check=true
+dF=64  deg(f1,x)=120  deg(f1,y)=120  deg(f2,x)=120  deg(f2,y)=120  deg(g,x)=60  deg(g,y)=60
+MGCD1: time=55.890 Reduce mod p=0.047  LAminpoly=0.280 PGCDAlg=55.079   Phigamma=0.424  CRT and RNR=0.000 Division test=0.015 NP=6.000
+MGCD2: time=121.360 Reduce mod p=0.047   PGCDAlg=121.281    CRT and RNR=0.016 Division test=0.016 NP=6.000
+Check=true
+dF=64  deg(f1,x)=124  deg(f1,y)=124  deg(f2,x)=124  deg(f2,y)=124  deg(g,x)=62  deg(g,y)=62
+MGCD1: time=59.734 Reduce mod p=0.078  LAminpoly=0.313 PGCDAlg=58.812   Phigamma=0.469  CRT and RNR=0.000 Division test=0.015 NP=7.000
+MGCD2: time=119.907 Reduce mod p=0.079   PGCDAlg=119.782    CRT and RNR=0.015 Division test=0.016 NP=7.000
+Check=true
+dF=64  deg(f1,x)=128  deg(f1,y)=128  deg(f2,x)=128  deg(f2,y)=128  deg(g,x)=64  deg(g,y)=64
+MGCD1: time=58.844 Reduce mod p=0.047  LAminpoly=0.314 PGCDAlg=58.093   Phigamma=0.343  CRT and RNR=0.031 Division test=0.000 NP=7.000
+MGCD2: time=147.719 Reduce mod p=0.032   PGCDAlg=147.640    CRT and RNR=0.015 Division test=0.000 NP=7.000
+Check=true
+dF=64  deg(f1,x)=132  deg(f1,y)=132  deg(f2,x)=132  deg(f2,y)=132  deg(g,x)=66  deg(g,y)=66
+MGCD1: time=86.891 Reduce mod p=0.156  LAminpoly=0.469 PGCDAlg=85.797   Phigamma=0.405  CRT and RNR=0.032 Division test=0.016 NP=8.000
+MGCD2: time=224.062 Reduce mod p=0.015   PGCDAlg=224.001    CRT and RNR=0.046 Division test=0.000 NP=8.000
+Check=true
+dF=64  deg(f1,x)=136  deg(f1,y)=136  deg(f2,x)=136  deg(f2,y)=136  deg(g,x)=68  deg(g,y)=68
+MGCD1: time=90.516 Reduce mod p=0.032  LAminpoly=0.327 PGCDAlg=89.671   Phigamma=0.423  CRT and RNR=0.032 Division test=0.016 NP=6.000
+MGCD2: time=215.391 Reduce mod p=0.061   PGCDAlg=215.267    CRT and RNR=0.031 Division test=0.016 NP=6.000
+Check=true
+dF=64  deg(f1,x)=140  deg(f1,y)=140  deg(f2,x)=140  deg(f2,y)=140  deg(g,x)=70  deg(g,y)=70
+MGCD1: time=108.922 Reduce mod p=0.062  LAminpoly=0.405 PGCDAlg=107.814   Phigamma=0.562  CRT and RNR=0.015 Division test=0.016 NP=9.000
+MGCD2: time=278.922 Reduce mod p=0.062   PGCDAlg=278.813    CRT and RNR=0.031 Division test=0.000 NP=9.000
+Check=true
+dF=64  deg(f1,x)=144  deg(f1,y)=144  deg(f2,x)=144  deg(f2,y)=144  deg(g,x)=72  deg(g,y)=72
+MGCD1: time=88.500 Reduce mod p=0.016  LAminpoly=0.406 PGCDAlg=87.593   Phigamma=0.389  CRT and RNR=0.032 Division test=0.016 NP=8.000
+MGCD2: time=187.250 Reduce mod p=0.095   PGCDAlg=187.139    CRT and RNR=0.016 Division test=0.000 NP=8.000
+Check=true
+dF=64  deg(f1,x)=148  deg(f1,y)=148  deg(f2,x)=148  deg(f2,y)=148  deg(g,x)=74  deg(g,y)=74
+MGCD1: time=90.219 Reduce mod p=0.079  LAminpoly=0.311 PGCDAlg=89.484   Phigamma=0.298  CRT and RNR=0.016 Division test=0.000 NP=5.000
+MGCD2: time=242.781 Reduce mod p=0.048   PGCDAlg=242.591    CRT and RNR=0.032 Division test=0.094 NP=5.000
+Check=true
+dF=64  deg(f1,x)=152  deg(f1,y)=152  deg(f2,x)=152  deg(f2,y)=152  deg(g,x)=76  deg(g,y)=76
+MGCD1: time=119.954 Reduce mod p=0.061  LAminpoly=0.425 PGCDAlg=118.985   Phigamma=0.420  CRT and RNR=0.032 Division test=0.000 NP=7.000
+MGCD2: time=408.171 Reduce mod p=0.030   PGCDAlg=408.080    CRT and RNR=0.016 Division test=0.015 NP=7.000
+Check=true
+dF=64  deg(f1,x)=156  deg(f1,y)=156  deg(f2,x)=156  deg(f2,y)=156  deg(g,x)=78  deg(g,y)=78
+MGCD1: time=147.422 Reduce mod p=0.092  LAminpoly=0.375 PGCDAlg=146.313   Phigamma=0.579  CRT and RNR=0.015 Division test=0.016 NP=9.000
+MGCD2: time=429.796 Reduce mod p=0.046   PGCDAlg=429.720    CRT and RNR=0.015 Division test=0.000 NP=9.000
+Check=true
+dF=64  deg(f1,x)=160  deg(f1,y)=160  deg(f2,x)=160  deg(f2,y)=160  deg(g,x)=80  deg(g,y)=80
+MGCD1: time=110.797 Reduce mod p=0.077  LAminpoly=0.330 PGCDAlg=109.879   Phigamma=0.463  CRT and RNR=0.000 Division test=0.016 NP=8.000
+MGCD2: time=208.281 Reduce mod p=0.063   PGCDAlg=208.186    CRT and RNR=0.032 Division test=0.000 NP=8.000
+Check=true
+</Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkobWZlbmNlZEc2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUklbXJvd0dGJDZecC1JI21uR0YkNiRRLTAuOTM2MDAwMDAwMEYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy1JI21vR0YkNi5RIixGJ0YyLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR1EldHJ1ZUYnLyUpc3RyZXRjaHlHRjsvJSpzeW1tZXRyaWNHRjsvJShsYXJnZW9wR0Y7LyUubW92YWJsZWxpbWl0c0dGOy8lJ2FjY2VudEdGOy8lJ2xzcGFjZUdRJjAuMGVtRicvJSdyc3BhY2VHUSwwLjMzMzMzMzNlbUYnLyUpZXF1YWxpdHlHRjstRi82JFEtMC45MTczMzMzMzMzRidGMkY1LUYvNiRRLDEuMDczMzQxMDk0RidGMkY1LUYvNiRRLDEuMDMzMDQ5MDQxRidGMkY1LUYvNiRRLDEuMjIzNDk1NzAyRidGMkY1LUYvNiRRLDEuMTAwODQwMzM2RidGMkY1LUYvNiRRLDEuNTM4NDYxNTM4RidGMkY1LUYvNiRRLDEuNDcxNzgwNjA0RidGMkY1LUYvNiRRLDEuMzQzNjY2NjY3RidGMkY1LUYvNiRRLDIuNDI5MDMxNTY1RidGMkY1LUYvNiRRLDEuNzE0MjM0NDkzRidGMkY1LUYvNiRRLDEuNTE1OTE4MjMxRidGMkY1LUYvNiRRLDEuODYwNzUxMjExRidGMkY1LUYvNiRRLDEuNzU3ODM0MTI3RidGMkY1LUYvNiRRLDEuODA5NDI1NDk0RidGMkY1LUYvNiRRLDEuNzM0NTk1MTQ1RidGMkY1LUYvNiRRLDEuODcwNjEwOTg3RidGMkY1LUYvNiRRLDEuODc4OTM1MzM5RidGMkY1LUYvNiRRLDMuMTk4ODE5MDQ4RidGMkY1LUYvNiRRLDEuODgzOTczODU2RidGMkY1LUYvNiRRLDIuMjQ2MDQyOTkxRidGMkY1LUYvNiRRLDEuNjUwNTQ3NDA3RidGMkY1LUYvNiRRLDEuNjE3NDMxNjQxRidGMkY1LUYvNiRRLDIuMTkyNjYxNjU0RidGMkY1LUYvNiRRLDIuNDM3NjU5NTkyRidGMkY1LUYvNiRRLDIuMzM5Mzg5Mjg3RidGMkY1LUYvNiRRLDIuNTk3NDgyOTUzRidGMkY1LUYvNiRRLDMuMTMwNTY1NzUwRidGMkY1LUYvNiRRLDIuNjI4OTAwNzY0RidGMkY1LUYvNiRRLDIuMTcxNDA4MTIzRidGMkY1LUYvNiRRLDIuMDA3MzQ5MjQ4RidGMkY1LUYvNiRRLDIuNTEwMzQ5Mzk4RidGMkY1LUYvNiRRLDIuNTc4NjU2MDE3RidGMkY1LUYvNiRRLDIuMzc5NTkwMzQ5RidGMkY1LUYvNiRRLDIuNTYwNzQ5ODk0RidGMkY1LUYvNiRRLDIuMTE1ODE5MjA5RidGMkY1LUYvNiRRLDIuNjkxMDE4NTIyRidGMkY1LUYvNiRRLDMuNDAyNzI5MzgwRidGMkY1LUYvNiRRLDIuOTE1NDEyODk2RidGMkY1LUYvNiRRLDEuODc5ODQzMzE3RidGMi8lK2ZvcmVncm91bmRHUShbMCwwLDBdRicvJSlyZWFkb25seUdGO0YyRjIvJSVvcGVuR1EnJmxzcWI7RicvJSZjbG9zZUdRJyZyc3FiO0Yn">N0okIisrKytnJCohIzUkIitMTEx0IipGJSQiKyU0VEwyIiEiKiQiK1QhXEkuIkYqJCIrLWRcQjdGKiQiK08uJTM1IkYqJCIrUTpZUTpGKiQiKy8xeXI5RiokIitubW1WOEYqJCIrbDouSENGKiQiKyRcTVVyIkYqJCIrSiM9Zl4iRiokIis2N3ZnPUYqJCIrRlQkeXYiRiokIislXEQlND1GKiQiK1heZk08RiokIisoKTRocT1GKiQiK1JgJCp5PUYqJCIrWyE+KSk+JEYqJCIrY1EoUik9RiokIisiKkgvWUFGKiQiKzJ1YV07RiokIitUO1Y8O0YqJCIrYTttIz4jRiokIisjZmZ3ViNGKiQiKyhHKlFSQkYqJCIrYEhbKGYjRiokIitdZGNJSkYqJCIrazIhKkdFRiokIitCIjM5PCNGKiQiK1sjXHQrI0YqJCIrKVJcLl4jRiokIis8Z2x5REYqJCIrXC5mekJGKiQiKyUqKVwyYyNGKiQiKzQjPmU2I0YqJCIrQSY9NXAjRiokIishUUhGUyRGKiQiKycqR1Q6SEYqJCIrPEwlKXo9Rio=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L209" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Equation executable="true" style="2D Input" input-equation="" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYlLUkjbWlHRiQ2I1EhRicvJStleGVjdXRhYmxlR1EmZmFsc2VGJy8lLG1hdGh2YXJpYW50R1Enbm9ybWFsRic=">LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYjLUkjbWlHRiQ2I1EhRic=</Equation></Text-field>
+</Input>
+</Group>
+</Worksheet>
