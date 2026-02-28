@@ -4,7 +4,8 @@
 #Output: resultant(A,B,x)  
 MRS1:= proc(A1,B1,x)
 uses RDP=Algebraic:-RecursiveDensePolynomials,   LTS=ListTools;
-local count, Np,previousresult,A,B,ringA,X,Xpoly,Minpolys,i,m,n,Xmin,k,H,prod,p,Ap,Bp,Cp,CRT,H2,test1,test2,irat,M,gama,gamma,phimatrix,invphimatrix,PhiAp,PhiBp, lcmintest,ca,cb,nca,ncb,C,counter,j,s,LA,Rand,ZD,wt,randfunction,minpolys,st,tt,laminpolytime,pgcdtime,PPresult;
+local count, Np,previousresult,A,B,ringA,X,Xpoly,Minpolys,i,m,n,Xmin,k,H,prod,p,Ap,Bp,Cp,CRT,H2,test1,test2,irat,M,gama,gamma,phimatrix,invphimatrix,PhiAp,PhiBp, lcmintest,ca,cb,nca,ncb,C,counter,j,
+s,LA,Rand,ZD,wt,randfunction,minpolys,st,tt,laminpolytime,pgcdtime,PPresult,a1,a2,bb;
 Np:=0;
 #We use semi of the inputs to eliminate fractions
    previousresult:=0; #first result test
@@ -109,8 +110,12 @@ Np:=0;
 #We do not use the bound.When the result of RNR does not change the loop termintes.This strategy makes our algorithm  Monte Carlo 
      if irat=previousresult and irat=PPresult then
          tt := time()-tt;
-         if timings=true then printf("MRS: time=%.3f  LAminpoly=%.3f  PGCD=%.3f  Np=%d\n",tt,laminpolytime,pgcdtime,Np); fi;
-          irat:=subsop(1=ringA,irat);
+         if timings=true then printf("MRS1: time=%.3f  LAminpoly=%.3f  PGCD=%.3f  Np=%d\n",tt,laminpolytime,pgcdtime,Np); fi;
+          a1:=1/RDP:-icontrpoly(A1);
+          a2:=1/RDP:-icontrpoly(B1);
+          bb:=a1^(RDP:-degrpoly(B1,y))*a2^(RDP:-degrpoly(A1,y));
+           irat:=subsop(1=ringA,irat);
+          irat:=RDP:-scarpoly(1/bb,irat);
          return (irat); 
       else 
          PPresult:=previousresult; previousresult:=irat;  

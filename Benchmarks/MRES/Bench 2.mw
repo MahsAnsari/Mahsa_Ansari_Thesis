@@ -88,7 +88,7 @@
 	<Task-category name="&lt;default&gt;"/>
 </Task-table>
 <Task/>
-<Group hide-input="false" labelreference="L228" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Group hide-input="false" labelreference="L232" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
 <Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;
 with(PolynomialTools):
 interface(rtablesize=40):
@@ -103,41 +103,44 @@ with(ExcelTools):
 </Font></Text-field>
 </Input>
 </Group>
-<Group hide-input="false" labelreference="L229" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Group hide-input="false" labelreference="L231" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
 <Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font foreground="[0,128,128]">#Read subrutines</Font>
 currentdir():
 read &quot;Get&quot;; read &quot;LAMinpolyMaple&quot;; read &quot;PhigammaMaple&quot;; read &quot;MonOpMaple&quot;;  read &quot;PRESMaple&quot;; read &quot;URESMaple&quot;; read &quot;MRES1&quot;; read &quot;MRES2&quot;; read &quot;MRES_Bench.mpl&quot;;
-RDP:=Algebraic:-RecursiveDensePolynomials;
-
-
-
-timings := true:
-Xpoly := [x, y]:
-dF := 32:
-M := Minpolylist(dF, num);
-Xmin := ListTools:-Reverse([seq(z[j], j = 1 .. nops(M))]):
-XT := [op(Xpoly), op(Xmin)];
-dF:= mul(degree(M[j]), j = 1 .. nops(M));
-
-</Text-field>
+RDP:=Algebraic:-RecursiveDensePolynomials;</Text-field>
 </Input>
 <Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEkUkRQRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LlEpJkFzc2lnbjtGJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC8lKWVxdWFsaXR5R0Y9LUYsNiVRKkFsZ2VicmFpY0YnRi9GMi1GNjYuUS8mY29sb247Jm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZYRk8tRiw2JVE6UmVjdXJzaXZlRGVuc2VQb2x5bm9taWFsc0YnRi9GMkY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSRSRFBHRihJOlJlY3Vyc2l2ZURlbnNlUG9seW5vbWlhbHNHNiQvSSttb2R1bGVuYW1lR0YoSSpBbGdlYnJhaWNHRiVGJjcjRi4=</Equation></Text-field>
 </Output>
 </Group>
 <Group hide-input="false" labelreference="L1" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
-<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t:=80:
-k:=1:
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">timings := true:
+Xpoly := [x, y]:
+dF := 32:
+M := Minpolylist(dF, num);
+Xmin := ListTools:-Reverse([seq(z[j], j = 1 .. nops(M))]):
+XT := [op(Xpoly), op(Xmin)];
+k := 1:
+dF:= mul(degree(M[j]), j = 1 .. nops(M));
+</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEiTUYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JKG1mZW5jZWRHRiQ2Ji1GIzYuLUYjNiYtSShtc3Vic3VwR0YkNictRiw2JVEiekYnRi9GMi1JI21uR0YkNiRRIjFGJ0Y5LUZpbjYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRicvJS9zdWJzY3JpcHRzaGlmdEdGYW8tRjY2LlEoJm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EsMC4yMjIyMjIyZW1GJy9GTkZob0ZPRlxvRjktRjY2LlEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTlEsMC4zMzMzMzMzZW1GJ0ZPLUYjNiYtRlk2J0ZlbkZcb0Zcb0Zfb0Zib0Zkby1GaW42JFEiM0YnRjlGOUZqby1GIzYmLUZZNidGZW5GZnBGXG9GX29GYm9GZG8tRmluNiRRIjVGJ0Y5RjlGam8tRiM2Ji1GWTYnRmVuLUZpbjYkUSI0RidGOUZcb0Zfb0Zib0Zkby1GaW42JFEiN0YnRjlGOUZqby1GIzYmLUZZNidGZW5GXXFGXG9GX29GYm9GZG8tRmluNiRRIzExRidGOUY5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJNR0YoNycsJiokJkkiekdGKDYjIiIiIiIjRjQhIiNGNCwmKiQmRjI2I0Y1RjVGNCEiJEY0LCYqJCZGMjYjIiIkRjVGNCEiJkY0LCYqJCZGMjYjIiIlRjVGNCEiKEY0LCYqJCZGMjYjIiImRjVGNCEjNkY0NyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjWFRGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSShtZmVuY2VkR0YkNiYtRiM2Mi1GLDYlUSJ4RidGL0YyLUY2Ni5RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGTy1GLDYlUSJ5RidGL0YyRlktSSVtc3ViR0YkNiUtRiw2JVEiekYnRi9GMi1JI21uR0YkNiRRIjVGJ0Y5LyUvc3Vic2NyaXB0c2hpZnRHUSIwRidGWS1GX282JUZhby1GZW82JFEiNEYnRjlGaG9GWS1GX282JUZhby1GZW82JFEiM0YnRjlGaG9GWS1GX282JUZhby1GZW82JFEiMkYnRjlGaG9GWS1GX282JUZhby1GZW82JFEiMUYnRjlGaG8vJStmb3JlZ3JvdW5kR1EoWzAsMCwwXUYnLyUpcmVhZG9ubHlHRj1GOUY5LyUlb3BlbkdRJyZsc3FiO0YnLyUmY2xvc2VHUScmcnNxYjtGJ0Y5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNYVEdGKDcpSSJ4R0YoSSJ5R0YoJkkiekdGKDYjIiImJkYyNiMiIiUmRjI2IyIiJCZGMjYjIiIjJkYyNiMiIiI3I0Yu</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjZEZGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSSNtbkdGJDYkUSMzMkYnRjlGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNkRkdGKCIjSzcjRi4=</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L233" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t:=40;
 T := [seq(0, i = 1 .. t/2)]:
 for i from 2 by 2 to t do
-    q :=rand()/rand();
-    g := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
-    a := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
-    b := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
-    f1 := RDP:-mulrpoly(a, g);
-    f2 := RDP:-mulrpoly(b, g);
-   <Font encoding="UTF-8">printf(&quot;dF=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d \134n&quot;,
-</Font>     dF,RDP:-degrpoly(f1,x),RDP:-degrpoly(f1,y),RDP:-degrpoly(f2,x),RDP:-degrpoly(f2,y));
-  try;
+    do
+      q :=rand()/rand();
+    until q&lt;&gt;0;
+    f1 := RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
+    f2:= RDP:-rpoly(q*x^i*y^i + randpoly(XT, degree = i), XT, M);
+<Font encoding="UTF-8">    printf(&quot;dF=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d  \134n&quot;, dF, </Font>RDP:-degrpoly(f1, x), RDP:-degrpoly(f1, y), RDP:-degrpoly(f2, x), RDP:-degrpoly(f2, y));
+ try;
   t:=time():
   R1:=timelimit(1000,MRS1(f1,f2,x));
   printf(&quot;dR=%d<Font encoding="UTF-8">\134n&quot;</Font>,RDP:-degrpoly(R1,y));
@@ -160,65 +163,50 @@ else
 end if;
 k := k + 1;
 od:
-T;
-</Text-field>
+T;</Text-field>
 </Input>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkjbWlHNiMvSSttb2R1bGVuYW1lRzYiSSxUeXBlc2V0dGluZ0dJKF9zeXNsaWJHRic2JVElTVJTMUYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJw==">SSVNUlMxRzYi</Equation></Text-field>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEidEYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JI21uR0YkNiRRIzQwRidGOUY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJ0R0YoIiNTNyNGLg==</Equation></Text-field>
 </Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjZEZGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSShtZmVuY2VkR0YkNiYtRiM2OC1JI21uR0YkNiRRIjRGJ0Y5LUY2Ni5RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGTy1GVzYkUSI4RidGOUZaLUZXNiRRIzE2RidGOUZaLUZXNiRRIzI0RidGOUZaLUZXNiRRIzMyRidGOUZaLUZXNiRRIzY0RidGOUZaLUZXNiRRJDEyOEYnRjlGWi1GVzYkUSQyNTZGJ0Y5RlotRlc2JFEkNTEyRidGOUZaLUZXNiRRJTEwMjRGJ0Y5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNkRkdGKDcsIiIlIiIpIiM7IiNDIiNLIiNrIiRHIiIkYyMiJDcmIiVDNTcjRi4=</Equation></Text-field>
-</Output>
-<Output><Text-field style="Line Printed Output" layout="Line Printed Output">dF=4  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-MRS: time=38.016  LAminpoly=0.000  PGCD=34.343  Np=49
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">dF=32  deg(f1,x)=2  deg(f1,y)=2  deg(f2,x)=2  deg(f2,y)=2  
+MRS1: time=0.812  LAminpoly=0.170  PGCD=0.407  Np=14
+dR=6
+MRS2: time=0.969  LAminpoly=0.000  PGCD=0.906  Np=14
+Check=true
+dF=32  deg(f1,x)=4  deg(f1,y)=4  deg(f2,x)=4  deg(f2,y)=4  
+MRS1: time=6.797  LAminpoly=0.310  PGCD=4.954  Np=27
+dR=28
+MRS2: time=16.078  LAminpoly=0.000  PGCD=14.999  Np=27
+Check=true
+dF=32  deg(f1,x)=6  deg(f1,y)=6  deg(f2,x)=6  deg(f2,y)=6  
+MRS1: time=44.094  LAminpoly=0.442  PGCD=32.951  Np=39
+dR=60
+MRS2: time=118.047  LAminpoly=0.000  PGCD=108.234  Np=39
+Check=true
+dF=32  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8  
+MRS1: time=151.485  LAminpoly=0.514  PGCD=108.423  Np=48
 dR=104
-MRS: time=61.062  LAminpoly=0.000  PGCD=57.390  Np=49
+MRS2: time=460.812  LAminpoly=0.000  PGCD=424.468  Np=48
 Check=true
-dF=8  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-MRS: time=47.781  LAminpoly=0.079  PGCD=41.376  Np=51
-dR=96
-MRS: time=103.797  LAminpoly=0.000  PGCD=97.732  Np=51
+dF=32  deg(f1,x)=10  deg(f1,y)=10  deg(f2,x)=10  deg(f2,y)=10  
+MRS1: time=309.172  LAminpoly=0.785  PGCD=247.437  Np=67
+dR=130
+MRS2: time=1033.578  LAminpoly=0.000  PGCD=978.232  Np=67
 Check=true
-dF=16  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-MRS: time=110.907  LAminpoly=0.174  PGCD=83.264  Np=52
-dR=104
-MRS: time=278.047  LAminpoly=0.000  PGCD=254.109  Np=52
-Check=true
-dF=24  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-MRS: time=95.672  LAminpoly=0.551  PGCD=76.466  Np=49
-dR=88
-MRS: time=264.234  LAminpoly=0.000  PGCD=248.848  Np=49
-Check=true
-dF=32  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-MRS: time=172.172  LAminpoly=0.613  PGCD=125.843  Np=52
-dR=88
-MRS: time=488.562  LAminpoly=0.000  PGCD=446.253  Np=52
-Check=true
-dF=64  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-MRS: time=175.219  LAminpoly=2.468  PGCD=139.496  Np=49
-dR=73
-MRS: time=579.734  LAminpoly=0.000  PGCD=549.415  Np=49
-Check=true
-dF=128  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-MRS: time=393.531  LAminpoly=10.405  PGCD=296.672  Np=53
-dR=90
-Check=false
-dF=256  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-MRS: time=628.391  LAminpoly=44.298  PGCD=490.359  Np=55
-dR=72
-Check=false
-dF=512  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-Check=false
-dF=1024  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-Check=false
+dF=32  deg(f1,x)=12  deg(f1,y)=12  deg(f2,x)=12  deg(f2,y)=12  
+dF=32  deg(f1,x)=14  deg(f1,y)=14  deg(f2,x)=14  deg(f2,y)=14  
+dF=32  deg(f1,x)=16  deg(f1,y)=16  deg(f2,x)=16  deg(f2,y)=16  
+dF=32  deg(f1,x)=18  deg(f1,y)=18  deg(f2,x)=18  deg(f2,y)=18  
+dF=32  deg(f1,x)=20  deg(f1,y)=20  deg(f2,x)=20  deg(f2,y)=20  
+dF=32  deg(f1,x)=22  deg(f1,y)=22  deg(f2,x)=22  deg(f2,y)=22  
+dF=32  deg(f1,x)=24  deg(f1,y)=24  deg(f2,x)=24  deg(f2,y)=24  
+dF=32  deg(f1,x)=26  deg(f1,y)=26  deg(f2,x)=26  deg(f2,y)=26  
+dF=32  deg(f1,x)=28  deg(f1,y)=28  deg(f2,x)=28  deg(f2,y)=28  
+dF=32  deg(f1,x)=30  deg(f1,y)=30  deg(f2,x)=30  deg(f2,y)=30  
+dF=32  deg(f1,x)=32  deg(f1,y)=32  deg(f2,x)=32  deg(f2,y)=32  
 </Text-field>
 </Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkjbWlHNiMvSSttb2R1bGVuYW1lRzYiSSxUeXBlc2V0dGluZ0dJKF9zeXNsaWJHRic2JVFMW0xlbmd0aH5vZn5vdXRwdXR+ZXhjZWVkc35saW1pdH5vZn4xMDAwMDAwXUYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJw==">JUxbTGVuZ3Rofm9mfm91dHB1dH5leGNlZWRzfmxpbWl0fm9mfjEwMDAwMDBdRw==</Equation></Text-field>
-</Output>
 </Group>
-<Group hide-input="false" labelreference="L230" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
-<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Equation executable="true" style="2D Input" input-equation="" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2I1EhRictSSdtc3BhY2VHRiQ2Ji8lJ2hlaWdodEdRJjAuMGV4RicvJSZ3aWR0aEdRJjAuMGVtRicvJSZkZXB0aEdGNC8lKmxpbmVicmVha0dRKG5ld2xpbmVGJy1GMDYmRjJGNUY4L0Y7USVhdXRvRidGKy8lK2V4ZWN1dGFibGVHUSZmYWxzZUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJw==">LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2I1EhRictSSdtc3BhY2VHRiQ2Ji8lJ2hlaWdodEdRJjAuMGV4RicvJSZ3aWR0aEdRJjAuMGVtRicvJSZkZXB0aEdGNC8lKmxpbmVicmVha0dRKG5ld2xpbmVGJy1GMDYmRjJGNUY4L0Y7USVhdXRvRidGKy8lK2V4ZWN1dGFibGVHUSZmYWxzZUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJw==</Equation></Text-field>
-</Input>
-</Group>
-<Group labelreference="L231" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Group labelreference="L234" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
 <Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Equation executable="true" style="2D Input" input-equation="" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYlLUkjbW9HRiQ2LlEifkYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGNC8lKXN0cmV0Y2h5R0Y0LyUqc3ltbWV0cmljR0Y0LyUobGFyZ2VvcEdGNC8lLm1vdmFibGVsaW1pdHNHRjQvJSdhY2NlbnRHRjQvJSdsc3BhY2VHUSYwLjBlbUYnLyUncnNwYWNlR0ZDLyUpZXF1YWxpdHlHRjQvJStleGVjdXRhYmxlR0Y0Ri8=">LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYlLUkjbW9HRiQ2LlEifkYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGNC8lKXN0cmV0Y2h5R0Y0LyUqc3ltbWV0cmljR0Y0LyUobGFyZ2VvcEdGNC8lLm1vdmFibGVsaW1pdHNHRjQvJSdhY2NlbnRHRjQvJSdsc3BhY2VHUSYwLjBlbUYnLyUncnNwYWNlR0ZDLyUpZXF1YWxpdHlHRjQvJStleGVjdXRhYmxlR0Y0Ri8=</Equation></Text-field>
 </Input>
 </Group>
