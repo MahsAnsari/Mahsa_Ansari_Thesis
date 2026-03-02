@@ -4,7 +4,7 @@
 <Label-Scheme value="2" prefix=""/>
 <View-Properties presentation="false" autoexpanding_sections="true" UserProfileName="Maple Default Profile" NumericFormat-ApplyInteger="true" NumericFormat-ApplyRational="true" NumericFormat-ApplyExponent="false" editable="true">
 </View-Properties>
-<MapleNet-Properties prettyprint="3" compactdisplay="false" preplot="" helpbrowser="standard" echo="1" scientificx="true" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" writeScrollableTableTypesetting="true" imaginaryunit="I" longdelim="true" elisiontermsthreshold="10000" elisiondigitsbefore="100" plotdevice="inline" elisiontermsbefore="100" historytimestamp="false" indentamount="4" plotoutput="terminal" screenpixelheight="1080" rtablesize="[10, 10]" useclientjvm="true" format="worksheet" labelwidth="20" postplot="" typesetting="extended" elisiondigitsthreshold="10000" ansilprint="false" labelling="true" verboseproc="1" latexwidth="8.0" warnlevel="3" displayprecision="-1" elisiondigitsafter="100" errorbreak="1" plotoptions="" plotdriver="opengl" quiet="false" elisiontermsafter="100" screenwidth="79" ansi="false" ansicolor="[]" showassumed="1" trailingsemicolon="true" errorcursor="false" screenheight="25" prompt="&gt; " ShowLabels="true"/>
+<MapleNet-Properties prettyprint="3" compactdisplay="false" preplot="" helpbrowser="standard" echo="1" scientificx="true" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" writeScrollableTableTypesetting="true" imaginaryunit="I" longdelim="true" elisiontermsthreshold="10000" elisiondigitsbefore="100" plotdevice="inline" elisiontermsbefore="100" historytimestamp="false" indentamount="4" plotoutput="terminal" screenpixelheight="1080" rtablesize="40" useclientjvm="true" format="worksheet" labelwidth="20" postplot="" typesetting="extended" elisiondigitsthreshold="10000" ansilprint="false" labelling="true" verboseproc="1" latexwidth="8.0" warnlevel="3" displayprecision="-1" elisiondigitsafter="100" errorbreak="1" plotoptions="" plotdriver="opengl" quiet="false" elisiontermsafter="100" screenwidth="79" ansi="false" ansicolor="[]" showassumed="1" trailingsemicolon="true" errorcursor="false" screenheight="25" prompt="&gt; " ShowLabels="true"/>
 <Styles>
 <Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
 <Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" strikethrough="false" placeholder="false"/>
@@ -88,9 +88,8 @@
 	<Task-category name="&lt;default&gt;"/>
 </Task-table>
 <Task/>
-<Group hide-input="false" labelreference="L228" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
-<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;
-with(PolynomialTools):
+<Group hide-input="false" labelreference="L232" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;with(PolynomialTools):
 interface(rtablesize=40):
 with(ExcelTools):
 <Font foreground="[0,128,128]">#LAMinpolyMaple file contains the LAMinpoly algorithm to get M(z).
@@ -103,106 +102,114 @@ with(ExcelTools):
 </Font></Text-field>
 </Input>
 </Group>
-<Group hide-input="false" labelreference="L229" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Group hide-input="false" labelreference="L231" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
 <Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Font foreground="[0,128,128]">#Read subrutines</Font>
 currentdir():
 read &quot;Get&quot;; read &quot;LAMinpolyMaple&quot;; read &quot;PhigammaMaple&quot;; read &quot;MonOpMaple&quot;;  read &quot;PRESMaple&quot;; read &quot;URESMaple&quot;; read &quot;MRES1&quot;; read &quot;MRES2&quot;; read &quot;MRES_Bench.mpl&quot;;
-RDP:=Algebraic:-RecursiveDensePolynomials;
-
-
-
-timings := true:
-Xpoly := [x, y]:
-dF := 32:
-M := Minpolylist(dF, num);
-Xmin := ListTools:-Reverse([seq(z[j], j = 1 .. nops(M))]):
-XT := [op(Xpoly), op(Xmin)];
-dF:= mul(degree(M[j]), j = 1 .. nops(M));
-
-</Text-field>
+RDP:=Algebraic:-RecursiveDensePolynomials;</Text-field>
 </Input>
 <Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEkUkRQRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LlEpJkFzc2lnbjtGJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC8lKWVxdWFsaXR5R0Y9LUYsNiVRKkFsZ2VicmFpY0YnRi9GMi1GNjYuUS8mY29sb247Jm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZYRk8tRiw2JVE6UmVjdXJzaXZlRGVuc2VQb2x5bm9taWFsc0YnRi9GMkY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSRSRFBHRihJOlJlY3Vyc2l2ZURlbnNlUG9seW5vbWlhbHNHNiQvSSttb2R1bGVuYW1lR0YoSSpBbGdlYnJhaWNHRiVGJjcjRi4=</Equation></Text-field>
 </Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEiTUYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JKG1mZW5jZWRHRiQ2Ji1GIzYuLUYjNiYtSShtc3Vic3VwR0YkNictRiw2JVEiekYnRi9GMi1JI21uR0YkNiRRIjFGJ0Y5LUZpbjYkUSIyRidGOS8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRicvJS9zdWJzY3JpcHRzaGlmdEdGYW8tRjY2LlEoJm1pbnVzO0YnRjlGO0Y+RkBGQkZERkZGSC9GS1EsMC4yMjIyMjIyZW1GJy9GTkZob0ZPRlxvRjktRjY2LlEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTlEsMC4zMzMzMzMzZW1GJ0ZPLUYjNiYtRlk2J0ZlbkZcb0Zcb0Zfb0Zib0Zkby1GaW42JFEiM0YnRjlGOUZqby1GIzYmLUZZNidGZW5GZnBGXG9GX29GYm9GZG8tRmluNiRRIjVGJ0Y5RjlGam8tRiM2Ji1GWTYnRmVuLUZpbjYkUSI0RidGOUZcb0Zfb0Zib0Zkby1GaW42JFEiN0YnRjlGOUZqby1GIzYmLUZZNidGZW5GXXFGXG9GX29GYm9GZG8tRmluNiRRIzExRidGOUY5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJNR0YoNycsJiokKSZJInpHRig2IyIiIiIiI0Y1RjVGNiEiIiwmKiQpJkYzNiNGNkY2RjVGNSIiJEY3LCYqJCkmRjM2I0Y9RjZGNUY1IiImRjcsJiokKSZGMzYjIiIlRjZGNUY1IiIoRjcsJiokKSZGMzYjRkNGNkY1RjUiIzZGNzcjRi4=</Equation></Text-field>
-</Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjWFRGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSShtZmVuY2VkR0YkNiYtRiM2Mi1GLDYlUSJ4RidGL0YyLUY2Ni5RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGTy1GLDYlUSJ5RidGL0YyRlktSSVtc3ViR0YkNiUtRiw2JVEiekYnRi9GMi1JI21uR0YkNiRRIjVGJ0Y5LyUvc3Vic2NyaXB0c2hpZnRHUSIwRidGWS1GX282JUZhby1GZW82JFEiNEYnRjlGaG9GWS1GX282JUZhby1GZW82JFEiM0YnRjlGaG9GWS1GX282JUZhby1GZW82JFEiMkYnRjlGaG9GWS1GX282JUZhby1GZW82JFEiMUYnRjlGaG8vJStmb3JlZ3JvdW5kR1EoWzAsMCwwXUYnLyUpcmVhZG9ubHlHRj1GOUY5LyUlb3BlbkdRJyZsc3FiO0YnLyUmY2xvc2VHUScmcnNxYjtGJ0Y5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNYVEdGKDcpSSJ4R0YoSSJ5R0YoJkkiekdGKDYjIiImJkYyNiMiIiUmRjI2IyIiJCZGMjYjIiIjJkYyNiMiIiI3I0Yu</Equation></Text-field>
-</Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjZEZGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSSNtbkdGJDYkUSMzMkYnRjlGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNkRkdGKCIjSzcjRi4=</Equation></Text-field>
-</Output>
 </Group>
 <Group hide-input="false" labelreference="L1" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
-<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t:=80:
-k:=1:
-T := [seq(0, j = 1 .. t/2)]:
-for i from 2 by 2 to t do
-    f1 := RDP:-rpoly(x^i*y^i + randpoly(XT, degree = i), XT, M);
-    f2 := RDP:-rpoly(x^i*y^i + randpoly(XT, degree = i), XT, M);
-   <Font encoding="UTF-8">printf(&quot;dF=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d \134n&quot;,
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">
+timings := true;
+Xpoly:=[x,y];
+dF:=[4,8,16,24,32,64,128, 256, 512,1024];
+T:=[seq(0,i=1..nops(dF))];
+k:=1;
+d:=16;
+</Text-field>
+</Input>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEodGltaW5nc0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1GLDYlRjFGL0YyRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSh0aW1pbmdzR0YoSSV0cnVlR0YmNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEmWHBvbHlGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSShtZmVuY2VkR0YkNiYtRiM2KC1GLDYlUSJ4RidGL0YyLUY2Ni5RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGTy1GLDYlUSJ5RidGL0YyLyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSZYcG9seUdGKDckSSJ4R0YoSSJ5R0YoNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEjZEZGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYuUSkmQXNzaWduO0YnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLyUpZXF1YWxpdHlHRj0tSShtZmVuY2VkR0YkNiYtRiM2OC1JI21uR0YkNiRRIjRGJ0Y5LUY2Ni5RIixGJ0Y5RjsvRj9GMUZARkJGREZGRkgvRktRJjAuMGVtRicvRk5RLDAuMzMzMzMzM2VtRidGTy1GVzYkUSI4RidGOUZaLUZXNiRRIzE2RidGOUZaLUZXNiRRIzI0RidGOUZaLUZXNiRRIzMyRidGOUZaLUZXNiRRIzY0RidGOUZaLUZXNiRRJDEyOEYnRjlGWi1GVzYkUSQyNTZGJ0Y5RlotRlc2JFEkNTEyRidGOUZaLUZXNiRRJTEwMjRGJ0Y5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y9RjlGOS8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7RidGOQ==">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSNkRkdGKDcsIiIlIiIpIiM7IiNDIiNLIiNrIiRHIiIkYyMiJDcmIiVDNTcjRi4=</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEiVEYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JKG1mZW5jZWRHRiQ2Ji1GIzY4LUkjbW5HRiQ2JFEiMEYnRjktRjY2LlEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTlEsMC4zMzMzMzMzZW1GJ0ZPRlZGWkZWRlpGVkZaRlZGWkZWRlpGVkZaRlZGWkZWRlpGVi8lK2ZvcmVncm91bmRHUShbMCwwLDBdRicvJSlyZWFkb25seUdGPUY5RjkvJSVvcGVuR1EnJmxzcWI7RicvJSZjbG9zZUdRJyZyc3FiO0YnRjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJUR0YoNywiIiFGL0YvRi9GL0YvRi9GL0YvRi83I0Yu</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEia0YnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JI21uR0YkNiRRIjFGJ0Y5Rjk=">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJrR0YoIiIiNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEiZEYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JI21uR0YkNiRRIzE2RidGOUY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJkR0YoIiM7NyNGLg==</Equation></Text-field>
+</Output>
+</Group>
+<Group hide-input="false" labelreference="L233" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">for i in dF do
+   do
+     q:=rand()/rand();
+   until q&lt;&gt;0;
+   M:=Minpolylist(i, num); #List of minimal polynomials. It creats the max number of minimal polynomials
+   Xmin:=ListTools:-Reverse([seq(z[j],j=1..nops(M))]);
+   XT:=[op(Xpoly),op(Xmin)];
+   f1:=RDP:-rpoly(q*x^d*y^d+randpoly(XT,degree=d),XT,M);
+   f2:=RDP:-rpoly(q*x^d*y^d+randpoly(XT,degree=d),XT,M);
+   <Font encoding="UTF-8">printf(&quot;dF=%d  deg(f1,x)=%d  deg(f1,y)=%d  deg(f2,x)=%d  deg(f2,y)=%d  %d\134n&quot;,
 </Font>     dF,RDP:-degrpoly(f1,x),RDP:-degrpoly(f1,y),RDP:-degrpoly(f2,x),RDP:-degrpoly(f2,y));
   try;
   t:=time():
-  R1:=timelimit(1000,MRS1(f1,f2,x));
-  printf(&quot;dR1=%d<Font encoding="UTF-8">\134n&quot;</Font>,RDP:-degrpoly(R1,y));
+  Mahsa1:=timelimit(1000,MRS1(f1,f2,x));
   tMRS1:=time()-t;
   tt:=time():
 catch &quot;time expired&quot;: 
         tMRS1:= FAIL; 
 end try;
-try 
-   R2 := timelimit(1000, MRS2(f1, f2, x)); 
-   tMRS2 := time() - tt; 
-   printf(&quot;dR2=%d<Font encoding="UTF-8">\134n&quot;</Font>,RDP:-degrpoly(R2,y));
+try;
+  Mahsa2:=timelimit(1000,MMRS2(f1,f2,x));
+  tMGCD2:=time()-tt;
 catch &quot;time expired&quot;: 
-tMRS2 := FAIL; 
+        tMRS2:= FAIL; 
 end try;
-if tMRS2 &lt;&gt; FAIL and tMGCD1 &lt;&gt; FAIL then
-<Font encoding="UTF-8">    printf(&quot;Check=%a\134n&quot;, evalb(R1 = R2));
-</Font>    T[k] := tMRS2/tMRS1;
+if tMRS2&lt;&gt;FAIL and tMRS1&lt;&gt;FAIL then
+<Font encoding="UTF-8">  printf(&quot;Check=%a\134n&quot;,evalb(Mahsa1=Mahsa2));</Font>
+  T[k]:=tMRS2/tMRS1;
 else
-    T[k] := &quot;F&quot;;
-end if;
-k := k + 1;
+   T[k]:=&quot;F&quot;;
+fi;
+k:=k+1;
 od:
-T;
-</Text-field>
+T;</Text-field>
 </Input>
-<Output><Text-field style="Line Printed Output" layout="Line Printed Output">dF=32  deg(f1,x)=2  deg(f1,y)=2  deg(f2,x)=2  deg(f2,y)=2 
-MRS1: time=0.812  LAminpoly=0.156  PGCD=0.392  Np=14
-dR1=6
-MRS2: time=0.985  LAminpoly=0.000  PGCD=0.812  Np=14
-dR2=6
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUkjbWlHRiQ2JVEidEYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi5RKSZBc3NpZ247RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwvJSllcXVhbGl0eUdGPS1JI21uR0YkNiRRIzQwRidGOUY5">LV9JLFR5cGVzZXR0aW5nRzYkJSpwcm90ZWN0ZWRHSShfc3lzbGliRzYiSSxtcHJpbnRzbGFzaEdGKDYkNyM+SSJ0R0YoIiNTNyNGLg==</Equation></Text-field>
+</Output>
+<Output><Text-field style="Line Printed Output" layout="Line Printed Output">dF=32  deg(f1,x)=2  deg(f1,y)=2  deg(f2,x)=2  deg(f2,y)=2  
+MRS1: time=0.781  LAminpoly=0.125  PGCD=0.328  Np=14
+dR=6
+MRS2: time=0.984  LAminpoly=0.000  PGCD=0.954  Np=14
 Check=true
-dF=32  deg(f1,x)=4  deg(f1,y)=4  deg(f2,x)=4  deg(f2,y)=4 
-MRS1: time=6.796  LAminpoly=0.455  PGCD=5.046  Np=27
-dR1=28
-MRS2: time=16.313  LAminpoly=0.000  PGCD=15.266  Np=27
-dR2=28
+dF=32  deg(f1,x)=4  deg(f1,y)=4  deg(f2,x)=4  deg(f2,y)=4  
+MRS1: time=6.891  LAminpoly=0.297  PGCD=4.875  Np=27
+dR=28
+MRS2: time=15.859  LAminpoly=0.000  PGCD=14.844  Np=27
 Check=true
-dF=32  deg(f1,x)=6  deg(f1,y)=6  deg(f2,x)=6  deg(f2,y)=6 
-MRS1: time=42.500  LAminpoly=0.376  PGCD=31.738  Np=39
-dR1=60
-MRS2: time=119.359  LAminpoly=0.000  PGCD=109.191  Np=39
-dR2=60
+dF=32  deg(f1,x)=6  deg(f1,y)=6  deg(f2,x)=6  deg(f2,y)=6  
+MRS1: time=46.797  LAminpoly=0.486  PGCD=34.596  Np=39
+dR=60
+MRS2: time=124.656  LAminpoly=0.000  PGCD=114.392  Np=39
 Check=true
-dF=32  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8 
-MRS1: time=148.594  LAminpoly=0.502  PGCD=107.092  Np=48
-dR1=104
-MRS2: time=434.907  LAminpoly=0.000  PGCD=404.221  Np=48
-dR2=104
+dF=32  deg(f1,x)=8  deg(f1,y)=8  deg(f2,x)=8  deg(f2,y)=8  
+MRS1: time=156.406  LAminpoly=1.112  PGCD=112.486  Np=48
+dR=104
+MRS2: time=448.813  LAminpoly=0.000  PGCD=413.561  Np=48
 Check=true
-dF=32  deg(f1,x)=10  deg(f1,y)=10  deg(f2,x)=10  deg(f2,y)=10 
-MRS1: time=295.250  LAminpoly=0.969  PGCD=241.311  Np=67
-dR1=130
+dF=32  deg(f1,x)=10  deg(f1,y)=10  deg(f2,x)=10  deg(f2,y)=10  
+MRS1: time=295.235  LAminpoly=0.813  PGCD=237.823  Np=67
+dR=130
+MRS2: time=993.110  LAminpoly=0.000  PGCD=940.906  Np=67
+Check=true
+dF=32  deg(f1,x)=12  deg(f1,y)=12  deg(f2,x)=12  deg(f2,y)=12  
+dF=32  deg(f1,x)=14  deg(f1,y)=14  deg(f2,x)=14  deg(f2,y)=14  
+dF=32  deg(f1,x)=16  deg(f1,y)=16  deg(f2,x)=16  deg(f2,y)=16  
+dF=32  deg(f1,x)=18  deg(f1,y)=18  deg(f2,x)=18  deg(f2,y)=18  
+dF=32  deg(f1,x)=20  deg(f1,y)=20  deg(f2,x)=20  deg(f2,y)=20  
 </Text-field>
 </Output>
-<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkobWZlbmNlZEc2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUklbXJvd0dGJDZecC1JI21uR0YkNiRRLDEuMjEzMDU0MTg3RicvJSxtYXRodmFyaWFudEdRJ25vcm1hbEYnLUkjbW9HRiQ2LlEiLEYnRjIvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHUSV0cnVlRicvJSlzdHJldGNoeUdGOy8lKnN5bW1ldHJpY0dGOy8lKGxhcmdlb3BHRjsvJS5tb3ZhYmxlbGltaXRzR0Y7LyUnYWNjZW50R0Y7LyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdRLDAuMzMzMzMzM2VtRicvJSllcXVhbGl0eUdGOy1GLzYkUSwyLjQwMDM4MjU3OEYnRjJGNS1GLzYkUSwyLjgwNzM5MDE1OUYnRjJGNS1GLzYkUSwyLjkyNjUxODU4MkYnRjJGNS1GLzYkUSIwRidGMkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaRjVGWkY1RlpGNUZaLyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0Y7RjJGMi8lJW9wZW5HUScmbHNxYjtGJy8lJmNsb3NlR1EnJnJzcWI7Ric=">N0okIisoPWFJQCIhIiokIit5RFErQ0YlJCIrZixSMkdGJSQiKyNlPWwjSEYlIiIhRixGLEYsRixGLEYsRixGLEYsRixGLEYsRixGLEYsRixGLEYsRixGLEYsRixGLEYsRixGLEYsRixGLEYsRixGLEYsRixGLA==</Equation></Text-field>
+<Output><Text-field style="HyperlinkError" layout="HyperlinkError"><Hyperlink linktarget="http://www.maplesoft.com/support/help/errors/view.aspx?path=Error,%20(in%20MRS1)%20invalid%20input%3A%20Algebraic%3A-RecursiveDensePolynomials%3A-subrpoly%20expects%20its%201st%20argument,%20a,%20to%20be%20of%20type%20POLYNOMIAL,%20but%20received%200%20%7CMRES1%3A90%7C" hyperlink="true"><Font style="HyperlinkError">Error, (in MRS1) invalid input: Algebraic:-RecursiveDensePolynomials:-subrpoly expects its 1st argument, a, to be of type POLYNOMIAL, but received 0 |MRES1:90|</Font></Hyperlink></Text-field>
+</Output>
+<Output><Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUkobWZlbmNlZEc2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUklbXJvd0dGJDZMLUkjbW5HRiQ2JFEsMS4yMzQ2Mjk4NjJGJy8lLG1hdGh2YXJpYW50R1Enbm9ybWFsRictSSNtb0dGJDYuUSIsRidGMi8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdRJXRydWVGJy8lKXN0cmV0Y2h5R0Y7LyUqc3ltbWV0cmljR0Y7LyUobGFyZ2VvcEdGOy8lLm1vdmFibGVsaW1pdHNHRjsvJSdhY2NlbnRHRjsvJSdsc3BhY2VHUSYwLjBlbUYnLyUncnNwYWNlR1EsMC4zMzMzMzMzZW1GJy8lKWVxdWFsaXR5R0Y7LUYvNiRRLDIuMzAxNDA3NjMzRidGMkY1LUYvNiRRLDIuNjYyODUwMDYzRidGMkY1LUYvNiRRLDIuODY5MjQ0NzM1RidGMkY1LUYvNiRRLDMuMzYzNjc0ODUyRidGMkY1LUkjbXNHRiQ2I1EiRkYnRjVGZ25GNUZnbkY1RmduRjUtRi82JFEiMEYnRjJGNUZbb0Y1RltvRjVGW29GNUZbb0Y1RltvRjVGW29GNUZbb0Y1RltvRjVGW29GNUZbby8lK2ZvcmVncm91bmRHUShbMCwwLDBdRicvJSlyZWFkb25seUdGO0YyRjIvJSVvcGVuR1EnJmxzcWI7RicvJSZjbG9zZUdRJyZyc3FiO0Yn">NzYkIitpKUhZQiIhIiokIitMd1MsQkYlJCIraismR20jRiUkIitOWkNwR0YlJCIrX1tuakxGJVEiRjYiRi5GLkYuIiIhRjBGMEYwRjBGMEYwRjBGMEYwRjA=</Equation></Text-field>
 </Output>
 </Group>
-<Group hide-input="false" labelreference="L230" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
-<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Equation executable="true" style="2D Input" input-equation="" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYlLUkjbWlHRiQ2I1EhRicvJStleGVjdXRhYmxlR1EmZmFsc2VGJy8lLG1hdGh2YXJpYW50R1Enbm9ybWFsRic=">LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYjLUkjbWlHRiQ2I1EhRic=</Equation></Text-field>
-</Input>
-</Group>
-<Group labelreference="L231" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Group labelreference="L234" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
 <Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"><Equation executable="true" style="2D Input" input-equation="" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYlLUkjbW9HRiQ2LlEifkYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGNC8lKXN0cmV0Y2h5R0Y0LyUqc3ltbWV0cmljR0Y0LyUobGFyZ2VvcEdGNC8lLm1vdmFibGVsaW1pdHNHRjQvJSdhY2NlbnRHRjQvJSdsc3BhY2VHUSYwLjBlbUYnLyUncnNwYWNlR0ZDLyUpZXF1YWxpdHlHRjQvJStleGVjdXRhYmxlR0Y0Ri8=">LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYlLUkjbW9HRiQ2LlEifkYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGNC8lKXN0cmV0Y2h5R0Y0LyUqc3ltbWV0cmljR0Y0LyUobGFyZ2VvcEdGNC8lLm1vdmFibGVsaW1pdHNHRjQvJSdhY2NlbnRHRjQvJSdsc3BhY2VHUSYwLjBlbUYnLyUncnNwYWNlR0ZDLyUpZXF1YWxpdHlHRjQvJStleGVjdXRhYmxlR0Y0Ri8=</Equation></Text-field>
 </Input>
 </Group>
