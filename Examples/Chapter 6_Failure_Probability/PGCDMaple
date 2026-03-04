@@ -1,0 +1,157 @@
+#PGCDAlg
+#X is the list of the polynomials' variables, XT is the list of the whole variables
+#We did not use minpoly in PGCDAlg So PGCDAlg is the same for single & multiple extensions
+PGCDAlg:= proc(A,B,p,T::anything := NULL)  uses RDP=Algebraic:-RecursiveDensePolynomials;
+local k,Xk,minmon,least,conta,contb,c,ap,bp,g,interpol,lcinterpol,j,Aj,Bj,Cj,gj,G,lcCj,lcA,lcB,lcAk, lcBk,Randfunction,LM,lm,ring,ring2,
+count,XT,X,n,m,AL,BL,L,i,GCDL,deginterpol,prod, interpolj,vj,prodj,q,tt,tgcd,tPGCD,teval,tinterp,tdiv,timings,st,PGCDcalls;
+
+use 
+  print  = proc() NULL end proc,
+  printf = proc() NULL end proc,
+  lprint = proc() NULL end proc
+in
+   timings:=true;
+   tt := time();
+   tgcd:=0;
+   tPGCD:=0;
+   teval:=0;
+   tinterp:=0;
+   tdiv:=0;
+   PGCDcalls:=0;
+   #Check if A and B are in the same field
+   RDP:-checkconsistency(A,B);
+   ring:=getring(A);
+   #XT is the whole variables containing the polynomial's variables and the minpolys variables
+   XT:=getvars(A);
+   n:=nops(XT);
+   m:=nops(RDP:-getalgexts(A)); 
+   X:=XT[1..n-m];
+   #k must be the number of polynomial variables
+   k:=nops(X);
+   Xk:=X[1..k-1]; #Polynomial variables= The whole variables - the variable of the minpoly
+   #Base case
+   if k = 1 then  
+       st:=time();
+   	   G:=RDP:-gcdrpoly(A,B);
+       tgcd:=tgcd+time()-st;
+      return G;
+   fi;
+   #Calculate the Content/Primpart of  A and B
+   conta:=RDP:-contrpoly(A,Xk,'ap');
+   contb:=RDP:-contrpoly(B,Xk,'bp');
+   #c is the gcd of the content of A and B
+   c:=RDP:-gcdrpoly(conta,contb);
+   #g is the gcd of the leading coefficients of pp of A and B w.r.t Xk
+   g:=RDP:-gcdrpoly(RDP:-lcrpoly(ap,Xk),RDP:-lcrpoly(bp,Xk));
+   lcA:=RDP:-lcrpoly(ap,X);
+   lcB:=RDP:-lcrpoly(bp,X); 
+   #q is the array of eval points. We need tracking q to avoid repetitious evaluation points
+   q:=[];
+   #Randfunction is the function producing the rand eval points 
+   Randfunction:=rand(p);
+   lcAk:=RDP:-lcrpoly(ap,Xk);  #in Lp[xk]
+   lcBk:=RDP:-lcrpoly(bp,Xk);
+   #count is the counter of the acceptable eval points
+   count:=0;
+   while true do 
+      do
+         if count=0 then j:=2 
+         else
+             j:= Randfunction() mod p;
+         fi;
+      until not member(j,q) and RDP:-evalrpoly(lcAk,X[k]=j) mod p<>0 and RDP:-evalrpoly(lcBk,X[k]=j) mod p<>0;
+      st:=time();
+        Aj:=RDP:-evalrpoly(ap,X[k]=j);
+        Bj:=RDP:-evalrpoly(bp,X[k]=j);
+      teval:=teval+time()-st;
+      st:=time();
+        Cj:=PGCDAlg(Aj,Bj,p); #call it Gj
+      tPGCD:=tPGCD+time()-st;
+      PGCDcalls:=PGCDcalls+1;
+      #lm=The leading monomial of Cj
+      lm:=lmrpoly(Cj,Xk,XT,p);
+      #m=min(lm,n) where n=min(lm(ap),lm(bp))
+      st:=time();
+        gj:=RDP:-evalrpoly(g,X[k]=j);
+       teval:=teval+time()-st;
+      Cj:=RDP:-scarpoly(gj,Cj);
+      #To count the number of acceptable evaluation points
+      if count=0 then 
+         minmon:=lm;
+         least:=lm;
+         count:=count+1;
+         deginterpol:=0;
+         interpol:=Cj;
+         prod:=RDP:-rpoly(X[k]-j,ring);
+         q := [j]; 
+      else
+         least:=tmrpoly(RDP:-addrpoly(lm,minmon),X,XT,p);
+         if lm = least and minmon = least then 
+             prodj:=RDP:-evalrpoly(prod,X[k]=j);
+             #print(PRODJ(prod,prodj),q,j);
+             q:=[op(q),j];  #add j to q
+              
+             st:=time();
+               interpol,prod:=Newtonincremental(count,prod,prodj,Cj,interpol,ring,X[k],j); #include interpolj
+               #Newtonincremental interpolates gcd using Newton's method incrementally
+               #vj:=RDP:-scarpoly(RDP:-invrpoly(conv2cons(prodj)),RDP:-subrpoly(Cj,interpolj));
+               #The ring to which vj, interpol, and prod belong must be the same but at the second iteration when count=1, vj and interpol do not have y as their variable so we must reconstruct the ringto which  vj and interpol belong.
+               #vj:=RDP:-rpoly(RDP:-rpoly(vj),ring); # adding X[k]
+               #interpol:=RDP:-rpoly(RDP:-rpoly(interpol),ring);
+               #interpol:=RDP:-addrpoly(interpol,RDP:-mulrpoly(prod,vj));
+               #prod:=RDP:-mulrpoly(prod, RDP:-rpoly(X[k]-j,ring));
+            tinterp:=tinterp+time()-st;
+            deginterpol:=RDP:-degrpoly(interpol,X[k]); #We did not initialize interpol since its ring changes at each iteration and it causes error. If we fixed a ring for interpol then it was more expensive than simply initialize its degree of y =0 at the first iteration
+            count:=count+1;
+         elif lm = least and minmon<>least then
+         	#printf(" All the evaluation points before j=%d are unlucky",j);
+             q:=[j];
+             prod:=RDP:-rpoly(X[k]-j,ring);
+             interpol:=Cj;
+             minmon:= least;
+             count:=1;
+         elif lm<>least then  #Recognizing as an unlucky prime!
+             #printf("%d is an unlucky evaluation point\n",j);
+         fi;
+      fi;
+      if  count>deginterpol+1  then   #Line 90 is equivalent to line 30 of PGCDAlg algorithm in the paper
+        G:=RDP:-pprpoly(interpol,Xk);
+        do
+        st:=time();
+        #This test makes our algorithm Monte Carlo
+           L:={seq(X[i]= Randfunction() mod p, i=2..k)};
+           AL, BL, GCDL:= RDP:-evalrpoly(A,L), RDP:-evalrpoly(B,L), RDP:-evalrpoly(G,L);
+       until RDP:-degrpoly(GCDL,X[1])=RDP:-degrpoly(G,X[1]);
+       
+       if RDP:-divrpoly(AL,GCDL) and RDP:-divrpoly(BL,GCDL) then
+         tdiv:=tdiv+time()-st;
+         tt := time()-tt;
+         if timings=true and T<>NULL then 
+            printf("PGCD: time=%.3f gcd computation=%.3f  evaluation=%.3f PGCD calls=%.3f interpolation=%.3f  Division test=%.3f PGCD calls=%.3f\n",tt, tgcd, teval,tPGCD,tinterp,tdiv,PGCDcalls); fi;
+          G:=RDP:-mulrpoly(c,G);
+          return (G);
+        fi;
+      fi;
+   od;
+end use;
+end:
+
+Newtonincremental:=proc(count,prod,prodj,Cj,interpol,ring,X,j)
+uses RDP=Algebraic:-RecursiveDensePolynomials;
+local vj,interpol2,prod2,interpolj;
+if count=1 then 
+        interpolj:=interpol; #When count=1, interpol=Cj and Cj does not have X[k] in it so evalrpoly returns an error.
+else 
+        interpolj:=RDP:-evalrpoly(interpol,X=j); 
+fi;  
+vj:=RDP:-scarpoly(RDP:-invrpoly(conv2cons(prodj)),RDP:-subrpoly(Cj,interpolj));
+#The ring to which vj, interpol, and prod belong must be the same but at the second iteration when count=1, vj and interpol do not have y as their variable so we must reconstruct the ringto which  vj and interpol belong.
+vj:=RDP:-rpoly(RDP:-rpoly(vj),ring); # adding X[k]
+interpol2:=RDP:-rpoly(RDP:-rpoly(interpol),ring);
+interpol2:=RDP:-addrpoly(interpol2,RDP:-mulrpoly(prod,vj));
+prod2:=RDP:-mulrpoly(prod, RDP:-rpoly(X-j,ring));
+return (interpol2,prod2);
+end proc:
+
+
+
