@@ -99,7 +99,7 @@ with(PolynomialTools):
 #MGCD1 contains the  code for <Font encoding="UTF-8">MGCDNF alg which uses phi_{\134gamma}
 </Font>#MGCD2 contains the code for MGCDNF alg<Font encoding="UTF-8"> which does not uses phi_{\134gamma}</Font></Font>
 currentdir();
-read &quot;recden&quot;;  read &quot;LAminpoly.mpl&quot;; read &quot;lm.mpl&quot;; read &quot;MGCD1.mpl&quot;;  read &quot;MGCD2.mpl&quot;; read &quot;PGCD.mpl&quot;;  read &quot;minimal Polynomial creator&quot;;
+read &quot;recden&quot;;  read &quot;LAminpoly.mpl&quot;; read &quot;lm.mpl&quot;; read &quot;MGCD1.mpl&quot;;  read &quot;MGCD2.mpl&quot;; read &quot;PGCD.mpl&quot;;  read &quot;Min_creat&quot;;
 <Font foreground="[0,128,128]">
 </Font></Text-field>
 </Input>
