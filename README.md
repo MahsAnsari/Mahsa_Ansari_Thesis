@@ -1,6 +1,6 @@
 # Mahsa_Ansari_Thesis
 
-This repository contains the Maple code and benchmark files used in my thesis on computing monic GCDs and resultants of multivariate polynomials over algebraic number field Q(\alpha_1,..\alpha_n).
+This repository contains the Maple code and benchmark files used in my thesis on computing monic GCDs and resultants of multivariate polynomials over algebraic number field [Q(\alpha_1,\ldots,\alpha_n)].
 
 ## Overview
 
