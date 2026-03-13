@@ -1,6 +1,0 @@
- real:                                              bound:
-lc bad  1.035\times 10^{-8}                      1.512\times 10^{-8}
-det bad  9.073\times10^{-8}                                0
-zero divisor 3.31\times 10^{-3}                           3.31\times 10^{-3}
-unlucky primes  5.6\times 10^{-8}                          0
-unlucky eval   2.6\times 10^{-7}                  4.7\times 10^{-7}

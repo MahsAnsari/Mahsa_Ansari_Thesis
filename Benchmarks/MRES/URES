@@ -1,0 +1,96 @@
+monic:=proc(a)
+uses RDP=Algebraic:-RecursiveDensePolynomials;
+ if RDP:-rpoly(a)=0 then a else RDP:-mulrpoly(RDP:-invrpoly(RDP:-lcrpoly(a)),a); fi; 
+end proc:
+
+
+#ures computes the resultant of two univariate polynomials using MEA
+#uresAlg:=proc(a, b)
+#uses RDP=Algebraic:-RecursiveDensePolynomials;
+#local q,r,s,t,k,n,m,h,R,c,re,Ring,v,prod,i,l;
+#r[0]:=a;
+#r[1]:=b;
+#m[0]:=r[0];
+#n[0]:=RDP:-degrpoly(a);
+#n[1]:=RDP:-degrpoly(b);
+#k:=1;
+#re:=[a];
+#Ring:=getring(a);
+#prod:=RDP:-rpoly(1,Ring);
+#while r[k]<>RDP:-rpoly(0,Ring) do
+ #  m[k]:=monic(r[k]);
+  # re:=[op(re),r[k]];
+  # r[k+1]:=RDP:-remrpoly(m[k-1],m[k]);
+   #n[k+1]:=RDP:-degrpoly(r[k+1]);
+   #If gcd(f,g)<>constant then res(f,g)=0
+   #if r[k+1]=RDP:-rpoly(0,Ring) and n[k]<>0  then return(0); fi;
+   #prod:=RDP:-scarpoly(RDP:-powrpoly(RDP:-lcrpoly(r[k]),n[k-1]),prod);
+   #k:=k+1;
+#od;
+#v:=add(n[i]*n[i+1],i=1..k-2);
+#prod:=RDP:-scarpoly((-1)^v,prod);
+#return(prod);
+
+#end:
+
+
+
+
+
+uresAlg:=proc(a, b)
+uses RDP=Algebraic:-RecursiveDensePolynomials;
+local q,r,s,t,k,n,m,h,R,c,re,Ring,v,prod,i,l;
+r[0]:=a;
+r[1]:=b;
+m[0]:=r[0];
+k:=1;
+re:=[a];
+v:=0;
+Ring:=getring(a);
+prod:=RDP:-rpoly(1,Ring);
+#We call the Monic Euclidean Algorithm to get the m.p.r.s.
+while r[k]<>RDP:-rpoly(0,Ring) do
+   m[k]:=monic(r[k]);
+   re:=[op(re),r[k]];
+   r[k+1]:=RDP:-remrpoly(m[k-1],m[k]);
+   #If gcd(f,g)<>constant then res(f,g)=0
+   if r[k+1]=RDP:-rpoly(0,Ring) and RDP:-degrpoly(r[k])<>0  then return(0); fi;
+   #n:=k;
+   k:=k+1;
+od;
+#Now we have m.p.r.s as a list "re"
+n:=nops(re);
+#c:=[seq(0,i=1..n)];
+#construct the powers of -1
+v:=add(RDP:-degrpoly(re[i])*RDP:-degrpoly(re[i+1]),i=1..n-2);
+for i from 2 to n-1 do
+   prod:=RDP:-scarpoly(RDP:-powrpoly(RDP:-lcrpoly(re[i]),RDP:-degrpoly(re[i-1])),prod);
+od;
+prod:=RDP:-scarpoly(RDP:-powrpoly(RDP:-lcrpoly(re[n]),RDP:-degrpoly(re[n-1])),RDP:-scarpoly((-1)^v,prod)); #the final resultant
+return(prod);
+end:
+
+removexrpoly:=proc(f,x) 
+#remove the main variable from the ring of f and return f with the new ring
+  local Rf,X,n,Y,i,R,nr,j,f1,ff,XX,M,E;
+   M,XX,E:=op(getring(f));
+   if Search(x,XX)=0 then return(f); fi;
+   #THis must be fixed since makemainrpoly does not work in RDP
+  f1:=RDP:-makemainrpoly(f,x);
+  Rf:=getring(f1);
+  X:=op(2,Rf);
+  n:=nops(X);
+  Y:=[seq(0,i=1..n-1)]; #we use this in PRS where there is just one extention and
+  for i to n-1 do
+     Y[i]:=X[i+1];
+  od;
+  nr:=nops(Rf);
+  R:=[seq(0,i=1..nr)];
+  R[1]:=op(1,Rf);
+  R[2]:=Y;
+  for j from 3 to nr do 
+   R[j]:=op(j,Rf);
+  od;
+  ff:=RDP:-rpoly(f);
+  return( RDP:-rpoly(ff,R));
+end:

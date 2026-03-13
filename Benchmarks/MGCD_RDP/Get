@@ -1,0 +1,36 @@
+#The recden codes that we need for LAMinpoly and Phi
+NEXTPRIME := proc(p) option inline; modp1(Prime(p)) end:
+
+getring := proc(a::POLYNOMIAL) option inline; op(1,a) end:
+
+getpoly := proc(a::POLYNOMIAL) option inline; op(2,a) end:
+
+getchar := proc(a::POLYNOMIAL) option inline; op([1,1],a) end:       
+
+getvars := proc(a::POLYNOMIAL) option inline; op([1,2],a) end:       
+
+getexts := proc(a::POLYNOMIAL) option inline; op([1,3],a) end:       
+
+iszerorpoly := proc(a::POLYNOMIAL) option inline; evalb(op(2,a)=0) end:
+
+hassamering := proc(a::POLYNOMIAL,b::POLYNOMIAL) option inline; evalb(op(1,a)=op(1,b)) end:
+#conv2cons changes the ring of a constant from [Xpoly, Xmin] into a [Xmin] (so we can use the invrpoly in Algebraic package) 
+conv2cons:=proc(a) uses RDP=Algebraic:-RecursiveDensePolynomials;
+local b,R,A, M,X,E,N,n,m,Y,newring,i;
+b:=RDP:-rpoly(a);
+R,A:=op(a);
+M, X, E := op(R);
+N := nops(X);
+if nops(E)<N then 
+  X:=getvars(a);
+  n:=nops(getexts(a));
+  m:=nops(X);
+  Y:=X[m-n+1...m];
+  newring:=[seq(0,i=1..3)];
+  newring:=[M,Y,E];
+return RDP:-rpoly(b,newring)
+#RDP:-rpoly (RDP:-rpoly(a) ,  RDP:-rring(RDP:-rring(Y,minp),Y)) ;
+fi;
+end:
+
+
